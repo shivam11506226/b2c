@@ -1,0 +1,12 @@
+.hotel_search_banner{
+    background-image: url("../../../images/home_banner.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.h_detail{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 7px 11px #00000029;
+    border-radius: 20px;
+}

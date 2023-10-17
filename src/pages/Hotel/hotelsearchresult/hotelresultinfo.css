@@ -1,0 +1,239 @@
+.hotel_info_head{
+    text-align: center;
+    font: normal normal bold 32px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FF8900;
+}
+
+.hotel_info_para{
+    text-align: center;
+    font: normal normal bold 18px/35px Quicksand !important;
+    letter-spacing: 0px;
+    color: #006FFF;
+}
+
+.budget_room{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #00000029;
+    border-radius: 10px;
+}
+
+.budget_txt{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.budget_flex{
+    display: flex;
+    align-items: cemter;
+    justify-content: space-between;
+}
+
+.budget_ad{
+    text-align: left;
+    font: normal normal bold 12px/15px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.budget_price{
+    text-align: right;
+    font: normal normal bold 12px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+
+.budget_pricing{
+    text-align: right;
+    font: normal normal bold 22px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #006FFF;
+}
+
+.budget_price_saving{
+    text-align: right;
+    font: normal normal bold 14px/18px Quicksand !important;
+    color: #FF0000;
+}
+
+.option_btnn{
+    background: #006FFF 0% 0% no-repeat padding-box !important;
+    border-radius: 10px !important;
+}
+
+.break_avail{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FF8900;
+}
+
+.over_view{
+    text-align: left;
+    font: normal normal bold 28px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.over_view_para{
+    text-align: left;
+    font: normal normal bold 18px/20px Quicksand !important;
+    letter-spacing: 0px; 
+    color: #666666;
+}
+
+.list_col{
+    color: #FF8900;
+    font: normal normal bold 14px/27px Quicksand !important;
+}
+
+.radio_fnt{
+    text-align: center;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+
+.amentities{
+    text-align: left;
+    font: normal normal bold 28px/35px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.jacuzzi{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #006FFF;
+}
+
+.tbl_head{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.tbl_content{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand;
+    letter-spacing: 0px;
+    color: #FF8900;
+}
+
+/* hover image */
+.style_img:hover {
+    background-color: #000000;
+    opacity: 0.7;
+}
+
+/* end */
+
+.location_heading{
+    text-align: left;
+    font: normal normal bold 28px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.location_para{
+    text-align: left;
+    font: normal normal bold 18px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+    }
+
+    ul{
+        text-align: left;
+        letter-spacing: 0px;
+        color: #666666;
+    }
+    
+.safety_hygiene{
+    text-align: left;
+    font: normal normal bold 18px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+    }
+
+    .jac_cuzzi{
+        text-align: left;
+        font: normal normal bold 16px/20px Quicksand !important;
+        letter-spacing: 0px;
+        color: #FFFFFF;
+        text-shadow: 0px 3px 32px #000000;
+        position: relative;
+        top: -29px;
+        right: -20px;
+    }
+
+    /* user review */
+
+.user_review{
+    text-align: left;
+    font: normal normal bold 20px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.useReview_para{
+    text-align: left;
+    font: normal normal bold 14px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+
+.review_heading{
+    text-align: left;
+    font: normal normal bold 28px/35px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+    opacity: 1;
+}
+
+.travellers_rating{
+    background: #FF951A 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    padding: 30px;
+    margin: 25px 0px;
+    text-align: center;
+}
+
+.rating_txt{
+    text-align: center;
+    font: normal normal bold 16px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.rating_head{
+    text-align: center;
+    font: normal normal bold 20px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.link_review{
+    font: normal normal bold 14px/18px Quicksand !important;
+    color: #006FFF;
+}
+
+/* Hide gallery number */
+.alice-carousel__dots{
+    display: none !important;
+}
+.Map {
+    height: 100% !important;
+    width: 100% !important;
+    z-index: 1292992;
+  }
+
+  .leaflet-tile .leaflet-tile-loaded{
+    width: 100px !important;
+  }
+
+    /* end */

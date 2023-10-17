@@ -1,0 +1,6 @@
+.hotel_banner{
+    /* background-image: url("../../../images/home_banner.png"); */
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

@@ -1,0 +1,87 @@
+.room_container{
+    background: #DEECFE 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #00000029;
+    border-radius:  10px 10px 0px 0px;
+}
+.room_detail_container{
+    background: #fafbfb 0% 0% no-repeat padding-box;
+    box-shadow: 0px 1px 6px #00000029;
+    border-radius:  0px 0px 10px 10px;
+}
+
+.room_txtt{
+    text-align: left;
+    font: normal normal bold 20px/25px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.img_box{
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+}
+
+.Deluxe_king{
+    text-align: left;
+    font: normal normal bold 18px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.room_distance{
+    text-align: left;
+    font: normal normal bold 12px/15px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.room_wd_cancle{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.non_org{
+    text-align: left;
+    font: normal normal bold 16px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+
+.per_tax{
+    text-align: left;
+    font: normal normal bold 16px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+
+.broom_price{
+    text-align: left;
+    font: normal normal bold 22px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #006FFF;
+}
+
+.offerInfo{
+    text-align: left;
+    font: normal normal bold 16px/23px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+.offer_set{
+    background: #FF0000 0% 0% no-repeat padding-box;
+    border-radius: 10px;
+    width: 96px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.border_s{
+    border-right: 1px solid #006FFF;
+    border-left: 1px solid #006FFF;
+    margin: 10px;
+}

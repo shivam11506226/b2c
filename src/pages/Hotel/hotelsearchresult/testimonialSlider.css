@@ -1,0 +1,64 @@
+.all_review{
+    text-align: right;
+    font: normal normal bold 10px/13px Quicksand !important;
+    letter-spacing: 0px;
+    color: #006FFF;
+}
+
+.feature_review{
+    text-align: left;
+    font: normal normal bold 12px/15px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+}
+
+.review_container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:0px 0px 10px 0px;
+}
+
+.avatar_name{
+    text-align: left !important;
+    font: normal normal bold 14px/10px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FF951A !important;
+}
+
+.avatar_slogen{
+    text-align: left !important;
+    font: normal normal bold 10px/8px Quicksand !important;
+    letter-spacing: 0px;
+    color: #006FFF !important;
+}
+
+.testomonial_body{
+    top: 4248px;
+    left: 581px;
+    width: 287px;
+    height: 118px;
+    padding: 10px 10px;
+    margin: 10px;
+    background: #EEFBFF 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    opacity: 1;
+}
+
+.test_rating{
+    background: #28B71E 0% 0% no-repeat padding-box;
+    border-radius: 5px;
+    padding: 2px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.test_para{
+    text-align: left !important;
+    font: normal normal bold 12px/15px Quicksand !important;
+    letter-spacing: 0px;
+    color: #3F3F3F;
+    opacity: 1;
+}

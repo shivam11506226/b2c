@@ -1,0 +1,16 @@
+.passenger_detail_banner{
+   
+    background-position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.premium_kerala{
+    text-align: left;
+    /* font: normal normal bold 34px/43px Quicksand !important; */
+    font-size: 28px;
+    font-weight: '800';
+    letter-spacing: 0px;
+    color: #252525;
+    opacity: 1;
+}

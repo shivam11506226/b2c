@@ -1,0 +1,98 @@
+.select_trip{
+    text-align: left;
+font: normal normal bold 14px/1px Quicksand !important;
+letter-spacing: 0px;
+color: #006FFF;
+}
+.spor_by{
+    text-align: left;
+    font: normal normal bold 14px/1px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+.popular{
+    text-align: left;
+font: normal normal bold 14px/1px Quicksand !important;
+letter-spacing: 0px;
+color: #006FFF;
+}
+.showing_goa{
+    text-align: left;
+font: normal normal bold 14px/1px Quicksand !important;
+letter-spacing: 0px;
+color: #666666;
+}
+.leftshadow{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 1px 6px #00000029;
+border-radius: 10px;
+opacity: 1;
+padding: 10px;
+}
+.selectfilter{
+    text-align: center;
+font: normal normal bold 16px/20px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.suggested{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.radio{
+    border: 2px solid #252525;
+opacity: 1;
+margin-right: 8px;
+}
+
+.radio[type=radio] {
+    color:red !important;
+}
+
+.content{
+    text-align: left;
+font: normal normal bold 12px/1px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+
+}
+.value{
+    text-align: right;
+font: normal normal bold 12px/1px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.starrating{
+    text-align: left;
+    font: normal normal bold 12px/15px Quicksand !important;
+    letter-spacing: 0px;
+    color: #252525;
+    opacity: 1; 
+}
+.clearfilter{
+    text-align: right;
+font: normal normal bold 10px/1px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.price{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important ;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.title{
+    text-align: left;
+font: normal normal bold 18px/23px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}

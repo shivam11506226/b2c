@@ -1,0 +1,192 @@
+.flight_img {
+    background-size: cover !important;
+    background-repeat: no-repeat !important;
+    width: 100%;
+    height: auto;
+}
+
+.line_style{
+    border-right: 2px solid gray;
+}
+
+/* policy */
+
+
+/* canceldate date */
+.CANCELLATION{
+    text-align: left;
+font: normal normal bold 18px Quicksand !important;
+letter-spacing: 0px;
+color: #006FFF;
+opacity: 1;
+}
+.content{
+    text-align: left;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.Package{
+    text-align: left;
+font: normal normal bold 16px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.Cancellation{
+    text-align: left;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.Time{
+    text-align: left;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #006FFF;
+opacity: 1;
+}
+.Charges{
+    text-align: right;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #FF8900;
+opacity: 1;
+}
+.Note{
+    text-align: left;
+font: normal normal bold 14px/18px Quicksand;
+letter-spacing: 0px;
+color: #666666;
+opacity: 1;
+}
+.dotted{
+    background: #666666 0% 0% no-repeat padding-box;
+    opacity: 1;
+    height: 7px;
+    width: 7px;
+    border-radius: 20px;
+}
+.paragrapph{
+    text-align: left;
+    font: normal normal bold 14px/18px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+}
+.border_left{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+    padding: 20px;
+}
+.Holiday{
+    text-align: center;
+font: normal normal bold 16px/20px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.holiday_Package{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important;
+letter-spacing: 0px;
+color: #666666;
+opacity: 1;
+}
+.package_text{
+    text-align: right;
+text-decoration: line-through;
+font: normal normal bold 16px/20px Quicksand !important;
+letter-spacing: 0px;
+color: #666666;
+opacity: 1;
+}
+.package_text_color{
+    text-align: right;
+font: normal normal bold 32px/40px Quicksand !important;
+letter-spacing: 0px;
+color: #FF8900;
+opacity: 1;
+}
+.package_person{
+    text-align: right;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #666666;
+opacity: 1;
+}
+.btn_proceed{
+    text-align: center;
+    font: normal normal bold 12px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+    opacity: 1;
+    border-radius: 30px !important;
+}
+
+/*  end*/
+
+
+/* summary */
+
+.heading_package{
+    text-align: left;
+font: normal normal bold 16px/20px Quicksand !important;
+letter-spacing: 0px;
+color: #005CFF;
+opacity: 1;
+}
+.flight_text{
+    text-align: left;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #666666;
+opacity: 1;
+}
+.goa_text{
+    text-align: left;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #FF951A;
+opacity: 1;
+}
+.days_text{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important;
+letter-spacing: 0px;
+color: #005CFF;
+opacity: 1;
+}
+.stay_text{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.check_out{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.exclusion_text{
+    text-align: left;
+text-decoration: underline;
+font: normal normal bold 14px/18px Quicksand !important;
+letter-spacing: 0px;
+color: #252525;
+opacity: 1;
+}
+.close_text{
+    text-align: left;
+font: normal normal bold 12px/15px Quicksand !important;
+letter-spacing: 0px;
+color: #666666;
+opacity: 1;
+}
+
+/* end */

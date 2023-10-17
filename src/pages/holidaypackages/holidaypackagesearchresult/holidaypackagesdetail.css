@@ -1,0 +1,47 @@
+.button_package{
+    background: #FFFFFF 0% 0% no-repeat padding-box !important;
+    box-shadow: 0px 3px 6px #00000029;
+    border-radius: 10px;
+}
+
+.btn_package{
+    text-align: center;
+    font: normal normal bold 10px/20px Quicksand !important;
+    letter-spacing: 0px;
+    color: #707070;
+    opacity: 1;
+}
+
+.holiday_text{
+    text-align: left;
+    font: normal normal bold 12px/15px Quicksand !important;
+    letter-spacing: 0px;
+    color: #666666;
+    opacity: 1;
+}
+
+.best_seller_container{
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border-radius: 20px;
+    opacity: 1;
+    padding: 20px;
+    display: flex;
+
+}
+
+.best_seller{
+    text-align: left;
+    font: normal normal bold 32px/25px Quicksand !important;
+    color: #006FFF;
+}
+
+.best_seller_para{
+    text-align: left;
+    font: normal normal bold 16px/30px Quicksand !important;
+    letter-spacing: 0px;
+    color: #FF951A;
+}
+
+.slick-prev:before, .slick-next:before{
+    color: #FF951A !important;
+}

@@ -1,0 +1,227 @@
+/* .slick-prev {
+    left: 25px;
+}
+
+.slick-next {
+    right: 25px;
+}
+
+.slick-prev,
+.slick-next {
+    width: 35px;
+    height: 35px;
+    cursor: pointer;
+    background: orange;
+    z-index: 10;
+    border-radius: 50%;
+}
+
+.slick-arrow.slick-prev:hover,
+.slick-arrow.slick-next:hover {
+    background: orange;
+}
+ */
+
+
+@media only screen and (max-width: 600px) {
+    .download_info {
+        display: block;
+    }
+
+}
+
+.background_login {
+    background: url('../images/screen-train.gif');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+}
+
+/* login input start */
+
+
+.login_input {
+    height: 53px;
+    position: relative;
+    width: 100%;
+}
+
+.login_input input {
+    width: 100%;
+    height: 100%;
+    padding-left: 25px;
+    border-radius: 20px;
+    border: 3px solid #70707069;
+}
+
+.phone_input lable {
+    font-size: 12px !important;
+    color: #4E4C4C;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.login_input ::placeholder,
+.phone_input::placeholder {
+    color: #4E4C4C 1;
+    font-size: 12px;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+
+}
+
+.login_lable {
+    color: #4E4C4C;
+    font-size: 10px;
+    font-weight: 700;
+    font-family: 'Quicksand', sans-serif;
+    left: 10px;
+    line-height: 14px;
+    pointer-events: none;
+    position: absolute;
+    transform-origin: 0 50%;
+    top: 24px;
+    transform: translateY(-30px) translateX(10px);
+    background: #fff;
+    padding: 0px 2px;
+}
+
+
+
+
+/* login input end */
+
+
+
+
+/* PopupModal start */
+
+.model_content {
+    width: 329px;
+    height: 455px;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 2px 2px 8px black;
+}
+
+/* PopupModal end */
+
+
+
+
+/* one way start */
+
+
+.wrapper {
+    display: inline-flex;
+    background: #fff;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 5px;
+}
+
+.wrapper .option {
+    background: #fff;
+    height: 30px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin: 0 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 0 5px;
+    background: #8D8985;
+    transition: all 0.3s ease;
+}
+
+.wrapper .option .dot {
+    height: 15px;
+    width: 15px;
+    background: #f9f8f8;
+    color: #FF8900;
+    border-radius: 50%;
+   
+}
+
+.wrapper .option .dot::before {
+    position: absolute;
+    content: "";
+    top: 3.5px;
+    left: 3.5px;
+    width: 8px;
+    height: 8px;
+    background: #FF8900;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(1.5);
+    transition: all 0.1s ease;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+#option-1:checked:checked~.option-1,
+#option-2:checked:checked~.option-2,
+#option-3:checked:checked~.option-3,
+#option-4:checked:checked~.option-4,
+#option-5:checked:checked~.option-5,
+#option-6:checked:checked~.option-6 {
+    border-color: #FF8900;
+    background: #FF8900;
+}
+
+#option-1:checked:checked~.option-1 .dot,
+#option-2:checked:checked~.option-2 .dot,
+#option-3:checked:checked~.option-3 .dot,
+#option-4:checked:checked~.option-4 .dot,
+#option-5:checked:checked~.option-5 .dot,
+#option-6:checked:checked~.option-6 .dot {
+
+    background: #fff;
+}
+
+#option-1:checked:checked~.option-1 .dot::before,
+#option-2:checked:checked~.option-2 .dot::before,
+#option-3:checked:checked~.option-3 .dot::before,
+#option-4:checked:checked~.option-4 .dot::before,
+#option-5:checked:checked~.option-5 .dot::before,
+#option-6:checked:checked~.option-6 .dot::before {
+
+    opacity: 1;
+    transform: scale(1);
+}
+
+
+.wrapper .option text {
+    font-size: 9px;
+    color: #Fff;
+}
+
+#option-1:checked:checked~.option-1 text,
+#option-2:checked:checked~.option-2 text ,
+#option-3:checked:checked~.option-3 text ,
+#option-4:checked:checked~.option-4 text ,
+#option-5:checked:checked~.option-5 text ,
+#option-6:checked:checked~.option-6 text {
+    color: #fff;
+}
+
+/* search button */
+
+.search {
+    width: 188px;
+    height: 54px;
+    background: #4260D8 0% 0% no-repeat padding-box;
+    border-radius: 30px;
+    opacity: 1;
+    border: none;
+    text-align: center;
+    font: normal normal bold 32px/1px Quicksand;
+    letter-spacing: 0px;
+    color: #FFFFFF;
+}
+
+/* one way start */
