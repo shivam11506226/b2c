@@ -6,7 +6,7 @@ import Modal from "@mui/material/Modal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Unstable_Grid2";
-import Link from "@mui/material/Link";
+import {Link} from "react-router-dom";
 import {LoginButton} from '../utility/CSS/Button/Button'
 
 import { loginAction } from "../Redux/Auth/logIn/actionLogin";
@@ -109,7 +109,9 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
     setOpen(false);
    }
   }
-  
+  const handleSignUpClick = () => {
+    setRegOpen(true);
+  };
 
   return (
     <div>
@@ -205,7 +207,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
                   if (authenticUser === 200) {
                     setIsModalOpen(false);
                     setOpen(false);
-                  } else if (notAuthenticUser == true) {
+                  } else if (notAuthenticUser === true) {
                     alert("else if part");
                     console.error("non auth user");
                     setNewReg(true);
@@ -264,7 +266,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
                       </a>
                       <p className="signup-link">
                         Don't have an account?{" "}
-                        <Link navigate="">Sign up</Link>
+                        <Link onClick={handleSignUpClick}>Sign up</Link>
                       </p>
                     </Inputs>
                   </Form>
@@ -288,7 +290,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
       {
        newReg && <Modal
        open={regOpen}
-       onClose={handleClose}
+       onClose={() => setRegOpen(false)}
        aria-labelledby="modal-modal-title"
        aria-describedby="modal-modal-description"
      >
