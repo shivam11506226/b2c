@@ -163,7 +163,7 @@ const Homeform = (props) => {
       // make an API call to get search results
 
       const results = await axios.get(
-        `${apiURL.baseURL}/travvolt/city/searchCityData?keyword=${fromQuery}`
+        `${apiURL.baseURL}/skytrails/city/searchCityData?keyword=${fromQuery}`
       );
       if (mounted) {
         setFromSearchResults(results?.data?.data);
