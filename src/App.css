@@ -6,7 +6,8 @@
 body{
   width: 100%;
   height: 100vh;
-  background: #ccc;
+  font-family: "Montserrat";
+ 
 }
 .to_Search_Container{
   text-align: center;
@@ -125,9 +126,9 @@ body{
 color: rgb(0, 0, 0) !important;
 z-index: 1 !important;
 }
-.Travel_Btn:hover{
+/* .Travel_Btn:hover{
   border: 2px solid black !important;
-}
+} */
 
 .Down_Arrow {
   color: #006CF8;
@@ -173,12 +174,13 @@ z-index: 1 !important;
   display: flex;
   font-weight: 700;
 }
-.background_gradient{
-  background: #166B7D;
-  /* background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 100%); */
+.mainimg{
+  background-image: url('../src/images/bg.png');
+  background-size: cover;
+  background-repeat:no-repeat !important; 
+
+  
+  
 }
 
 /* Universal Background gradient */
-.UniComp_BG{
-  background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 100%); 
-}

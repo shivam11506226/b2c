@@ -24,29 +24,23 @@ export default function FadeMenu() {
 
     return (
         <div>
-            <Button variant='white'>
-                <img src={discount} style={{ margin: "10px", width: "26px" }} /> <Typography>Supper Offers<Typography sx={{ fontSize: "9px" }} >Explore Greate Deals & Offers</Typography></Typography>
-
-            </Button>
-            <Button variant='white' >
-                <img src={support} style={{ margin: "10px", width: "26px" }} /> Support
-            </Button>
+           
             {/* <Button variant="contained"  sx={{ backgroundColor: "white", borderRadius:'20px' }} >
                 <IconButton sx={{ color:'#254B70' }} aria-label="Login / Signup">
                     <AccountCircleIcon />
                 </IconButton> <Typography color='#254B70'>Login / Signup</Typography>
             </Button> */}
 
-            <Button variant='white' >
+            <Button  >
             <Popup />
             </Button>
             
 
 
-            <Button variant='white' id='manu' aria-controls={open ? 'menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined}
+            {/* <Button variant='white' id='manu' aria-controls={open ? 'menu' : undefined} aria-haspopup="true" aria-expanded={open ? 'true' : undefined}
                 onClick={handleClick} >
                 <img src={indianflag} style={{ margin: "10px", width: "26px" }} /> Rs.<ArrowDropDownIcon color='white' />
-            </Button>
+            </Button> */}
 
             <Menu
                 id="manu"

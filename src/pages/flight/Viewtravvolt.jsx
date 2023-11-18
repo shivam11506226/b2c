@@ -27,8 +27,8 @@ export default function BasicGrid() {
             <Grid container spacing={2}>
                 <Grid item xs={12}>
                     <Item>
-                        <Typography px={2} className='main_heading'>Travvolt Special</Typography>
-                        <Typography px={2} className='normal_head'>Fare By Travvolt</Typography>
+                        <Typography px={2} className='main_heading'>skytrails Special</Typography>
+                        <Typography px={2} className='normal_head'>Fare By skytrails</Typography>
                         <Box display='flex' justifyContent="space-around" my={2}>
                             <Button mx={2} className="propsi" variant="contained" startIcon={<LocalMallIcon style={{ color: "#FF951A" }} ></LocalMallIcon>}  >
                                 Cabin Bags  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>7kg</Typography>

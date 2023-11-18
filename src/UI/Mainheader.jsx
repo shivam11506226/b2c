@@ -4,12 +4,12 @@ import { Link, NavLink } from 'react-router-dom';
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
 
 import { mainheaderlogos } from "../data";
-
+import './mainheader.css'
 const Mainheader = () => {
     return (
-        <section className="mainheader_wrapper">
+        <section className="mainheader_wrapper" >
             <div className="container mainheader_container">
-                <div className="row mainheader_row">
+                <div className="row mainheader_row" style={{position:"relative", zIndex:"2"}} >
                     <ul className="mainhome_logos">
                         {
                             mainheaderlogos.map(({ avatar, name, path }, index) => {
@@ -20,7 +20,7 @@ const Mainheader = () => {
                                        
                                             <img src={avatar} alt="mainheaderlogo" className='mainheaderlogo' style={{ width: "35px" }} />
                                        
-                                           <span style={{marginTop:'7px'}}>
+                                           <span style={{marginTop:'7px',fontFamily: 'Montserrat'}}>
                                             {name}
                                             </span> 
                                         </NavLink>

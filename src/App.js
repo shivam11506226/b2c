@@ -34,8 +34,10 @@ import Navbar from "./layouts/Navbar";
 function App() {
   return (
     <div className='background_gradient'>
-          <Navbar/>
-            <Mainheader />
+        <div className='mainimg'> <Navbar />
+        <Mainheader />
+    </div> 
+           
       <Routes>
 
       <Route index element={<Home/>}></Route>

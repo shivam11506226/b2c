@@ -57,8 +57,7 @@ export default class SwipeToSlide extends Component {
                             <div className="row card_row">
                                 <div className="col-12">
 
-                                    <h2 className="offer_header" style={{ color: "#545454", fontSize: "34px" }}>Offer For You</h2>
-                                    <div className="row all_offers">
+                                                             <div className="row all_offers">
                                         <div className="col-auto">
                                             <NavLink><span>All Offers</span></NavLink>
                                         </div>

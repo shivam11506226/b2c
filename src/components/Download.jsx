@@ -21,7 +21,7 @@ const Download = () => {
                                         <img src={ticket} alt="download App" />
                                     </div>
                                     <div className="down" >
-                                        <h5>Use code WELCOMETRAVVOLT and get up to RS 1200 off on your first domestic flight booking</h5>
+                                        <h5>Use code WELCOME and get up to RS 1200 off on your first domestic flight booking</h5>
                                         <div class="form-group">
                                             <input type="tel" className="form-field" placeholder="Enter Mobile Number" />
                                             <span>Get App Link</span>
