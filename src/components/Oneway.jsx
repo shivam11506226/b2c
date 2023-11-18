@@ -68,7 +68,7 @@ const Homeform = (props) => {
     { id: "1", label: "Regular Fares" },
     { id: "2", label: "Armed Forces Fares" },
     { id: "3", label: "Student Fares" },
-    { id: "4", label: "BuSenior Citizen Faressiness" },
+    { id: "4", label: "Senior Citizens Fares" },
     { id: "5", label: "Doctors & Nurses Fares" },
     { id: "6", label: "Double Seat Fares" },
   ];
@@ -163,7 +163,7 @@ const Homeform = (props) => {
       // make an API call to get search results
 
       const results = await axios.get(
-        `${apiURL.baseURL}/travvolt/city/searchCityData?keyword=${fromQuery}`
+        `${apiURL.baseURL}/skyTrails/city/searchCityData?keyword=${fromQuery}`
       );
       if (mounted) {
         setFromSearchResults(results?.data?.data);
@@ -211,7 +211,7 @@ const Homeform = (props) => {
       // make an API call to get search results
 
       const results = await axios.get(
-        `${apiURL.baseURL}/travvolt/city/searchCityData?keyword=${toQuery}`
+        `${apiURL.baseURL}/skytrails/city/searchCityData?keyword=${toQuery}`
       );
       console.log(results);
       if (mounted) {
@@ -258,7 +258,7 @@ const Homeform = (props) => {
   //   if (reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results) {
   //     navigate("/Searchresult");
   //   }
-  //   else if(reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Error?.ErrorMessage === "No Result Found"){
+  //   else if(reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Error?.ErrorMessage ==== "No Result Found"){
   //     navigate("/");
   //   }
   // }, [
@@ -346,19 +346,29 @@ const Homeform = (props) => {
   return (
     <section>
       <div className="container homeform_container">
-        <p className="header_row">
+        {/* <p className="header_row">
           <h5>{props.header}</h5>
-        </p>
-        <div className="row content_row">
-          <div className="col-12" mx={5}>
+        </p> */}
+        <div
+          className="row content_row"
+          style={{ zIndex: "1px", position: "relative", top: "-30px" }}
+        >
+          <div className="col-12" mx={8}>
             <Box sx={{ width: "100%", typography: "body1" }}>
               <TabContext value={value} centered>
-                <Box pt={5}>
+                <Box
+                  pt={3}
+                  style={{
+                    display: "flex",
+                    justifyContent: "end",
+                    flexWrap: "wrap",
+                  }}
+                >
                   <TabList
                     onChange={handleChange}
                     aria-label="lab API tabs example"
                     TabIndicatorProps={{ style: { display: "none" } }}
-                    sx={{ marginX: "60px" }}
+                    sx={{ marginX: "40px", marginY: "-10px" }}
                   >
                     <Tab
                       label="Oneway"
@@ -367,7 +377,6 @@ const Homeform = (props) => {
                         fontSize: "15px",
                         color: "black",
                         fontWeight: "bold",
-                        background: "white",
                         marginX: "5px",
                         borderRadius: "10px",
                       }}
@@ -379,43 +388,59 @@ const Homeform = (props) => {
                         fontSize: "15px",
                         color: "black",
                         fontWeight: "bold",
-                        background: "white",
                         marginX: "5px",
                         borderRadius: "10px",
                       }}
                     />
-                    <Tab
-                      label="Multycity "
-                      value="3"
-                      sx={{
-                        fontSize: "15px",
-                        color: "black",
-                        fontWeight: "bold",
-                        background: "white",
-                        marginX: "5px",
-                        borderRadius: "10px",
-                      }}
-                    />
+                    {/* <Tab
+      label="Multycity "
+      value="3"
+      sx={{
+        fontSize: "15px",
+        color: "black",
+        fontWeight: "bold",
+        background: "white",
+        marginX: "5px",
+        borderRadius: "10px",
+      }}
+    /> */}
                   </TabList>
+
+                  <div style={{ flex: 1, textAlign: "right" }}>
+                    <p className="para">
+                      Book International and Domestic Flights
+                    </p>
+                  </div>
                 </Box>
+
                 {/* Oneway start */}
 
                 <TabPanel value="1">
                   <Box
-                    py={2}
-                    sx={{ backgroundColor: "white", borderRadius: "20px" }}
+                    className="oneway"
+                    py={1}
+                    sx={{
+                      backgroundColor: "white",
+                      borderRadius: "20px",
+                      height: "100px",
+                      border: "1px solid grey",
+                      width: "100%",
+                      display: "flex",
+                      flexWrap: "wrap",
+                      margin: "auto",
+                    }}
                   >
-                    {/*=====================================================> 1st form here <========================================================*/}
+                    {/*===============================================================================> 1st form here <====================================================================================*/}
                     <form onSubmit={handleOnewaySubmit}>
                       <div className="row">
-                        <div className="From_container">
+                        <div className="col-12 col-md-6 col-lg-3 mb-3 From_container">
                           <div className="form_input">
                             <label for="from" className="form_lable">
                               FROM
                             </label>
                             <input
                               name="from"
-                              placeholder="Enter city or airport"
+                              placeholder="Enter city"
                               value={from}
                               autoComplete="off"
                               onChange={(event) => {
@@ -427,8 +452,9 @@ const Homeform = (props) => {
                                 width: "100%",
                                 borderRadius: "20px",
                                 height: "5rem",
-                                border: "3px solid #70707069",
+                                border: "none",
                                 paddingLeft: "25px",
+                                outline: "none",
                               }}
                             />
 
@@ -506,7 +532,7 @@ const Homeform = (props) => {
                         {/* <Avatar mt={5}>
                                                     <SwapHorizIcon />
                                                 </Avatar> */}
-                        <div className="to_container">
+                        <div className="col-12 col-md-6 col-lg-3 mb-3">
                           <div className="form_input">
                             <label for="to" className="form_lable">
                               TO
@@ -525,8 +551,9 @@ const Homeform = (props) => {
                                 width: "100%",
                                 borderRadius: "20px",
                                 height: "5rem",
-                                border: "3px solid #70707069",
+                                border: "none",
                                 paddingLeft: "25px",
+                                outline: "none",
                               }}
                             />
                             {isLoading && <div>Loading...</div>}
@@ -595,7 +622,7 @@ const Homeform = (props) => {
                             )}
                           </div>
                         </div>
-                        <div className="col-12 col-md-6 col-lg-2 mb-3">
+                        <div className="col-12 col-md-6 col-lg-3 mb-3">
                           <div className="form_input">
                             <label className="form_lable">DEPARTURE</label>
 
@@ -605,289 +632,309 @@ const Homeform = (props) => {
                               id="departure"
                               className="deaprture_input"
                               placeholder="Enter city or airport"
-                            ></input>
-                          </div>
-                        </div>
-
-                        <div className="col-12 col-md-6 col-lg-2 mb-3">
-                          <div className="form_input">
-                            <label className="form_lable">RETURN</label>
-                            <input
-                              type="date"
-                              name="departure"
-                              id="departure"
-                              className="deaprture_input"
-                              placeholder="Enter city or airport"
-                              disabled
+                              style={{
+                                border: "none",
+                                outline: "none",
+                              }}
                             ></input>
                           </div>
                         </div>
 
                         <div className="col-12 col-md-6 col-lg-3 mb-3">
-                          <div>
-                            <Button
-                              variant="outlined"
-                              sx={{
-                                height: "80px",
-                                color: "gray",
-                                border: "2px solid gray",
-                                borderRadius: "12px",
-                                display: "flex",
-                                flexDirection: "column",
-                                textAlign: "left",
-                              }}
-                              onClick={handleTravelClickOpen}
-                              className="Travel_Btn"
-                            >
-                              <div style={{ height: "25px" }}>
-                                TRAVELLERS & CLASS{" "}
-                                <KeyboardDoubleArrowDownIcon className="Down_Arrow" />{" "}
-                              </div>
-                              <div style={{ marginLeft: "-39px" }}>
-                                <span
-                                  style={{
-                                    display: "flex",
-                                    justifyContent: "start",
-                                  }}
-                                >
-                                  <Typography
-                                    fontWeight={800}
-                                    fontSize={16}
-                                    mr={2}
-                                    variant="button"
-                                  >
-                                    Travellers
-                                  </Typography>
-                                  <Typography
-                                    fontWeight={600}
-                                    color="#d50000"
-                                    variant="button"
-                                  >
-                                    {(totalCount == 0 && 1) || totalCount}
-                                  </Typography>
-                                </span>
-                                <div style={{ fontSize: "11px" }}>
-                                  {(activeIdClass == 1 && "All") ||
-                                    (activeIdClass == 2 && "Economy") ||
-                                    (activeIdClass == 3 && "Premium Economy") ||
-                                    (activeIdClass == 4 && "Business")(
-                                      activeIdClass == 5 && "Business Economy"
-                                    )(activeIdClass == 6 && "First Class")}
-                                </div>
-                              </div>
-                            </Button>
-                            <Dialog
-                            sx={{zIndex:'99999'}}
-                              disableEscapeKeyDown
-                              open={openTravelModal}
-                              onClose={handleTravelClose}
-                            >
-                              <DialogContent>
-                                <Box component="form">
-                                  {/* form layout */}
-                                  <div style={{ textAlign: "center" }}>
-                                    TRAVELLERS & CLASS{" "}
-                                  </div>
-                                  <Grid
-                                    display="flex"
-                                    flexDirection="column"
-                                    p={2}
-                                    borderRadius="30px"
-                                    justifyContent="center"
-                                  >
-                                    <Grid item textAlign="center" px={1}>
-                                      <Typography
-                                        textAlign="left"
-                                        fontSize="15px"
-                                      >
-                                        Adults
-                                        <span
-                                          style={{
-                                            fontSize: "10px",
-                                            marginLeft: "7px",
-                                          }}
-                                        >
-                                          (Age 12+ years)
-                                        </span>
-                                      </Typography>
-
-                                      <ul className="Adult_Count">
-                                        {adultCount?.map((adult) => (
-                                          <li
-                                            style={{
-                                              backgroundColor:
-                                                adult == activeIdAdult
-                                                  ? "green"
-                                                  : "white",
-                                              color:
-                                                adult == activeIdAdult
-                                                  ? "white"
-                                                  : "black",
-                                            }}
-                                            data-id={adult}
-                                            onClick={handleAdultClick}
-                                          >
-                                            {adult}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </Grid>
-                                    <Grid item textAlign="center" mt={2} px={1}>
-                                      <Typography
-                                        textAlign="left"
-                                        fontSize="15px"
-                                      >
-                                        Child
-                                        <span
-                                          style={{
-                                            fontSize: "10px",
-                                            marginLeft: "7px",
-                                          }}
-                                        >
-                                          (Aged 2-12 years)
-                                        </span>
-                                      </Typography>
-
-                                      <ul className="Adult_Count">
-                                        {childCount?.map((child) => (
-                                          <li
-                                            style={{
-                                              backgroundColor:
-                                                child == activeIdChild
-                                                  ? "green"
-                                                  : "white",
-                                              color:
-                                                child == activeIdChild
-                                                  ? "white"
-                                                  : "black",
-                                            }}
-                                            data-id={child}
-                                            onClick={handleChildClick}
-                                          >
-                                            {child}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </Grid>
-                                    <Grid item textAlign="center" mt={2} px={1}>
-                                      <Typography
-                                        textAlign="left"
-                                        fontSize="15px"
-                                      >
-                                        Infants
-                                        <span
-                                          style={{
-                                            fontSize: "10px",
-                                            marginLeft: "7px",
-                                          }}
-                                        >
-                                          (Below 2 years)
-                                        </span>
-                                      </Typography>
-
-                                      <ul className="Adult_Count">
-                                        {infantCount?.map((Infants) => (
-                                          <li
-                                            style={{
-                                              backgroundColor:
-                                                Infants == activeIdInfant
-                                                  ? "green"
-                                                  : "white",
-                                              color:
-                                                Infants == activeIdInfant
-                                                  ? "white"
-                                                  : "black",
-                                            }}
-                                            data-id={Infants}
-                                            onClick={handleInfantClick}
-                                          >
-                                            {Infants}
-                                          </li>
-                                        ))}
-                                      </ul>
-                                    </Grid>
-                                  </Grid>
-
-                                  <Grid
-                                    display="flex"
-                                    style={{ margin: "7px 22px" }}
+                          <div className="form_input">
+                            <div>
+                              <Button
+                                sx={{
+                                  height: "80px",
+                                  color: "gray",
+                                  border: "none",
+                                  borderRadius: "12px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  textAlign: "left",
+                                }}
+                                onClick={handleTravelClickOpen}
+                                className="Travel_Btn"
+                              >
+                                <div>TRAVELLERS & CLASS </div>
+                                <div>
+                                  <span
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "start",
+                                    }}
                                   >
                                     <Typography
-                                      textAlign="left"
-                                      fontSize="15px"
+                                      fontWeight={800}
+                                      variant="button"
                                     >
-                                      Choose Travel Class
+                                      {(totalCount === 0 && 1) || totalCount}
                                     </Typography>
-                                  </Grid>
-
-                                  <Grid display="flex">
-                                    <ul className="classButton">
-                                      {ClassItems?.map((ele) => (
-                                        <>
-                                          <li
+                                    <Typography
+                                      fontWeight={800}
+                                      fontSize={16}
+                                      variant="button"
+                                    >
+                                      Travellers
+                                    </Typography>
+                                  </span>
+                                  <div style={{ fontSize: "11px" }}>
+                                    {(activeIdClass === 1 && "All") ||
+                                      (activeIdClass === 2 && "Economy") ||
+                                      (activeIdClass === 3 &&
+                                        "Premium Economy") ||
+                                      (activeIdClass === 4 && "Business")(
+                                        activeIdClass === 5 &&
+                                          "Business Economy"
+                                      )(activeIdClass === 6 && "First Class")}
+                                  </div>
+                                </div>
+                              </Button>
+                              <Dialog
+                                sx={{ zIndex: "99999" }}
+                                disableEscapeKeyDown
+                                open={openTravelModal}
+                                onClose={handleTravelClose}
+                              >
+                                <DialogContent>
+                                  <Box component="form">
+                                    {/* form layout */}
+                                    <div style={{ textAlign: "center" }}>
+                                      TRAVELLERS & CLASS{" "}
+                                    </div>
+                                    <Grid
+                                      display="flex"
+                                      flexDirection="column"
+                                      p={2}
+                                      borderRadius="30px"
+                                      justifyContent="center"
+                                    >
+                                      <Grid item textAlign="center" px={1}>
+                                        <Typography
+                                          textAlign="left"
+                                          fontSize="15px"
+                                        >
+                                          Adults
+                                          <span
                                             style={{
-                                              backgroundColor:
-                                                ele.id == activeIdClass
-                                                  ? "green"
-                                                  : "orange",
+                                              fontSize: "10px",
+                                              marginLeft: "7px",
                                             }}
-                                            data-id={ele.id}
-                                            onClick={handleClassItemClick}
                                           >
-                                            {ele?.label}
-                                          </li>
-                                        </>
-                                      ))}
-                                    </ul>
-                                  </Grid>
-                                </Box>
-                              </DialogContent>
-                              <DialogActions>
-                                <Button onClick={handleTravelClose}>
-                                  Cancel
-                                </Button>
-                                <Button onClick={handleTravelClose}>Ok</Button>
-                              </DialogActions>
-                            </Dialog>
+                                            (Age 12+ years)
+                                          </span>
+                                        </Typography>
+
+                                        <ul className="Adult_Count">
+                                          {adultCount?.map((adult) => (
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  adult === activeIdAdult
+                                                    ? "green"
+                                                    : "white",
+                                                color:
+                                                  adult === activeIdAdult
+                                                    ? "white"
+                                                    : "black",
+                                              }}
+                                              data-id={adult}
+                                              onClick={handleAdultClick}
+                                            >
+                                              {adult}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </Grid>
+                                      <Grid
+                                        item
+                                        textAlign="center"
+                                        mt={2}
+                                        px={1}
+                                      >
+                                        <Typography
+                                          textAlign="left"
+                                          fontSize="15px"
+                                        >
+                                          Child
+                                          <span
+                                            style={{
+                                              fontSize: "10px",
+                                              marginLeft: "7px",
+                                            }}
+                                          >
+                                            (Aged 2-12 years)
+                                          </span>
+                                        </Typography>
+
+                                        <ul className="Adult_Count">
+                                          {childCount?.map((child) => (
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  child === activeIdChild
+                                                    ? "green"
+                                                    : "white",
+                                                color:
+                                                  child === activeIdChild
+                                                    ? "white"
+                                                    : "black",
+                                              }}
+                                              data-id={child}
+                                              onClick={handleChildClick}
+                                            >
+                                              {child}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </Grid>
+                                      <Grid
+                                        item
+                                        textAlign="center"
+                                        mt={2}
+                                        px={1}
+                                      >
+                                        <Typography
+                                          textAlign="left"
+                                          fontSize="15px"
+                                        >
+                                          Infants
+                                          <span
+                                            style={{
+                                              fontSize: "10px",
+                                              marginLeft: "7px",
+                                            }}
+                                          >
+                                            (Below 2 years)
+                                          </span>
+                                        </Typography>
+
+                                        <ul className="Adult_Count">
+                                          {infantCount?.map((Infants) => (
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  Infants === activeIdInfant
+                                                    ? "green"
+                                                    : "white",
+                                                color:
+                                                  Infants === activeIdInfant
+                                                    ? "white"
+                                                    : "black",
+                                              }}
+                                              data-id={Infants}
+                                              onClick={handleInfantClick}
+                                            >
+                                              {Infants}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </Grid>
+                                    </Grid>
+
+                                    <Grid
+                                      display="flex"
+                                      style={{ margin: "7px 22px" }}
+                                    >
+                                      <Typography
+                                        textAlign="left"
+                                        fontSize="15px"
+                                      >
+                                        Choose Travel Class
+                                      </Typography>
+                                    </Grid>
+
+                                    <Grid display="flex">
+                                      <ul className="classButton">
+                                        {ClassItems?.map((ele) => (
+                                          <>
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  ele.id === activeIdClass
+                                                    ? "green"
+                                                    : "orange",
+                                              }}
+                                              data-id={ele.id}
+                                              onClick={handleClassItemClick}
+                                            >
+                                              {ele?.label}
+                                            </li>
+                                          </>
+                                        ))}
+                                      </ul>
+                                    </Grid>
+                                  </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={handleTravelClose}>
+                                    Cancel
+                                  </Button>
+                                  <Button onClick={handleTravelClose}>
+                                    Ok
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </div>
                           </div>
                         </div>
+                      </div>
+                      <button type="submit" path="" className="search">
+                            Search
+                          </button>
+                    </form>
+                    <Box display="flex" justifyContent="center">
+                      <div class="wrapper">
+                        <text>Select A Fare Type:</text>
+                        <input
+                          type="radio"
+                          name="select"
+                          id="option-1"
+                          checked
+                        />
+                        <input type="radio" name="select" id="option-2" />
+                        <input type="radio" name="select" id="option-3" />
+                        <input type="radio" name="select" id="option-4" />
+                        <input type="radio" name="select" id="option-5" />
+                        <input type="radio" name="select" id="option-6" />
+                        <label for="option-1" class="option option-1">
+                          <div class="dot"></div>
+                          <text>Regular Fares</text>
+                        </label>
+                        <label for="option-2" class="option option-2">
+                          <div class="dot"></div>
+                          <text>Armed Forces Fares</text>
+                        </label>
+                        <label for="option-3" class="option option-3">
+                          <div class="dot"></div>
+                          <text>Student Fares</text>
+                        </label>
+                        <label for="option-4" class="option option-4">
+                          <div class="dot"></div>
+                          <text>Senior Citizen Fares</text>
+                        </label>
+                        <label for="option-5" class="option option-5">
+                          <div class="dot"></div>
+                          <text>Doctors & Nurses Fares</text>
+                        </label>
+                        <label for="option-6" class="option option-6">
+                          <div class="dot"></div>
+                          <text>Double Seat Fares</text>
+                        </label>
+                        <text className="col-auto fare_search ">
+                          {/* <button type="submit" path="" className="search">
+                            Search
+                          </button> */}
 
-                        <Box>
-                          <text>Select A Fare Type:</text>
-                          <div class="wrapper ">
-                            {/* Code changes */}
-                            <ul className="fare_type">
-                              {FareType?.map((fareType) => (
-                                <li
-                                  data-id={fareType.id}
-                                  onClick={handleFareItemClick}
-                                  style={{
-                                    backgroundColor:
-                                      fareType.id == activeFareType
-                                        ? "green"
-                                        : "orange",
-                                  }}
-                                >
-                                  {fareType?.label}
-                                </li>
-                              ))}
-                            </ul>
-
-                            <text className="col-auto fare_search ">
-                              <button type="submit" path="" className="search">
-                                Search
-                              </button>
-
-                              {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
+                          {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
                                                         Search
                                                     </button> */}
-                            </text>
-                          </div>
-                        </Box>
+                        </text>
                       </div>
-                    </form>
+                    </Box>
                   </Box>
-                  {/* ==============> 2nd form here <============================== */}
+
+                  {/* =====================> 2nd form here <============================================= */}
                 </TabPanel>
 
                 {/* Oneway end */}
@@ -896,13 +943,24 @@ const Homeform = (props) => {
 
                 <TabPanel value="2">
                   <Box
-                    py={2}
-                    sx={{ backgroundColor: "white", borderRadius: "20px" }}
+                    py={1}
+                    className="roundtrip"
+                    // sx={{
+                    //   backgroundColor: "white",
+                    //   borderRadius: "20px",
+                    //   height: "100px",
+                    //   border: "1px solid grey",
+                    //   width: "100%",
+                    //   display: "flex",
+                    //   flexWrap: "wrap",
+                    //   margin: "auto",
+
+                    // }}
                   >
-                    {/*===========================> 3rd form here <========================== */}
+                    {/*========================================> 3rd form here <======================================= */}
                     <form onSubmit={handleRoundTripSubmit}>
                       <div className="row">
-                        <div className="col-12 col-md-6 col-lg-3 mb-3">
+                        <div className="col-12 col-md-6 col-lg-2 mb-3">
                           <div className="form_input">
                             <label for="from" className="form_lable">
                               FROM
@@ -916,8 +974,9 @@ const Homeform = (props) => {
                                 width: "100%",
                                 borderRadius: "20px",
                                 height: "5rem",
-                                border: "3px solid #70707069",
+                                border: "none",
                                 paddingLeft: "25px",
+                                outline: "none",
                               }}
                             />
                           </div>
@@ -925,7 +984,7 @@ const Homeform = (props) => {
                         {/* <Avatar mt={5}>
                                                     <SwapHorizIcon />
                                                 </Avatar> */}
-                        <div className="col-12 col-md-6 col-lg-3 mb-3">
+                        <div className="col-12 col-md-6 col-lg-2 mb-3">
                           <div className="form_input">
                             <label for="to" className="form_lable">
                               TO
@@ -939,8 +998,9 @@ const Homeform = (props) => {
                                 width: "100%",
                                 borderRadius: "20px",
                                 height: "5rem",
-                                border: "3px solid #70707069",
+                                border: "none",
                                 paddingLeft: "25px",
+                                outline: "none",
                               }}
                             />
                           </div>
@@ -953,6 +1013,14 @@ const Homeform = (props) => {
                               name="departure"
                               id="departure"
                               className="deaprture_input"
+                              style={{
+                                width: "100%",
+                                borderRadius: "20px",
+                                height: "5rem",
+                                border: "none",
+                                paddingLeft: "25px",
+                                outline: "none",
+                              }}
                             ></input>
                           </div>
                         </div>
@@ -965,7 +1033,254 @@ const Homeform = (props) => {
                               name="return"
                               id="return"
                               className="deaprture_input"
+                              style={{
+                                width: "100%",
+                                borderRadius: "20px",
+                                height: "5rem",
+                                border: "none",
+                                paddingLeft: "25px",
+                                outline: "none",
+                              }}
                             ></input>
+                          </div>
+                        </div>
+                        <div className="col-12 col-md-6 col-lg-3 mb-3">
+                          <div className="form_input">
+                            <div>
+                              <Button
+                                sx={{
+                                  height: "80px",
+                                  color: "gray",
+                                  border: "none",
+                                  borderRadius: "12px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  textAlign: "center",
+                                }}
+                                onClick={handleTravelClickOpen}
+                                className="Travel_Btn"
+                              >
+                                <div>TRAVELLERS & CLASS </div>
+                                <div>
+                                  <span
+                                    style={{
+                                      display: "flex",
+                                      justifyContent: "start",
+                                    }}
+                                  >
+                                    <Typography
+                                      fontWeight={800}
+                                      variant="button"
+                                    >
+                                      {(totalCount === 0 && 1) || totalCount}
+                                    </Typography>
+                                    <Typography
+                                      fontWeight={800}
+                                      fontSize={16}
+                                      mr={2}
+                                      variant="button"
+                                    >
+                                      Travellers
+                                    </Typography>
+                                  </span>
+                                  <div style={{ fontSize: "11px" }}>
+                                    {(activeIdClass === 1 && "All") ||
+                                      (activeIdClass === 2 && "Economy") ||
+                                      (activeIdClass === 3 &&
+                                        "Premium Economy") ||
+                                      (activeIdClass === 4 && "Business")(
+                                        activeIdClass === 5 &&
+                                          "Business Economy"
+                                      )(activeIdClass === 6 && "First Class")}
+                                  </div>
+                                </div>
+                              </Button>
+                              <Dialog
+                                sx={{ zIndex: "99999" }}
+                                disableEscapeKeyDown
+                                open={openTravelModal}
+                                onClose={handleTravelClose}
+                              >
+                                <DialogContent>
+                                  <Box component="form">
+                                    {/* form layout */}
+                                    <div style={{ textAlign: "center" }}>
+                                      TRAVELLERS & CLASS{" "}
+                                    </div>
+                                    <Grid
+                                      display="flex"
+                                      flexDirection="column"
+                                      p={2}
+                                      borderRadius="30px"
+                                      justifyContent="center"
+                                    >
+                                      <Grid item textAlign="center" px={1}>
+                                        <Typography
+                                          textAlign="left"
+                                          fontSize="15px"
+                                        >
+                                          Adults
+                                          <span
+                                            style={{
+                                              fontSize: "10px",
+                                              marginLeft: "7px",
+                                            }}
+                                          >
+                                            (Age 12+ years)
+                                          </span>
+                                        </Typography>
+
+                                        <ul className="Adult_Count">
+                                          {adultCount?.map((adult) => (
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  adult === activeIdAdult
+                                                    ? "green"
+                                                    : "white",
+                                                color:
+                                                  adult === activeIdAdult
+                                                    ? "white"
+                                                    : "black",
+                                              }}
+                                              data-id={adult}
+                                              onClick={handleAdultClick}
+                                            >
+                                              {adult}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </Grid>
+                                      <Grid
+                                        item
+                                        textAlign="center"
+                                        mt={2}
+                                        px={1}
+                                      >
+                                        <Typography
+                                          textAlign="left"
+                                          fontSize="15px"
+                                        >
+                                          Child
+                                          <span
+                                            style={{
+                                              fontSize: "10px",
+                                              marginLeft: "7px",
+                                            }}
+                                          >
+                                            (Aged 2-12 years)
+                                          </span>
+                                        </Typography>
+
+                                        <ul className="Adult_Count">
+                                          {childCount?.map((child) => (
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  child === activeIdChild
+                                                    ? "green"
+                                                    : "white",
+                                                color:
+                                                  child === activeIdChild
+                                                    ? "white"
+                                                    : "black",
+                                              }}
+                                              data-id={child}
+                                              onClick={handleChildClick}
+                                            >
+                                              {child}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </Grid>
+                                      <Grid
+                                        item
+                                        textAlign="center"
+                                        mt={2}
+                                        px={1}
+                                      >
+                                        <Typography
+                                          textAlign="left"
+                                          fontSize="15px"
+                                        >
+                                          Infants
+                                          <span
+                                            style={{
+                                              fontSize: "10px",
+                                              marginLeft: "7px",
+                                            }}
+                                          >
+                                            (Below 2 years)
+                                          </span>
+                                        </Typography>
+
+                                        <ul className="Adult_Count">
+                                          {infantCount?.map((Infants) => (
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  Infants === activeIdInfant
+                                                    ? "green"
+                                                    : "white",
+                                                color:
+                                                  Infants === activeIdInfant
+                                                    ? "white"
+                                                    : "black",
+                                              }}
+                                              data-id={Infants}
+                                              onClick={handleInfantClick}
+                                            >
+                                              {Infants}
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </Grid>
+                                    </Grid>
+
+                                    <Grid
+                                      display="flex"
+                                      style={{ margin: "7px 22px" }}
+                                    >
+                                      <Typography
+                                        textAlign="left"
+                                        fontSize="15px"
+                                      >
+                                        Choose Travel Class
+                                      </Typography>
+                                    </Grid>
+
+                                    <Grid display="flex">
+                                      <ul className="classButton">
+                                        {ClassItems?.map((ele) => (
+                                          <>
+                                            <li
+                                              style={{
+                                                backgroundColor:
+                                                  ele.id === activeIdClass
+                                                    ? "green"
+                                                    : "orange",
+                                              }}
+                                              data-id={ele.id}
+                                              onClick={handleClassItemClick}
+                                            >
+                                              {ele?.label}
+                                            </li>
+                                          </>
+                                        ))}
+                                      </ul>
+                                    </Grid>
+                                  </Box>
+                                </DialogContent>
+                                <DialogActions>
+                                  <Button onClick={handleTravelClose}>
+                                    Cancel
+                                  </Button>
+                                  <Button onClick={handleTravelClose}>
+                                    Ok
+                                  </Button>
+                                </DialogActions>
+                              </Dialog>
+                            </div>
                           </div>
                         </div>
 
@@ -993,59 +1308,59 @@ const Homeform = (props) => {
                             </div>
                           </div>
                         </div> */}
-                        <Box display="flex" justifyContent="center">
-                          <div class="wrapper">
-                            <text>Select A Fare Type:</text>
-                            <input
-                              type="radio"
-                              name="select"
-                              id="option-1"
-                              checked
-                            />
-                            <input type="radio" name="select" id="option-2" />
-                            <input type="radio" name="select" id="option-3" />
-                            <input type="radio" name="select" id="option-4" />
-                            <input type="radio" name="select" id="option-5" />
-                            <input type="radio" name="select" id="option-6" />
-                            <label for="option-1" class="option option-1">
-                              <div class="dot"></div>
-                              <text>Regular Fares</text>
-                            </label>
-                            <label for="option-2" class="option option-2">
-                              <div class="dot"></div>
-                              <text>Armed Forces Fares</text>
-                            </label>
-                            <label for="option-3" class="option option-3">
-                              <div class="dot"></div>
-                              <text>Student Fares</text>
-                            </label>
-                            <label for="option-4" class="option option-4">
-                              <div class="dot"></div>
-                              <text>Senior Citizen Fares</text>
-                            </label>
-                            <label for="option-5" class="option option-5">
-                              <div class="dot"></div>
-                              <text>Doctors & Nurses Fares</text>
-                            </label>
-                            <label for="option-6" class="option option-6">
-                              <div class="dot"></div>
-                              <text>Double Seat Fares</text>
-                            </label>
-                            <text className="col-auto fare_search ">
-                              <button type="submit" path="" className="search">
-                                Search
-                              </button>
-
-                              {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
-                                                        Search
-                                                    </button> */}
-                            </text>
-                          </div>
-                        </Box>
                       </div>
                     </form>
+                    <Box display="flex" justifyContent="center">
+                      <div class="wrapper">
+                        <text>Select A Fare Type:</text>
+                        <input
+                          type="radio"
+                          name="select"
+                          id="option-1"
+                          checked
+                        />
+                        <input type="radio" name="select" id="option-2" />
+                        <input type="radio" name="select" id="option-3" />
+                        <input type="radio" name="select" id="option-4" />
+                        <input type="radio" name="select" id="option-5" />
+                        <input type="radio" name="select" id="option-6" />
+                        <label for="option-1" class="option option-1">
+                          <div class="dot"></div>
+                          <text>Regular Fares</text>
+                        </label>
+                        <label for="option-2" class="option option-2">
+                          <div class="dot"></div>
+                          <text>Armed Forces Fares</text>
+                        </label>
+                        <label for="option-3" class="option option-3">
+                          <div class="dot"></div>
+                          <text>Student Fares</text>
+                        </label>
+                        <label for="option-4" class="option option-4">
+                          <div class="dot"></div>
+                          <text>Senior Citizen Fares</text>
+                        </label>
+                        <label for="option-5" class="option option-5">
+                          <div class="dot"></div>
+                          <text>Doctors & Nurses Fares</text>
+                        </label>
+                        <label for="option-6" class="option option-6">
+                          <div class="dot"></div>
+                          <text>Double Seat Fares</text>
+                        </label>
+                        <text className="col-auto fare_search ">
+                          <button type="submit" path="" className="search">
+                            Search
+                          </button>
+
+                          {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
+                                                        Search
+                                                    </button> */}
+                        </text>
+                      </div>
+                    </Box>
                   </Box>
-                  {/* ===================================> 4th form here <============================= */}
+                  {/* ====================================================> 4th form here <=========================================== */}
                 </TabPanel>
 
                 {/* Round trip end */}
@@ -1057,7 +1372,7 @@ const Homeform = (props) => {
                     py={2}
                     sx={{ backgroundColor: "white", borderRadius: "20px" }}
                   >
-                    {/* ======================> 5th form here <============================ */}
+                    {/* =================================> 5th form here <========================================== */}
                     <form action="/Searchresult">
                       <div className="row">
                         <div className="col-12 col-md-6 col-lg-3 mb-3">
@@ -1177,7 +1492,7 @@ const Homeform = (props) => {
                   <Box sx={{ backgroundColor: "white", borderRadius: "20px" }}>
                     <Addanothercity />
                   </Box>
-                  {/* ==============================> 6th form here <================================= */}
+                  {/* =============================================> 6th form here <================================================= */}
                   <form action="/Searchresult">
                     <Box display="flex" justifyContent="center">
                       <div class="wrapper">

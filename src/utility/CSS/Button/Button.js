@@ -17,12 +17,11 @@ font-family: "Segoe UI", system-ui, sans-serif;
 font-weight: 500;
 transition: 0.8s;
 background-size: 280% auto;
-background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55%, var(--btn-bg-2) 90%);
+
 border: none;
 border-radius: var(--radii);
 color: var(--btn-bg-color);
-box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
-&:hover{
+background-color:#E73C33;
     background-position: right top;
  }
  & :is(:focus, :focus-within,:active) {
@@ -53,7 +52,7 @@ background-image: linear-gradient(325deg, var(--btn-bg-2) 0%, var(--btn-bg-1) 55
 border: none;
 border-radius: var(--radii);
 color: var(--btn-bg-color);
-box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125, 233, 0.25), inset 4px 4px 8px rgba(175, 230, 255, 0.5), inset -4px -4px 8px rgba(19, 95, 216, 0.35);
+
 &:hover{
     background-position: right top;
  }
@@ -62,7 +61,7 @@ box-shadow: 0px 0px 20px rgba(71, 184, 255, 0.5), 0px 5px 5px -1px rgba(58, 125,
     box-shadow: 0 0 0 3px var(--btn-bg-color), 0 0 0 6px var(--btn-bg-2);
   }
   &:disabled {
-    background: hsla(0, 0%, 70%, 0.5); /* Adjust the color as needed */
+   
     cursor: not-allowed;
     /* Add any other styles you want for the disabled state */
   }

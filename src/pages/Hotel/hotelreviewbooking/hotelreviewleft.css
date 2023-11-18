@@ -18,13 +18,13 @@ opacity: 1;
     color: #252525;
     opacity: 1;
 }
-.paragraph{
+/* .paragraph{
     text-align: left;
-font: normal normal bold 14px/18px Quicksand !important;
+font: normal normal bold 19px Quicksand !important;
 letter-spacing: 0px;
 color: #666666;
 opacity: 1;
-}
+} */
 .check_in_out{
     text-align: left;
 font: normal normal bold 12px/15px Quicksand !important;

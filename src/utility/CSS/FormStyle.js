@@ -5,7 +5,7 @@ export const Form = styled.div`
   display: flex;
   flex-direction: column;
   border-radius: 0.75rem;
-  background-color: #fff;
+  
   color: rgb(97 97 97);
   box-shadow: 20px 20px 30px rgba(0, 0, 0, .05);
   width: 22rem;
@@ -15,8 +15,8 @@ export const Form = styled.div`
 export const Header = styled.div`
   position: relative;
   background-clip: border-box;
-  background-color: #1e88e5;
-  background-image: linear-gradient(to top right,#1e88e5,#42a5f5);
+ 
+  
   margin: 10px;
   border-radius: 0.75rem;
   overflow: hidden;
@@ -105,8 +105,7 @@ export const Sign_in_Btn = styled.button`
   line-height: 1rem;
   text-align: center;
   padding: .75rem 1.5rem;
-  background-color: #1e88e5;
-  background-image: linear-gradient(to top right,#1e88e5,#42a5f5);
+
   border-radius: .5rem;
   width: 100%;
   outline: 0;

@@ -3,8 +3,11 @@ import styled from "styled-components";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import STLogo from '../images/ST-Main-Logo.png';
+import newlogo from '../images/newlogo.png'
 import { mainheaderlogos } from "../data";
+import '../layouts/navbar.css'
 import LoginForm from "../components/Login";
+import Navbar from "../layouts/Navbar"
 
 const Icondivcss = styled.div`
   .icondiv {
@@ -87,34 +90,37 @@ export const StickyHeader = () => {
   return (
     <Icondivcss>
       {/* style={{zIndex:'9999',display:'flex',justifyContent:'center',,height:'100px'}} */}
-      <div  className={nav ? "icondiv" : "disnone"}>
+      <div style={{display:"flex",justifyContent:"space-between",border:"2px solid red"}}>
       {/* className="imgdiv" */}
         <div >
           <Link to="/">
-            <img src={STLogo} alt="Logo" width="200px" />
+            
+            <img src={STLogo} alt="Logo" className="logo-back" />
+              <img src={newlogo} alt="Logo" className="logo-front" />
           </Link>
         </div>
-        <ul className="links">
+       
+        {/* <ul className="links" style={{border:"1px solid pink"}}>
                         {
                             mainheaderlogos.map(({ avatar, name, path }, index) => {
                                 return (
                                         <NavLink to={path} style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center',textDecoration:'none'}}  className={({ isActive }) => isActive ? "active-nav logoname" : "logoname"}>
-                                       
+{/*                                        
                                             <img src={avatar} alt="mainheaderlogo" className='mainheaderlogo' style={{ width: "35px" }} />
                                        
                                            <span style={{marginTop:'7px'}}>
                                             {name}
-                                            </span> 
+                                            </span>  
                                         </NavLink>
                                   
                                 )
                             })
                         }
-                    </ul>
-        <div >
-        {/* <Login handleClick={handlePopup}/> */}
-        <LoginForm />
-        </div>
+                    </ul> */}
+        {/* <div >
+        <Login handleClick={handlePopup}/> 
+         <LoginForm />
+        </div> */}
       </div>
     </Icondivcss>
   );

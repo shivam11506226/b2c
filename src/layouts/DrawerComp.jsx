@@ -7,7 +7,7 @@ const DrawerComp = () => {
     return (
         <React.Fragment>
             <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
-                <List>
+                {/* <List>
                     {
                         PAGES.map((page, index) => (
                             <ListItemButton key={index}>
@@ -20,7 +20,7 @@ const DrawerComp = () => {
                         ))
                     }
 
-                </List>
+                </List> */}
             </Drawer>
             <IconButton sx={{ color: 'white', marginLeft: 'auto' }} onClick={() => setOpenDrawer(!openDrawer)}>
                 <MenuIcon />

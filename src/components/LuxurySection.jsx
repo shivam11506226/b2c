@@ -13,7 +13,7 @@ const LuxurySection = () => {
                                 <Grid item xs={12} md={3} alignItems="center" display="flex" justifyContent='center'>
 
                                     <Box>
-                                        <Typography fontSize="50px" fontWeight="bold" color="#006FFF" lineHeight="52px">Travvolt </Typography>
+                                        <Typography fontSize="50px" fontWeight="bold" color="#006FFF" lineHeight="52px">skytrails </Typography>
                                         <Typography fontSize="50px" fontWeight="bold" color="#006FFF" lineHeight="52px">Lap Of Luxury</Typography>
                                         <Typography mt={1} fontWeight="bold">Escape to the epitome of luxury, packed with signature amenities and services</Typography>
                                         <Box mt={2}><Button variant='contained' color="warning">Learn More</Button></Box>

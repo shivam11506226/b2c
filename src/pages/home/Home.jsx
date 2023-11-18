@@ -15,7 +15,7 @@ const Home = () => {
         <div className="home_banner">
             {/* <Homeform header="Book International and Domestic Flights"></Homeform> */}
             <Oneway header="Book International and Domestic Flights" />
-            <OfferSwipeToSlide></OfferSwipeToSlide>
+            {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
             <Toursection></Toursection>
             <SwipeToSlide></SwipeToSlide>
             <Download></Download>

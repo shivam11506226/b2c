@@ -1,0 +1,87 @@
+.header{
+    color: #071C2C;
+font-family: Montserrat;
+font-size: 28px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+.paragraph{
+color: #071C2C;
+font-family: Montserrat;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+.download_info{
+    padding-top:"20px"
+}
+/* styles.css */
+
+/* Default styles for download_info container */
+.download_info {
+ 
+    gap: 70px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  
+  /* Default styles for the download div */
+  .down {
+   width:"60%"
+  }
+ 
+.tickets {
+    width: 76px;
+    height: 76px;
+}
+
+.tickets img {
+    width: 100% !important; 
+    height: 100% !important;
+}
+  .google{
+    width: 200px;
+    height: 47px;
+    flex-shrink: 0;
+  }
+
+  /* Default styles for the scan_wrapper div */
+  .scan_wrapper {
+  
+    width: 240px;
+height: 160px;
+flex-shrink: 0;
+  }
+  .scan-logo{
+    width:100% !important;
+    height: 160px !important;
+  }
+  /* Media query for screens with a minimum width of 600 pixels */
+  @media screen and (max-width: 1000px) {
+    /* Center the download and scan images */
+    .download_info {
+      margin-left:20%;
+    }
+    .tickets{
+        width: 20%;
+       height: 76px;
+     margin-left:30%;
+      }
+    /* Adjust the styling of the lastimg div to keep images centered */
+    .lastimg {
+      display: flex;
+      gap: 5px;
+     
+    }
+  
+    /* Adjust the styling of the scan_wrapper div to center the image */
+    .scan_wrapper {
+      display: flex;
+      margin-left:10%;
+    }
+  }
+  
