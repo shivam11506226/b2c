@@ -63,7 +63,7 @@ const RoomInfo = () => {
                                 </Box>
                                 <Box display='flex' alignItems='center' marginLeft='13px'>
                                     <CheckBoxIcon style={{ color: 'greenyellow' }} />
-                                    <Typography className='non_org'>Travvolt - Promo NR Room Only</Typography>
+                                    <Typography className='non_org'>skytrails - Promo NR Room Only</Typography>
                                 </Box>
                                 <Box display='flex' alignItems='center' marginLeft='13px'>
                                     <CheckBoxIcon style={{ color: 'greenyellow' }} />
@@ -89,7 +89,7 @@ const RoomInfo = () => {
                                 </Box>
                                 <Box display='flex' alignItems='center' marginLeft='13px'>
                                     <CheckBoxIcon style={{ color: 'greenyellow' }} />
-                                    <Typography className='non_org'>Travvolt - Promo NR Room Only</Typography>
+                                    <Typography className='non_org'>skytrails - Promo NR Room Only</Typography>
                                 </Box>
                                 <Box display='flex' alignItems='center' marginLeft='13px'>
                                     <CheckBoxIcon style={{ color: 'greenyellow' }} />
@@ -114,7 +114,7 @@ const RoomInfo = () => {
                                 </Box>
                                 <Box display='flex' alignItems='center' marginLeft='13px'>
                                     <CheckBoxIcon style={{ color: 'greenyellow' }} />
-                                    <Typography className='non_org'>Travvolt - Promo NR Room Only</Typography>
+                                    <Typography className='non_org'>skytrails - Promo NR Room Only</Typography>
                                 </Box>
                                 <Box display='flex' alignItems='center' marginLeft='13px'>
                                     <CheckBoxIcon style={{ color: 'greenyellow' }} />

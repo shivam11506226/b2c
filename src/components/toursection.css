@@ -1,0 +1,17 @@
+.paper{
+  
+border: 0.5px solid #071C2C;
+
+background: #FFF;
+}
+.typo{
+    color: #071C2C;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+}
+.typo1{
+    width: 300px;
+}

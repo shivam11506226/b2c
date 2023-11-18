@@ -4,9 +4,7 @@
 /* banner image start */
 .home_banner {
    
-    background: rgb(229,238,244);
-background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 100%);
-    background-position: fixed;
+   background-position: fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }
@@ -14,7 +12,7 @@ background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 10
 /* mainheader css start */
 .mainheader_wrapper {
     margin: 0rem 0rem 1.3rem 0rem;
-    padding: 7rem 2rem 0rem;
+    padding: 0rem 2rem 0rem;
 }
 
 .mainheader_container {
@@ -24,8 +22,14 @@ background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 10
 .mainheader_row {
     background: #ffffff;
     border-radius: 0.7rem;
-    padding: 0.5rem 0rem 0rem 0rem;
+    padding: 0.5rem 0;
+    width:70%;
+    display: flex;
+    flex-wrap: wrap;
     margin: 0 auto;
+  
+    z-index: 1px;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
 .mainhome_logos {
@@ -68,8 +72,8 @@ background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 10
     content: "";
     display: block;
     width: 100%;
-    height: 5px;
-    background: orange;
+    height: 2px;
+    background:#E73C33;
     position: absolute;
     left: 0%;
     top: 69px;
@@ -92,9 +96,12 @@ background: linear-gradient(0deg, rgba(229,238,244,1) 35%, rgba(21,106,124,1) 10
 }
 
 .content_row {
-    background: #ffffff;
-    border-radius: 10px;
+   
     margin: auto;
+    height:280px;
+    border-radius: 12px;
+background: #FFF;
+box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
 }
 
 .header_row h5 {
@@ -412,7 +419,7 @@ body .form-group:not(:last-child) {
 }
 
 .form_input input {
-    width: 100%;
+  
     height: 101%;
     padding-left: 25px;
     border-radius: 10px;
@@ -604,7 +611,7 @@ body .form-group:not(:last-child) {
 
 /* media start Here */
 
-@media screen and (min-device-width: 1200px) and (max-device-width: 1400px){
+/* @media screen and (min-device-width: 1200px) and (max-device-width: 1400px){
     .card_body{
         margin: 0px 10px 30px;
     }
@@ -613,38 +620,36 @@ body .form-group:not(:last-child) {
     .card_body{
         margin: 0px 16px 30px;
     }
-}
+} */
 
 
-@media(max-width: 992px){
-    .download_header h3 {
-        font-size: 26px;
-        margin-top: 15px;
+
+
+
+
+
+@media (max-width: 1000px) {
+    .mainheader_row {
+        background: #ffffff;
+        border-radius: 0.7rem;
+        padding: 0.5rem 0;
+        gap:40px;
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+        box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
     }
-    .download_header h5 {
-        font-size: 18px;
-        margin-bottom: 16px;
+
+    .content_row {
+   
+        margin: auto;
+        height:780px !important;
+        border-radius: 12px;
+    background: #FFF;
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.25);
     }
-    .download_info{
-        padding: 0px;
-        display: block;
-        text-align: center;
-    }
-    .down{
-        text-align: center;
-        padding-right: none;
-    }
-    .download_info img{
-        width: 90px;
-        height: 90px;
-    }
-    .scan_logo img{
-        width: 235px;
-    }
-    .download_info h5{
-        font-size: 11px;
-    }
-    .form-field{
-        padding: 4px 10px;
-    }
+    /* .wrapper{
+        margin-top: -20px !important;
+    } */
+    
 }

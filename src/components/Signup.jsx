@@ -89,7 +89,7 @@ export default function SignUp({ isRegModalOpen, setRegIsModalOpen }) {
                   <Sign_in_Btn class="sigin-btn">Sign up</Sign_in_Btn>
                   <Typography sx={{ fontSize: "12px", fontWeight: "bold",marginTop:"8px"  }} >Already have Account / <Link href="#" onClick={handleOpen}>Signup</Link></Typography>
 
-                  <Typography color='black' fontSize='10px' >By proceeding, you agree to Travvolt <Link href="#" underline="always" color="#FF5733">
+                  <Typography color='black' fontSize='10px' >By proceeding, you agree to skytrails <Link href="#" underline="always" color="#FF5733">
                                         {'Privacy Policy'}
                                     </Link> , <Link href="#" underline="always" color="#FF5733">
                                             {'User Agreement'}
