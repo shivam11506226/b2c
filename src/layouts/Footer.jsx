@@ -4,8 +4,6 @@ import facebook from "../images/social/facebook.png";
 import instagram from "../images/social/instagram.png";
 import twitter from "../images/social/twitter.png";
 import payment from "../images/social/payment.png";
-import x from "../images/social/xt.png";
-
 
 // css link
 import "./layout.css"
@@ -65,10 +63,9 @@ const Footer = () => {
                 <article>
                     <h4>Follow Us</h4>
                     <div className="footer_socials">
-                        <a href="https://m.facebook.com/profile.php/?id=100094552191790&name=xhp_nt__fb__action__open_user" target="_blank" rel="noreferrer noopener"><img src={facebook} alt="Social Media" /></a>
-                        <a href="https://www.instagram.com/theskytrails/" target="_blank" rel="noreferrer noopener"><img src={instagram} alt="Social Media" /></a>
-                        {/* <a href="#" target="_blank" rel="noreferrer noopener"><img src={twitter} alt="Social Media" /></a> */}
-                        <a href="https://twitter.com/Skytrails_SDC" target="_blank" rel="noreferrer noopener"><img src={x} alt="Social Media" /></a>
+                        <a href="#" target="_blank" rel="noreferrer noopener"><img src={facebook} alt="Social Media" /></a>
+                        <a href="#" target="_blank" rel="noreferrer noopener"><img src={instagram} alt="Social Media" /></a>
+                        <a href="#" target="_blank" rel="noreferrer noopener"><img src={twitter} alt="Social Media" /></a>
                     </div>
                     <Link className="payment">
                         <img src={payment} alt="Footer Payment" />
