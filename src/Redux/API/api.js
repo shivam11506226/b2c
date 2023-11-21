@@ -8,7 +8,7 @@ function api() {
   const userB2BToken = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/token",
+      url: "skyTrails/token",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {

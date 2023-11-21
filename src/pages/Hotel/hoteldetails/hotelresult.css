@@ -1,98 +1,153 @@
-.select_trip{
-    text-align: left;
-font: normal normal bold 14px/1px Quicksand !important;
-letter-spacing: 0px;
-color: #006FFF;
+.filter {
+  display: flex;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 0px 2px 8px 8px rgba(0, 0, 0, 0.25);
+  height: 85px;
+  align-items: center;
+  padding: 0px 20px;
+  gap: 10px;
 }
-.spor_by{
-    text-align: left;
-    font: normal normal bold 14px/1px Quicksand !important;
-    letter-spacing: 0px;
-    color: #666666;
+.filter1 {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
 }
-.popular{
-    text-align: left;
-font: normal normal bold 14px/1px Quicksand !important;
-letter-spacing: 0px;
-color: #006FFF;
+.filter1 > div {
+  display: flex;
+  align-items: center;
+  background-color: red;
+  align-content: center;
+  justify-content: center;
 }
-.showing_goa{
-    text-align: left;
-font: normal normal bold 14px/1px Quicksand !important;
-letter-spacing: 0px;
-color: #666666;
-}
-.leftshadow{
-    background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 1px 6px #00000029;
-border-radius: 10px;
-opacity: 1;
-padding: 10px;
-}
-.selectfilter{
-    text-align: center;
-font: normal normal bold 16px/20px Quicksand !important;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
-}
-.suggested{
-    text-align: left;
-font: normal normal bold 12px/15px Quicksand !important;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
-}
-.radio{
-    border: 2px solid #252525;
-opacity: 1;
-margin-right: 8px;
+.filter1 > div > p {
+  font-family: Montserrat;
+  font-size: 16px;
+  font-weight: 600;
+  
+  text-align: center;
 }
 
-.radio[type=radio] {
-    color:red !important;
+.View-Map {
+  display: flex;
+  flex: 0.5;
+  height: 40px;
+  justify-content: space-between;
+}
+.View-Map > div {
+  border-radius: 4px;
+  background: #071c2c;
+  padding: 0px 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.View-Map > div > h5 {
+  color: #fff;
+
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+.select_trip {
+  text-align: left;
+  font: normal normal bold 14px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #006fff;
 }
 
-.content{
-    text-align: left;
-font: normal normal bold 12px/1px Quicksand !important;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
+.spor_by {
+  text-align: left;
+  font: normal normal bold 14px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #666666;
+}
+.popular {
+  text-align: left;
+  font: normal normal bold 14px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #006fff;
+}
+.showing_goa {
+  text-align: left;
+  font: normal normal bold 14px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #666666;
+}
+.leftshadow {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 1px 6px #00000029;
+  border-radius: 10px;
+  opacity: 1;
+  padding: 10px;
+}
+.selectfilter {
+  text-align: center;
+  font: normal normal bold 16px/20px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
+}
+.suggested {
+  text-align: left;
+  font: normal normal bold 12px/15px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
+}
+.radio {
+  border: 2px solid #252525;
+  opacity: 1;
+  margin-right: 8px;
+}
 
+.radio[type="radio"] {
+  color: red !important;
 }
-.value{
-    text-align: right;
-font: normal normal bold 12px/1px Quicksand !important;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
+
+.content {
+  text-align: left;
+  font: normal normal bold 12px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
 }
-.starrating{
-    text-align: left;
-    font: normal normal bold 12px/15px Quicksand !important;
-    letter-spacing: 0px;
-    color: #252525;
-    opacity: 1; 
+.value {
+  text-align: right;
+  font: normal normal bold 12px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
 }
-.clearfilter{
-    text-align: right;
-font: normal normal bold 10px/1px Quicksand !important;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
+.starrating {
+  text-align: left;
+  font: normal normal bold 12px/15px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
 }
-.price{
-    text-align: left;
-font: normal normal bold 12px/15px Quicksand !important ;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
+.clearfilter {
+  text-align: right;
+  font: normal normal bold 10px/1px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
 }
-.title{
-    text-align: left;
-font: normal normal bold 18px/23px Quicksand !important;
-letter-spacing: 0px;
-color: #252525;
-opacity: 1;
+.price {
+  text-align: left;
+  font: normal normal bold 12px/15px Quicksand !important ;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
+}
+.title {
+  text-align: left;
+  font: normal normal bold 18px/23px Quicksand !important;
+  letter-spacing: 0px;
+  color: #252525;
+  opacity: 1;
 }
