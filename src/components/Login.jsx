@@ -6,8 +6,10 @@ import Modal from "@mui/material/Modal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Unstable_Grid2";
+
 import Link from "@mui/material/Link";
 import { LoginButton } from "../utility/CSS/Button/Button";
+
 
 import { loginAction } from "../Redux/Auth/logIn/actionLogin";
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -96,6 +98,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
     setIsModalOpen(false);
     setOpen(false);
 
+
     if (authenticUser === 200) {
       setIsModalOpen(false);
       setOpen(false);
@@ -107,6 +110,8 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
     } else {
       setOpen(false);
     }
+
+ 
   };
 
   return (
@@ -216,6 +221,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
                 alignItem="center"
               >
                 <StyledForms>
+
                   <Formik
                     initialValues={{ email: "", password: "" }}
                     validationSchema={validationSchema}
@@ -304,6 +310,8 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
                       </Form>
                     )}
                   </Formik>
+
+             
                 </StyledForms>
               </Grid>
             )}
@@ -312,6 +320,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
       </Modal>
 
       {/* Register form */}
+
       {newReg && (
         <Modal
           open={regOpen}
@@ -331,6 +340,8 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
           </Box>
         </Modal>
       )}
+
+     
     </div>
   );
 }
