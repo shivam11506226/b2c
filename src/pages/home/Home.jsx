@@ -6,7 +6,7 @@ import SwipeToSlide from "../../components/Card";
 import Download from "./Download";
 import Footer from "../../layouts/Footer";
 import Oneway from '../../components/Oneway';
-
+import OfferCard from "../flight/OfferCard";
 // home css 
 import "./home.css";
 
@@ -17,6 +17,7 @@ const Home = () => {
             <Oneway header="Book International and Domestic Flights" />
             {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
             <Toursection></Toursection>
+            <OfferCard/>
             <SwipeToSlide></SwipeToSlide>
             <Download></Download>
           

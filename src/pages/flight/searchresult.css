@@ -8,7 +8,7 @@
     width: 100%;
     height: auto;
     background: white;
-    box-shadow: 2px 2px 8px rgb(62, 62, 62);
+  
     border-radius: 10px;
 
 }
@@ -86,13 +86,13 @@
 }
 
 .price_ {
-    font-size: 32px !important;
+    font-size: 1px !important;
     color: #FF951A;
     font-weight: bolder !important;
 }
 
 .booknow_btn {
-    background-color: #006FFF !important;
+   
     border-radius: 20px !important;
     opacity: 1;
     color: white;
@@ -100,15 +100,15 @@
 }
 
 .booknow_btn:hover {
-    background-color: #4260D8 !important;
+    
     border-radius: 20px !important;
     opacity: 1;
-    color: white;
+    color: white !important;
     font-weight: bolder !important;
 }
 
 .propsi {
-    background-color: #DAF2FC !important;
+  
     border-radius: 10px !important;
     font-size: 12px !important;
     color: black !important;
@@ -120,10 +120,10 @@
     background-color: beige !important;
 }
 
-.active {
+/* .active {
     background: rgb(37, 166, 37) !important;
     display: none !important;
-}
+} */
 
 .inactive {
     background: rgb(176, 44, 44) !important;
@@ -132,3 +132,7 @@
 
 
 /* Viewpricebtn end */
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+    background-color: darkblue;
+    color:"white"
+}

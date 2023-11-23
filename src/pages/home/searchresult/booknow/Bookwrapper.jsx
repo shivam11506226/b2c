@@ -1544,7 +1544,7 @@ export default function BookWrapper() {
                                     }}
                                   >
                                     <div style={{ display: "flex" }}>
-                                      <img src={email} />
+                                      
                                       <Box mx={2}>
                                         <input
                                           type="email"
@@ -1567,7 +1567,7 @@ export default function BookWrapper() {
                                         marginLeft: "250px",
                                       }}
                                     >
-                                      <img src={chat} />
+                                     
                                       <Box mx={2}>
                                         <input
                                           type="email"

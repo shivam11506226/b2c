@@ -31,7 +31,7 @@ line-height: normal;
   
   /* Default styles for the download div */
   .down {
-   width:"60%"
+   width:"56%"
   }
  
 .tickets {
@@ -52,13 +52,13 @@ line-height: normal;
   /* Default styles for the scan_wrapper div */
   .scan_wrapper {
   
-    width: 240px;
-height: 160px;
+    width:150px;
+height: 150px;
 flex-shrink: 0;
   }
   .scan-logo{
     width:100% !important;
-    height: 160px !important;
+    height: 150px !important;
   }
   /* Media query for screens with a minimum width of 600 pixels */
   @media screen and (max-width: 1000px) {
