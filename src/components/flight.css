@@ -232,6 +232,25 @@ line-height: normal;
         border-right: none;
        
       }
+      .roundlogo{
+        position: absolute;
+        right: 50%;
+        top: 100%;
+        transform: translate(0% , -50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .roundlogo svg{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        /* display: flex;
+        justify-content: center;
+        align-items: center; */
+      }
   }
   
   /* Add additional responsive styles as needed */

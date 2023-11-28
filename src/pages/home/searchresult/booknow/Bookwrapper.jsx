@@ -138,96 +138,93 @@ export default function BookWrapper() {
     setAccordionExpanded(isExpanded ? index : false);
   };
 
-
   const [value, setValue] = React.useState("1");
 
   // Add form of passenger
-  const passengerTemplate = 
-  {
-    "Title": "Mr",
-    "FirstName": "Unit",
-    "LastName": "test",
-    "PaxType": 1,
-    "DateOfBirth": "1987-12-06T00:00:00",
-    "Gender": 1,
-    "PassportNo": "",
-    "PassportExpiry": "",
-    "AddressLine1": "123, Test",
-    "AddressLine2": "",
-    "Fare": {
-      "Currency": "INR",
-      "BaseFare": 3171,
-      "Tax": 1284,
-      "YQTax": 0,
-      "AdditionalTxnFeePub": 0,
-      "AdditionalTxnFeeOfrd": 0,
-      "OtherCharges": 116.96,
-      "Discount": 0,
-      "PublishedFare": 4581.96,
-      "OfferedFare": 4355.03,
-      "TdsOnCommission": 6.34,
-      "TdsOnPLB": 9.14,
-      "TdsOnIncentive": 6.22,
-      "ServiceFee": 10
+  const passengerTemplate = {
+    Title: "Mr",
+    FirstName: "Unit",
+    LastName: "test",
+    PaxType: 1,
+    DateOfBirth: "1987-12-06T00:00:00",
+    Gender: 1,
+    PassportNo: "",
+    PassportExpiry: "",
+    AddressLine1: "123, Test",
+    AddressLine2: "",
+    Fare: {
+      Currency: "INR",
+      BaseFare: 3171,
+      Tax: 1284,
+      YQTax: 0,
+      AdditionalTxnFeePub: 0,
+      AdditionalTxnFeeOfrd: 0,
+      OtherCharges: 116.96,
+      Discount: 0,
+      PublishedFare: 4581.96,
+      OfferedFare: 4355.03,
+      TdsOnCommission: 6.34,
+      TdsOnPLB: 9.14,
+      TdsOnIncentive: 6.22,
+      ServiceFee: 10,
     },
-    "City": "Gurgaon",
-    "CountryCode": "IN",
-    "CellCountryCode": "+92581-",
-    "ContactNo": "1234567890",
-    "Nationality": "IN",
-    "Email": "harsh@tbtq.in",
-    "IsLeadPax": true,
-    "FFAirlineCode": null,
-    "FFNumber": "",
-    "GSTCompanyAddress": "",
-    "GSTCompanyContactNumber": "",
-    "GSTCompanyName": "",
-    "GSTNumber": "",
-    "GSTCompanyEmail": ""
-  }
-  const childPassenger = 
-  {
-    "Title": "Mr",
-    "FirstName": "Raj",
-    "LastName": "test",
-    "PaxType": 2,
-    "DateOfBirth": "",
-    "Gender": 1,
-    "PassportNo": "",
-    "PassportExpiry": "",
-    "AddressLine1": "123, Test",
-    "AddressLine2": "",
-    "Fare": {
-      "Currency": "INR",
-      "BaseFare": 3171,
-      "Tax": 1284,
-      "YQTax": 0,
-      "AdditionalTxnFeePub": 0,
-      "AdditionalTxnFeeOfrd": 0,
-      "OtherCharges": 116.96,
-      "Discount": 0,
-      "PublishedFare": 4581.96,
-      "OfferedFare": 4355.03,
-      "TdsOnCommission": 6.34,
-      "TdsOnPLB": 9.14,
-      "TdsOnIncentive": 6.22,
-      "ServiceFee": 10
+    City: "Gurgaon",
+    CountryCode: "IN",
+    CellCountryCode: "+92581-",
+    ContactNo: "1234567890",
+    Nationality: "IN",
+    Email: "harsh@tbtq.in",
+    IsLeadPax: true,
+    FFAirlineCode: null,
+    FFNumber: "",
+    GSTCompanyAddress: "",
+    GSTCompanyContactNumber: "",
+    GSTCompanyName: "",
+    GSTNumber: "",
+    GSTCompanyEmail: "",
+  };
+  const childPassenger = {
+    Title: "Mr",
+    FirstName: "Raj",
+    LastName: "test",
+    PaxType: 2,
+    DateOfBirth: "",
+    Gender: 1,
+    PassportNo: "",
+    PassportExpiry: "",
+    AddressLine1: "123, Test",
+    AddressLine2: "",
+    Fare: {
+      Currency: "INR",
+      BaseFare: 3171,
+      Tax: 1284,
+      YQTax: 0,
+      AdditionalTxnFeePub: 0,
+      AdditionalTxnFeeOfrd: 0,
+      OtherCharges: 116.96,
+      Discount: 0,
+      PublishedFare: 4581.96,
+      OfferedFare: 4355.03,
+      TdsOnCommission: 6.34,
+      TdsOnPLB: 9.14,
+      TdsOnIncentive: 6.22,
+      ServiceFee: 10,
     },
-    "City": "Gurgaon",
-    "CountryCode": "IN",
-    "CellCountryCode": "+92581-",
-    "ContactNo": "9875432345",
-    "Nationality": "IN",
-    "Email": "harsh@tbtq.in",
-    "IsLeadPax": false,
-    "FFAirlineCode": null,
-    "FFNumber": "",
-    "GSTCompanyAddress": "",
-    "GSTCompanyContactNumber": "",
-    "GSTCompanyName": "",
-    "GSTNumber": "",
-    "GSTCompanyEmail": ""
-  }
+    City: "Gurgaon",
+    CountryCode: "IN",
+    CellCountryCode: "+92581-",
+    ContactNo: "9875432345",
+    Nationality: "IN",
+    Email: "harsh@tbtq.in",
+    IsLeadPax: false,
+    FFAirlineCode: null,
+    FFNumber: "",
+    GSTCompanyAddress: "",
+    GSTCompanyContactNumber: "",
+    GSTCompanyName: "",
+    GSTNumber: "",
+    GSTCompanyEmail: "",
+  };
 
   // Initialize the passenger list with the required number of passengers
   const passengerLists = [];
@@ -237,7 +234,7 @@ export default function BookWrapper() {
       IsLeadPax: i === 0, // Set the first passenger as the lead passenger
     });
   }
-  
+
   const passengerChildLists = [];
   for (let i = 0; i < childCount; i++) {
     passengerChildLists.push({
@@ -248,13 +245,13 @@ export default function BookWrapper() {
 
   // Set the initial state of the passenger list
   const [passengerList, setPassengerList] = useState(passengerLists);
-  const allPassenger = [passengerLists,passengerChildLists]
-  const [passengerData,setPassengerData] = useState(allPassenger.flat()) 
- 
+  const allPassenger = [passengerLists, passengerChildLists];
+  const [passengerData, setPassengerData] = useState(allPassenger.flat());
+
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...passengerData];
-    list[index ][name] = value;
+    list[index][name] = value;
     setPassengerData(list);
   };
   const handleChildChange = (e, index) => {
@@ -269,13 +266,11 @@ export default function BookWrapper() {
     // });
     const { name, value } = e.target;
     const list = [...passengerData];
-    list[index +  parseInt(adultCount) ][name] = value;
+    list[index + parseInt(adultCount)][name] = value;
     setPassengerData(list);
   };
 
   console.error(passengerData);
-
-
 
   const dateString = TicketDetails?.Segments[0][0]?.Origin?.DepTime;
   const date1 = new Date(dateString);
@@ -305,7 +300,7 @@ export default function BookWrapper() {
   const durationMinutes = totalMinutes % 60;
   const duration_Time = `${durationHours} Hours and ${durationMinutes} minutes`;
 
-  const authenticUser = reducerState?.logIn?.loginData?.status
+  const authenticUser = reducerState?.logIn?.loginData?.status;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRegModalOpen, setRegIsModalOpen] = useState(false);
 
@@ -313,7 +308,7 @@ export default function BookWrapper() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if(authenticUser == 200){
+    if (authenticUser == 200) {
       const formData = new FormData(event.target);
 
       const payloadGDS = {
@@ -321,24 +316,21 @@ export default function BookWrapper() {
         Passengers: passengerData,
         EndUserIp: reducerState?.ip?.ipData,
         TokenId: reducerState?.ip?.tokenData,
-        TraceId: reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
+        TraceId:
+          reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
       };
-      console.log("payload passenger",payloadGDS.Passengers)
+      console.log("payload passenger", payloadGDS.Passengers);
       dispatch(bookActionGDS(payloadGDS));
       // if (fareValue?.IsLCC == false) {
       //
       // }
-    }else{
+    } else {
       setIsModalOpen(true);
     }
-    
-    
   }
- 
 
   return (
     <>
-
       {!reducerState?.flightFare?.flightQuoteData?.Results == true ? (
         <div
           style={{
@@ -348,23 +340,27 @@ export default function BookWrapper() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexDirection:'column',
-            overflow:'hidden'
-            
+            flexDirection: "column",
+            overflow: "hidden",
           }}
         >
-          <Typography mt={4} >Flight Data is Fetching</Typography>
+          <Typography mt={4}>Flight Data is Fetching</Typography>
           <img src={flightLoader} alt="" srcset="" />
         </div>
       ) : (
-
         <div className="container ">
-          {
-          isModalOpen && <LoginForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-        }
-          {
-          isRegModalOpen && <SignUp isRegModalOpen={isRegModalOpen} setRegIsModalOpen={setRegIsModalOpen} />
-        }
+          {isModalOpen && (
+            <LoginForm
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
+          )}
+          {isRegModalOpen && (
+            <SignUp
+              isRegModalOpen={isRegModalOpen}
+              setRegIsModalOpen={setRegIsModalOpen}
+            />
+          )}
           <div className="row popular_content">
             <div className="col-12">
               <div className="row" style={{ display: "flex" }}>
@@ -802,7 +798,14 @@ export default function BookWrapper() {
                                             className="services"
                                             py={1}
                                           >
-                                            <Accordion expanded={accordionExpanded === index} onChange={handleAccordionChange(index)}>
+                                            <Accordion
+                                              expanded={
+                                                accordionExpanded === index
+                                              }
+                                              onChange={handleAccordionChange(
+                                                index
+                                              )}
+                                            >
                                               <AccordionSummary
                                                 expandIcon={<ExpandMoreIcon />}
                                                 aria-controls="panel1a-content"
@@ -1133,11 +1136,10 @@ export default function BookWrapper() {
                                                             value={
                                                               passengerList.FirstName
                                                             }
-                                                            
                                                             onChange={(e) =>
                                                               handleChildChange(
                                                                 e,
-                                                                index 
+                                                                index
                                                               )
                                                             }
                                                           />
@@ -1191,7 +1193,9 @@ export default function BookWrapper() {
                                                           name="Gender"
                                                           className="hotel_input_select"
                                                           value={
-                                                            passengerData[index + 1]?.Gender
+                                                            passengerData[
+                                                              index + 1
+                                                            ]?.Gender
                                                           }
                                                           onChange={(e) =>
                                                             handleServiceChange(
@@ -1212,17 +1216,12 @@ export default function BookWrapper() {
                                                         </select>
                                                       </div>
                                                     </Box>
-                                                   
                                                   </Box>
                                                   <Box
                                                     pt={2}
                                                     display="flex"
                                                     justifyContent="space-around"
-                                                  >
-                                                   
-                                                  </Box>
-
-                                                 
+                                                  ></Box>
                                                 </Box>
                                               </AccordionDetails>
                                             </Accordion>
@@ -1233,8 +1232,8 @@ export default function BookWrapper() {
                                       )
                                     )}
 
-                                    {/* For Infant passenger List */}
-                                    {infantCount > 0 && (
+                                  {/* For Infant passenger List */}
+                                  {infantCount > 0 && (
                                     <>
                                       <Box
                                         display="flex"
@@ -1242,7 +1241,8 @@ export default function BookWrapper() {
                                         alignItems="center"
                                       >
                                         <Typography>
-                                          <AccountCircleIcon /> Infant (15 days to 2 yrs)
+                                          <AccountCircleIcon /> Infant (15 days
+                                          to 2 yrs)
                                         </Typography>
                                         <Typography className="Top_txt" py={3}>
                                           Infant {passengerList.length} /{" "}
@@ -1544,7 +1544,6 @@ export default function BookWrapper() {
                                     }}
                                   >
                                     <div style={{ display: "flex" }}>
-                                      
                                       <Box mx={2}>
                                         <input
                                           type="email"
@@ -1567,7 +1566,6 @@ export default function BookWrapper() {
                                         marginLeft: "250px",
                                       }}
                                     >
-                                     
                                       <Box mx={2}>
                                         <input
                                           type="email"

@@ -16,7 +16,8 @@ import HolidaypackageInfo from "./pages/holidaypackages/holidaypackageInfo/Holid
 import HolidayPassengerDetail from "./pages/holidaypackages/holidaypassengerdetail/HolidayPassengerDetail";
 import Holidaypackages from "./pages/holidaypackages/Holidaypackages";
 import Payment from './pages/flight/Payment';
-
+import Booking from './pages/Return/Booking'
+import CompleteBooking from './pages/Return/CompleteBooking';
 // Forex
 import Forex from "./pages/forex/Forex";
 
@@ -31,9 +32,14 @@ import SeatLayout from './pages/bus/bussearchresult/SeatLayout';
 import { StickyHeader } from './layouts/Header';
 import Footer from './layouts/Footer';
 import Mainheader from './UI/Mainheader';
+import Mainheader1 from './UI/Mainheader1';
 import Navbar from "./layouts/Navbar";
 import OfferCard from './pages/flight/OfferCard';
-import { useLocation, Navigate } from "react-router-dom";
+import { useLocation} from "react-router-dom";
+import  ReturnFlight from "./pages/Return/ReturnFlight"
+import PaymentReturn from './pages/Return/PaymentReturn';
+import Conformation from './pages/Return/Conformation';
+import NonStopFlight from './pages/Return/NonStopFlight'
 function App() {
   const location = useLocation();
  
@@ -45,9 +51,9 @@ function App() {
          {/* /Searchresult */}
        
          <div className='mainimg'>
-         {(isSearchResult || isPayment) ? null : <Navbar></Navbar>}
-
-        <Mainheader />
+          <Navbar></Navbar>
+          
+        <Mainheader/>
       </div>
           
       <Routes>
@@ -57,8 +63,14 @@ function App() {
         <Route path="signup" element={<SignUp />}></Route>
       <Route path="Searchresult/booknow" element={<BookWrapper />}> </Route>
       <Route path="/Searchresult" element={<Searchresult />} />
+      
       <Route path="/payment" element={<Payment />} />
- 
+      <Route path="/returnflight" element={<ReturnFlight/>} />
+      <Route path="/booking" element={<Booking/>} />
+      <Route path="/completebooking" element={<CompleteBooking/>} />
+      <Route path="/paymentReturn" element={<PaymentReturn/>} />
+      <Route path="/conformation" element={<Conformation/>} />
+      <Route path="/nonstopflight" element={<NonStopFlight/>} />
 
       <Route path="hotel" element={<Hotel />}></Route>
       <Route path="/Hotelsearch" element={<HotelHomeResult/>}/>

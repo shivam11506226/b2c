@@ -1,0 +1,155 @@
+/* FlightSummary.css */
+
+.flightSummaryContainer {
+    width: 100%;
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+    padding: 24px 60px;
+    background: white;
+    border-radius: 8px;
+    flex-direction: column;
+    gap:4px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    display: inline-flex;
+  } 
+  .titleContainer > div {
+    justify-content: space-between;
+   
+    display: inline-flex;
+  }
+  
+  .titleText1{
+    color: #071C2C;
+    font-size: 32px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  .titleSeparator {
+    width: 16px;
+    height: 9.61px;
+  }
+  
+ 
+  
+  .flightDetails {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    display: flex;
+  }
+  
+  .cityContainer {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    display: flex;
+  }
+  
+  .cityName {
+    color: #071C2C;
+    font-size: 24px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  .iconContainer {
+    width: 28px;
+    height: 28px;
+    position: relative;
+  }
+  
+  /* Add more styles for flight details if needed */
+  /* FlightDetails.css */
+
+.flightDetailsContainer {
+    width: 561px;
+  
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .flightDetailsItem {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+  }
+  
+  .locationContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+  }
+  
+  .cityName {
+    color: #071C2C;
+    font-size: 24px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  .iconContainer {
+    position: relative;
+    width: 28px;
+    height: 28px;
+  }
+  
+  .iconBackground {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    left: 0;
+    top: 0;
+    
+  }
+  
+  .icon {
+    position: absolute;
+    width: 18.67px;
+    height: 14px;
+    left: 4.67px;
+    top: 7px;
+   
+  }
+  
+  .flightInfoContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .infoText {
+    color: #FF0000;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    word-wrap: break-word;
+  }
+  
+  .infoSeparator {
+    width: 4px;
+    height: 4px;
+    background: #FF0000;
+    border-radius: 9999px;
+  }
+  /* TravellerDetails.css */
+
+  @media only screen and (max-width: 1000px) {
+    .fare-container {
+      width: 100%;
+    }
+  
+    /* Add other responsive styles as needed */
+  }

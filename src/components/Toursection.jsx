@@ -103,12 +103,11 @@ const Toursection = () => {
                   >
                     Explore International Flights
                     <Typography
-                     className=" typo"
                       color="grey"
                       sx={{ fontSize: ["12px", "13px", "15px"] }}
                       alignItems="center"
                       fontWeight="bold"
-                      width="350px"
+                      style={{ fontFamily: "Quicksand" }}
                      
                     >
                       Cheapest Flights to Paris, Bali, Tokyo & more

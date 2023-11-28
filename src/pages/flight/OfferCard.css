@@ -1,11 +1,6 @@
-/* YourComponent.css */
 
-/* Add your existing styles here */
 
-/* Styles for the provided section */
-/* SpecialOffer.css */
-
-.slider-container {
+.slider-container{
     width: 100%;
     margin: 0 auto;
   }
@@ -28,11 +23,10 @@
     padding: 10px;
   }
   
-  /* Add more styles for individual elements */
-  /* OffersHeader.css */
+ 
 
 .offers-header-container {
-    width: 1032px;
+    width: 100%;
     height: 40px;
     display: flex;
     justify-content: flex-start;
@@ -248,4 +242,55 @@
   .slick-dots li button:before {
     color: #f10a0a; /* Adjust the color as needed */
   }
+
+  @media (max-width: 1000px) {
+    .main-container1 {
+      width: 74%;
+        margin-top: 10px;
+    }
+
+    .offers-section {
+        gap: 10px;
+    }
+
+    .offers-header-container {
+        width: 50%;
+        gap: 5px;
+    }
+
+    .title,
+    .maintitle {
+        font-size: 24px;
+        width: 100%;
+    }
+
+    .options-container {
+      border-bottom: 1px black solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+    }
+    .offer-card {
+        padding: 10px;
+    }
+
+    .special-offer-container {
+      
+        padding-bottom: 20px;
+    }
+
+    .image-container {
+        width: 100px;
+    }
+
+    .code-details {
+        gap: 20px;
+    }
+
+    .view-details,
+    .click-here {
+        gap: 5px;
+    }
+}
   

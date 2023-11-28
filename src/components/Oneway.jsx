@@ -69,7 +69,6 @@ const Homeform = (props) => {
     { id: "3", label: "Premium Economy" },
     { id: "4", label: "Business" },
     { id: "5", label: "Business Economy" },
-   
   ];
 
   const FareType = [
@@ -174,8 +173,8 @@ const Homeform = (props) => {
 
       // make an API call to get search results
 
-      const results = await axios.get(`${apiURL.baseURL}/skyTrails/city/searchCityData?keyword=${fromQuery}`
-
+      const results = await axios.get(
+        `${apiURL.baseURL}/skyTrails/city/searchCityData?keyword=${fromQuery}`
       );
       if (mounted) {
         setFromSearchResults(results?.data?.data);
@@ -359,7 +358,7 @@ const Homeform = (props) => {
   }
   const handleButtonClick = () => {
     // Redirect to the "/returnResult" path
-    navigate('/returnResult');
+    navigate("/booking");
   };
 
   return (
@@ -908,13 +907,19 @@ const Homeform = (props) => {
                           </DialogContent>
                           <DialogActions>
                             <Button
-                              style={{backgroundColor:"#071C2C",color:"white"}}
+                              style={{
+                                backgroundColor: "#071C2C",
+                                color: "white",
+                              }}
                               onClick={handleTravelClose}
                             >
                               Cancel
                             </Button>
                             <Button
-                              style={{backgroundColor:"#071C2C",color:"white"}}
+                              style={{
+                                backgroundColor: "#071C2C",
+                                color: "white",
+                              }}
                               onClick={handleTravelClose}
                             >
                               Ok
@@ -983,7 +988,7 @@ const Homeform = (props) => {
                 {/* Round trip start */}
 
                 <TabPanel value="2">
-                <form >
+                  <form>
                     <div className="your-container">
                       <div className="from-container1">
                         <div className="from-label">From</div>
@@ -992,7 +997,7 @@ const Homeform = (props) => {
                           <input
                             name="from"
                             placeholder="Enter city or airport"
-                            value={from}
+                            // value={from}
                             autoComplete="off"
                             // onChange={(event) => {
                             //   handleFromInputChange(event);
@@ -1106,7 +1111,7 @@ const Homeform = (props) => {
                           <input
                             name="to"
                             placeholder="Enter city or airport"
-                            value={to}
+                            // value={to}
                             // required
                             // onChange={(event) => {
                             //   handleToInputChange(event);
@@ -1211,26 +1216,26 @@ const Homeform = (props) => {
                         </div>
                       </div>
                       <div className="from-container">
-      <div className="return-label">Return</div>
-      <div className="date-container">
-        <div className="date-info">
-          <div className="datee">
-            <input
-              type="date"
-              name="returnDate"
-              id="returnDate"
-              className="return_input"
-              placeholder="Enter return date"
-              style={{
-                border: "none",
-                outline: "none",
-              }}
-            ></input>
-          </div>
-        </div>
-        <div className="day">Friday</div>
-      </div>
-    </div>
+                        <div className="return-label">Return</div>
+                        <div className="date-container">
+                          <div className="date-info">
+                            <div className="datee">
+                              <input
+                                type="date"
+                                name="returnDate"
+                                id="returnDate"
+                                className="return_input"
+                                placeholder="Enter return date"
+                                style={{
+                                  border: "none",
+                                  outline: "none",
+                                }}
+                              ></input>
+                            </div>
+                          </div>
+                          <div className="day">Friday</div>
+                        </div>
+                      </div>
 
                       <div className="traveller-container ">
                         {/* <div className="traveller-label">Traveller & Class</div>
@@ -1468,13 +1473,19 @@ const Homeform = (props) => {
                           </DialogContent>
                           <DialogActions>
                             <Button
-                              style={{backgroundColor:"#071C2C",color:"white"}}
+                              style={{
+                                backgroundColor: "#071C2C",
+                                color: "white",
+                              }}
                               onClick={handleTravelClose}
                             >
                               Cancel
                             </Button>
                             <Button
-                              style={{backgroundColor:"#071C2C",color:"white"}}
+                              style={{
+                                backgroundColor: "#071C2C",
+                                color: "white",
+                              }}
                               onClick={handleTravelClose}
                             >
                               Ok
@@ -1528,7 +1539,6 @@ const Homeform = (props) => {
                             className="search"
                             justifyContent="center"
                             onClick={handleButtonClick}
-
                           >
                             Search
                           </button>
@@ -1674,7 +1684,12 @@ const Homeform = (props) => {
                     <Box display="flex" justifyContent="center">
                       <div class="wrapper">
                         <text className="col-auto fare_search ">
-                          <button type="submit" path="" className="search"  onClick={handleButtonClick}>
+                          <button
+                            type="submit"
+                            path=""
+                            className="search"
+                            onClick={handleButtonClick}
+                          >
                             Search
                           </button>
 

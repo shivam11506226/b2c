@@ -19,13 +19,7 @@ import Divider from "@mui/material/Divider";
 import Checkbox from "@mui/material/Checkbox";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import AddIcon from "@mui/icons-material/Add";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import GppGoodIcon from "@mui/icons-material/GppGood";
-import email from "../../images/email.png";
-import chat from "../../images/chat.png";
-import SquareIcon from "@mui/icons-material/Square";
-import flight from "../../images/flight.png";
-import SendIcon from "@mui/icons-material/Send";
+
 import { bookActionGDS } from "../../Redux/FlightBook/actionFlightBook";
 import { FiArrowRight } from "react-icons/fi";
 import CancellationRefundPolicy from "./CancellationRefundPolicy";
@@ -118,7 +112,11 @@ export default function BookWrapper() {
     TraceId: reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
     ResultIndex: ResultIndex,
   };
+  const [accordionExpanded, setAccordionExpanded] = React.useState(false);
 
+  const handleAccordionChange = (index) => (event, isExpanded) => {
+    setAccordionExpanded(isExpanded ? index : false);
+  };
   useEffect(() => {
     dispatch(ruleAction(payload));
     dispatch(quoteAction(payload));
@@ -134,18 +132,12 @@ export default function BookWrapper() {
     setExpanded(newExpanded ? panel : false);
   };
 
-  const [accordionExpanded, setAccordionExpanded] = React.useState(false);
-
-  const handleAccordionChange = (index) => (event, isExpanded) => {
-    setAccordionExpanded(isExpanded ? index : false);
-  };
-
   const handleButtonClick = () => {
     // Perform any necessary actions before navigation
     // For example, make API calls, form validation, etc.
 
     // Navigate to the payment page
-    navigate('/payment');
+    navigate("/payment");
   };
 
   const [value, setValue] = React.useState("1");
@@ -381,7 +373,6 @@ export default function BookWrapper() {
                     justifyContent="center"
                     alignItems="center"
                     py={3}
-                   
                   >
                     <Typography className="top_heading">
                       Complete Your Booking
@@ -431,6 +422,7 @@ export default function BookWrapper() {
                             Cancellation Fees Apply
                           </Typography>
                         </Box>
+
                         <Grid container className="deals">
                           <Grid md={3} className="deal_const">
                             {/* TicketDetails?.Airline?.AirlineName */}
@@ -477,7 +469,7 @@ export default function BookWrapper() {
                             <Typography
                               sx={{
                                 fontSize: "16px",
-                                color: "#FF8900",
+                                color: "#071C2C",
                                 lineHeight: "1",
                                 font: " normal normal bold 16px/16px Quicksand !important",
                               }}
@@ -539,7 +531,8 @@ export default function BookWrapper() {
                             <Typography
                               sx={{
                                 fontSize: "16px",
-                                color: "#FF8900",
+                               
+                                color:"#071C2C",
                                 lineHeight: "1",
                                 font: " normal normal bold 16px/16px Quicksand !important",
                               }}
@@ -554,7 +547,7 @@ export default function BookWrapper() {
                       </Box>
                       {/* //// */}
 
-                       <CancellationRefundPolicy/>
+                      <CancellationRefundPolicy />
                       <Box className="ticket_details" py={1}>
                         <Typography px={4} className="para_head">
                           Important Information
@@ -871,7 +864,7 @@ export default function BookWrapper() {
                               </Box>
                             </form> */}
                       </Box>
-                      
+
                       <Box
                         style={{
                           display: "flex",
@@ -880,7 +873,6 @@ export default function BookWrapper() {
                         }}
                         px={2}
                       >
-                       
                         <Typography
                           className="list_item"
                           style={{ color: "black", marginY: "12px" }}
@@ -893,6 +885,7 @@ export default function BookWrapper() {
                           backgroundColor: "white",
                           boxShadow: "0px 3px 6px #00000029",
                           borderRadius: "10px",
+                          
                         }}
                         p={2}
                       >
@@ -936,7 +929,7 @@ export default function BookWrapper() {
                                   </AccordionSummary>
                                   <AccordionDetails>
                                     <Box>
-                                      <Grid container spacing={2}>
+                                      <Grid container spacing={6}>
                                         <Grid item xs={12} sm={6} md={4} mb={5}>
                                           <Box>
                                             <div className="hotel_form_input">
@@ -974,10 +967,8 @@ export default function BookWrapper() {
                                         </Grid>
                                       </Grid>
 
-                                      <Grid container spacing={2}>
-                                        <Grid
-                                         item xs={12} sm={6} md={4} mb={2}
-                                        >
+                                      <Grid container spacing={6}>
+                                        <Grid item xs={12} sm={6} md={4} mb={2}>
                                           <Box>
                                             <div className="hotel_form_input">
                                               <label className="form_lable">
@@ -1030,7 +1021,7 @@ export default function BookWrapper() {
                                           </Box>
                                         </Grid>
                                       </Grid>
-                                      <Grid container spacing={2}>
+                                      <Grid container spacing={6}>
                                         <Grid item xs={12} sm={6} md={4} mb={2}>
                                           <Box>
                                             <div className="hotel_form_input">
@@ -1079,7 +1070,7 @@ export default function BookWrapper() {
                                           </Box>
                                         </Grid>
                                       </Grid>
-                                      <Grid container spacing={2}>
+                                      <Grid container spacing={6}>
                                         <Grid item xs={12} sm={6} md={4} mb={5}>
                                           <Box>
                                             <div className="hotel_form_input">
@@ -1597,31 +1588,26 @@ export default function BookWrapper() {
                                 display: "flex",
                                 justifyContent: "center",
                               }}
-                            >
-                             
-                            </Box>
+                            ></Box>
                           </Box>
-                         
                         </Box>
                       </form>
-                      <TripSecureComponent/>
+                      <TripSecureComponent />
                       <Button
-                                type="submit"
-                                variant="contained"
-                                sx={{
-                                  color: "white",
-                                  backgroundColor: "#E73C33",
-                                  fontSize: "18px",
-                                  borderRadius: "16px",
-                                     marginTop:"16px",
-                                  boxShadow:
-                                    "0px 4px 8px 0px rgba(0, 0, 0, 0.30)",
-                                    
-                                }}
-                                onClick={handleButtonClick}
-                              >
-                                Continue
-                              </Button>
+                        type="submit"
+                        variant="contained"
+                        sx={{
+                          color: "white",
+                          backgroundColor: "#E73C33",
+                          fontSize: "18px",
+                          borderRadius: "16px",
+                          marginTop: "16px",
+                          boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.30)",
+                        }}
+                        onClick={handleButtonClick}
+                      >
+                        Continue
+                      </Button>
 
                       {/* <Accordion
                         sx={{
@@ -6547,7 +6533,6 @@ export default function BookWrapper() {
                         </AccordionDetails>
                       </Accordion> */}
                     </Box>
-                   
                   </div>
                 </div>
                 <div className="col-md-4">

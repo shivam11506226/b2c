@@ -136,3 +136,19 @@
     background-color: darkblue;
     color:"white"
 }
+
+
+
+
+
+
+@media (max-width: 1000px) {
+    .leftsection {
+        width: 50%;
+        height: auto;
+        background: white;
+      
+        border-radius: 10px;
+    
+    }
+}

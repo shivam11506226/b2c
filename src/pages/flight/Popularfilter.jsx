@@ -30,13 +30,14 @@ const Popularfilter = (props) => {
             <div className="row" style={{ display: "flex" }}>
               <div className="col-md-3 fixed_row">
                 <div className="leftsection" >
-                  <Typography justifyContent="center" display="flex" pt={3}>
-                    Select Filters
+                  
+                  <Typography pt={1} px={5} className="filter">
+                  Select Filters
                   </Typography>
-                  <Typography pt={1} px={5} className="suggest">
+                  <Typography pt={1} px={5} className="suggest" >
                     Suggested for you
                   </Typography>
-                  <Box p={3} display="block">
+                  <Box pl={3} display="block">
                     <form action="">
                       <div>
                         <Checkbox
@@ -158,7 +159,7 @@ const Popularfilter = (props) => {
                   <Typography pt={1} px={5}>
                     Departure from New Delhi
                   </Typography>
-                  <Box p={3} display="block">
+                  <Box pl={3} display="block" >
                     <form action="">
                       <div>
                         <Checkbox
@@ -202,7 +203,7 @@ const Popularfilter = (props) => {
                   <Typography pt={1} px={5}>
                      Airlines
                   </Typography>
-                  <Box p={3} display="block">
+                  <Box pl={3} display="block">
                     <form action="">
                       <div>
                         <Checkbox
