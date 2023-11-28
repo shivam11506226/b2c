@@ -9,7 +9,7 @@ export const LoginButton = styled.button
 --radii: 0.5em;
 cursor: pointer;
 display:'flex';
-padding: 10px 15px;
+padding:5px 5px;
 min-width: 120px;
 height:'50px';
 font-size: var(--size, 1rem);

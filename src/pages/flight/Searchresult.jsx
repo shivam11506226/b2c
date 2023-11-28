@@ -11,7 +11,7 @@ const Searchresult = () => {
     return (
         <>
         {
-          reducerState?.oneWay?.isLoading == true ? ( <div style={{height:'100vh',width:'100vw', backgroundColor:'#CCEAF7',display:'flex',alignItems:'center',justifyContent:'center'}}> <img src={flightLoader} alt="Loader Img" style={{ width:'60%' }} /></div> )
+          reducerState?.oneWay?.isLoading === true ? ( <div style={{height:'100vh',width:'100vw', backgroundColor:'#CCEAF7',display:'flex',alignItems:'center',justifyContent:'center'}}> <img src={flightLoader} alt="Loader Img" style={{ width:'60%' }} /></div> )
           : (
           
           <div className="UniComp_BG">
@@ -19,7 +19,7 @@ const Searchresult = () => {
           <Searchsection className='main_box' />
           <Popularfilter />
           {/* <Demo></Demo> */}
-          <Download />
+          {/* <Download /> */}
         
       </div>)
         }

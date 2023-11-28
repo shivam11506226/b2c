@@ -52,11 +52,13 @@ export default class SwipeToSlide extends Component {
         return (
             <section>
 
-                <div className="container ">
-                    <Box py={1}>
+                <div className="container" >
+                <h2 className="card_header">Flights from New Delhi to Bengaluru</h2>
+ 
+                    <Box py={1} >
 
-                        <h2 className="card_header">Popular Destinations</h2>
-                        {/* <Slider {...settings}>
+                       
+                         <Slider {...settings}>
                             <div>
                                 <div className="price_content" >
                                     <div>
@@ -202,7 +204,7 @@ export default class SwipeToSlide extends Component {
                                 </div>
                             </div>
 
-                        </Slider> */}
+                        </Slider> 
 
                     </Box>
                 </div>

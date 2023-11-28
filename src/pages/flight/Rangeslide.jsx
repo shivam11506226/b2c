@@ -42,7 +42,7 @@ export default function InputSlider() {
             value={typeof value === "number" ? value : 0}
             onChange={handleSliderChange}
             aria-labelledby="input-slider"
-            sx={{ color: "#FF8900" }}
+            sx={{ color: "#071C2C" }}
           />
         </Grid>
         <Grid item>

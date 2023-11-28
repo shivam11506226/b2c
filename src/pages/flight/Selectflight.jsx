@@ -5,11 +5,12 @@ import Grid from "@mui/material/Grid";
 import { Popover, Tooltip, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
 
-import Zoom from '@mui/material/Zoom';
+import Zoom from "@mui/material/Zoom";
 import { useDispatch, useSelector } from "react-redux";
 import SendIcon from "@mui/icons-material/Send";
 import ReactPaginate from "react-paginate";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+import Divider from "@mui/material/Divider";
 
 import Accordion from "@mui/material/Accordion";
 import AccordionSummary from "@mui/material/AccordionSummary";
@@ -26,14 +27,14 @@ import TabPanel from "@mui/lab/TabPanel";
 
 // Location based Clear store
 
-import { useLocation, useNavigate } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
-import NextWeekIcon from '@mui/icons-material/NextWeek';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineExtra';
-import FastfoodIcon from '@mui/icons-material/Fastfood';
+import { useLocation, useNavigate } from "react-router-dom";
+import Paper from "@mui/material/Paper";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import NextWeekIcon from "@mui/icons-material/NextWeek";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
 import {
   quoteAction,
   ruleAction,
@@ -42,10 +43,10 @@ import { resetOneWay } from "../../Redux/FlightSearch/oneWay";
 import LoginForm from "../../components/Login";
 // ../../../Redux/FlightFareQuoteRule/actionFlightQuote
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
@@ -55,7 +56,7 @@ function Items({ currentItems }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState(true);
   const reducerState = useSelector((state) => state);
-  console.error("redux",reducerState);
+  console.error("redux", reducerState);
   const [flightDetailsValue, setFlightDetailsValue] = React.useState("1");
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
@@ -63,9 +64,9 @@ function Items({ currentItems }) {
   const childCount = queryParams.get("child");
   const infantCount = queryParams.get("infant");
   const checkLogin = reducerState?.logIn?.isLogin;
-  const authenticUser = reducerState?.logIn?.loginData?.status
-  console.error("currentItems",currentItems)
-  
+  const authenticUser = reducerState?.logIn?.loginData?.status;
+  console.error("currentItems", currentItems);
+
   // Login Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Need to payload
@@ -74,10 +75,12 @@ function Items({ currentItems }) {
   //   dispatch(quoteAction(payload));
   // }, []);
 
-  const flightImg = reducerState?.oneWay?.oneWayData?.data.data?.Response?.Results?.[0]?.map((ele)=> ele?.AirlineCode)
-  console.log("IMG DATA",flightImg)  
-const clickme = () => {
-   
+  const flightImg =
+    reducerState?.oneWay?.oneWayData?.data.data?.Response?.Results?.[0]?.map(
+      (ele) => ele?.AirlineCode
+    );
+  console.log("IMG DATA", flightImg);
+  const clickme = () => {
     setValue(!value);
   };
   const results =
@@ -85,15 +88,16 @@ const clickme = () => {
   const items = [...Array(results[0].length).keys()];
 
   const handleIndexId = (ResultIndex) => {
-  //  Check user is logged in or not while booking flight
-    
-      navigate(`booknow?adult=${adultCount}&child=${childCount}&infant=${infantCount} `);
-      sessionStorage.setItem("ResultIndex", ResultIndex);
-    
+    //  Check user is logged in or not while booking flight
+
+    navigate(
+      `booknow?adult=${adultCount}&child=${childCount}&infant=${infantCount} `
+    );
+    sessionStorage.setItem("ResultIndex", ResultIndex);
   };
 
   // Time formate
-  const TicketDetails = reducerState?.flightFare?.flightQuoteData?.Results
+  const TicketDetails = reducerState?.flightFare?.flightQuoteData?.Results;
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   return (
@@ -104,34 +108,35 @@ const clickme = () => {
 
       //  Flight Details
 
-      const dateString =  results[0][item]?.Segments[0][0]?.Origin?.DepTime;
-     console.error(".....<<<<",dateString)
+      const dateString = results[0][item]?.Segments[0][0]?.Origin?.DepTime;
+      console.error(".....<<<<", dateString);
       const date1 = new Date(dateString);
-      const time1 = date1.toLocaleTimeString()?.slice(0,4);
-     
+      const time1 = date1.toLocaleTimeString()?.slice(0, 4);
+
       const day1 = date1.getDate();
       const month1 = date1.toLocaleString("default", {
         month: "short",
       });
       const year1 = date1.getFullYear();
-      const formattedDate1 = `${day1 + " "} ${month1 + ' '} ${year1 + ' '}`;
-    
-      const dateString1 =  results[0][item]?.Segments[0][0]?.Destination?.ArrTime;
-              const date2 = new Date(dateString1);
-              const time2 = `${date2.toLocaleTimeString()?.slice(0,4)}  `  ;
-    
-              const day2 = `${date2.getDate() }  ` ;
-              const month2 = date2.toLocaleString("default", {
-                month: "short",
-              });
-              const year2 = date2.getFullYear();
-              const formattedDate2 = `${day2}  ${month2} ${year2}`;
-    
-              // Duration
-              const totalMinutes = results[0][item]?.Segments[0][0]?.Duration;
-              const durationHours = Math.floor(totalMinutes / 60);
-              const durationMinutes = totalMinutes % 60;
-              const duration_Time = `${durationHours}h ${durationMinutes} m`
+      const formattedDate1 = `${day1 + " "} ${month1 + " "} ${year1 + " "}`;
+
+      const dateString1 =
+        results[0][item]?.Segments[0][0]?.Destination?.ArrTime;
+      const date2 = new Date(dateString1);
+      const time2 = `${date2.toLocaleTimeString()?.slice(0, 4)}  `;
+
+      const day2 = `${date2.getDate()}  `;
+      const month2 = date2.toLocaleString("default", {
+        month: "short",
+      });
+      const year2 = date2.getFullYear();
+      const formattedDate2 = `${day2}  ${month2} ${year2}`;
+
+      // Duration
+      const totalMinutes = results[0][item]?.Segments[0][0]?.Duration;
+      const durationHours = Math.floor(totalMinutes / 60);
+      const durationMinutes = totalMinutes % 60;
+      const duration_Time = `${durationHours}h ${durationMinutes} m`;
 
       const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -149,20 +154,17 @@ const clickme = () => {
       };
 
       // Date
-      
 
       return (
         <>
-       
           <Box
             sx={{ flexGrow: 5, backgroundColor: "white", borderRadius: "10px" }}
             my={3}
           >
             <Accordion>
-              <AccordionSummary>
-                <Grid container p={2} display="flex" justifyContent="center">
-
-                <Grid
+              <AccordionSummary sx={{ padding: "0" }}>
+                <Grid container p={1} display="flex" justifyContent="center">
+                  {/* <Grid
                   sx={{
                     width: "auto",
                     height: "40px",
@@ -173,7 +175,7 @@ const clickme = () => {
                     src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`}
                     alt="flight"
                     style={{
-                      width: "80px",
+                      width: "60px",
                       height: "40px",
                       backgroundColor: "white",
                     }}
@@ -189,13 +191,83 @@ const clickme = () => {
                             ?.FlightNumber
                         }
                         {
-                          results[0][item]?.IsLCC == false ? <span style={{background:'green',padding:'7px 12px',color:'white'}} >LCC</span> : ''
+                          results[0][item]?.IsLCC === false ? <span style={{background:'green',padding:'7px 12px',color:'white'}} >LCC</span> : ''
                         }
 
                       </Typography>
-                </Grid>
-
+                </Grid> */}
                   <Grid
+                    container
+                    item
+                    md={2}
+                    alignItems="center"
+                    sx={{
+                      width: "auto",
+                      height: "40px",
+                      backgroundColor: "white",
+                    }}
+                  >
+                    <Grid item>
+                      <img
+                        src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`}
+                        alt="flight"
+                        style={{
+                          width: "60px",
+                          height: "40px",
+                          backgroundColor: "white",
+                        }}
+                      />
+                    </Grid>
+                    <Grid item sx={{ marginLeft: 1 }}>
+                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
+                      </Typography>
+                      <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
+                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
+                        {
+                          results[0][item]?.Segments[0][0]?.Airline
+                            ?.FlightNumber
+                        }
+                        {results[0][item]?.IsLCC === false ? (
+                          <span style={{ background: "green", color: "white" }}>
+                            LCC
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                      </Typography>
+                    </Grid>
+                    {/* <Grid item sx={{ marginLeft: 2 }}>
+                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
+                      </Typography>
+                      <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
+                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
+                        {results[0][item]?.Segments[0][0]?.Airline?.FlightNumber}
+                        {results[0][item]?.IsLCC === false ? <span style={{ background: 'green', padding: '7px 12px', color: 'white' }}>LCC</span> : ''}
+                      </Typography>
+                    </Grid>
+                    <Grid item sx={{ marginLeft: 2 }}>
+                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                        {time1} {' ' + formattedDate1}
+                      </Typography>
+                      <Typography
+                        sx={{
+                          fontSize: "12px",
+                          fontWeight: "bold",
+                          color: "#707070",
+                          textAlign: "center"
+                        }}
+                      >
+                        {
+                          results[0][item]?.Segments[0][0]?.Origin?.Airport
+                            ?.CityName
+                        }
+                      </Typography>
+                    </Grid> */}
+                  </Grid>
+
+                  {/* <Grid
                     md={2}
                     display="flex"
                     justifyContent="center"
@@ -203,7 +275,7 @@ const clickme = () => {
                   >
                     <Box px={1}>
                       <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                      {time1} {' ' +formattedDate1}
+                        {time1} {' ' + formattedDate1}
                       </Typography>
                       <Typography
                         sx={{
@@ -218,8 +290,8 @@ const clickme = () => {
                         }
                       </Typography>
                     </Box>
-                  </Grid>
-                  <Grid
+                  </Grid> */}
+                  {/* <Grid
                     md={2}
                     display="flex"
                     justifyContent="center"
@@ -233,7 +305,7 @@ const clickme = () => {
                           color: "#707070",
                         }}
                       >
-                       {duration_Time}
+                        {duration_Time}
                       </Typography>
                       <Typography
                         sx={{
@@ -245,22 +317,73 @@ const clickme = () => {
                         1 Stop via Jaipur
                       </Typography>
                     </Box>
+                  </Grid> */}
+
+                  <Grid item sx={{ marginLeft: 1 }}>
+                    <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                      {time1} {" " + formattedDate1}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        color: "#707070",
+                        textAlign: "center",
+                      }}
+                    >
+                      {
+                        results[0][item]?.Segments[0][0]?.Origin?.Airport
+                          ?.CityName
+                      }
+                    </Typography>
                   </Grid>
+                  <Grid item sx={{ marginLeft: 3 }}>
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        fontWeight: "bold",
+                        color: "#707070",
+                        textAlign: "center",
+                      }}
+                    >
+                      {duration_Time}
+                    </Typography>
+                    <Divider
+                      orientation="vertical"
+                      flexItem
+                      sx={{
+                        backgroundColor: "green",
+                        marginX: "8px", // Adjust the margin as needed
+                        height: "3px", // Adjust the height as needed
+                      }}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: "10px",
+                        fontWeight: "bold",
+                        color: "#707070",
+                      }}
+                    >
+                      1 Stop via Jaipur
+                    </Typography>
+                  </Grid>
+
                   <Grid
                     md={2}
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
                   >
-                    <Box px={1}>
+                    <Grid item sx={{ marginLeft: 1 }}>
                       <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                      {time2} {formattedDate2}
+                        {time2} {formattedDate2}
                       </Typography>
                       <Typography
                         sx={{
                           fontSize: "12px",
                           fontWeight: "bold",
                           color: "#707070",
+                          textAlign: "center",
                         }}
                       >
                         {
@@ -268,7 +391,7 @@ const clickme = () => {
                             ?.CityName
                         }
                       </Typography>
-                    </Box>
+                    </Grid>
                   </Grid>
                   <Grid
                     md={2}
@@ -279,16 +402,16 @@ const clickme = () => {
                     <Box px={1}>
                       <Typography
                         sx={{
-                          fontSize: "24px",
+                          fontSize: "20px",
                           fontWeight: "bold",
-                          color: "#FF8900",
+                          color: "white",
                         }}
                       >
-                        ${results[0][item]?.Fare?.PublishedFare}
+                        ₹{results[0][item]?.Fare?.PublishedFare}
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid
+                  {/* <Grid
                     md={2}
                     display="flex"
                     justifyContent="center"
@@ -305,8 +428,29 @@ const clickme = () => {
                     >
                       View Price
                     </Button>
-                  </Grid>
+                  </Grid> */}
                   <Grid
+                    md={2}
+                    display="flex"
+                    justifyContent="center"
+                    alignItems="center"
+                  >
+                    <Button
+                      variant="contained"
+                      onClick={clickme}
+                      sx={{
+                        borderRadius: "30px",
+                        background: "#E73C33 no-repeat padding-box",
+                        fontSize: "16px", // Adjust the font size as needed
+                        padding: "7px 6px", // Adjust the padding as needed
+                      }}
+                      endIcon={<SendIcon />}
+                    >
+                      View Price
+                    </Button>
+                  </Grid>
+
+                  {/* <Grid
                     md={12}
                     display="flex"
                     justifyContent="right"
@@ -321,7 +465,7 @@ const clickme = () => {
                     >
                       Use Travvolt and get Rs 299 instant discount
                     </Typography>
-                  </Grid>
+                  </Grid> */}
                 </Grid>
               </AccordionSummary>
               <AccordionDetails>
@@ -333,7 +477,7 @@ const clickme = () => {
                     <Button
                       aria-describedby={id}
                       onClick={handleClick}
-                      style={{ fontSize: "14px", color: "#39BBCE" }}
+                      style={{ fontSize: "14px", color: "#21325D",fontWeight:"bold" }}
                     >
                       View Flight Details
                     </Button>
@@ -350,7 +494,6 @@ const clickme = () => {
                       <div>
                         {/* Flight Details tab */}
                         <Flightdetailtab />
-                       
                       </div>
                     </Popover>
                   </div>
@@ -366,61 +509,146 @@ const clickme = () => {
                     {/* View Price Btn */}
                     {/* <Viewpricebtn /> */}
 
-                    <form style={{width:'100%'}}>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Item>
-
-                            <Typography px={2} className='main_heading'>Flexi Plus</Typography>
-                            <Typography px={2} className='normal_head'>Fare offer by Airline</Typography>
-                            <Box display='flex' justifyContent="space-around" my={2}>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<LocalMallIcon style={{ color: "#FF951A" }} ></LocalMallIcon>}  >
-                                 
-                                    Cabin Bags  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}> {results[0][item]?.Segments[0]?.[0]?.CabinBaggage}</Typography>
+                    <form style={{ width: "100%" }}>
+                      <Box sx={{ flexGrow: 1 }}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                            <Item>
+                              <Box display="flex" my={2} >
+                              <Typography px={2} className="main_heading">
+                                Flexi Plus
+                              </Typography>
+                              <Typography px={2} className="normal_head">
+                                Fare offer by Airline
+                              </Typography>
+                              </Box>
+                              
+                              <Box
+                                display="flex"
+                              
+                                my={2}
+                              >
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <LocalMallIcon
+                                      style={{ color: "white" }}
+                                    ></LocalMallIcon>
+                                  }
+                                >
+                                  Cabin Bags{" "}
+                                  <Typography
+                                    style={{
+                                      color: "white",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    {" "}
+                                    {
+                                      results[0][item]?.Segments[0]?.[0]
+                                        ?.CabinBaggage
+                                    }
+                                  </Typography>
                                 </Button>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<NextWeekIcon style={{ color: "#FF951A" }} ></NextWeekIcon>}  >
-                                    Check-In Bags  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>{results[0][item]?.Segments[0]?.[0]?.Baggage}</Typography>
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <NextWeekIcon
+                                      style={{ color: "white" }}
+                                    ></NextWeekIcon>
+                                  }
+                                >
+                                  Check-In Bags{" "}
+                                  <Typography
+                                    style={{
+                                      color: "white",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    {
+                                      results[0][item]?.Segments[0]?.[0]
+                                        ?.Baggage
+                                    }
+                                  </Typography>
                                 </Button>
-                                <Button mx={2} className="propsi" variant="contained" sx={{ backgroundColor: '#DAF2FC', color: 'black', borderRadius: '10px', fontSize: '10px' }} startIcon={<AttachMoneyIcon style={{ color: "#FF951A" }} ></AttachMoneyIcon>}  >
-                                    
-                                      {/* <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $300</Typography> */}
-                                      <Tooltip TransitionComponent={Zoom} title={results[0][item]?.TicketAdvisory}>
-                                      <Button>Cancellation</Button>
-                                      </Tooltip>      
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  sx={{
+                                    backgroundColor: "#DAF2FC",
+                                    color: "white",
+                                    borderRadius: "10px",
+                                    fontSize: "10px",
+                                  }}
+                                  startIcon={
+                                    <AttachMoneyIcon
+                                      style={{ color: "white" }}
+                                    ></AttachMoneyIcon>
+                                  }
+                                >
+                                  {/* <Typography style={{ color: "white", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $300</Typography> */}
+                                  <Tooltip
+                                    TransitionComponent={Zoom}
+                                    title={results[0][item]?.TicketAdvisory}
+                                  >
+                                    <Button sx={{color:"white"}}>Cancellation</Button>
+                                  </Tooltip>
                                 </Button>
-                                <Typography px={5} className='price_'>${results[0][item]?.Fare?.OfferedFare}</Typography>
-                            </Box>
-                            <Box display='flex' justifyContent="left" mt={2}>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<CalendarTodayIcon style={{ color: "#FF951A" }} ></CalendarTodayIcon>}  >
-                                    Date Change<Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $250</Typography>
+                                {/* <Typography px={5} className='price_'>${results[0][item]?.Fare?.OfferedFare}</Typography> */}
+                              </Box>
+                              <Box display="flex" my={2}>
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <CalendarTodayIcon
+                                      style={{ color: "white" }}
+                                    ></CalendarTodayIcon>
+                                  }
+                                >
+                                  Date Change
+                                  <Typography
+                                    style={{
+                                      color: "white",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    Cancellation Fee Starting $250
+                                  </Typography>
                                 </Button>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<AirlineSeatReclineExtraIcon style={{ color: "#FF951A" }} ></AirlineSeatReclineExtraIcon>}  >
-                                    Seat <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>{results[0][item]?.Segments[0]?.[0]?.NoOfSeatAvailable}</Typography>
+                                <Typography px={2} className="price_">
+                                  ${results[0][item]?.Fare?.OfferedFare}
+                                </Typography>
+                                {/* <Button mx={2} className="propsi" variant="contained" startIcon={<AirlineSeatReclineExtraIcon style={{ color: "#FF951A" }} ></AirlineSeatReclineExtraIcon>}  >
+                                  Seat <Typography style={{ color: "white", marginLeft: '10px', fontSize: '10px' }}>{results[0][item]?.Segments[0]?.[0]?.NoOfSeatAvailable}</Typography>
+                                </Button> */}
+                                <Button
+                                  onClick={() => {
+                                    handleIndexId(
+                                      results[0][item]?.ResultIndex
+                                    );
+                                  }}
+                                  className="booknow_btn"
+                                >
+                                  Book Now
                                 </Button>
+                              </Box>
 
-
-                            </Box>
-
-                            <Box display='flex' justifyContent="space-between" mt={2}>
-
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<FastfoodIcon style={{ color: "#FF951A" }} ></FastfoodIcon>}  >
-                                    Meal  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Get Complimentary Meals</Typography>
-                                </Button>
-
-                                <Button onClick={() => {
-                   
-                        handleIndexId(results[0][item]?.ResultIndex);
-                      }}  variant='contained' className='booknow_btn'>Book Now</Button>
-
-                            </Box>
-
-                        </Item>
-                    </Grid>
-                </Grid>
-            </Box>
-        </form>
-                   
+                              
+                            </Item>
+                          </Grid>
+                        </Grid>
+                      </Box>
+                    </form>
                   </Grid>
                   {/* <Grid
                     container
@@ -461,7 +689,8 @@ const clickme = () => {
 
 export default function BasicGrid() {
   const reducerState = useSelector((state) => state);
-  const results = reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results;
+  const results =
+    reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results;
 
   // ============================================> paginations =================================//
 

@@ -12,8 +12,8 @@ const Toursection = () => {
       <section>
         <div className="container homeform_container">
           <Box pt={3}>
-            <Paper elevation={3} py={4} px={2} sx={{ borderRadius: "28px" }} className="paper">
-              <Grid container elevation={3} alignItems="center" py={1}>
+            <Paper elevation={3} py={4} px={1}  sx={{ borderRadius: "28px" }} className="paper">
+              <Grid container elevation={3} alignItems="center" py={1} >
                 <Grid
                   item
                   xs={12}
@@ -58,6 +58,7 @@ const Toursection = () => {
                       src={languages}
                       alt="languages"
                       style={{ width: "35px" }}
+                      textAlign="center"
                     />
                   </Box>
                   <Typography
@@ -102,12 +103,12 @@ const Toursection = () => {
                   >
                     Explore International Flights
                     <Typography
-                     className="typo1"
                       color="grey"
                       sx={{ fontSize: ["12px", "13px", "15px"] }}
                       alignItems="center"
                       fontWeight="bold"
                       style={{ fontFamily: "Quicksand" }}
+                     
                     >
                       Cheapest Flights to Paris, Bali, Tokyo & more
                     </Typography>{" "}

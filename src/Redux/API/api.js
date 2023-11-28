@@ -8,7 +8,7 @@ function api() {
   const userB2BToken = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/token",
+      url: "skyTrails/token",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -34,7 +34,7 @@ function api() {
   const oneWaySearch = (payload) => {
     return axios({
       method: "POST",
-      url: "/skytrails/flight/search/oneway",
+      url: "/skyTrails/flight/search/oneway",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -46,7 +46,7 @@ function api() {
   const flightQuoteSearch = (payload) => {
     return axios({
       method: "POST",
-      url: "/skytrails/flight/farequote",
+      url: "/skyTrails/flight/farequote",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -58,7 +58,7 @@ function api() {
   const flightRuleSearch = (payload) => {
     return axios({
       method: "POST",
-      url: "/skytrails/flight/farerule",
+      url: "/skyTrails/flight/farerule",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -70,7 +70,7 @@ function api() {
   const flightBookGDS = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/flight/booking",
+      url: "skyTrails/flight/booking",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -82,7 +82,7 @@ function api() {
   const flightGetTicketLcc = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/flight/getticketlcc",
+      url: "skyTrails/flight/getticketlcc",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -94,7 +94,7 @@ function api() {
   const flightGetTicketNonLcc = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/flight/getticketnonlcc",
+      url: "skyTrails/flight/getticketnonlcc",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -107,7 +107,7 @@ function api() {
   const hotelSearch = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/hotel/search/dedup",
+      url: "skyTrails/hotel/search/dedup",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -119,7 +119,7 @@ function api() {
   const hotelSearchInfo = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/hotel/searchinfo",
+      url: "skyTrails/hotel/searchinfo",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -131,7 +131,7 @@ function api() {
   const hotelRoomInfo = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/hotel/room",
+      url: "skyTrails/hotel/room",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -143,7 +143,7 @@ function api() {
   const hotelBlockRoom = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/hotel/blockroom",
+      url: "skyTrails/hotel/blockroom",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -155,7 +155,7 @@ function api() {
   const hotelBookRoom = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/hotel/bookroom",
+      url: "skyTrails/hotel/bookroom",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -168,7 +168,7 @@ function api() {
    console.log("payload of api 👍")
     return axios({
       method: "POST",
-      url: "skytrails/hotel/bookingdetails",
+      url: "skyTrails/hotel/bookingdetails",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -186,7 +186,7 @@ function api() {
     baseURL: `${apiURL.baseURL}`,
   };
     return axios.get(
-      `skytrails/international/getAll?filter=${days}&keyword=${destination}`, axiosConfig
+      `skyTrails/international/getAll?filter=${days}&keyword=${destination}`, axiosConfig
     );
   };
 
@@ -195,7 +195,7 @@ function api() {
       baseURL: `${apiURL.baseURL}`,
     };
     return axios.get(
-      `skytrails/international/getone/${payload}`,axiosConfig
+      `skyTrails/international/getone/${payload}`,axiosConfig
     );
   };
 
@@ -203,7 +203,7 @@ function api() {
 
     return axios({
       method: "POST",
-      url: "skytrails/international/pakageBooking",
+      url: "skyTrails/international/pakageBooking",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -217,7 +217,7 @@ function api() {
   const getBusSearch = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/bus/search",
+      url: "skyTrails/bus/search",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -229,7 +229,7 @@ function api() {
   const getBusSeatLayout = (payload) => {
     return axios({
       method: "POST",
-      url: "skytrails/bus/seatlayout",
+      url: "skyTrails/bus/seatlayout",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {

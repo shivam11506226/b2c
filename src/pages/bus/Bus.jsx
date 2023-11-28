@@ -7,7 +7,7 @@ import Download from "../../components/Download";
 import Footer from "../../layouts/Footer";
 import Cabs from "../../components/Cabs";
 import Bussearch from "./Bussearch";
-
+import OfferCard from "../flight/OfferCard";
 // bus css 
 import "./bus.css";
 
@@ -18,6 +18,7 @@ const Taxi = () => {
             <Bussearch></Bussearch>
             <OfferSwipeToSlide></OfferSwipeToSlide>
             <Toursection></Toursection>
+             <OfferCard></OfferCard>
             <Cabs></Cabs>
             <Download></Download>
             

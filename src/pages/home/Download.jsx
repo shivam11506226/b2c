@@ -13,14 +13,14 @@ const Download = () => {
       <section>
         <div className="container homeform_container" >
           <Box pt={3}>
-            <Paper elevation={3} py={2} sx={{ borderRadius: "15px"}} >
+            <Paper elevation={3} py={2} sx={{ borderRadius: "15px",width:"90%",margin:"auto"}} >
               {/* <div className="download_header">
                                     <h3>Download App Now !</h3>
                                   
                                 </div> */}
               <div
                 className="download_info"
-                style={{gap:"60px",paddingTop:"20px",paddingBottom:"20px"}}
+                style={{gap:"40px",paddingTop:"20px",paddingBottom:"20px"}}
               >
                 <div className="tickets" >
                   <img src={ticket}  className="ticketimg" alt="download App" />

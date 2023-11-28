@@ -1,0 +1,389 @@
+/* .containercon{
+    
+    height: 114px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: inline-flex;
+  } */
+/* BookingHeader.css */
+
+.booking-header-container {
+  width:100%;
+  height:90px;
+  padding-left: 80px;
+  padding-right: 80px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+ 
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: inline-flex;
+}
+
+.booking-header-container .booking-title {
+  color: #071C2C;
+  font-size: 28px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+  .containercon{
+    background: #F4F3F3;
+   
+    
+    width:90%;
+    margin:auto;
+  }
+  
+  .customContainer {
+    color: #071C2C;
+    font-size: 28px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+    width:90%;
+    margin: auto;
+   
+  }
+  .flightsummary{
+    width: 100%;
+    margin: auto;
+    
+    display: flex;
+    gap:5%;
+  }
+  .left{
+    width:70%;
+   
+  }
+  .right{
+    width:25%;
+   
+  }
+  /* Add other styles as needed */
+  /* TravellerDetails.css */
+
+.travellerDetailsContainer {
+  padding: 10px 20px;
+  background: white;
+   width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+ 
+  display: inline-flex;
+
+  background: white;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+ 
+  display: inline-flex;
+}
+
+.travellerInfoContainer {
+  align-self: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  gap:20px;
+  display:flex;
+}
+
+.titleText {
+  text-align: center;
+  color: #071C2C;
+  font-size: 24px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.detailsContainer {
+  flex: 1 1 0;
+  height: 29px;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.travellerName {
+  color: #BBBBBB;
+  font-size: 24px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.iconContainer {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+.iconBackground {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  left: 0;
+  top: 0;
+
+}
+
+.icon {
+  position: absolute;
+  width: 20px;
+  height: 22px;
+  left: 2px;
+  top: 2px;
+
+}
+/* AgreementText.css */
+
+.agreementTextContainer {
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+}
+
+.text {
+  color: #071C2C;
+  font-size: 14px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.policyLink,
+.agreementLink,
+.termsLink {
+  color: #E73C33;
+  font-size: 12px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+/* ProceedToPayButton.css */
+
+.proceedToPayButtonContainer {
+  width: 180px;
+  height: 30px;
+ 
+  padding-top: 20px;
+  padding-bottom: 20px;
+ 
+ 
+  border-radius: 16px;
+  justify-content: center;
+  align-items: center;
+ 
+  display: inline-flex;
+}
+
+.buttonText {
+  color: #fffbfb;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  text-transform: uppercase;
+  word-wrap: break-word;
+}
+
+/* FareSummary.css */
+/* FareSummary.css */
+
+.fare-summary-container {
+ 
+  height: 218px;
+   width:90%;
+  background: white;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  display: inline-flex;
+  
+}
+
+.fare-summary-container .fare-summary-title {
+  align-self: stretch;
+  padding-left: 12px;
+  padding-right: 12px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 10px;
+  display: inline-flex;
+  color: #e73c33;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.fare-summary-container .fare-details {
+  padding: 12px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  display: flex;
+}
+
+.fare-summary-container .fare-details-row {
+  align-self: stretch;
+  border-bottom: 0.50px #071C2C solid;
+  justify-content: space-between;
+  align-items: center;
+  display: inline-flex;
+}
+
+.fare-summary-container .fare-details-label {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  display: inline-flex;
+  color: #071C2C;
+  font-size: 12px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 16.67px;
+  word-wrap: break-word;
+}
+
+.fare-summary-container .fare-details-value {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  display: inline-flex;
+  color: #071C2C;
+  font-size: 12px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.fare-summary-container .fare-details-total {
+  align-self: stretch;
+  
+  border-radius: 4px;
+background: #BBB;
+padding: 9px;
+ 
+ 
+ 
+  display: flex;
+}
+
+
+.fare-details-total{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+/* CouponCodes.css */
+
+.coupon-codes-container {
+  width: 90%;
+  height: 180px;
+  padding-left: 36px;
+  padding-right: 36px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  background: white;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  display: inline-flex;
+  margin-top: 10px;
+}
+
+.coupon-codes-container .coupon-title {
+  padding-left: 12px;
+  padding-right: 12px;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: inline-flex;
+  color: #e73c33;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+/* Add these styles within your existing CSS */
+
+/* Responsive styles for screens up to 768 pixels */
+@media only screen and (max-width: 768px) {
+  .booking-header-container {
+    padding-left: 20px;
+    padding-right: 20px;
+    align-items: center;
+   
+  }
+
+  .containercon,
+  .customContainer,
+  .flightsummary,
+  .left,
+  .right,
+  .travellerDetailsContainer,
+  .proceedToPayButtonContainer,
+  .fare-summary-container,
+  .coupon-codes-container {
+    width: 100%;
+    padding-left: 10px;
+    padding-right: 10px;
+    flex-direction: column;
+   
+    
+  }
+  
+
+  
+
+  
+  .customContainer,
+  .flightsummary,
+  .titleText,
+  .travellerName,
+  .buttonText,
+  .fare-summary-container .fare-summary-title,
+  .fare-summary-container .fare-details-label,
+  .fare-summary-container .fare-details-value,
+  .coupon-codes-container .coupon-title {
+    font-size: 16px;
+  }
+
+  .fare-summary-container {
+    height:200px;
+  }
+}
+
+
