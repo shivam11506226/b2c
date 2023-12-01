@@ -7,7 +7,7 @@ import "./popularfilter.css"
 import Checkbox from "@mui/material/Checkbox";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import Priceslider from "./Priceslider";
+import Priceslider from "./SwipeToSlide";
 import Searchtab from "./Searchtab";
 import Selectflight from "./Selectflight";
 import Rangeslide from "./Rangeslide";

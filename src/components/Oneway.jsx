@@ -17,6 +17,10 @@ import { oneWayAction, resetOneWay } from "../Redux/FlightSearch/oneWay";
 import { useNavigate } from "react-router-dom";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import FlightLandTwoToneIcon from "@mui/icons-material/FlightLandTwoTone";
+import DateRangePickers from "./DateRangePickers";
+import 'react-date-range/dist/styles.css'; // Import the styles
+import 'react-date-range/dist/theme/default.css'; // Import the theme
+
 //import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 
 // travel class modal
@@ -360,16 +364,34 @@ const Homeform = (props) => {
     // Redirect to the "/returnResult" path
     navigate("/booking");
   };
-
+  const DateRangePickerComponent = () => {
+    const [dateRanges, setDateRanges] = useState([]);
+  
+    const handleDateChange = (ranges) => {
+      const [range] = ranges;
+      const newDate = {
+        key: dateRanges.length + 1,
+        start: range.startDate.toISOString().split('T')[0],
+        end: range.endDate.toISOString().split('T')[0]
+      };
+  
+      setDateRanges([...dateRanges, newDate]);
+    };
+  
+    const removeDate = (key) => {
+      const updatedDates = dateRanges.filter((date) => date.key !== key);
+      setDateRanges(updatedDates);
+    };
+  }
   return (
     <section>
-      <div className="container homeform_container">
+      <div className="container homeform_container" >
         {/* <p className="header_row">
           <h5>{props.header}</h5>
         </p> */}
         <div
           className="row content_row"
-          style={{ zIndex: "1px", position: "relative", top: "-30px" }}
+          style={{ zIndex: "1px", position: "relative", top: "-30px"}}
         >
           <div
             className="col-12"
@@ -389,6 +411,8 @@ const Homeform = (props) => {
                     display: "flex",
                     justifyContent: "end",
                     flexWrap: "wrap",
+                  
+                    marginTop:"20px"
                   }}
                 >
                   <TabList
@@ -895,7 +919,7 @@ const Homeform = (props) => {
                                               : "#E73C33",
                                         }}
                                         data-id={ele.id}
-                                        onClick={handleClassItemClick}
+                                        // onClick={handleClassItemClick}
                                       >
                                         {ele?.label}
                                       </li>
@@ -1210,11 +1234,17 @@ const Homeform = (props) => {
                                   outline: "none",
                                 }}
                               ></input>
+                                 
+                                {/* <div  style={{
+                                  border: "none",
+                                  outline: "none",
+                                }}>  <DateRangePickers/></div>  */}
                             </div>
                           </div>
-                          <div className="day">Thursday</div>
+                         
                         </div>
                       </div>
+                   
                       <div className="from-container">
                         <div className="return-label">Return</div>
                         <div className="date-container">
@@ -1233,7 +1263,7 @@ const Homeform = (props) => {
                               ></input>
                             </div>
                           </div>
-                          <div className="day">Friday</div>
+                        
                         </div>
                       </div>
 
