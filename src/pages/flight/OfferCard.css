@@ -1,0 +1,296 @@
+
+
+.slider-container{
+    width: 100%;
+    margin: 0 auto;
+  }
+  
+.main-container1 {
+    width: 74%;
+    margin: auto;
+    margin-top: 20px;
+    background: #FAFAFA;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+  
+  }
+  
+  .offers-section {
+    justify-content: flex-start;
+    align-items: center;
+    gap: 48px;
+    display: inline-flex;
+    padding: 10px;
+  }
+  
+ 
+
+.offers-header-container {
+    width: 100%;
+    height: 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .title {
+    color: black;
+    font-size: 32px;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    word-wrap: break-word;
+    width: 270px;
+  }
+  .maintitle{
+    color: black;
+    font-size: 28px;
+    font-family: 'Montserrat';
+    font-weight: 700;
+    word-wrap: break-word;
+    
+  }
+  .options-container {
+    border-bottom: 1px black solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 36px;
+  }
+  
+  .option {
+    padding: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .option-label {
+    color: #071C2C;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+  /* SpecialOffer.css */
+
+.special-offer-container {
+    width: 70%;
+     margin: auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 56px;
+   
+    margin-top: 20px;
+    padding-bottom: 40px;
+  }
+  
+  .offer-card {
+    padding: 20px;
+    background: #F8F4F4;
+   
+    border-radius: 12px;
+    
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .offer-details {
+   
+   display: flex;
+    gap: 23px;
+  }
+  
+  .image-container {
+    width: 200px;
+   
+    border-radius: 8px;
+  }
+  
+  .offer-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+  }
+  
+  .code-details {
+    display: flex;
+    margin-top: 20px;
+    gap:50px;
+  
+  }
+  
+  .code-label {
+    color: #071C2C;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    word-wrap: break-word;
+   
+  }
+  
+  .code-value {
+    color: #E73C33;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+  .offer-description {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 10px;
+  }
+  
+  .title {
+    color: #071C2C;
+    font-size: 24px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  .discount {
+    color: #071C2C;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    word-wrap: break-word;
+    margin-left: 11px;
+  }
+  
+  .view-details {
+    color: #E73C33;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    word-wrap: break-word;
+   
+  }
+  
+  .view-all-offers {
+    padding: 12px;
+    background: #F8F4F4;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+  }
+  
+  .view-all-title {
+    text-align: center;
+    color: #071C2C;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    word-wrap: break-word;
+  }
+  
+  .view-all-subtitle {
+    text-align: center;
+    color: #071C2C;
+    font-size: 24px;
+    font-family: 'Montserrat';
+    font-weight: 800;
+    word-wrap: break-word;
+  }
+  
+  .click-here {
+    padding: 10px;
+    background: #E73C33;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .click-here-text {
+    text-align: center;
+    color: white;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  /* SpecialOffer.css */
+
+.slider-container {
+    width: 60%; /* Set the width as per your design */
+    
+   
+  }
+  
+  /* Style your offer card as needed */
+  .offer-card {
+    /* Your existing offer card styles */
+  }
+  
+  /* Add any other styles for the slider dots or navigation as needed */
+  .slick-dots {
+    bottom: 30px;
+  }
+  
+  .slick-dots li button:before {
+    color: #f10a0a; /* Adjust the color as needed */
+  }
+
+  @media (max-width: 1000px) {
+    .main-container1 {
+      width: 74%;
+        margin-top: 10px;
+    }
+
+    .offers-section {
+        gap: 10px;
+    }
+
+    .offers-header-container {
+        width: 50%;
+        gap: 5px;
+    }
+
+    .title,
+    .maintitle {
+        font-size: 24px;
+        width: 100%;
+    }
+
+    .options-container {
+      border-bottom: 1px black solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+     
+    }
+    .offer-card {
+        padding: 10px;
+    }
+
+    .special-offer-container {
+      
+        padding-bottom: 20px;
+    }
+
+    .image-container {
+        width: 100px;
+    }
+
+    .code-details {
+        gap: 20px;
+    }
+
+    .view-details,
+    .click-here {
+        gap: 5px;
+    }
+}
+  

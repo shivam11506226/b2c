@@ -352,6 +352,7 @@ const phoneno = phoneRef.current.value;
             <Grid item xs={12} md={3}>
               <Box>
                 <img
+                alt=""
                   src={imageLinks[0]}
                   style={{
                     borderRadius: "10px",

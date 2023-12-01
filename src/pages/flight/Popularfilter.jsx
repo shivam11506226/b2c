@@ -3,11 +3,11 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Grid, Paper, Radio, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
-
+import "./popularfilter.css"
 import Checkbox from "@mui/material/Checkbox";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
-import Priceslider from "./Priceslider";
+import Priceslider from "./SwipeToSlide";
 import Searchtab from "./Searchtab";
 import Selectflight from "./Selectflight";
 import Rangeslide from "./Rangeslide";
@@ -29,109 +29,60 @@ const Popularfilter = (props) => {
           <div className="col-12">
             <div className="row" style={{ display: "flex" }}>
               <div className="col-md-3 fixed_row">
-                <div className="leftsection">
-                  <Typography justifyContent="center" display="flex" pt={3}>
-                    Popular Filter
+                <div className="leftsection" >
+                  
+                  <Typography pt={1} px={5} className="filter">
+                  Select Filters
                   </Typography>
-                  <Divider sx={{ backgroundColor: "gray", marginY: "5px" }} />
-                  <Typography pt={1} px={5}>
-                    Popular Filter
+                  <Typography pt={1} px={5} className="suggest" >
+                    Suggested for you
                   </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-around",
-                      marginY: "15px",
-                      marginX: "20px",
-                    }}
-                  >
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      Before 6AM
-                    </Button>
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      6AM-12PM
-                    </Button>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-around",
-                      marginY: "15px",
-                      marginX: "20px",
-                    }}
-                  >
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      12PM-6PM
-                    </Button>
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      After 6PM
-                    </Button>
-                  </Box>
-                  <Divider sx={{ backgroundColor: "gray" }} />
-                  <Typography pt={1} px={5}>
-                    Price
-                  </Typography>
-                  <Box sx={{ width: 300 }} px={3}>
-                    <Rangeslide />
-                  </Box>
+                  <Box pl={3} display="block">
+                    <form action="">
+                      <div>
+                        <Checkbox
+                          {...label}
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={<RadioButtonCheckedIcon />}
+                        />
+                      Non Stop
+                      </div>
+                      <div>
+                        <Checkbox
+                          {...label}
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={<RadioButtonCheckedIcon />}
+                        />
+                         Prenoon Departure
+                      </div>
 
-                  <Divider sx={{ backgroundColor: "gray" }} />
-                  <Typography pt={1} px={5}>
-                    Stops
-                  </Typography>
-                  <Box
+                      <div>
+                        <Checkbox
+                          {...label}
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={<RadioButtonCheckedIcon />}
+                        />
+                      indiGo
+                      </div>
+                      <div>
+                        <Checkbox
+                          {...label}
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={<RadioButtonCheckedIcon />}
+                        />
+                      Vistara
+                      </div>
+                     
+                    
+                      
+                     
+                    </form>
+                  </Box>
+                 
+                
+                 
+                 
+                  {/* <Box
                     sx={{
                       display: "flex",
                       justifyContent: "space-around",
@@ -171,8 +122,8 @@ const Popularfilter = (props) => {
                     >
                       1 Stop
                     </Button>
-                  </Box>
-                  <Box
+                  </Box> */}
+                  {/* <Box
                     sx={{
                       display: "flex",
                       justifyContent: "center",
@@ -196,19 +147,19 @@ const Popularfilter = (props) => {
                     >
                       2+ Stops
                     </Button>
-                  </Box>
+                  </Box> */}
                   <Divider sx={{ backgroundColor: "gray" }} />
                   <Typography pt={1} px={5}>
-                    Onward Duration
+                    One Way Price
                   </Typography>
                   <Box sx={{ width: 300 }} px={3}>
                     <Rangeslide />
                   </Box>
                   <Divider sx={{ backgroundColor: "gray" }} />
                   <Typography pt={1} px={5}>
-                    Preferred Airlines
+                    Departure from New Delhi
                   </Typography>
-                  <Box p={3} display="block">
+                  <Box pl={3} display="block" >
                     <form action="">
                       <div>
                         <Checkbox
@@ -216,7 +167,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                        Akasa Air
+                        Before 6AM
                       </div>
                       <div>
                         <Checkbox
@@ -224,7 +175,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                        IndiGo
+                         6 AM-12 PM
                       </div>
 
                       <div>
@@ -233,7 +184,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                        Air India
+                       12 PM-6 PM
                       </div>
                       <div>
                         <Checkbox
@@ -241,7 +192,26 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                        Spice Jet
+                       After 6 PM
+                      </div>
+                     
+                    
+                      
+                     
+                    </form>
+                  </Box>
+                  <Typography pt={1} px={5}>
+                     Airlines
+                  </Typography>
+                  <Box pl={3} display="block">
+                    <form action="">
+                      <div>
+                        <Checkbox
+                          {...label}
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={<RadioButtonCheckedIcon />}
+                        />
+                        Air India (9)
                       </div>
                       <div>
                         <Checkbox
@@ -249,7 +219,16 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                        Vistara
+                       Air India Express (1)
+                      </div>
+
+                      <div>
+                        <Checkbox
+                          {...label}
+                          icon={<RadioButtonUncheckedIcon />}
+                          checkedIcon={<RadioButtonCheckedIcon />}
+                        />
+                        Air Asia (7)
                       </div>
                       <div>
                         <Checkbox
@@ -257,29 +236,12 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                        Go First
+                      AKasa Air (3)
                       </div>
-                      <div>
-                        <Checkbox
-                          {...label}
-                          icon={<RadioButtonUncheckedIcon />}
-                          checkedIcon={<RadioButtonCheckedIcon />}
-                        />
-                        Alliance Air
-                      </div>
-                      <div
-                        style={{ display: "flex", justifyContent: "center" }}
-                      >
-                        <Button
-                          sx={{
-                            borderRadius: "20px",
-                            boxShadow: "1px 1px 5px gray",
-                            padding: "12px",
-                          }}
-                        >
-                          View All
-                        </Button>
-                      </div>
+                     
+                      
+                     
+                     
                     </form>
                   </Box>
                 </div>
@@ -288,9 +250,9 @@ const Popularfilter = (props) => {
                 <Box className="rightslide">
                   <Priceslider />
                 </Box>
-                <Box sx={{ backgroundColor: "white" }} my={3}>
+                {/* <Box sx={{ backgroundColor: "white" }} my={3}>
                   <Searchtab />
-                </Box>
+                </Box> */}
                 <Box my={3}>
                   <Selectflight />
                 </Box>

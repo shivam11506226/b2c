@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Button from '@mui/material/Button';
-export default function () {
+export default function Searchtab() {
   return (
     <Box px={10} sx={{display:'flex', justifyContent:'space-between'}}>
     

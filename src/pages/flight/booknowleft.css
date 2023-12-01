@@ -1,0 +1,33 @@
+.faresummary {
+    color: #E73C33;
+
+    font-family: "Montserrat";
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.base {
+    color: #071C2C;
+    font-family: "Montserrat";
+
+    font-style: normal;
+    font-weight: 600;
+
+}
+
+.total {
+    border-radius: 4px;
+    background: #BBB;
+    padding: 10px;
+}
+
+.total1{
+    color: #071C2C;
+    font-family:"Montserrat";
+    font-size: 10px;
+    font-style: normal;
+   
+    
+}

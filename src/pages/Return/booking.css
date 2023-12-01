@@ -1,0 +1,635 @@
+/* styles.css */
+
+
+  
+ 
+  .containerbooking {
+    width: 100%;
+   
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: inline-flex;
+  }
+  .bookingTitle{
+    font-family: 'Montserrat';
+  }
+  .customContainer {
+    color: #071C2C;
+    font-size: 28px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    word-wrap: break-word;
+  }
+  
+  /* Add other styles as needed */
+  
+  
+  .header1 {
+    width: 1440px;
+    height: 88px;
+    padding-left: 40px;
+    padding-right: 40px;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 24px;
+  }
+  
+  .logo {
+    width: 206px;
+    height: 43px;
+  }
+  
+  .navItem {
+    width: 80px;
+    height: 88px;
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .flightIcon {
+    width: 24px;
+    height: 24px;
+    background: #21325d;
+  }
+  
+  .currency {
+    color: #071c2c;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    display: flex;
+    gap: 7px;
+  }
+  
+  .paymentIcon {
+    width: 24px;
+    height: 24px;
+    background: black;
+    border-radius: 9999px;
+  }
+  
+  .hiTraveller {
+    color: #071c2c;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    display: flex;
+    gap: 7px;
+  }
+  
+  .bookingDetails {
+    height: 114px;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    left: 0;
+    top: 88px;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: flex;
+  }
+  
+  .bookingTitle {
+    color: #071c2c;
+    font-size: 28px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+  }
+  
+  .fareSummary {
+    padding-left: 4px;
+    padding-right: 4px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    left: 1090px;
+    top: 240px;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+    display: flex;
+  }
+  
+  .fareSummaryTitle {
+    align-self: stretch;
+    padding-left: 12px;
+    padding-right: 12px;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 10px;
+    display: flex;
+  }
+  
+  .fareSummaryText {
+    padding: 12px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 12px;
+    display: flex;
+  }
+  
+  .summaryRow {
+    align-self: stretch;
+    height: 28px;
+    border-bottom: 0.50px #071c2c solid;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+  }
+  
+  .rowText {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    display: flex;
+  }
+  
+  .rowValue {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 48px;
+    display: inline-flex;
+  }
+  
+  .totalAmount {
+    align-self: stretch;
+    padding: 12px;
+    background: #bbbbbb;
+    border-radius: 4px;
+    justify-content: center;
+    align-items: center;
+    gap: 19px;
+    display: inline-flex;
+  }
+  
+  .totalAmountText {
+    color: #071c2c;
+    font-size: 12px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    line-height: 16.67px;
+  }
+  
+  .totalAmountValue {
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 8px;
+    display: inline-flex;
+  }
+  
+  .totalAmountCurrency {
+    color: #ff2e63;
+    font-size: 20px;
+    font-family: 'Montserrat';
+    font-weight: 600;
+    line-height: 28px;
+  }
+  .mainContent {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    gap:20px;
+  }
+  
+  .leftPanel {
+    width: 60%;
+     /* Add border styles as needed */
+  }
+  
+  .rightPanel {
+    width: 20%;
+  }
+
+  .flightSummaryContainer {
+    width: 1009px;
+    height: 181px;
+    padding: 24px 40px;
+    background: rgb(219, 34, 34);
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    overflow: hidden;
+    display: inline-flex;
+   
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  
+  .flightSummaryContainer > div {
+    align-self: stretch;
+    height: 133px;
+    display: flex;
+   
+   
+    gap: 24px;
+  }
+  
+  .flightSummaryContainer .titleContainer {
+    align-self: stretch;
+    justify-content: space-between;
+    /* align-items: center; */
+   
+  }
+  
+  .flightSummaryContainer .titleContainer > div:first-child {
+    display: flex;
+    gap: 4px;
+  }
+  
+  /* Add other styles as needed */
+  .suggest{
+    color: #B03737;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+.leftsection{
+  margin-top:10px;
+}
+
+
+
+/* CSS Styles */
+.containerss {
+  width: 442px;
+  height: 104px;
+  padding: 12px;
+  background: white;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 24px;
+  display: inline-flex;
+ 
+}
+
+.locationContainer {
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 4px;
+  display: inline-flex;
+}
+
+.locationInfo {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  display: flex;
+}
+
+.locationName {
+  color: #071C2C;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.cityIconContainer {
+  width: 20px;
+  height: 20px;
+  position: relative;
+}
+
+.cityIcon {
+  width: 20px;
+  height: 20px;
+  left: 0;
+  top: 0;
+  position: absolute;
+  
+}
+
+.cityHighlight {
+  width: 13.33px;
+  height: 10px;
+  left: 3.33px;
+  top: 5px;
+  position: absolute;
+ 
+}
+
+.dateInfo {
+  color: black;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  word-wrap: break-word;
+}
+
+/* CSS Styles */
+.containerdetail {
+  width: 418px;
+  height: 50px;
+  border: 0.50px #071C2C solid;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  display: inline-flex;
+}
+
+.detailItem {
+  height: 36px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: white;
+  border-right: 0.50px #071C2C solid;
+  
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.detailTitle {
+  width: 65px;
+  text-align: center;
+  color: #071C2C;
+  font-size: 10px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.50px;
+  word-wrap: break-word;
+}
+
+.priceDetail {
+  flex: 1 1 0;
+  height: 36px;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  background: white;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.priceTitle {
+  text-align: center;
+  color: #071C2C;
+  font-size: 10px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  line-height: 12px;
+  letter-spacing: 0.50px;
+  word-wrap: break-word;
+}
+
+.results{
+  border-radius: 12px;
+background: #DDD;
+padding: 20px;
+}
+
+
+
+/* styles.css */
+.containerdetails {
+  width: 442px;
+ 
+  
+  background: white;
+  box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+  border-radius: 4px;
+ margin-top: 15px;
+ padding: 10px;
+ margin-bottom: 15px;
+  
+  
+}
+
+.detailsContainerflight {
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  display: inline-flex;
+ 
+}
+
+.flightInfo {
+  width: 123px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 12px;
+  display: inline-flex;
+}
+
+.airlineLogo {
+  width: 24px;
+  height: 24px;
+  position: relative;
+}
+
+.logoHighlight {
+  width: 23.93px;
+  height: 24px;
+  left: 0.03px;
+  top: 0px;
+  position: absolute;
+  
+}
+
+.airlineDetails {
+  color: #071C2C;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.80px;
+  word-wrap: break-word;
+}
+
+.flightNumber {
+  color: #BBBBBB;
+  font-size: 12px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.60px;
+  word-wrap: break-word;
+}
+
+.departureInfo {
+  justify-content: flex-start;
+  align-items: center;
+  gap: 30px;
+  display: inline-flex;
+  
+  margin-top: -17px;
+}
+
+.departureTime {
+  text-align: center;
+  color: #071C2C;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.80px;
+  word-wrap: break-word;
+}
+
+.durationInfo {
+  width: 106px;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 4px;
+  display: inline-flex;
+}
+
+.durationValue {
+  text-align: center;
+}
+
+.durationSeparator {
+  width: 76px;
+  height: 0;
+  border: 2px #49DF4F solid;
+}
+
+.flightType {
+  text-align: center;
+  color: #BBBBBB;
+  font-size: 12px;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  line-height: 12px;
+  letter-spacing: 0.60px;
+  word-wrap: break-word;
+}
+
+.arrivalTime {
+  text-align: center;
+  color: #071C2C;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.80px;
+  word-wrap: break-word;
+}
+
+.priceContainer {
+  width: 92px;
+  align-self: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  display: flex;
+}
+
+.priceDetails {
+  width: 64px;
+  align-self: stretch;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  display: flex;
+}
+
+.priceValue {
+  text-align: right;
+  color: #071C2C;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 600;
+  line-height: 12px;
+  letter-spacing: 0.80px;
+  word-wrap: break-word;
+}
+
+.priceTag {
+  width: 16px;
+  height: 16px;
+  background: #21325D;
+  border-radius: 9999px;
+  border: 2px #BBBBBB solid;
+}
+.selectfilter{
+  color: #071C2C !important;
+font-family: Montserrat !important;
+font-size: 24px !important;
+font-style: normal !important;
+font-weight: 600 !important;
+line-height: normal !important;
+}
+
+
+@media only screen and (max-width: 1000px) {
+  .resultsdata{
+  flex-direction: column;
+  }
+  .containerss {
+    width: 442px;
+    height: 104px;
+    padding: 12px;
+    background: white;
+    box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    overflow: hidden;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+    display: inline-flex;
+   
+  }
+}
+/* styles.css */
+
+.headingTop {
+  color: #071c2c;
+  font-size: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  word-wrap: break-word;
+  margin-top: 10px;
+}
+
+@media (max-width: 1000px) {
+  .headingTop {
+    font-size: 18px;
+  }
+}

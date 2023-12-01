@@ -11,7 +11,7 @@ const Download = () => {
                 
             {/* <div className="container homeform_container">
                         <Box pt={3}>
-                            <Paper elevation={3} py={2} sx={{ borderRadius: '15px', }}>
+                            <Paper elevation={3} py={2} sx={{ borderRadius: '15px',width:'80%' }}>
                                 <div className="download_header">
                                     <h3>Download App Now !</h3>
                                     <h5>Get India's #1 travel super app, join 10 Million+ happy travellers!</h5>

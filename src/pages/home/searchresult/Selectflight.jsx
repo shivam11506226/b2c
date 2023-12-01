@@ -280,24 +280,7 @@ function Items({ currentItems }) {
                       </Typography>
                     </Box>
                   </Grid>
-                  <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Box px={1}>
-                      <Typography
-                        sx={{
-                          fontSize: "24px",
-                          fontWeight: "bold",
-                          color: "#FF8900",
-                        }}
-                      >
-                        ${results[0][item]?.Fare?.PublishedFare}
-                      </Typography>
-                    </Box>
-                  </Grid>
+                 
                   <Grid
                     md={2}
                     display="flex"

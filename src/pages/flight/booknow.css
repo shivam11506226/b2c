@@ -1,15 +1,24 @@
+.form{
+    border-radius: 12px;
+background: #FFF;
+box-shadow: 0px 2px 8px 2px rgba(0, 0, 0, 0.15);
+padding: 5px 0px;
+margin-top: 5px;
+}
+
 .leftsection {
     margin: 0;
     padding-bottom: 7px !important;
 }
 
 .top_heading {
-    text-align: center !important;
+   
     font: normal normal bold 24px/30px Quicksand !important;
     letter-spacing: 0px !important;
     color: #252525 !important;
     opacity: 1 !important;
     padding-top: 24px !important;
+    background: rgba(255, 255, 255, 0.95);
 }
 
 .ticket_details {
@@ -35,6 +44,10 @@
     display: flex !important;
     /* justify-content: center !important; */
     /* text-align: center !important; */
+    border-radius: 8px;
+border: 0.5px solid #071C2C;
+background: #F9EDED;
+padding: 10px;
 }
 
 .deal_const {
@@ -45,9 +58,9 @@
 }
 
 .txt_m {
-    font: normal normal bold 16px/2px Quicksand !important;
+  
     letter-spacing: 0px !important;
-    color: #006FFF !important;
+    color: #071C2C !important;
     opacity: 1 !important;
     /* margin-left: 30px !important; */
 }
@@ -73,26 +86,38 @@
 }
 
 .time_up {
-    font: normal normal bold 20px/2px Quicksand !important;
+   
     letter-spacing: 0px !important;
-    color: #006FFF !important;
+    color: #071C2C !important;
     opacity: 1 !important;
 }
-
+.time_up1 {
+color: #071C2C;
+font-family: Montserrat !important;
+font-size: 28px !important;
+font-style: normal;
+font-weight: 600 !important;
+line-height: normal;
+}
 
 .guidline {
     text-align: left !important;
     font: normal normal bold 16px/2px Quicksand !important;
     letter-spacing: 0px !important;
-    color: #006FFF !important;
+    color: #071C2C !important;
     opacity: 1 !important;
     margin-left: 22px !important;
     margin-top: 12px !important;
 }
 
-.list_item {
-    font: normal normal bold 16px Quicksand !important;
-    color: #707070;
+.list_item1{
+   
+    color: #071C2C;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
 }
 
 
@@ -125,7 +150,7 @@
 .Top_txt{
     font-size: 16px;
     font-weight: bold;
-    color: #008FCC;
+    color: #071C2C !important;
 }
 .topest_field{
     height: 50px;
@@ -242,4 +267,13 @@
       }
       /* end */
   
-  
+      .additional_text{
+        
+        color: #E73C33;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+      }
+

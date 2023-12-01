@@ -19,14 +19,11 @@ import Divider from "@mui/material/Divider";
 import Checkbox from "@mui/material/Checkbox";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import AddIcon from "@mui/icons-material/Add";
-import RemoveCircleIcon from "@mui/icons-material/RemoveCircle";
-import GppGoodIcon from "@mui/icons-material/GppGood";
-import email from "../../images/email.png";
-import chat from "../../images/chat.png";
-import SquareIcon from "@mui/icons-material/Square";
-import flight from "../../images/flight.png";
-import SendIcon from "@mui/icons-material/Send";
+
 import { bookActionGDS } from "../../Redux/FlightBook/actionFlightBook";
+import { FiArrowRight } from "react-icons/fi";
+import CancellationRefundPolicy from "./CancellationRefundPolicy";
+import TripSecureComponent from "./TripSecureComponent";
 import {
   quoteAction,
   resetFareData,
@@ -50,7 +47,7 @@ const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Accordion = styled((props) => (
   <MuiAccordion disableGutters elevation={0} square {...props} />
 ))(({ theme }) => ({
-  border: `1px solid ${theme.palette.divider}`,
+  border: ` ${theme.palette.divider}`,
   "&:not(:last-child)": {
     borderBottom: 0,
   },
@@ -115,7 +112,11 @@ export default function BookWrapper() {
     TraceId: reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
     ResultIndex: ResultIndex,
   };
+  const [accordionExpanded, setAccordionExpanded] = React.useState(false);
 
+  const handleAccordionChange = (index) => (event, isExpanded) => {
+    setAccordionExpanded(isExpanded ? index : false);
+  };
   useEffect(() => {
     dispatch(ruleAction(payload));
     dispatch(quoteAction(payload));
@@ -131,102 +132,101 @@ export default function BookWrapper() {
     setExpanded(newExpanded ? panel : false);
   };
 
-  const [accordionExpanded, setAccordionExpanded] = React.useState(false);
+  const handleButtonClick = () => {
+    // Perform any necessary actions before navigation
+    // For example, make API calls, form validation, etc.
 
-  const handleAccordionChange = (index) => (event, isExpanded) => {
-    setAccordionExpanded(isExpanded ? index : false);
+    // Navigate to the payment page
+    navigate("/payment");
   };
-
 
   const [value, setValue] = React.useState("1");
 
   // Add form of passenger
-  const passengerTemplate = 
-  {
-    "Title": "Mr",
-    "FirstName": "Unit",
-    "LastName": "test",
-    "PaxType": 1,
-    "DateOfBirth": "1987-12-06T00:00:00",
-    "Gender": 1,
-    "PassportNo": "",
-    "PassportExpiry": "",
-    "AddressLine1": "123, Test",
-    "AddressLine2": "",
-    "Fare": {
-      "Currency": "INR",
-      "BaseFare": 3171,
-      "Tax": 1284,
-      "YQTax": 0,
-      "AdditionalTxnFeePub": 0,
-      "AdditionalTxnFeeOfrd": 0,
-      "OtherCharges": 116.96,
-      "Discount": 0,
-      "PublishedFare": 4581.96,
-      "OfferedFare": 4355.03,
-      "TdsOnCommission": 6.34,
-      "TdsOnPLB": 9.14,
-      "TdsOnIncentive": 6.22,
-      "ServiceFee": 10
+  const passengerTemplate = {
+    Title: "Mr",
+    FirstName: "Unit",
+    LastName: "test",
+    PaxType: 1,
+    DateOfBirth: "1987-12-06T00:00:00",
+    Gender: 1,
+    PassportNo: "",
+    PassportExpiry: "",
+    AddressLine1: "123, Test",
+    AddressLine2: "",
+    Fare: {
+      Currency: "INR",
+      BaseFare: 3171,
+      Tax: 1284,
+      YQTax: 0,
+      AdditionalTxnFeePub: 0,
+      AdditionalTxnFeeOfrd: 0,
+      OtherCharges: 116.96,
+      Discount: 0,
+      PublishedFare: 4581.96,
+      OfferedFare: 4355.03,
+      TdsOnCommission: 6.34,
+      TdsOnPLB: 9.14,
+      TdsOnIncentive: 6.22,
+      ServiceFee: 10,
     },
-    "City": "Gurgaon",
-    "CountryCode": "IN",
-    "CellCountryCode": "+92581-",
-    "ContactNo": "1234567890",
-    "Nationality": "IN",
-    "Email": "harsh@tbtq.in",
-    "IsLeadPax": true,
-    "FFAirlineCode": null,
-    "FFNumber": "",
-    "GSTCompanyAddress": "",
-    "GSTCompanyContactNumber": "",
-    "GSTCompanyName": "",
-    "GSTNumber": "",
-    "GSTCompanyEmail": ""
-  }
-  const childPassenger = 
-  {
-    "Title": "Mr",
-    "FirstName": "Raj",
-    "LastName": "test",
-    "PaxType": 2,
-    "DateOfBirth": "",
-    "Gender": 1,
-    "PassportNo": "",
-    "PassportExpiry": "",
-    "AddressLine1": "123, Test",
-    "AddressLine2": "",
-    "Fare": {
-      "Currency": "INR",
-      "BaseFare": 3171,
-      "Tax": 1284,
-      "YQTax": 0,
-      "AdditionalTxnFeePub": 0,
-      "AdditionalTxnFeeOfrd": 0,
-      "OtherCharges": 116.96,
-      "Discount": 0,
-      "PublishedFare": 4581.96,
-      "OfferedFare": 4355.03,
-      "TdsOnCommission": 6.34,
-      "TdsOnPLB": 9.14,
-      "TdsOnIncentive": 6.22,
-      "ServiceFee": 10
+    City: "Gurgaon",
+    CountryCode: "IN",
+    CellCountryCode: "+92581-",
+    ContactNo: "1234567890",
+    Nationality: "IN",
+    Email: "harsh@tbtq.in",
+    IsLeadPax: true,
+    FFAirlineCode: null,
+    FFNumber: "",
+    GSTCompanyAddress: "",
+    GSTCompanyContactNumber: "",
+    GSTCompanyName: "",
+    GSTNumber: "",
+    GSTCompanyEmail: "",
+  };
+  const childPassenger = {
+    Title: "Mr",
+    FirstName: "Raj",
+    LastName: "test",
+    PaxType: 2,
+    DateOfBirth: "",
+    Gender: 1,
+    PassportNo: "",
+    PassportExpiry: "",
+    AddressLine1: "123, Test",
+    AddressLine2: "",
+    Fare: {
+      Currency: "INR",
+      BaseFare: 3171,
+      Tax: 1284,
+      YQTax: 0,
+      AdditionalTxnFeePub: 0,
+      AdditionalTxnFeeOfrd: 0,
+      OtherCharges: 116.96,
+      Discount: 0,
+      PublishedFare: 4581.96,
+      OfferedFare: 4355.03,
+      TdsOnCommission: 6.34,
+      TdsOnPLB: 9.14,
+      TdsOnIncentive: 6.22,
+      ServiceFee: 10,
     },
-    "City": "Gurgaon",
-    "CountryCode": "IN",
-    "CellCountryCode": "+92581-",
-    "ContactNo": "9875432345",
-    "Nationality": "IN",
-    "Email": "harsh@tbtq.in",
-    "IsLeadPax": false,
-    "FFAirlineCode": null,
-    "FFNumber": "",
-    "GSTCompanyAddress": "",
-    "GSTCompanyContactNumber": "",
-    "GSTCompanyName": "",
-    "GSTNumber": "",
-    "GSTCompanyEmail": ""
-  }
+    City: "Gurgaon",
+    CountryCode: "IN",
+    CellCountryCode: "+92581-",
+    ContactNo: "9875432345",
+    Nationality: "IN",
+    Email: "harsh@tbtq.in",
+    IsLeadPax: false,
+    FFAirlineCode: null,
+    FFNumber: "",
+    GSTCompanyAddress: "",
+    GSTCompanyContactNumber: "",
+    GSTCompanyName: "",
+    GSTNumber: "",
+    GSTCompanyEmail: "",
+  };
 
   // Initialize the passenger list with the required number of passengers
   const passengerLists = [];
@@ -236,7 +236,7 @@ export default function BookWrapper() {
       IsLeadPax: i === 0, // Set the first passenger as the lead passenger
     });
   }
-  
+
   const passengerChildLists = [];
   for (let i = 0; i < childCount; i++) {
     passengerChildLists.push({
@@ -247,13 +247,13 @@ export default function BookWrapper() {
 
   // Set the initial state of the passenger list
   const [passengerList, setPassengerList] = useState(passengerLists);
-  const allPassenger = [passengerLists,passengerChildLists]
-  const [passengerData,setPassengerData] = useState(allPassenger.flat()) 
- 
+  const allPassenger = [passengerLists, passengerChildLists];
+  const [passengerData, setPassengerData] = useState(allPassenger.flat());
+
   const handleServiceChange = (e, index) => {
     const { name, value } = e.target;
     const list = [...passengerData];
-    list[index ][name] = value;
+    list[index][name] = value;
     setPassengerData(list);
   };
   const handleChildChange = (e, index) => {
@@ -268,13 +268,11 @@ export default function BookWrapper() {
     // });
     const { name, value } = e.target;
     const list = [...passengerData];
-    list[index +  parseInt(adultCount) ][name] = value;
+    list[index + parseInt(adultCount)][name] = value;
     setPassengerData(list);
   };
 
   console.error(passengerData);
-
-
 
   const dateString = TicketDetails?.Segments[0][0]?.Origin?.DepTime;
   const date1 = new Date(dateString);
@@ -304,7 +302,7 @@ export default function BookWrapper() {
   const durationMinutes = totalMinutes % 60;
   const duration_Time = `${durationHours} Hours and ${durationMinutes} minutes`;
 
-  const authenticUser = reducerState?.logIn?.loginData?.status
+  const authenticUser = reducerState?.logIn?.loginData?.status;
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isRegModalOpen, setRegIsModalOpen] = useState(false);
 
@@ -312,7 +310,7 @@ export default function BookWrapper() {
   function handleSubmit(event) {
     event.preventDefault();
 
-    if(authenticUser == 200){
+    if (authenticUser === 200) {
       const formData = new FormData(event.target);
 
       const payloadGDS = {
@@ -320,25 +318,22 @@ export default function BookWrapper() {
         Passengers: passengerData,
         EndUserIp: reducerState?.ip?.ipData,
         TokenId: reducerState?.ip?.tokenData,
-        TraceId: reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
+        TraceId:
+          reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
       };
-      console.log("payload passenger",payloadGDS.Passengers)
+      console.log("payload passenger", payloadGDS.Passengers);
       dispatch(bookActionGDS(payloadGDS));
       // if (fareValue?.IsLCC == false) {
       //
       // }
-    }else{
+    } else {
       setIsModalOpen(true);
     }
-    
-    
   }
- 
 
   return (
     <>
-
-      {!reducerState?.flightFare?.flightQuoteData?.Results == true ? (
+      {!reducerState?.flightFare?.flightQuoteData?.Results === true ? (
         <div
           style={{
             height: "100vh",
@@ -347,29 +342,33 @@ export default function BookWrapper() {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            flexDirection:'column',
-            overflow:'hidden'
-            
+            flexDirection: "column",
+            overflow: "hidden",
           }}
         >
-          <Typography mt={4} >Flight Data is Fetching</Typography>
+          <Typography mt={4}>Flight Data is Fetching</Typography>
           <img src={flightLoader} alt="" srcset="" />
         </div>
       ) : (
-
-        <div className="container ">
-          {
-          isModalOpen && <LoginForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-        }
-          {
-          isRegModalOpen && <SignUp isRegModalOpen={isRegModalOpen} setRegIsModalOpen={setRegIsModalOpen} />
-        }
+        <div className="container">
+          {isModalOpen && (
+            <LoginForm
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
+          )}
+          {isRegModalOpen && (
+            <SignUp
+              isRegModalOpen={isRegModalOpen}
+              setRegIsModalOpen={setRegIsModalOpen}
+            />
+          )}
           <div className="row popular_content">
-            <div className="col-12">
+            <div className="col-12" sx={{ padding: "10px" }}>
               <div className="row" style={{ display: "flex" }}>
-                <div className="col-md-9 ">
+                <div className="col-md-8 ">
                   <div
-                    className="leftsection"
+                    className="leftsections"
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
@@ -379,246 +378,264 @@ export default function BookWrapper() {
                       Complete Your Booking
                     </Typography>
                     <Box p={3}>
-                      <Accordion
-                        sx={{
-                          borderRadius: "20px",
-                          marginBottom: "20px",
-                          boxShadow: "2px 2px 8px gray",
-                          backgroundColor: "white",
-                        }}
-                        expanded={expanded === "panel1"}
-                        onChange={handleChange("panel1")}
-                      >
-                        <AccordionSummary
+                      {/* <AccordionSummary
                           aria-controls="panel1d-content"
                           id="panel1d-header"
                         >
                           <Typography className="para_head" mb={1}>
                             Ticket Details
                           </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails>
-                          <Box className="ticket_details" p={3}>
-                            <Typography className="para_head" mb={1}>
-                              Ticket Details
-                            </Typography>
-                            <Grid container className="deals">
-                              <Grid md={3} className="deal_const">
-                                {/* TicketDetails?.Airline?.AirlineName */}
-                                {console.log(
-                                  TicketDetails?.Segments[0][0]?.Origin
-                                )}
-                                <Typography className="txt_m">
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Airline
-                                      ?.AirlineName
-                                  }
-                                </Typography>
-                                <Typography className="txt_small">
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Airline
-                                      ?.AirlineCode
-                                  }
-                                </Typography>
-                                <Typography className="txt_small1">
-                                  Economy
-                                </Typography>
-                              </Grid>
-                              <Grid md={3} className="deal_const">
-                                <Typography className="time_up">
-                                  {console.log(
-                                    "city",
-                                    TicketDetails?.Segments[0][0]?.Destination
-                                      ?.Airport?.CityName
-                                  )}
-                                  <span>
-                                    {
-                                      TicketDetails?.Segments[0][0]?.Origin
-                                        ?.Airport?.CityName
-                                    }
-                                  </span>
-                                </Typography>
-                                <Typography
-                                  sx={{
-                                    fontSize: "16px",
-                                    color: "#707070",
-                                    marginTop: "10px",
-                                  }}
-                                >
-                                  {time1} {" " + formattedDate1}
-                                </Typography>
-                                <Typography
-                                  sx={{
-                                    fontSize: "16px",
-                                    color: "#FF8900",
-                                    lineHeight: "1",
-                                    font: " normal normal bold 16px/16px Quicksand !important",
-                                  }}
-                                >
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Origin
-                                      ?.Airport?.AirportName
-                                  }
-                                </Typography>
-                              </Grid>
-                              <Grid md={3} className="deal_const">
-                                <Typography
-                                  sx={{
-                                    fontSize: "14px",
-                                    color: "#707070",
-                                    textAlign: "center",
-                                  }}
-                                >
-                                  {duration_Time}
-                                </Typography>
-                                <Typography
-                                  textAlign="center"
-                                  style={{
-                                    color: "#39BBCE",
-                                    fontWeight: "bolder",
-                                  }}
-                                >
-                                  .....
-                                  <ConnectingAirportsIcon />
-                                  .....
-                                </Typography>
-                                <Typography sx={{ textAlign: "center" }}>
-                                  Flight Duration
-                                </Typography>
-                              </Grid>
-                              <Grid
-                                md={3}
-                                className="deal_const"
-                                style={{ textAlign: "right" }}
-                              >
-                                <Typography
-                                  className="time_up"
-                                  style={{ textAlign: "right" }}
-                                >
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Destination
-                                      ?.Airport?.CityName
-                                  }
-                                </Typography>
-                                <Typography
-                                  sx={{
-                                    fontSize: "16px",
-                                    color: "#707070",
-                                    marginTop: "10px",
-                                  }}
-                                >
-                                  {time2} {formattedDate2}
-                                </Typography>
-                                <Typography
-                                  sx={{
-                                    fontSize: "16px",
-                                    color: "#FF8900",
-                                    lineHeight: "1",
-                                    font: " normal normal bold 16px/16px Quicksand !important",
-                                  }}
-                                >
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Destination
-                                      ?.Airport?.AirportName
-                                  }
-                                </Typography>
-                              </Grid>
-                            </Grid>
-                          </Box>
-                          <Box className="ticket_details" py={1}>
-                            <Typography px={4} className="para_head">
-                              Important Information
-                            </Typography>
-                            <Typography className="guidline">
-                              <AddIcon
-                                style={{
-                                  color: "red",
-                                  backgroundColor: "#f9f9f9",
-                                  borderRadius: "50%",
-                                }}
-                              />
-                              COVID Guidelines and Vaccination Requirements
-                            </Typography>
-                            <ul>
-                              <li className="list_item">
-                                COVID test/vaccination rules: All travellers
-                                entering Maharashtra must carry either a final
-                                COVID vaccination certificate (both doses done)
-                                OR a negative RT PCR report with a sample taken
-                                within 72 hours before arrival. RT-PCR test
-                                timeline starts from the swab collection time.
-                                Negative RT-PCR test report is not required for
-                                fully vaccinated travellers to enter
-                                Maharashtra. Travellers might not be allowed to
-                                board their flights if they are not carrying a
-                                valid test report/vaccination certificate.
-                                Thermal screening will be done for all
-                                travellers. For Mumbai: In exceptional cases
-                                like family distress, etc., testing may be
-                                allowed on arrival at the airport.
-                              </li>
-                              <li className="list_item">
-                                <b>Quarantine rules: </b>When arriving from a
-                                domestic city/state: No quarantine or hand
-                                stamping for asymptomatic travellers.
-                                Pre-registration or e-Pass requirements:
-                                Download and update Aarogya
-                              </li>
-                              <li className="list_item">
-                                Check the detailed list of travel guidelines
-                                issued by Indian States and UTs here Know More
-                              </li>
+                        </AccordionSummary> */}
 
-                              <li className="list_item">
-                                If you have arrived on any international flight
-                                and are taking a connecting domestic flight,
-                                please check the 'Travelling to India' tab Here
-                              </li>
-                            </ul>
-                            <Typography className="guidline">
-                              <AddIcon
-                                style={{
-                                  color: "red",
-                                  backgroundColor: "#f9f9f9",
-                                  borderRadius: "50%",
-                                }}
-                              />
-                              Pre-Flight Checklist
+                      <Box className="ticket_details" p={3}>
+                        <Box
+                          display="flex"
+                          flexDirection={{ xs: "column", md: "row" }} // Column layout on small screens, row layout on medium and larger screens
+                          justifyContent="flex-start" // Align items to the left on small screens, space-between on medium and larger screens
+                          alignItems="center"
+                          marginBottom="20px"
+                        >
+                          {/* Departure City Details */}
+                          <Typography className="time_up1">
+                            {
+                              TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                ?.CityName
+                            }
+                          </Typography>
+                          <FiArrowRight style={{ margin: "5px" }} />{" "}
+                          {/* Replace with your arrow icon */}
+                          {/* Arrival City Details */}
+                          <Typography
+                            className="time_up1"
+                            textAlign={{ xs: "left", md: "right" }}
+                          >
+                            {
+                              TicketDetails?.Segments[0][0]?.Destination
+                                ?.Airport?.CityName
+                            }
+                          </Typography>
+                          {/* Additional Text */}
+                          <Typography
+                            className="additional_text"
+                            style={{ marginLeft: "auto" }}
+                          >
+                            Cancellation Fees Apply
+                          </Typography>
+                        </Box>
+
+                        <Grid container className="deals">
+                          <Grid md={3} className="deal_const">
+                            {/* TicketDetails?.Airline?.AirlineName */}
+                            {console.log(TicketDetails?.Segments[0][0]?.Origin)}
+                            <Typography className="txt_m">
+                              {
+                                TicketDetails?.Segments[0][0]?.Airline
+                                  ?.AirlineName
+                              }
                             </Typography>
-                            <ul>
-                              <li className="list_item">
-                                Remember to web check-in before arriving at the
-                                airport; carry a printed or soft copy of the
-                                boarding pass. Wearing masks/face covers is no
-                                longer mandatory. However, all travellers are
-                                advised to wear them, in view of the threat
-                                posed by COVID-19.{" "}
-                              </li>
-                              <li className="list_item">
-                                {" "}
-                                One hand bag up to 7 kgs and 55x35x25cm, is
-                                allowed per traveller as cabin baggage. Certain
-                                personal articles like a lady's purse, laptop
-                                bags, etc. can be carried additionally.{" "}
-                              </li>
-                            </ul>
-                            <p
-                              style={{ marginLeft: "24px" }}
-                              className="list_item"
+                            <Typography className="txt_small">
+                              {
+                                TicketDetails?.Segments[0][0]?.Airline
+                                  ?.AirlineCode
+                              }
+                            </Typography>
+                            <Typography className="txt_small1">
+                              Economy
+                            </Typography>
+                          </Grid>
+                          <Grid md={3} className="deal_const">
+                            <Typography className="time_up">
+                              {console.log(
+                                "city",
+                                TicketDetails?.Segments[0][0]?.Destination
+                                  ?.Airport?.CityName
+                              )}
+                              <span>
+                                {
+                                  TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                    ?.CityName
+                                }
+                              </span>
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "16px",
+                                color: "#707070",
+                                marginTop: "10px",
+                              }}
                             >
-                              <b>DISCLAIMER:</b> The information provided above
-                              is only for ready reference and convenience of
-                              customers, and may not be exhaustive. We strongly
-                              recommend that you check the full text of the
-                              guidelines issued by the State Governments and
-                              Airlines before travelling to ensure smooth
-                              travel. We accept no liability in this regard. In
-                              case you do not meet the required guidelines, the
-                              airline or state authorities can stop you from
-                              travelling.
-                            </p>
-                            <Divider py={5} />
-                            <Box>
+                              {time1} {" " + formattedDate1}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "16px",
+                                color: "#071C2C",
+                                lineHeight: "1",
+                                font: " normal normal bold 16px/16px Quicksand !important",
+                              }}
+                            >
+                              {
+                                TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                  ?.AirportName
+                              }
+                            </Typography>
+                          </Grid>
+                          <Grid md={3} className="deal_const">
+                            <Typography
+                              sx={{
+                                fontSize: "14px",
+                                color: "#707070",
+                                textAlign: "center",
+                              }}
+                            >
+                              {duration_Time}
+                            </Typography>
+                            <Typography
+                              textAlign="center"
+                              style={{
+                                color: "#39BBCE",
+                                fontWeight: "bolder",
+                              }}
+                            >
+                              .....
+                              <ConnectingAirportsIcon />
+                              .....
+                            </Typography>
+                            <Typography sx={{ textAlign: "center" }}>
+                              Flight Duration
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            md={3}
+                            className="deal_const"
+                            style={{ textAlign: "right" }}
+                          >
+                            <Typography
+                              className="time_up"
+                              style={{ textAlign: "right" }}
+                            >
+                              {
+                                TicketDetails?.Segments[0][0]?.Destination
+                                  ?.Airport?.CityName
+                              }
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "16px",
+                                color: "#707070",
+                                marginTop: "10px",
+                              }}
+                            >
+                              {time2} {formattedDate2}
+                            </Typography>
+                            <Typography
+                              sx={{
+                                fontSize: "16px",
+                               
+                                color:"#071C2C",
+                                lineHeight: "1",
+                                font: " normal normal bold 16px/16px Quicksand !important",
+                              }}
+                            >
+                              {
+                                TicketDetails?.Segments[0][0]?.Destination
+                                  ?.Airport?.AirportName
+                              }
+                            </Typography>
+                          </Grid>
+                        </Grid>
+                      </Box>
+                      {/* //// */}
+
+                      <CancellationRefundPolicy />
+                      <Box className="ticket_details" py={1}>
+                        <Typography px={4} className="para_head">
+                          Important Information
+                        </Typography>
+                        <Typography className="guidline">
+                          <AddIcon
+                            style={{
+                              color: "red",
+                              backgroundColor: "#f9f9f9",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          COVID Guidelines and Vaccination Requirements
+                        </Typography>
+                        <ul>
+                          <li className="list_item">
+                            COVID test/vaccination rules: All travellers
+                            entering Maharashtra must carry either a final COVID
+                            vaccination certificate (both doses done) OR a
+                            negative RT PCR report with a sample taken within 72
+                            hours before arrival. RT-PCR test timeline starts
+                            from the swab collection time. Negative RT-PCR test
+                            report is not required for fully vaccinated
+                            travellers to enter Maharashtra. Travellers might
+                            not be allowed to board their flights if they are
+                            not carrying a valid test report/vaccination
+                            certificate. Thermal screening will be done for all
+                            travellers. For Mumbai: In exceptional cases like
+                            family distress, etc., testing may be allowed on
+                            arrival at the airport.
+                          </li>
+                          <li className="list_item">
+                            <b>Quarantine rules: </b>When arriving from a
+                            domestic city/state: No quarantine or hand stamping
+                            for asymptomatic travellers. Pre-registration or
+                            e-Pass requirements: Download and update Aarogya
+                          </li>
+                          <li className="list_item">
+                            Check the detailed list of travel guidelines issued
+                            by Indian States and UTs here Know More
+                          </li>
+
+                          <li className="list_item">
+                            If you have arrived on any international flight and
+                            are taking a connecting domestic flight, please
+                            check the 'Travelling to India' tab Here
+                          </li>
+                        </ul>
+                        <Typography className="guidline">
+                          <AddIcon
+                            style={{
+                              color: "red",
+                              backgroundColor: "#f9f9f9",
+                              borderRadius: "50%",
+                            }}
+                          />
+                          Pre-Flight Checklist
+                        </Typography>
+                        <ul>
+                          <li className="list_item">
+                            Remember to web check-in before arriving at the
+                            airport; carry a printed or soft copy of the
+                            boarding pass. Wearing masks/face covers is no
+                            longer mandatory. However, all travellers are
+                            advised to wear them, in view of the threat posed by
+                            COVID-19.{" "}
+                          </li>
+                          <li className="list_item">
+                            {" "}
+                            One hand bag up to 7 kgs and 55x35x25cm, is allowed
+                            per traveller as cabin baggage. Certain personal
+                            articles like a lady's purse, laptop bags, etc. can
+                            be carried additionally.{" "}
+                          </li>
+                        </ul>
+                        <p style={{ marginLeft: "24px" }} className="list_item">
+                          <b>DISCLAIMER:</b> The information provided above is
+                          only for ready reference and convenience of customers,
+                          and may not be exhaustive. We strongly recommend that
+                          you check the full text of the guidelines issued by
+                          the State Governments and Airlines before travelling
+                          to ensure smooth travel. We accept no liability in
+                          this regard. In case you do not meet the required
+                          guidelines, the airline or state authorities can stop
+                          you from travelling.
+                        </p>
+
+                        {/* <Box>
                               <Box
                                 style={{ display: "flex", marginTop: "10px" }}
                                 px={2}
@@ -744,787 +761,11 @@ export default function BookWrapper() {
                                   I will take the risk
                                 </Button>
                               </Stack>
-                            </Box>
-                            <Divider py={5} />
+                            </Box> */}
 
-                            <form onSubmit={handleSubmit}>
+                        {/* <form onSubmit={handleSubmit}>
                               <Box margin="10px 15px">
-                                <Box
-                                  style={{
-                                    display: "flex",
-                                    marginTop: "12px",
-                                    marginBottom: "12px",
-                                  }}
-                                  px={2}
-                                >
-                                  <Typography
-                                    className="list_item"
-                                    style={{ color: "black", marginY: "12px" }}
-                                  >
-                                    Traveller Details
-                                  </Typography>
-                                </Box>
-                                <Box
-                                  style={{
-                                    backgroundColor: "white",
-                                    boxShadow: "0px 3px 6px #00000029",
-                                    borderRadius: "10px",
-                                  }}
-                                  p={2}
-                                >
-                                  {/* For adult passenger List */}
-                                  <Box
-                                    display="flex"
-                                    justifyContent="space-between"
-                                    alignItems="center"
-                                  >
-                                    <Typography>
-                                      <AccountCircleIcon /> Adult (18 yrs+)
-                                    </Typography>
-                                    <Typography className="Top_txt" py={3}>
-                                      <Chip
-                                        color="warning"
-                                        label="Please Fill adult details"
-                                        deleteIcon={<ErrorOutlineIcon />}
-                                        variant="outlined"
-                                      />
-                                    </Typography>
-                                  </Box>
-                                  {adultCount > 0 &&
-                                    Array.from(
-                                      { length: adultCount },
-                                      (_, index) => (
-                                        <Box>
-                                          <div
-                                            mb={2}
-                                            key={index}
-                                            className="services"
-                                            py={1}
-                                          >
-                                            <Accordion expanded={accordionExpanded === index} onChange={handleAccordionChange(index)}>
-                                              <AccordionSummary
-                                                expandIcon={<ExpandMoreIcon />}
-                                                aria-controls="panel1a-content"
-                                                id="panel1a-header"
-                                              >
-                                                <Typography>
-                                                  Adult {index + 1}
-                                                </Typography>
-                                              </AccordionSummary>
-                                              <AccordionDetails>
-                                                <Box>
-                                                  <Grid
-                                                    container
-                                                    spacing={3}
-                                                    my={1}
-                                                  >
-                                                    <Grid
-                                                      item
-                                                      xs={12}
-                                                      sm={12}
-                                                      md={4}
-                                                    >
-                                                      <Box>
-                                                        <div className="form_input">
-                                                          <label
-                                                            hotel_form_input
-                                                            className="form_lable"
-                                                          >
-                                                            First name*
-                                                          </label>
-                                                          <input
-                                                            name="FirstName"
-                                                            placeholder="Enter your name"
-                                                            value={
-                                                              passengerData.FirstName
-                                                            }
-                                                            onChange={(e) =>
-                                                              handleServiceChange(
-                                                                e,
-                                                                index
-                                                              )
-                                                            }
-                                                          />
-                                                        </div>
-                                                      </Box>
-                                                    </Grid>
-                                                    <Grid
-                                                      item
-                                                      xs={12}
-                                                      sm={12}
-                                                      md={4}
-                                                      py={1}
-                                                    >
-                                                      <Box>
-                                                        <div className="form_input">
-                                                          <label
-                                                            hotel_form_input
-                                                            className="form_lable"
-                                                          >
-                                                            Last name*
-                                                          </label>
-                                                          <input
-                                                            name="LastName"
-                                                            placeholder="Enter your last name"
-                                                            value={
-                                                              passengerData.LastName
-                                                            }
-                                                            onChange={(e) =>
-                                                              handleServiceChange(
-                                                                e,
-                                                                index
-                                                              )
-                                                            }
-                                                          />
-                                                        </div>
-                                                      </Box>
-                                                    </Grid>
-                                                  </Grid>
-                                                  <Box
-                                                    display="flex"
-                                                    justifyContent="space-between"
-                                                  >
-                                                    {/* Form start */}
-
-                                                    <Box>
-                                                      <div className="hotel_form_input">
-                                                        <label className="form_lable">
-                                                          Gender*
-                                                        </label>
-                                                        <select
-                                                          name="Gender"
-                                                          className="hotel_input_select"
-                                                          value={
-                                                            passengerData.Gender
-                                                          }
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        >
-                                                          <option value="1">
-                                                            Female
-                                                          </option>
-                                                          <option value="2">
-                                                            Male
-                                                          </option>
-                                                          <option value="3">
-                                                            Transgender
-                                                          </option>
-                                                        </select>
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Mobile*
-                                                        </label>
-                                                        <input
-                                                          name="ContactNo"
-                                                          type="text"
-                                                          placeholder="Enter your number"
-                                                          value={
-                                                            passengerList?.ContactNo
-                                                          }
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Date Of Birth*
-                                                        </label>
-                                                        <input
-                                                          type="date"
-                                                          name="DateOfBirth"
-                                                          className="deaprture_input"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                  </Box>
-                                                  <Box
-                                                    pt={2}
-                                                    display="flex"
-                                                    justifyContent="space-around"
-                                                  >
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Email**
-                                                        </label>
-                                                        <input
-                                                          name="Email"
-                                                          type="email"
-                                                          placeholder="Enter your email"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Address*
-                                                        </label>
-                                                        <input
-                                                          name="AddressLine1"
-                                                          type="text"
-                                                          placeholder="Enter your Address"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          City*
-                                                        </label>
-                                                        <input
-                                                          name="AddressLine2"
-                                                          type="text"
-                                                          placeholder="Enter your City"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                  </Box>
-
-                                                  <Box display="flex">
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label className="form_lable">
-                                                          Country*
-                                                        </label>
-                                                        <input
-                                                          name="country"
-                                                          type="text"
-                                                          placeholder="Enter your Country"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                  </Box>
-                                                </Box>
-                                              </AccordionDetails>
-                                            </Accordion>
-                                            {/* {hand leServiceAdd()} */}
-                                            {/* Form end */}
-                                          </div>
-                                        </Box>
-                                      )
-                                    )}
-
-                                  {/* For Child passenger List */}
-
-                                  {childCount > 0 && (
-                                    <>
-                                      <Box
-                                        display="flex"
-                                        justifyContent="space-between"
-                                        alignItems="center"
-                                      >
-                                        <Typography>
-                                          <AccountCircleIcon /> Child (5 yrs+)
-                                        </Typography>
-                                        <Typography className="Top_txt" py={3}>
-                                          Child {passengerList.length} /{" "}
-                                          {childCount}{" "}
-                                          <Typography variant="caption">
-                                            added
-                                          </Typography>
-                                        </Typography>
-                                      </Box>
-                                    </>
-                                  )}
-                                  {childCount > 0 &&
-                                    Array.from(
-                                      { length: childCount },
-                                      (_, index) => (
-                                        <Box>
-                                          <div
-                                            mb={2}
-                                            key={index}
-                                            className="services"
-                                            py={1}
-                                          >
-                                            <Accordion>
-                                              <AccordionSummary
-                                                expandIcon={<ExpandMoreIcon />}
-                                                aria-controls="panel1a-content"
-                                                id="panel1a-header"
-                                              >
-                                                <Typography>
-                                                  Child {index + 1}
-                                                </Typography>
-                                              </AccordionSummary>
-                                              <AccordionDetails>
-                                                <Box>
-                                                  <Grid
-                                                    container
-                                                    spacing={3}
-                                                    my={1}
-                                                  >
-                                                    <Grid
-                                                      item
-                                                      xs={12}
-                                                      sm={12}
-                                                      md={4}
-                                                    >
-                                                      <Box>
-                                                        <div className="form_input">
-                                                          <label
-                                                            hotel_form_input
-                                                            className="form_lable"
-                                                          >
-                                                            First name*
-                                                          </label>
-                                                          <input
-                                                            name="FirstName"
-                                                            placeholder="Enter your name"
-                                                            value={
-                                                              passengerList.FirstName
-                                                            }
-                                                            
-                                                            onChange={(e) =>
-                                                              handleChildChange(
-                                                                e,
-                                                                index 
-                                                              )
-                                                            }
-                                                          />
-                                                        </div>
-                                                      </Box>
-                                                    </Grid>
-                                                    <Grid
-                                                      item
-                                                      xs={12}
-                                                      sm={12}
-                                                      md={4}
-                                                      py={1}
-                                                    >
-                                                      <Box>
-                                                        <div className="form_input">
-                                                          <label
-                                                            hotel_form_input
-                                                            className="form_lable"
-                                                          >
-                                                            Last name*
-                                                          </label>
-                                                          <input
-                                                            name="LastName"
-                                                            placeholder="Enter your last name"
-                                                            value={
-                                                              passengerList.LastName
-                                                            }
-                                                            onChange={(e) =>
-                                                              handleServiceChange(
-                                                                e,
-                                                                index
-                                                              )
-                                                            }
-                                                          />
-                                                        </div>
-                                                      </Box>
-                                                    </Grid>
-                                                  </Grid>
-                                                  <Box
-                                                    display="flex"
-                                                    justifyContent="space-between"
-                                                  >
-                                                    {/* Form start */}
-
-                                                    <Box>
-                                                      <div className="hotel_form_input">
-                                                        <label className="form_lable">
-                                                          Gender*
-                                                        </label>
-                                                        <select
-                                                          name="Gender"
-                                                          className="hotel_input_select"
-                                                          value={
-                                                            passengerData[index + 1]?.Gender
-                                                          }
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        >
-                                                          <option value="1">
-                                                            Female
-                                                          </option>
-                                                          <option value="2">
-                                                            Male
-                                                          </option>
-                                                          <option value="3">
-                                                            Transgender
-                                                          </option>
-                                                        </select>
-                                                      </div>
-                                                    </Box>
-                                                   
-                                                  </Box>
-                                                  <Box
-                                                    pt={2}
-                                                    display="flex"
-                                                    justifyContent="space-around"
-                                                  >
-                                                   
-                                                  </Box>
-
-                                                 
-                                                </Box>
-                                              </AccordionDetails>
-                                            </Accordion>
-
-                                            {/* Form end */}
-                                          </div>
-                                        </Box>
-                                      )
-                                    )}
-
-                                    {/* For Infant passenger List */}
-                                    {infantCount > 0 && (
-                                    <>
-                                      <Box
-                                        display="flex"
-                                        justifyContent="space-between"
-                                        alignItems="center"
-                                      >
-                                        <Typography>
-                                          <AccountCircleIcon /> Infant (15 days to 2 yrs)
-                                        </Typography>
-                                        <Typography className="Top_txt" py={3}>
-                                          Infant {passengerList.length} /{" "}
-                                          {infantCount}{" "}
-                                          <Typography variant="caption">
-                                            added
-                                          </Typography>
-                                        </Typography>
-                                      </Box>
-                                    </>
-                                  )}
-                                  {infantCount > 0 &&
-                                    Array.from(
-                                      { length: infantCount },
-                                      (_, index) => (
-                                        <Box>
-                                          <div
-                                            mb={2}
-                                            key={index}
-                                            className="services"
-                                            py={1}
-                                          >
-                                            <Accordion>
-                                              <AccordionSummary
-                                                expandIcon={<ExpandMoreIcon />}
-                                                aria-controls="panel1a-content"
-                                                id="panel1a-header"
-                                              >
-                                                <Typography>
-                                                  Child {index + 1}
-                                                </Typography>
-                                              </AccordionSummary>
-                                              <AccordionDetails>
-                                                <Box>
-                                                  <Grid
-                                                    container
-                                                    spacing={3}
-                                                    my={1}
-                                                  >
-                                                    <Grid
-                                                      item
-                                                      xs={12}
-                                                      sm={12}
-                                                      md={4}
-                                                    >
-                                                      <Box>
-                                                        <div className="form_input">
-                                                          <label
-                                                            hotel_form_input
-                                                            className="form_lable"
-                                                          >
-                                                            First name*
-                                                          </label>
-                                                          <input
-                                                            name="FirstName"
-                                                            placeholder="Enter your name"
-                                                            value={
-                                                              passengerList.FirstName
-                                                            }
-                                                            onChange={(e) =>
-                                                              handleServiceChange(
-                                                                e,
-                                                                index
-                                                              )
-                                                            }
-                                                          />
-                                                        </div>
-                                                      </Box>
-                                                    </Grid>
-                                                    <Grid
-                                                      item
-                                                      xs={12}
-                                                      sm={12}
-                                                      md={4}
-                                                      py={1}
-                                                    >
-                                                      <Box>
-                                                        <div className="form_input">
-                                                          <label
-                                                            hotel_form_input
-                                                            className="form_lable"
-                                                          >
-                                                            Last name*
-                                                          </label>
-                                                          <input
-                                                            name="LastName"
-                                                            placeholder="Enter your last name"
-                                                            value={
-                                                              passengerList.LastName
-                                                            }
-                                                            onChange={(e) =>
-                                                              handleServiceChange(
-                                                                e,
-                                                                index
-                                                              )
-                                                            }
-                                                          />
-                                                        </div>
-                                                      </Box>
-                                                    </Grid>
-                                                  </Grid>
-                                                  <Box
-                                                    display="flex"
-                                                    justifyContent="space-between"
-                                                  >
-                                                    {/* Form start */}
-
-                                                    <Box>
-                                                      <div className="hotel_form_input">
-                                                        <label className="form_lable">
-                                                          Gender*
-                                                        </label>
-                                                        <select
-                                                          name="Gender"
-                                                          className="hotel_input_select"
-                                                          value={
-                                                            passengerList.Gender
-                                                          }
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        >
-                                                          <option value="1">
-                                                            Female
-                                                          </option>
-                                                          <option value="2">
-                                                            Male
-                                                          </option>
-                                                          <option value="3">
-                                                            Transgender
-                                                          </option>
-                                                        </select>
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Mobile*
-                                                        </label>
-                                                        <input
-                                                          name="ContactNo"
-                                                          type="text"
-                                                          placeholder="Enter your number"
-                                                          value={
-                                                            passengerList?.ContactNo
-                                                          }
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Date Of Birth*
-                                                        </label>
-                                                        <input
-                                                          type="date"
-                                                          name="DateOfBirth"
-                                                          className="deaprture_input"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                  </Box>
-                                                  <Box
-                                                    pt={2}
-                                                    display="flex"
-                                                    justifyContent="space-around"
-                                                  >
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Email**
-                                                        </label>
-                                                        <input
-                                                          name="Email"
-                                                          type="email"
-                                                          placeholder="Enter your email"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          Address*
-                                                        </label>
-                                                        <input
-                                                          name="AddressLine1"
-                                                          type="text"
-                                                          placeholder="Enter your Address"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label
-                                                          hotel_form_input
-                                                          className="form_lable"
-                                                        >
-                                                          City*
-                                                        </label>
-                                                        <input
-                                                          name="AddressLine2"
-                                                          type="text"
-                                                          placeholder="Enter your City"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                  </Box>
-
-                                                  <Box display="flex">
-                                                    <Box>
-                                                      <div className="form_input">
-                                                        <label className="form_lable">
-                                                          Country*
-                                                        </label>
-                                                        <input
-                                                          name="country"
-                                                          type="text"
-                                                          placeholder="Enter your Country"
-                                                          onChange={(e) =>
-                                                            handleServiceChange(
-                                                              e,
-                                                              index
-                                                            )
-                                                          }
-                                                        />
-                                                      </div>
-                                                    </Box>
-                                                  </Box>
-                                                </Box>
-                                              </AccordionDetails>
-                                            </Accordion>
-
-                                            {/* Form end */}
-                                          </div>
-                                        </Box>
-                                      )
-                                    )}
-                                </Box>
+                               
                                 <Box style={{ marginTop: "10px" }} px={2}>
                                   <Typography
                                     className="list_item"
@@ -1621,16 +862,760 @@ export default function BookWrapper() {
                                   </Box>
                                 </Box>
                               </Box>
-                            </form>
+                            </form> */}
+                      </Box>
+
+                      <Box
+                        style={{
+                          display: "flex",
+                          marginTop: "12px",
+                          marginBottom: "12px",
+                        }}
+                        px={2}
+                      >
+                        <Typography
+                          className="list_item"
+                          style={{ color: "black", marginY: "12px" }}
+                        >
+                          Traveller Details
+                        </Typography>
+                      </Box>
+                      <Box
+                        style={{
+                          backgroundColor: "white",
+                          boxShadow: "0px 3px 6px #00000029",
+                          borderRadius: "10px",
+                          
+                        }}
+                        p={2}
+                      >
+                        {/* For adult passenger List */}
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography>
+                            <AccountCircleIcon /> Adult (18 yrs+)
+                          </Typography>
+                          <Typography className="Top_txt" py={3}>
+                            <Chip
+                              color="warning"
+                              label="Please Fill adult details"
+                              deleteIcon={<ErrorOutlineIcon />}
+                              variant="outlined"
+                            />
+                          </Typography>
+                        </Box>
+                        {adultCount > 0 &&
+                          Array.from({ length: adultCount }, (_, index) => (
+                            <Box>
+                              <div
+                                mb={2}
+                                key={index}
+                                className="services"
+                                py={1}
+                              >
+                                <Accordion
+                                  expanded={accordionExpanded === index}
+                                  onChange={handleAccordionChange(index)}
+                                >
+                                  <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                  >
+                                    <Typography>Adult {index + 1}</Typography>
+                                  </AccordionSummary>
+                                  <AccordionDetails>
+                                    <Box>
+                                      <Grid container spacing={6}>
+                                        <Grid item xs={12} sm={6} md={4} mb={5}>
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label className="form_label">
+                                                First name*
+                                              </label>
+                                              <input
+                                                className="hotel_input_select"
+                                                name="FirstName"
+                                                placeholder="Enter your name"
+                                                value={passengerData.FirstName}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                        <Grid item xs={12} sm={6} md={4} mb={5}>
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label className="form_label">
+                                                Last name*
+                                              </label>
+                                              <input
+                                                name="LastName"
+                                                placeholder="Enter your last name"
+                                                value={passengerData.LastName}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                      </Grid>
+
+                                      <Grid container spacing={6}>
+                                        <Grid item xs={12} sm={6} md={4} mb={2}>
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label className="form_lable">
+                                                Gender*
+                                              </label>
+                                              <select
+                                                name="Gender"
+                                                className="hotel_input_select"
+                                                value={passengerData.Gender}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              >
+                                                <option value="1">
+                                                  Female
+                                                </option>
+                                                <option value="2">Male</option>
+                                                <option value="3">
+                                                  Transgender
+                                                </option>
+                                              </select>
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                        <Grid
+                                          item
+                                          xs={12}
+                                          sm={12}
+                                          md={4}
+                                          py={1}
+                                        >
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                Mobile*
+                                              </label>
+                                              <input
+                                                name="ContactNo"
+                                                type="text"
+                                                placeholder="Enter your number"
+                                                value={passengerList?.ContactNo}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                      </Grid>
+                                      <Grid container spacing={6}>
+                                        <Grid item xs={12} sm={6} md={4} mb={2}>
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                Date Of Birth*
+                                              </label>
+                                              <input
+                                                type="date"
+                                                name="DateOfBirth"
+                                                className="hotel_input_select"
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                        <Grid
+                                          item
+                                          xs={12}
+                                          sm={12}
+                                          md={4}
+                                          mb={2}
+                                        >
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                Title*
+                                              </label>
+                                              <input
+                                                name="title"
+                                                type="text"
+                                                placeholder="Enter your title"
+                                                value={passengerList?.ContactNo}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                      </Grid>
+                                      <Grid container spacing={6}>
+                                        <Grid item xs={12} sm={6} md={4} mb={5}>
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                PassportNo*
+                                              </label>
+                                              <input
+                                                type="date"
+                                                name="passportNo"
+                                                className="hotel_input_select"
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                        <Grid
+                                          item
+                                          xs={12}
+                                          sm={12}
+                                          md={4}
+                                          py={1}
+                                        >
+                                          <Box>
+                                            <div className="hotel_form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                PassportExpiry*
+                                              </label>
+                                              <input
+                                                name="passportexpiry"
+                                                type="text"
+                                                placeholder="Enter your passportexpiry"
+                                                value={passengerList?.ContactNo}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                      </Grid>
+                                    </Box>
+                                  </AccordionDetails>
+                                </Accordion>
+                                {/* {hand leServiceAdd()} */}
+                                {/* Form end */}
+                              </div>
+                            </Box>
+                          ))}
+
+                        {/* For Child passenger List */}
+
+                        {childCount > 0 && (
+                          <>
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                            >
+                              <Typography>
+                                <AccountCircleIcon /> Child (5 yrs+)
+                              </Typography>
+                              <Typography className="Top_txt" py={3}>
+                                Child {passengerList.length} / {childCount}{" "}
+                                <Typography variant="caption">added</Typography>
+                              </Typography>
+                            </Box>
+                          </>
+                        )}
+                        {childCount > 0 &&
+                          Array.from({ length: childCount }, (_, index) => (
+                            <Box>
+                              <div
+                                mb={2}
+                                key={index}
+                                className="services"
+                                py={1}
+                              >
+                                <Accordion>
+                                  <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                  >
+                                    <Typography>Child {index + 1}</Typography>
+                                  </AccordionSummary>
+                                  <AccordionDetails>
+                                    <Box>
+                                      <Grid container spacing={3} my={1}>
+                                        <Grid item xs={12} sm={12} md={4}>
+                                          <Box>
+                                            <div className="form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                First name*
+                                              </label>
+                                              <input
+                                                name="FirstName"
+                                                placeholder="Enter your name"
+                                                value={passengerList.FirstName}
+                                                onChange={(e) =>
+                                                  handleChildChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                        <Grid
+                                          item
+                                          xs={12}
+                                          sm={12}
+                                          md={4}
+                                          py={1}
+                                        >
+                                          <Box>
+                                            <div className="form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                Last name*
+                                              </label>
+                                              <input
+                                                name="LastName"
+                                                placeholder="Enter your last name"
+                                                value={passengerList.LastName}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                      </Grid>
+                                      <Box
+                                        display="flex"
+                                        justifyContent="space-between"
+                                      >
+                                        {/* Form start */}
+
+                                        <Box>
+                                          <div className="hotel_form_input">
+                                            <label className="form_lable">
+                                              Gender*
+                                            </label>
+                                            <select
+                                              name="Gender"
+                                              className="hotel_input_select"
+                                              value={
+                                                passengerData[index + 1]?.Gender
+                                              }
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            >
+                                              <option value="1">Female</option>
+                                              <option value="2">Male</option>
+                                              <option value="3">
+                                                Transgender
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </Box>
+                                      </Box>
+                                      <Box
+                                        pt={2}
+                                        display="flex"
+                                        justifyContent="space-around"
+                                      ></Box>
+                                    </Box>
+                                  </AccordionDetails>
+                                </Accordion>
+
+                                {/* Form end */}
+                              </div>
+                            </Box>
+                          ))}
+
+                        {/* For Infant passenger List */}
+                        {infantCount > 0 && (
+                          <>
+                            <Box
+                              display="flex"
+                              justifyContent="space-between"
+                              alignItems="center"
+                            >
+                              <Typography>
+                                <AccountCircleIcon /> Infant (15 days to 2 yrs)
+                              </Typography>
+                              <Typography className="Top_txt" py={3}>
+                                Infant {passengerList.length} / {infantCount}{" "}
+                                <Typography variant="caption">added</Typography>
+                              </Typography>
+                            </Box>
+                          </>
+                        )}
+                        {infantCount > 0 &&
+                          Array.from({ length: infantCount }, (_, index) => (
+                            <Box>
+                              <div
+                                mb={2}
+                                key={index}
+                                className="services"
+                                py={1}
+                              >
+                                <Accordion>
+                                  <AccordionSummary
+                                    expandIcon={<ExpandMoreIcon />}
+                                    aria-controls="panel1a-content"
+                                    id="panel1a-header"
+                                  >
+                                    <Typography>Child {index + 1}</Typography>
+                                  </AccordionSummary>
+                                  <AccordionDetails>
+                                    <Box>
+                                      <Grid container spacing={3} my={1}>
+                                        <Grid item xs={12} sm={12} md={4}>
+                                          <Box>
+                                            <div className="form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                First name*
+                                              </label>
+                                              <input
+                                                name="FirstName"
+                                                placeholder="Enter your name"
+                                                value={passengerList.FirstName}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                        <Grid
+                                          item
+                                          xs={12}
+                                          sm={12}
+                                          md={4}
+                                          py={1}
+                                        >
+                                          <Box>
+                                            <div className="form_input">
+                                              <label
+                                                hotel_form_input
+                                                className="form_lable"
+                                              >
+                                                Last name*
+                                              </label>
+                                              <input
+                                                name="LastName"
+                                                placeholder="Enter your last name"
+                                                value={passengerList.LastName}
+                                                onChange={(e) =>
+                                                  handleServiceChange(e, index)
+                                                }
+                                              />
+                                            </div>
+                                          </Box>
+                                        </Grid>
+                                      </Grid>
+                                      <Box
+                                        display="flex"
+                                        justifyContent="space-between"
+                                      >
+                                        {/* Form start */}
+
+                                        <Box>
+                                          <div className="hotel_form_input">
+                                            <label className="form_lable">
+                                              Gender*
+                                            </label>
+                                            <select
+                                              name="Gender"
+                                              className="hotel_input_select"
+                                              value={passengerList.Gender}
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            >
+                                              <option value="1">Female</option>
+                                              <option value="2">Male</option>
+                                              <option value="3">
+                                                Transgender
+                                              </option>
+                                            </select>
+                                          </div>
+                                        </Box>
+                                        <Box>
+                                          <div className="form_input">
+                                            <label
+                                              hotel_form_input
+                                              className="form_lable"
+                                            >
+                                              Mobile*
+                                            </label>
+                                            <input
+                                              name="ContactNo"
+                                              type="text"
+                                              placeholder="Enter your number"
+                                              value={passengerList?.ContactNo}
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            />
+                                          </div>
+                                        </Box>
+                                        <Box>
+                                          <div className="form_input">
+                                            <label
+                                              hotel_form_input
+                                              className="form_lable"
+                                            >
+                                              Date Of Birth*
+                                            </label>
+                                            <input
+                                              type="date"
+                                              name="DateOfBirth"
+                                              className="deaprture_input"
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            />
+                                          </div>
+                                        </Box>
+                                      </Box>
+                                      <Box
+                                        pt={2}
+                                        display="flex"
+                                        justifyContent="space-around"
+                                      >
+                                        <Box>
+                                          <div className="form_input">
+                                            <label
+                                              hotel_form_input
+                                              className="form_lable"
+                                            >
+                                              Email**
+                                            </label>
+                                            <input
+                                              name="Email"
+                                              type="email"
+                                              placeholder="Enter your email"
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            />
+                                          </div>
+                                        </Box>
+                                        <Box>
+                                          <div className="form_input">
+                                            <label
+                                              hotel_form_input
+                                              className="form_lable"
+                                            >
+                                              Address*
+                                            </label>
+                                            <input
+                                              name="AddressLine1"
+                                              type="text"
+                                              placeholder="Enter your Address"
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            />
+                                          </div>
+                                        </Box>
+                                        <Box>
+                                          <div className="form_input">
+                                            <label
+                                              hotel_form_input
+                                              className="form_lable"
+                                            >
+                                              City*
+                                            </label>
+                                            <input
+                                              name="AddressLine2"
+                                              type="text"
+                                              placeholder="Enter your City"
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            />
+                                          </div>
+                                        </Box>
+                                      </Box>
+
+                                      <Box display="flex">
+                                        <Box>
+                                          <div className="form_input">
+                                            <label className="form_lable">
+                                              Country*
+                                            </label>
+                                            <input
+                                              name="country"
+                                              type="text"
+                                              placeholder="Enter your Country"
+                                              onChange={(e) =>
+                                                handleServiceChange(e, index)
+                                              }
+                                            />
+                                          </div>
+                                        </Box>
+                                      </Box>
+                                    </Box>
+                                  </AccordionDetails>
+                                </Accordion>
+
+                                {/* Form end */}
+                              </div>
+                            </Box>
+                          ))}
+                      </Box>
+                      <form onSubmit={handleSubmit} className="form">
+                        <Box margin="10px 15px">
+                          <Box style={{ marginTop: "10px" }} px={2}>
+                            <Typography
+                              className="list_item"
+                              style={{
+                                color: "black",
+                                marginTop: "12px",
+                              }}
+                            >
+                              Your Booking Details will be sent to
+                            </Typography>
+                            <Box
+                              style={{
+                                display: "flex",
+                                marginTop: "15px",
+                                justifyContent: "left",
+                              }}
+                            >
+                              <div style={{ display: "flex" }}>
+                                <Box mx={2}>
+                                  <label htmlFor="email">EMAIL ADDRESS</label>
+                                  <input
+                                    type="email"
+                                    placeholder="Type your Email Address "
+                                    name="email"
+                                    mx={3}
+                                    style={{
+                                      height: "35px",
+                                      width: "100%",
+
+                                      boxShadow: "0px 3px 6px #00000029",
+                                      borderRadius: "5px",
+
+                                      border: "0.5px solid #BBB",
+
+                                      padding: "12px 15px",
+                                    }}
+                                  />
+                                </Box>
+                              </div>
+                              <div
+                                style={{
+                                  display: "flex",
+                                  marginLeft: "200px",
+                                }}
+                              >
+                                <Box mx={2}>
+                                  <label htmlFor="email">MOBILE NUMBER</label>
+                                  <input
+                                    type="phone"
+                                    placeholder="Add Mobile Number"
+                                    name="mobile_number"
+                                    mx={2}
+                                    style={{
+                                      height: "35px",
+                                      width: "100%",
+
+                                      boxShadow: "0px 3px 6px #00000029",
+                                      borderRadius: "5px",
+
+                                      border: "0.5px solid #BBB",
+
+                                      padding: "12px 15px",
+                                    }}
+                                  />
+                                </Box>
+                              </div>
+                            </Box>
+                            <Box
+                              style={{
+                                marginTop: "10px",
+                                display: "flex",
+                              }}
+                            >
+                              <Checkbox {...label} />
+                              <Typography
+                                className="list_item1"
+                                display="flex"
+                                alignItems="center"
+                              >
+                                I have a GST number{" "}
+                                <span sx={{ color: "#BBBBBB" }}>
+                                  (optional)
+                                </span>
+                              </Typography>
+                            </Box>
+                            <Box
+                              style={{
+                                marginTop: "10px",
+                                display: "flex",
+                                justifyContent: "center",
+                              }}
+                            ></Box>
                           </Box>
-                        </AccordionDetails>
-                      </Accordion>
-                      <Accordion
+                        </Box>
+                      </form>
+                      <TripSecureComponent />
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        sx={{
+                          color: "white",
+                          backgroundColor: "#E73C33",
+                          fontSize: "18px",
+                          borderRadius: "16px",
+                          marginTop: "16px",
+                          boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.30)",
+                        }}
+                        onClick={handleButtonClick}
+                      >
+                        Continue
+                      </Button>
+
+                      {/* <Accordion
                         sx={{
                           borderRadius: "20px",
                           marginBottom: "20px",
                           boxShadow: "2px 2px 8px gray",
                           backgroundColor: "white",
+                          marginTop: "20px",
                         }}
                         expanded={expanded === "panel2"}
                         onChange={handleChange("panel2")}
@@ -1647,14 +1632,8 @@ export default function BookWrapper() {
                         </AccordionSummary>
                         <AccordionDetails>
                           <div className="container seat_section">
-                            <Typography className="seat_Top_heading">
-                              Complete Your Booking
-                            </Typography>
                             <Box className="Inner_seat_section">
-                              <Typography className="seat_heading" p={3}>
-                                Ticket Details
-                              </Typography>
-                              <Grid container className="deals">
+                               <Grid container className="deals">
                                 <Grid md={3} className="deal_const">
                                   <Typography className="txt_m">
                                     IndiGO
@@ -1723,7 +1702,7 @@ export default function BookWrapper() {
                                     Tue, 27 Dec, 2022
                                   </Typography>
                                 </Grid>
-                              </Grid>
+                              </Grid> 
                               <Grid
                                 spacing={2}
                                 container
@@ -6552,11 +6531,11 @@ export default function BookWrapper() {
                             </Box>
                           </div>
                         </AccordionDetails>
-                      </Accordion>
+                      </Accordion> */}
                     </Box>
                   </div>
                 </div>
-                <div className="col-md-3">
+                <div className="col-md-4">
                   <BookNowLeft />
                 </div>
               </div>
