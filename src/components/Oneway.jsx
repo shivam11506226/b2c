@@ -368,6 +368,7 @@ const Homeform = (props) => {
     if(from===""||to===""|| document.getElementById("departure").value===""){
       return true
     }
+  }
 
   const handleButtonClick = () => {
     // Redirect to the "/returnResult" path
