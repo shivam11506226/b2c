@@ -287,6 +287,9 @@ const Homeform = (props) => {
   };
   function handleOnewaySubmit(event) {
     event.preventDefault();
+    if(validation()){
+      return
+    }
     const formData = new FormData(event.target);
     const payload = {
       EndUserIp: reducerState?.ip?.ipData,
@@ -342,7 +345,11 @@ const Homeform = (props) => {
     };
     dispatch(oneWayAction(payload));
   }
-
+  function validation(){
+    if(from===""||to===""|| document.getElementById("departure").value===""){
+      return true
+    }
+  }
   return (
     <section>
       <div className="container homeform_container">
@@ -632,6 +639,7 @@ const Homeform = (props) => {
                               id="departure"
                               className="deaprture_input"
                               placeholder="Enter city or airport"
+                              min={(new Date()).toISOString().split('T')[0]}
                               style={{
                                 border: "none",
                                 outline: "none",

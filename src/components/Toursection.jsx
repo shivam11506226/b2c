@@ -109,7 +109,7 @@ const Toursection = () => {
                       fontWeight="bold"
                       style={{ fontFamily: "Quicksand" }}
                     >
-                      Cheapest Flights to Paris, Bali, Tokyo & more
+                      
                     </Typography>{" "}
                   </Typography>
                 </Grid>

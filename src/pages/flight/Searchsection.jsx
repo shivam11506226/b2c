@@ -155,6 +155,7 @@ const Homeform = (props) => {
                             id="departure"
                             className="deaprture_input"
                             placeholder="Enter city or airport"
+                            min={(new Date()).toISOString().split('T')[0]}
                           ></input>
                         </div>
                       </div>

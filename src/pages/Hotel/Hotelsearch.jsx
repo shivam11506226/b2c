@@ -15,6 +15,7 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
+import { HiCheck } from "react-icons/hi2";
 
 // bootstrap
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
@@ -22,6 +23,7 @@ import axios from "axios";
 import { clearHotelReducer, hotelAction } from "../../Redux/Hotel/hotel";
 import LoginForm from "../../components/Login";
 // import { styled } from '@mui/material/styles';
+import { SlArrowRight } from "react-icons/sl";
 
 import Paper from '@mui/material/Paper';
 import "./hotelhome.css"
@@ -67,13 +69,24 @@ const StyledStaticDatePicker = styled(StaticDatePicker)({
 })
 
 
+
 const Homeform = (props) => {
   const initialvalue = {
     City: "",
     nationality: "",
-    room: "",
-    adult: "",
+    room: "1",
+    adult: "1",
+    child: "0",
+    star: "5"
   };
+  const roomInitialValue = {
+    room: "2",
+    adult: "2",
+    child: "2",
+
+  }
+
+  const [room, setRoom] = useState([initialvalue, initialvalue])
   const [values, setValues] = React.useState(initialvalue);
   console.warn(values, "child value")
   const [value, setValue] = React.useState("1");
@@ -110,8 +123,16 @@ const Homeform = (props) => {
   const authenticUser = reducerState?.logIn?.isLogin
   const [offersToggle, setOffersToggle] = useState(1)
   const [offersToggle1, setOffersToggle1] = useState(0)
-  const [star,setStar]=useState(5)
+  const [star, setStar] = useState(5)
+  const [roomValue, setRoomValue] = useState(1)
+  const [passengerDetails, setPassengerDetails] = useState([])
+  const roomOrignal= [{room:1,adult:0,child:0,childAge:[]}]
+  const[roomOrignal1,setroomOrignal]= useState([{room:1,adult:0,child:0,childAge:[]}])
 
+
+
+  const passengerDetail = []
+ 
   const changeHandler = (e) => {
     if (e.target.value === "number") {
       setIsVisible(true);
@@ -162,6 +183,60 @@ const Homeform = (props) => {
     setSelectedFrom(result);
     setdisplayFrom(false);
   };
+  useEffect(()=>{
+    const roomss=[]
+    for (let i = 1; i <= roomValue; i++) {
+      roomss.push({room:i,adult:1,child:0,childAge:[]})
+    }
+    
+    setroomOrignal(roomss)
+    console.log("Room value", roomValue)
+      console.warn("RoomSS:",roomOrignal1 )
+},[roomValue])
+
+  const handleFromInputRoomChange = async (event) => {
+    // setdisplayFrom(true);
+    // setFrom(event.target.value);
+    // setDisplay(event.target.value);
+    // setSelectedFrom(null);
+  await  setRoomValue(event.target.value);
+//   const roomss=[]
+//   for (let i = 1; i <= roomValue; i++) {
+//    await roomss.push({room:i,adult:1,child:0,childAge:[]})
+//   }
+  
+//  await setroomOrignal(roomss)
+//   console.log("Room value", roomValue)
+//     console.warn("RoomSS:",roomOrignal1 )
+    
+  };
+
+  // const handleFromInputRoomChange = (event) => {
+  //   setRoomValue(event.target.value);
+  //   console.log("Room value", roomValue);
+  
+  //   const roomss = [];
+  //   for (let i = 1; i <= roomValue; i++) {
+  //     roomss.push({ room: i + 1, adult: 1, child: 0, childAge: [] });
+  //   }
+  
+  //   setroomOrignal(roomss);
+  //   console.warn("RoomSS:", roomOrignal1);
+  // };
+
+  // const handleFromInputRoomChange = (event) => {
+  //   const selectedValue = event.target.value;
+  //   console.log(selectedValue, "selected value")
+
+  // setRoomValue(selectedValue);
+  //   const roomss = [];
+  //   for (let i = 1; i <= selectedValue; i++) {
+  //     roomss.push({ room: i + 1, adult: 1, child: 0, childAge: [] });
+  //   }
+  
+  //   setroomOrignal(...roomss);
+  //   console.warn("RoomSS:", roomOrignal1);
+  // };
 
   const handleFromInputChange = (event) => {
     setdisplayFrom(true);
@@ -200,6 +275,7 @@ const Homeform = (props) => {
   );
 
   const handleInputChange = (e) => {
+
     const { name, value } = e.target;
 
     setValues({
@@ -438,13 +514,21 @@ const Homeform = (props) => {
 
     input.click();
   };
-  const renderChildrenAges = () => {
+  function handleChildAge(e,index,i){
+    let data={...roomOrignal1}
+    data[index].childAge[i] ={rooom:Number(e)};
+    setroomOrignal(data)
+    // roomOrignal[index].childAge[i]=Number(e);
+    // roomOrignal[index]={...roomOrignal[index],childAge:(childAge[]=e)}
+    console.warn(roomOrignal1,"handleChildAge",e,index,i)
+  }
+  const renderChildrenAges = (index) => {
     const childrenAges = [];
 
-    for (let i = 1; i <= values.child; i++) {
+    for (let i = 0; i <= roomOrignal1[index]?.child-1; i++) {
       // You can modify this logic based on how you want to calculate or obtain the ages
       const age = Math.floor(Math.random() * 18) + 1; // Random age between 1 and 18
-      childrenAges.push(<div key={i} className="child_input_box">Child {i}<select
+      childrenAges.push(<div key={i} className="child_input_box" onChange={(e)=>handleChildAge(e.target.value,index,i)}>Child {i}<select
         name="room"
       // value={values.room}
       // onChange={handleInputChange}
@@ -471,7 +555,146 @@ const Homeform = (props) => {
 
     return childrenAges;
   };
+  const length = 3;
+  const init = 0;
+  const room1 = 2
+  const handleInputChangeAdult= (e,index)=>{
+    const data={...roomOrignal1}
+     data[index].adult =Number(e)
+    setroomOrignal(data)
+  
+    console.log(roomOrignal1,"origroomAddult............",data)
+  }
+  const handleInputChangeChild=async(e,index)=>{
+     let data=await {...roomOrignal1};
+    data[index].child =Number(e)
+    setroomOrignal(data)
+    let age=[]
+    for (let i=0; i<roomOrignal1[index].child; i++){
+      let room=`room${i}`
+      age.push({ room:0}) 
 
+    }
+    data={...roomOrignal1};
+    data[index].childAge=age
+    setroomOrignal(data)
+
+    console.log(roomOrignal1,"origroomCHild............","roomIndex",index,"child",roomOrignal1[index].child)
+  }
+  // const result = Array.from({ length }, () => "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
+  // const result=   Array.from({ room1 }, () => {
+
+  // })
+  function RoomData(){
+   let  data=[]
+  
+     for (let i = 0; i <=roomValue; i++){
+      for (let i = 0; i <=roomOrignal[i].adult; i++){
+        
+
+
+     }
+  }}
+  function range(end) {
+    return Array.from({ length: end }, (_, index) => (<div className="room_flex">
+      <div key={index}>
+        <h1>Room {index + 1}</h1>
+      </div>
+      <div  >
+
+        <h1>
+          Adults
+        </h1>
+        <select
+          name="adult"
+          value={roomOrignal1[index]?.adult}
+          onChange={(e)=>handleInputChangeAdult(e.target.value,index)} 
+        >
+
+          <option value='1'>1</option>
+          <option value='2'>2</option>
+          <option value='3'>3</option>
+          <option value='4'>4</option>
+          <option value='5'>5</option>
+          <option value='6'>6</option>
+          <option value='7'>7</option>
+          <option value='8'>8</option>
+
+        </select>
+      </div>
+      <div >
+        <h1>
+          Children
+          <p className="age-12"> 0-12 Years</p>
+        </h1>
+        <select
+          name="child"
+          // value={roomOrignal1[index].child}
+          onChange={(e)=>handleInputChangeChild(e.target.value,index)}
+
+        >
+          <option value='0'>0 </option>
+          <option value='1'>1 </option>
+          <option value='2'>2 </option>
+          <option value='3'>3 </option>
+          <option value='4'>4 </option>
+          <option value='5'>5 </option>
+          <option value='6'>6 </option>
+          <option value='7'>7 </option>
+          <option value='8'>8 </option>
+          <option value='9'>9 </option>
+          <option value='10'>10 </option>
+          <option value='11'>11 </option>
+          <option value='12'>12 </option>
+
+        </select>
+      </div>
+      {roomOrignal1[index]?.child !==0 &&
+        <div className="child">
+          <div>
+            <h1 >
+              Age of Children
+            </h1>
+          </div>
+          <div className="child1">
+            {renderChildrenAges(index)}
+
+          </div>
+
+        </div>
+      }
+    </div>));
+  }
+
+  // console.warn(range(10), "result8888888888888888888888888888888888");
+
+  const handleRommAdd = () => {
+    for (let i = 0; i < roomInitialValue.room; i++) {
+      for (let j = 0; j < roomInitialValue.room; j++) {
+        passengerDetail.push({
+          City: "",
+          nationality: "",
+          room: i+1,
+          adult: j+1,
+          // child: "0",
+          star: "5"
+        })
+      }
+      for (let k = 0; k < initialvalue.room; k++) {
+        passengerDetail.push({
+          City: "",
+          nationality: "",
+          room: i+1,
+          //  adult: j,
+          child: k+1,
+          star: "5"
+        })
+      }
+
+    }
+    console.warn(passengerDetail, "passengerDetail..................................")
+
+  }
   return (
     <>
       {
@@ -484,9 +707,7 @@ const Homeform = (props) => {
         <div className="container homeform_container 
          try">
 
-          {/* <p className="header_row">
-          <h5>{props.header}</h5>
-        </p> */}
+
           <form onSubmit={handleSubmit}>
             <div className="heroBanner">
               <Grid container id="grid" columnSpacing={{ xs: 3, sm: 2, md: 0 }}
@@ -494,7 +715,7 @@ const Homeform = (props) => {
                 justifyContent="space-between"
 
               >
-                <Grid item xs={12} sm={5.5} md={4}
+                <Grid item xs={12} sm={5.5} md={3}
 
                   id="hero1" className="hero" onMouseEnter={() => {
                     setIsLoading(true)
@@ -507,7 +728,7 @@ const Homeform = (props) => {
                   }}>
                   <div className="city1" >
                     <h4 >City, Property Name Or Location</h4>
-                    <h1 >City</h1>
+                    <h1 >{display === "" ? "City" : display}</h1>
                     <p  >Country</p>
                   </div>
                   {isLoading && isLoadingState === 1 &&
@@ -636,15 +857,16 @@ const Homeform = (props) => {
                     setIsLoadingState(0)
                   }} >
                   <div className="hero_date" >
-                    <div>
+                    <div >
 
-                      <h4 >Check-In</h4>
+                      <h4 className="check_date" >Check-In</h4>
+                      <SlArrowRight size={10} />
 
                     </div>
                     <h1 variant="h1" sx={{
 
-                    }} > {date.slice(8, 10)} </h1>
-                    <span>{MonthDayInEnglish1.slice(0, 3)} {date.slice(2, 4)}</span>
+                    }} > {date.slice(8, 10)} <span>{MonthDayInEnglish1.slice(0, 3)} {date.slice(2, 4)}</span> </h1>
+
                     <p variant="p" sx={{
 
                     }}  >{MonthDayInEnglish1.slice(4)} </p>
@@ -673,11 +895,16 @@ const Homeform = (props) => {
                             border: '0px solid',
                             backgroundColor: '#0d47a1',
 
+                            gap: 0,
+                            padding: 0,
+
                           },
                         }}
                           defaultValue={dayjs(date)}
                           selected={dayjs(date)}
                           onChange={handleMonthDayInEnglish1}
+                        // minDate={(new Date()).toISOString().split('T')[0]}
+                        // minDate={(new Date()).toISOString().split('T')[0]}
                         // min={disablePastDate()}
                         // minDate={new Date()} 
                         />
@@ -709,7 +936,8 @@ const Homeform = (props) => {
                   <div  >
                     <div>
 
-                      <h4 >Check-Out</h4>
+                      <h4 className="check_date">Check-Out</h4>
+                      <SlArrowRight size={10} />
 
                     </div>
                     <h1 sx={{
@@ -717,7 +945,8 @@ const Homeform = (props) => {
                     }} >
                       {oldDate.slice(8, 10)}
                       {/* {oldDate}  */}
-                    </h1><span>{MonthDayInEnglish2.slice(0, 3)} {oldDate.slice(2, 4)}</span>
+                      <span>{MonthDayInEnglish2.slice(0, 3)} {oldDate.slice(2, 4)}</span>
+                    </h1>
                     <p variant="p" sx={{
 
                     }}  >{MonthDayInEnglish2.slice(4)}</p>
@@ -770,7 +999,7 @@ const Homeform = (props) => {
                   </div>}
                 </Grid>
 
-                <Grid item xs={12} sm={5.5} md={2} id="hero4" className="hero" onMouseEnter={() => {
+                <Grid item xs={12} sm={5.5} md={3} id="hero4" className="hero" onMouseEnter={() => {
                   setIsLoading(true)
 
                   setIsLoadingState(4)
@@ -782,118 +1011,66 @@ const Homeform = (props) => {
                   <div >
 
                     <div>
-                      <h4 >Rooms & Guests</h4>
+                      <h4 className="check_date">Rooms & Guests</h4>
                     </div>
                     <div className="rooms" >
-                      <div>
+                      <div >
 
-                        <h4>{values.room}</h4>
-                        <p>Room</p>
+                        <h4 id="date_room"></h4>
+                        <p id="date_p">Room{ }</p>
                       </div>
                       <div>
 
-                        <h4>{values.adult}</h4>
-                        <p> Adults</p>
+                        <h4 id="date_room"></h4>
+                        <p id="date_p"> Adults{ }</p>
                       </div>
                       <div>
 
-                        <h4>{values.child}</h4>
-                        <p> child</p>
+                        <h4 id="date_room"></h4>
+                        <p id="date_p"> child</p>
                       </div>
                     </div>
 
                   </div>
-                  {isLoading && isLoadingState === 4 && <div className="loading1 rooms1 ">
-                    <div >
-                      <h1>
-                        Rooms
-                      </h1>
-                      <select
-                        name="room"
-                        value={values.room}
-                        onChange={handleInputChange}>
+                  {
+                    isLoading && isLoadingState === 4 &&
+                    <div className="loading1 rooms1 ">
+                      <div >
+                        <h1>
+                          Rooms
+                        </h1>
+                        <select
+                          name="room"
+                          value={roomValue}
+                          onChange={(event)=>handleFromInputRoomChange(event)}
+                          >
 
-                        <option value={1}>1</option>
-                        <option value={2}>2</option>
-                        <option value={3}>3</option>
-                        <option value={4}>4</option>
-                        <option value={5}>5</option>
-                        <option value={6}>6</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                          <option value="5">5</option>
+                          <option value="6">6</option>
 
-                      </select>
-                    </div>
-                    <div >
-                      <h1>
-                        Adults
-                      </h1>
-                      <select
-                        name="adult"
-                        value={values.adult}
-                        onChange={handleInputChange}
-                      >
+                        </select>
+                      </div>
 
-                        <option value='1'>1</option>
-                        <option value='2'>2</option>
-                        <option value='3'>3</option>
-                        <option value='4'>4</option>
-                        <option value='5'>5</option>
-                        <option value='6'>6</option>
-                        <option value='7'>7</option>
-                        <option value='8'>8</option>
+                      {range(roomValue)}
 
-                      </select>
-                    </div>
-                    <div >
-                      <h1>
-                        Children
-                        <p className="age-12"> 0-12 Years</p>
-                      </h1>
-                      <select
-                        name="child"
-                        value={values.child}
-                        onChange={handleInputChange}
-                      >
-                        <option value='0'>0 </option>
-                        <option value='1'>1 </option>
-                        <option value='2'>2 </option>
-                        <option value='3'>3 </option>
-                        <option value='4'>4 </option>
-                        <option value='5'>5 </option>
-                        <option value='6'>6 </option>
-                        <option value='7'>7 </option>
-                        <option value='8'>8 </option>
-                        <option value='9'>9 </option>
-                        <option value='10'>10 </option>
-                        <option value='11'>11 </option>
-                        <option value='12'>12 </option>
 
-                      </select>
-                    </div>
-                    <div>
-                      <p>
-                        Please provide right number of children along with their right age for best options and prices.
-                      </p>
-                    </div>
-                    {values.child != 0 &&
-                      <div className="child">
-                        <div>
-                          <h1 >
-                            Age of Children
-                          </h1>
-                        </div>
-                        <div className="child1">
-                          {renderChildrenAges()}
-
-                        </div>
-                        <div className="btn-apply-div">
-                          <button id="btn-apply">
-                            APPLY
-                          </button>
+                      <div>
+                        <p className="please_provide">
+                          Please provide right number of children along with their right age for best options and prices.
+                        </p>
+                      </div>
+                      <div className="btn-apply-div">
+                        <div id="btn-apply" onClick={handleRommAdd}>
+                          APPLY
                         </div>
                       </div>
-                    }
 
-                  </div>}
+
+                    </div>}
 
                 </Grid>
                 <Grid item xs={12} sm={5.5} md={2} id="hero5" className="hero" onMouseEnter={() => {
@@ -908,10 +1085,10 @@ const Homeform = (props) => {
                   <div >
 
                     <div>
-                      <h4>Price Per Rating</h4>
+                      <h4 className="check_date">Price Per Rating</h4>
                     </div>
                     <div className="rooms" >
-                      <h4> Star</h4>
+                      <h4 className="star_h4">{values.star} Star</h4>
 
                     </div>
 
@@ -919,9 +1096,11 @@ const Homeform = (props) => {
                   {isLoading && isLoadingState === 5 && <div className="loading1 ">
                     <select
                       name="room"
-                      // value={star}
-                      // onChange={handleInputChangeStar}
-                      >
+                      value={values.star}
+                      onChange={(e) => setValue({ ...values, star: e.target.value })}
+
+                    // onChange={handleInputChangeStar}
+                    >
                       <option value={1}>1 Star</option>
                       <option value={2}>2 Star</option>
                       <option value={3}>3 Star</option>
@@ -934,11 +1113,12 @@ const Homeform = (props) => {
                 </Grid>
               </Grid>
               <div className="Trending">
-                <div className="Tranding1" >
-                  <div className="Tranding2">
+                <div className="Trending2">
 
-                    <h1>Trending Searches:</h1>
-                  </div>
+                  <h1>Trending Searches:</h1>
+                </div>
+                <div className=" Trending1" >
+
                   <div className="Trending3">
 
                     <h1>Singapore, Singapore</h1>
@@ -955,7 +1135,7 @@ const Homeform = (props) => {
                 </div>
                 <div>
                   <Button id="btn-ht-search"
-                    type="submit"
+                    // type="submit"
                   // onClick={()=>console.log(values,"%%%%%%%%%%%5")}
 
                   >
@@ -978,10 +1158,13 @@ const Homeform = (props) => {
               </div>
               <div className="Value-right">
                 <div >
-                  <h4>100% Money Back Guarantee*</h4>
+
+                  <h4><HiCheck /> 100% Money Back Guarantee*</h4>
                 </div>
                 <div>
-                  <h4>Hassle-Free Check-In</h4>
+
+
+                  <h4> <HiCheck /> Hassle-Free Check-In</h4>
                 </div>
               </div>
             </div>
@@ -1081,7 +1264,7 @@ const Homeform = (props) => {
                   <div>
                     <div><img src={o1} alt="" className="offer_img" /></div>
                     <div>
-                      <p>Use Code: WELCOMESKY</p>
+                      <p>Use Code: <span>WELCOMESKY</span></p>
                     </div>
                   </div>
                   <div>
@@ -1098,7 +1281,7 @@ const Homeform = (props) => {
                       </div>
                     </div>
 
-                    <div>
+                    <div className="VIEW_DETAILS">
                       <h4>VIEW DETAILS</h4>
                     </div>
                   </div>
@@ -1152,7 +1335,7 @@ const Homeform = (props) => {
             height: "200px",
             backgroundColor: '#071c2c'
           }} />
-          <div className="row content_row" >
+          {/* <div className="row content_row" >
             <div className="col-12" mx={5}>
               <Box sx={{ width: "100%", typography: "body1" }}>
                 <TabContext value={value} centered>
@@ -1609,7 +1792,7 @@ const Homeform = (props) => {
                 </TabContext>
               </Box>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>

@@ -13,8 +13,8 @@ import "./home.css";
 const Home = () => {
     return (
         <div className="home_banner">
-            {/* <Homeform header="Book International and Domestic Flights"></Homeform> */}
-            <Oneway header="Book International and Domestic Flights" />
+            {/* <Homeform header=""></Homeform> */}
+            <Oneway header="" />
             {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
             <Toursection></Toursection>
             <SwipeToSlide></SwipeToSlide>
