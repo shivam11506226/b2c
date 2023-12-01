@@ -5,6 +5,120 @@ import './toursection.css';
 
 export default function Toursection() {
   return (
+// mohitjoshi
+   
+     
+        
+          
+            <Paper elevation={3} py={4} px={2} sx={{ borderRadius: "28px" }} className="paper">
+             
+                
+                  item
+                  xs={12}
+                  md={3}
+                  alignItems="center"
+                  sx={{ display: ["block", "block", "block", "flex"] }}
+                >
+                  <Box p={2} sx={{ textAlign: ["center", "center", "left"] }}>
+                    <img
+                      src={airplane}
+                      alt="airplane"
+                      style={{ width: "35px" }}
+                      textAlign="center"
+                    />
+                  </Box>
+                  <Typography
+                  className="typo"
+                    // fontWeight="bold"
+                    // sx={{
+                    //   color: "gray",
+                    //   fontSize: ["12px", "13px", "15px"],
+                    //   textAlign: ["center", "center", "left"],
+                    // }}
+                    // style={{ fontFamily: "Quicksand" }}
+                  >
+                    Where to Go{" "}
+                  
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={3}
+                  alignItems="center"
+                  sx={{
+                    display: ["block", "block", "block", "flex"],
+                    textAlign: ["center", "center", "left"],
+                  }}
+                >
+                  <Box p={2} sx={{ textAlign: ["center", "center", "left"] }}>
+                    <img
+                      src={languages}
+                      alt="languages"
+                      style={{ width: "35px" }}
+                    />
+                  </Box>
+                  <Typography
+                    // fontWeight="bold"
+                    // sx={{
+                    //   color: "gray",
+                    //   fontSize: ["12px", "13px", "15px"],
+                    //   textAlign: ["center", "center", "left"],
+                    // }}
+                    // style={{ fontFamily: "Quicksand" }}
+                    className="typo"
+                  >
+                    Insurance
+                    <Typography
+                      color="grey"
+                      sx={{ fontSize: ["12px", "13px", "15px"] }}
+                      alignItems="center"
+                      fontWeight="bold"
+                      style={{ fontFamily: "Quicksand" }}
+                    >
+                      For International Trips
+                    </Typography>{" "}
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  xs={12}
+                  md={3}
+                  alignItems="center"
+                  sx={{ display: ["block", "block", "block", "flex"] }}
+                >
+                  <Box p={2} sx={{ textAlign: ["center", "center", "left"] }}>
+                    <img
+                      src={travelbag}
+                      alt="travelbag"
+                      style={{ width: "35px" }}
+                    />
+                  </Box>
+                  <Typography
+                   
+                   className="typo"
+                  >
+                    Explore International Flights
+                    <Typography
+                     className="typo1"
+                      color="grey"
+                      sx={{ fontSize: ["12px", "13px", "15px"] }}
+                      alignItems="center"
+                      fontWeight="bold"
+                      style={{ fontFamily: "Quicksand" }}
+                    >
+                      
+                    </Typography>{" "}
+                  
+               
+      //mohit         
+                  
+                
+               
+                
+                 
+                 
+                
     <div className="containerTour">
       <div className="item">
         <div className="icon-container">
@@ -36,6 +150,7 @@ export default function Toursection() {
         <div className="text">
           <span>Insurance<br/></span>
           <span style={{ color: '#BBBBBB', fontSize: 12, fontFamily: 'Montserrat', fontWeight: '600', wordWrap: 'break-word' }}>For International Trips</span>
+
         </div>
       </div>
     

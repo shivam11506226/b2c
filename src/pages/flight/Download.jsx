@@ -9,7 +9,7 @@ const Download = () => {
         <React.Fragment>
             <section>
                 
-            <div className="container homeform_container">
+            {/* <div className="container homeform_container">
                         <Box pt={3}>
                             <Paper elevation={3} py={2} sx={{ borderRadius: '15px',width:'80%' }}>
                                 <div className="download_header">
@@ -37,7 +37,7 @@ const Download = () => {
                                 </div>
                             </Paper>
                         </Box>
-                        </div>
+                        </div> */}
                 
             </section>
         </React.Fragment>

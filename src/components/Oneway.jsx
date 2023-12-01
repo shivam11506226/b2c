@@ -304,6 +304,9 @@ const Homeform = (props) => {
   };
   function handleOnewaySubmit(event) {
     event.preventDefault();
+    if(validation()){
+      return
+    }
     const formData = new FormData(event.target);
     const payload = {
       EndUserIp: reducerState?.ip?.ipData,
@@ -360,6 +363,12 @@ const Homeform = (props) => {
 
     dispatch(oneWayAction(payload));
   }
+
+  function validation(){
+    if(from===""||to===""|| document.getElementById("departure").value===""){
+      return true
+    }
+
   const handleButtonClick = () => {
     // Redirect to the "/returnResult" path
     navigate("/booking");
@@ -382,6 +391,7 @@ const Homeform = (props) => {
       const updatedDates = dateRanges.filter((date) => date.key !== key);
       setDateRanges(updatedDates);
     };
+
   }
   return (
     <section>
@@ -546,7 +556,11 @@ const Homeform = (props) => {
                         <div className="from-details">
                           DEL, Delhi Airport India
                         </div>
-
+                       
+                        
+                             
+                      
+                    
                         <div className="roundlogo">
                           <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -608,6 +622,7 @@ const Homeform = (props) => {
                           {toSearchResults && toSearchResults.length > 0 && (
                             <div
                               ref={toSearchRef}
+
                               style={{
                                 backgroundColor: "white",
                                 borderRadius: "10px",

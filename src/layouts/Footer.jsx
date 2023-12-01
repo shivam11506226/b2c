@@ -11,7 +11,7 @@ import "./layout.css"
 const Footer = () => {
     return (
         <footer>
-            <div className="container footer_container">
+            {/* <div className="container footer_container">
                 <article>
                     <h4>Our Products</h4>
                     <Link>Domestic Hotels</Link>
@@ -61,7 +61,7 @@ const Footer = () => {
                     <Link>Advertise With Us</Link>
                 </article>
                 <article>
-                    <h4>Follow Us</h4>
+                    <h4>
                     <div className="footer_socials">
                         <a href="#" target="_blank" rel="noreferrer noopener"><img src={facebook} alt="Social Media" /></a>
                         <a href="#" target="_blank" rel="noreferrer noopener"><img src={instagram} alt="Social Media" /></a>
@@ -71,7 +71,7 @@ const Footer = () => {
                         <img src={payment} alt="Footer Payment" />
                     </Link>
                 </article>
-            </div>
+            </div> */}
             <article>
                 <h4>The SkyTrails</h4>
             </article>

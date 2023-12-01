@@ -32,30 +32,59 @@ const HotelResult = () => {
   console.error("check Result", noResult);
   return (
     <>
-     
-      {!loader == true  ? (
+
+      {!loader == true ? (
         <div
           style={{
             width: "100%",
             height: "100%",
             background: "#B1DDF8",
-            position:'absolute',
-            top:'102px',
+            position: 'absolute',
+            top: '102px',
             display: "flex",
             justifyContent: "center",
-            zIndex:'555554444'
+            zIndex: '555554444'
           }}
         >
           {" "}
           <img
-           
+
             src={noResult === "No Result Found" ? errorImg : hotelpreLoader}
             style={{ width: "100%", height: "100%" }}
             alt=""
           />{" "}
         </div>
       ) : (
-        <div>
+        <div >
+          <div className="filter">
+            <div className="SORT">
+              <h1>SORT BY:</h1>
+            </div>
+            <div className="filter1" >
+              <div>
+                <p>Popular</p>
+              </div>
+              <div>
+                <p>User Rating</p>
+              </div>
+              <div>
+                <p>Price (Highest First)</p>
+              </div>
+              <div>
+                <p>Value for Money</p>
+              </div>
+            </div>
+            <div className="View-Map">
+              <div>
+                <h5>
+                View Map
+                </h5>
+              </div>
+              <div>
+                <input type="text" />
+              </div>
+            </div>
+          </div>
           <div className="container ">
             <div className="row">
               <div className="col-md-12">
