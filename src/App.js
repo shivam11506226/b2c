@@ -39,7 +39,8 @@ import { useLocation} from "react-router-dom";
 import  ReturnFlight from "./pages/Return/ReturnFlight"
 import PaymentReturn from './pages/Return/PaymentReturn';
 import Conformation from './pages/Return/Conformation';
-import NonStopFlight from './pages/Return/NonStopFlight'
+import NonStopFlight from './pages/Return/NonStopFlight';
+import BusResult from './pages/bus/bussearchresult/BusResult';
 function App() {
   const location = useLocation();
  
@@ -90,6 +91,8 @@ function App() {
         <Route path="/BusReviewBooking" element={<BusReviewBooking />}></Route>
         <Route path="/BusBookingConfirmation" element={<BusBookingConfirmation />}></Route>
         <Route path="/SelectBusSeat" element={<SeatLayout />}></Route>
+        <Route path="/busresult" element={<BusResult/>}></Route>
+
         
         {/* Forex */}
         <Route path="/forex" element={<Forex/>}/>

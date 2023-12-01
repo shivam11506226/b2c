@@ -4,7 +4,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 
 import Box from "@mui/material/Box";
 // bootstrap
-import { busSearchAction } from '../../Redux/busSearch/busSearchAction';
+import { busSearchAction } from "../../Redux/busSearch/busSearchAction";
 import "./bus.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
@@ -84,12 +84,11 @@ const Homeform = (props) => {
   const [displayFrom, setdisplayFrom] = useState(true);
   const [displayTo, setdisplayTo] = useState(true);
   const inputRef = useRef(null);
-  const [fromData,setFromData] = useState([]);
-  const [origin,setOrigin] = useState([]);
+  const [fromData, setFromData] = useState([]);
+  const [origin, setOrigin] = useState([]);
   const [display, setDisplay] = useState("");
 
   // Copied state end
-
 
   const handleSwap = useCallback(() => {
     setFrom(to);
@@ -100,13 +99,12 @@ const Homeform = (props) => {
     setLabelFrom(labelTo);
   }, [from, to, placeholderFrom, placeholderTo, labelFrom, labelTo]);
 
-
   // Copied code start
 
   // useEffect(() => {
   //   dispatch(clearBusSearchReducer());
   // }, [dispatch]);
- 
+
   //============== copied -----=======//
 
   useEffect(() => {
@@ -159,19 +157,18 @@ const Homeform = (props) => {
     };
   }, [toQuery]);
 
-  console.log("from result",fromSearchResults)
-  console.log("to result",toSearchResults)
+  console.log("from result", fromSearchResults);
+  console.log("to result", toSearchResults);
 
   const handleFromInputChange = (event) => {
     setFrom(event.target.value);
     setSelectedFrom(null);
-   
   };
 
   const handleFromClick = (result) => {
-    console.log("result",result);
+    console.log("result", result);
     // setFrom(result?.CityId);
-   
+
     setFrom(result.CityId);
     setDisplay(result.CityName);
     setSelectedFrom(result?.CityId);
@@ -184,7 +181,6 @@ const Homeform = (props) => {
     setDisplay(result.CityName);
     setdisplayTo(false);
   };
-
 
   const handleFromSearch = (e) => {
     setFromQuery(e);
@@ -199,8 +195,6 @@ const Homeform = (props) => {
     setToQuery(e);
   };
   // Copied code end
-
-
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -225,14 +219,15 @@ const Homeform = (props) => {
       TokenId: reducerState?.ip?.tokenData,
       DateOfJourney: formData.get("departure"),
       DestinationId: formData.get("to"),
-      OriginId : formData.get("from"),
+      OriginId: formData.get("from"),
     };
-    console.log("payload",payload);
+    console.log("payload", payload);
     dispatch(busSearchAction(payload));
-    navigate("/BusSearchresult")
+    navigate("/BusSearchresult");
   }
-
-
+  function handleFromClicks() {
+    navigate("/busresult");
+  }
   // end
   return (
     <section>
@@ -240,13 +235,16 @@ const Homeform = (props) => {
         <p className="header_row">
           <h5>{props.header}</h5>
         </p>
-        <div className="row content_row">
-          <div className="col-12" mx={5}>
+        <div
+          className="row content_row"
+          style={{ zIndex: "1px", position: "relative", top: "-30px" }}
+        >
+          <div className="col-12">
             <Box
-              sx={{ width: "100%", typography: "body1" }}
+              sx={{ width: "90%", typography: "body1", margin: "auto" }}
               style={{ marginTop: "50px" }}
             >
-              <Box
+              {/* <Box
                 py={2}
                 sx={{ backgroundColor: "white", borderRadius: "20px" }}
               >
@@ -267,7 +265,7 @@ const Homeform = (props) => {
                           handleFromInputChange(event);
                           handleFromSearch(event.target.value);
                         }}
-                        // onChange={(e) => setFrom(e.target.value)}
+                      
                       />
                        {fromSearchResults && fromSearchResults.length > 0 && (
                 <div
@@ -299,7 +297,7 @@ const Homeform = (props) => {
                           onClick={() => handleFromClick(result)}
                         >
                           <strong>{result.CityId}</strong> {result.CityName}{" "}
-                          {/* {result.CityId} */}
+                        
                         </li>
                       ))}
                     </Box>
@@ -349,7 +347,7 @@ const Homeform = (props) => {
                           handleToInputChange(event);
                           handleToSearch(event.target.value);
                         }}
-                        // onChange={(e) => setTo(e.target.value)}
+                        
                       />
                        {toSearchResults && toSearchResults.length > 0 && (
                 <div
@@ -404,7 +402,7 @@ const Homeform = (props) => {
                 </div>
                 <div className="col-12">
             <div className="row select_fare">
-              {/* <form action="/BusSearchresult"> */}
+            
                 <Box display="flex" justifyContent="center">
                   <div class="wrapper">
                     <text className="col-auto fare_search ">
@@ -415,14 +413,257 @@ const Homeform = (props) => {
                     </text>
                   </div>
                 </Box>
-              {/* </form> */}
+             
             </div>
           </div>
                 </form>
-              </Box>
+              </Box> */}
+              <form>
+                <div className="your-containerform">
+                  <div className="from-container">
+                    <div className="from-label">From</div>
+                    <div className="from-city">
+                      {" "}
+                      <input
+                        name="from"
+                        placeholder="Enter city or airport"
+                        value={from}
+                        autoComplete="off"
+                        // onChange={(event) => {
+                        //   handleFromInputChange(event);
+                        //   setIsLoadingFrom(true);
+                        //   handleFromSearch(event.target.value);
+                        // }}
+                        // required
+                        style={{
+                          outline: "none",
+                          border: "none",
+                        }}
+                      />
+                      {/* {isLoadingFrom && <div>Loading...</div>}
+                          {fromSearchResults &&
+                            fromSearchResults.length > 0 && (
+                              <div
+                                ref={fromSearchRef}
+                                className="from-search-results"
+                                style={{
+                                  backgroundColor: "white",
+                                  borderRadius: "10px",
+                                  zIndex: 1999900,
+                                  width: "100%",
+                                  boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
+                                  textAlign: "left",
+                                  cursor: "pointer",
+                                  display: displayFrom ? "block" : "none",
+                                }}
+                              >
+                                <ul className="from_Search_Container">
+                                  {fromSearchResults.map((result) => (
+                                    <li
+                                      className="to_List"
+                                      key={result._id}
+                                      onClick={() => handleFromClick(result)}
+                                    >
+                                      <div>
+                                        <span className="to_List_container">
+                                          <FlightTakeoffTwoToneIcon />{" "}
+                                          <strong>{result.name}</strong>{" "}
+                                          <strong
+                                            className="to_airport_code"
+                                            style={{
+                                              color: "gray",
+                                              fontSize: "12px",
+                                            }}
+                                          >
+                                            {result.AirportCode}
+                                          </strong>
+                                        </span>
+                                        <span
+                                          style={{
+                                            fontSize: "13px",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                          }}
+                                        >
+                                          {result.code}
+                                        </span>
+                                      </div>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )} */}
+                    </div>
+                    <div className="from-details">DEL, Delhi Airport India</div>
+
+                    <div className="roundlogo">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="40"
+                        height="40"
+                        viewBox="0 0 40 40"
+                        fill="none"
+                      >
+                        <circle
+                          cx="20"
+                          cy="20"
+                          r="19"
+                          fill="white"
+                          stroke="#071C2C"
+                          stroke-width="2"
+                        />
+                      </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="18"
+                        height="20"
+                        viewBox="0 0 18 20"
+                        fill="none"
+                        justifyContent="center"
+                      >
+                        <path
+                          d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
+                          stroke="#071C2C"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <div className="from-container">
+                    <div className="to-label">To</div>
+                    <div className="to-city">
+                      {" "}
+                      <input
+                        name="to"
+                        placeholder="Enter city or airport"
+                        value={to}
+                        // required
+                        // onChange={(event) => {
+                        //   handleToInputChange(event);
+                        //   setIsLoadingTo(true); // Set loading state for TO input
+                        //   handleToSearch(event.target.value);
+                        // }}
+                        autoComplete="off"
+                        style={{
+                          border: "none",
+
+                          outline: "none",
+                        }}
+                      />
+                      {/* {isLoadingTo && <div>Loading...</div>}
+                          {toSearchResults && toSearchResults.length > 0 && (
+                            <div
+                              ref={toSearchRef}
+                              style={{
+                                backgroundColor: "white",
+                                borderRadius: "10px",
+                                zIndex: 9999991,
+                                width: "100%",
+                                boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
+                                textAlign: "left",
+                                cursor: "pointer",
+                                display: displayTo ? "block" : "none",
+                              }}
+                            >
+                              <ul className="to_Search_Container">
+                                <Box
+                                  sx={{
+                                    mb: 1,
+                                    mt: 1,
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    maxHeight: 161,
+                                    overflow: "hidden",
+                                    overflowY: "scroll",
+                                  }}
+                                  className="scroll_style"
+                                >
+                                  {toSearchResults.map((result) => (
+                                    <li
+                                      className="to_List"
+                                      key={result._id}
+                                      onClick={() => handleToClick(result)}
+                                    >
+                                      <div>
+                                        <span className="to_List_container">
+                                          <FlightLandTwoToneIcon />{" "}
+                                          <strong>{result.name}</strong>{" "}
+                                          <strong
+                                            className="to_airport_code"
+                                            style={{
+                                              color: "gray",
+                                              fontSize: "12px",
+                                            }}
+                                          >
+                                            {result.AirportCode}
+                                          </strong>
+                                        </span>
+                                        <span
+                                          style={{
+                                            fontSize: "13px",
+                                            display: "flex",
+                                            justifyContent: "center",
+                                          }}
+                                        >
+                                          {result.code}
+                                        </span>
+                                      </div>
+                                    </li>
+                                  ))}
+                                </Box>
+                              </ul>
+                            </div>
+                          )} */}
+                    </div>
+                    <div className="to-details">
+                      BLR, Bengaluru International Airport In..
+                    </div>
+                  </div>
+                  <div className="from-container2">
+                    <div className="departure-label">Travel Date</div>
+                    <div className="date-container">
+                      <div className="date-info1">
+                        <div className="datee">
+                          <input
+                            type="date"
+                            name="departure"
+                            id="departure"
+                            className="deaprture_input"
+                            placeholder="Enter city or airport"
+                            style={{
+                              border: "none",
+                              outline: "none",
+                            }}
+                          ></input>
+                        </div>
+                      </div>
+                      <div className="day">Thursday</div>
+                    </div>
+                  </div>
+                </div>
+              </form>
+              <div className="row select_fare1">
+                <Box display="flex" justifyContent="center">
+                  {/* <div class="wrapper">
+                    <text className="col-auto fare_search ">
+                      <button type="submit" path="" className="search" onClick={handleFromClicks}>
+                        {" "}
+                        Search
+                      </button>
+                    </text>
+                  </div> */}
+                  <div className="searchContainer">
+                    <div className="searchButton">
+                      <div className="buttonText">SEARCH</div>
+                    </div>
+                  </div>
+                </Box>
+              </div>
             </Box>
           </div>
-          
         </div>
       </div>
     </section>

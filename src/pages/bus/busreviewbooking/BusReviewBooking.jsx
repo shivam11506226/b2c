@@ -9,11 +9,11 @@ import BusSearchReview from './BusSearchReview';
 const BusReviewBooking = () => {
   return (
    <div className='bus_banner'>
-            <Searchnavbar />
-            <Blankdiv />
+            
+           
             <BusReasultForm/>
-            <BusSearchReview />
-            <Footer />
+           
+          
         </div>
   )
 }

@@ -11,7 +11,7 @@ const BusBookingConfirmation = () => {
     <div>
        <div className='bus_banner'>
             <Searchnavbar />
-            <Blankdiv />
+           
             <BusReasultForm/>
             <BusBookingDetails />
             <Footer />
