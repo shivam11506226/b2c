@@ -11,6 +11,7 @@ const HotelInfoCard = () => {
       ?.HotelResults;
 
   console.error("✌️ hotelDetails ", hotelDetails);
+  console.log(hotelDetails, "hhhhhhhhhhhhhhhhhh")
 
   const handleBookHotel = (resultIndex, hotelCode) => {
     console.log("Handel Click Index Key", resultIndex, hotelCode);
@@ -18,97 +19,110 @@ const HotelInfoCard = () => {
     sessionStorage.setItem("HotelCode", hotelCode);
   };
   return (
-    <>
+    <div className="hotel_detail_main_container">
       {hotelDetails?.map((ele, indx) => {
         // ⬇️ create variable 
-          const resultIndex = ele?.ResultIndex;
-          const hotelCode = ele?.HotelCode;
-        return(
-          <Box
-          display="flex"
-          justifyContent="space-evenly"
-          alignItems="center"
-          key={indx}
-          className="boxshaow"
-          container
-          p={1}
-          mt={1}
-        >
-          <Box sx={{ width: "20%", height: "30%" }}>
-            <img src={ele?.HotelPicture} className="flight_img" />
-          </Box>
-          <Grid item sm={12} lg={5} xs={12}>
-            <Box>
-              <Typography fontWeight={500}>{ele?.HotelName}</Typography>
-            </Box>
-            <Box>
-              <Box ml={1} style={{ display: "flex", alignItems: "center" }}>
-                <Typography style={{ color: "#006FFF", fontSize: "11px" }}>
-                  {ele?.HotelAddress}{" "}
-                </Typography>
-              </Box>
-            </Box>
+        const resultIndex = ele?.ResultIndex;
+        const hotelCode = ele?.HotelCode;
+        return (
+          <div
 
-            <Box
-              ml={1}
-              mt={1}
-              style={{ display: "flex", alignItems: "center" }}
-            >
-              <Rating
-                name="read-only"
-                value={ele?.StarRating}
-                readOnly
-                size="small"
-              />
-            </Box>
-          </Grid>
-          <Grid item sm={12} lg={3} xs={12}>
-         
 
-            <Box  display="flex"
-          justifyContent="space-evenly"
-          alignItems="center"
-          flexDirection='column'
-          height={100}
+            key={indx}
+            className="boxshaow hotel-result-container"
+
+
           >
-              <Typography
-                color="#006FFF"
-                fontSize="12px"
-                fontWeight="bold"
-                display="flex"
-                justifyContent="center"
-              >
-                Offer Price: ₹{ele?.Price?.OfferedPrice}
-              </Typography>
+            <div className="booking_card_left">
+              <div className="booking_card_left_left">
+                <div >
+                  <img src={ele?.HotelPicture} className="hotel_Detail_Card_img" />
+                </div>
+                <div className="hotel_right_left">
 
-              <Typography
-                color="#FF8900"
-                fontSize="12px"
-                fontWeight="bold"
-                display="flex"
-                justifyContent="center"
+                  <div className="hotel_name_container">
+                    <h1 className="hotel_name1">{ele?.HotelName}</h1>
+                    <Rating
+                      name="read-only"
+                      value={ele?.StarRating}
+                      readOnly
+                      size="small"
+                    />
+                  </div>
+                  <div>
+                    <div >
+                      <h1 className="hotel_address1">
+                        {ele?.HotelAddress}{" "}
+                      </h1>
+                    </div>
+                  </div>
+                  <div className="Free_Cancellation_div">
+                    <div className="Free_Cancellation"
+
+                    >
+                      Free Cancellation till check-in
+
+                    </div>
+                    <div
+                      className="Money_Back"
+                    >
+                      100% Money Back Guarantee on Clean rooms with TV,AC & Free Wi-Fi
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+
+
+              <div
+              className="hitel_detail_right"
               >
-                Publisher Price: ₹{ele?.Price?.PublishedPrice}
-              </Typography>
-              <form action="/hotel/HotelSearchResult" >
-              <Button variant="contained" textAlign="right" type="submit" onClick={() => {
-                            console.log(
-                              "resultIndex, hotelCode",
-                              resultIndex,
-                              hotelCode
-                            );
-                            handleBookHotel(resultIndex, hotelCode);
-                          }}>
-                Book Now
-              </Button>
-              </form>
-            </Box>
-          </Grid>
-        </Box>
+                <div>
+                <h1
+                  className="OfferedPrice"
+                >
+                  {ele?.Price?.OfferedPrice}
+                </h1>
+
+                <h1
+                  className="PublishedPrice"
+                >
+                  ₹{ele?.Price?.PublishedPrice}
+                </h1>
+                <p className="extra_price">+₹ 1,181 taxes & fees Per Night</p>
+                </div>
+                <div>
+                  <h1 className="hotel_detail_no_cost">No Cost EMI <span></span></h1>
+                </div>
+                {/* <form action="/hotel/HotelSearchResult" >
+                  <Button variant="contained" textAlign="right" type="submit" onClick={() => {
+                    console.log(
+                      "resultIndex, hotelCode",
+                      resultIndex,
+                      hotelCode
+                    );
+                    handleBookHotel(resultIndex, hotelCode);
+                  }}>
+                    Book Now
+                  </Button>
+                </form> */}
+              </div>
+
+
+            </div>
+            <div className="exclusive_discount">
+
+              Exclusive discount of INR 6832 applied on your 1st Hotel booking
+
+            </div>
+          </div>
         )
-       
-})}
-    </>
+
+      })}
+
+    </div>
   );
 };
 

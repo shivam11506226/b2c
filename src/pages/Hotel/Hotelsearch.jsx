@@ -528,24 +528,24 @@ const Homeform = (props) => {
     for (let i = 0; i <= roomOrignal1[index]?.child-1; i++) {
       // You can modify this logic based on how you want to calculate or obtain the ages
       const age = Math.floor(Math.random() * 18) + 1; // Random age between 1 and 18
-      childrenAges.push(<div key={i} className="child_input_box" onChange={(e)=>handleChildAge(e.target.value,index,i)}>Child {i}<select
+      childrenAges.push(<div key={i} className="child_input_box" onChange={(e)=>handleChildAge(e.target.value,index,i)}>Child {i}<select className="select_S"
         name="room"
       // value={values.room}
       // onChange={handleInputChange}
       >
 
-        <option value={1}>1 yrs</option>
-        <option value={2}>2 yrs</option>
-        <option value={3}>3 yrs</option>
-        <option value={4}>4 yrs</option>
-        <option value={5}>5 yrs</option>
-        <option value={6}>6 yrs</option>
-        <option value={7}>7 yrs</option>
-        <option value={8}>8 yrs</option>
-        <option value={9}>8 yrs</option>
-        <option value={10}>10 yrs</option>
-        <option value={11}>11 yrs</option>
-        <option value={12}>12 yrs</option>
+        <option className="option_0" value={1}>1 yrs</option>
+        <option className="option_0" value={2}>2 yrs</option>
+        <option className="option_0" value={3}>3 yrs</option>
+        <option className="option_0" value={4}>4 yrs</option>
+        <option className="option_0" value={5}>5 yrs</option>
+        <option className="option_0" value={6}>6 yrs</option>
+        <option className="option_0" value={7}>7 yrs</option>
+        <option className="option_0" value={8}>8 yrs</option>
+        <option className="option_0" value={9}>8 yrs</option>
+        <option className="option_0" value={10}>10 yrs</option>
+        <option className="option_0" value={11}>11 yrs</option>
+        <option className="option_0" value={12}>12 yrs</option>
 
       </select>
 
@@ -605,20 +605,20 @@ const Homeform = (props) => {
         <h1>
           Adults
         </h1>
-        <select
+        <select className="select_S"
           name="adult"
           value={roomOrignal1[index]?.adult}
           onChange={(e)=>handleInputChangeAdult(e.target.value,index)} 
         >
 
-          <option value='1'>1</option>
-          <option value='2'>2</option>
-          <option value='3'>3</option>
-          <option value='4'>4</option>
-          <option value='5'>5</option>
-          <option value='6'>6</option>
-          <option value='7'>7</option>
-          <option value='8'>8</option>
+          <option className="option_0" value='1'>1</option>
+          <option className="option_0" value='2'>2</option>
+          <option className="option_0" value='3'>3</option>
+          <option className="option_0" value='4'>4</option>
+          <option className="option_0" value='5'>5</option>
+          <option className="option_0" value='6'>6</option>
+          <option className="option_0" value='7'>7</option>
+          <option className="option_0" value='8'>8</option>
 
         </select>
       </div>
@@ -627,25 +627,25 @@ const Homeform = (props) => {
           Children
           <p className="age-12"> 0-12 Years</p>
         </h1>
-        <select
+        <select className="select_S"
           name="child"
           // value={roomOrignal1[index].child}
           onChange={(e)=>handleInputChangeChild(e.target.value,index)}
 
         >
-          <option value='0'>0 </option>
-          <option value='1'>1 </option>
-          <option value='2'>2 </option>
-          <option value='3'>3 </option>
-          <option value='4'>4 </option>
-          <option value='5'>5 </option>
-          <option value='6'>6 </option>
-          <option value='7'>7 </option>
-          <option value='8'>8 </option>
-          <option value='9'>9 </option>
-          <option value='10'>10 </option>
-          <option value='11'>11 </option>
-          <option value='12'>12 </option>
+          <option className="option_0" value='0'>0 </option>
+          <option className="option_0" value='1'>1 </option>
+          <option className="option_0" value='2'>2 </option>
+          <option className="option_0" value='3'>3 </option>
+          <option className="option_0" value='4'>4 </option>
+          <option className="option_0" value='5'>5 </option>
+          <option className="option_0" value='6'>6 </option>
+          <option className="option_0" value='7'>7 </option>
+          <option className="option_0" value='8'>8 </option>
+          <option className="option_0" value='9'>9 </option>
+          <option className="option_0" value='10'>10 </option>
+          <option className="option_0" value='11'>11 </option>
+          <option className="option_0" value='12'>12 </option>
 
         </select>
       </div>
@@ -703,21 +703,21 @@ const Homeform = (props) => {
       {
         isModalOpen && <LoginForm isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       }
-      <section>
+      <section >
         <div className="container homeform_container 
-         try">
+         try1">
 
 
           <form onSubmit={handleSubmit}>
-            <div className="heroBanner">
-              <Grid container id="grid" columnSpacing={{ xs: 3, sm: 2, md: 0 }}
+            <div className="hero_Banner1">
+              <Grid container id="grid_1" columnSpacing={{ xs: 3, sm: 2, md: 0 }}
                 rowSpacing={{ xs: 3, sm: 2, md: 0 }}
                 justifyContent="space-between"
 
               >
                 <Grid item xs={12} sm={5.5} md={3}
 
-                  id="hero1" className="hero" onMouseEnter={() => {
+                  id="hero1" className="hero0" onMouseEnter={() => {
                     setIsLoading(true)
 
                     setIsLoadingState(1)
@@ -733,7 +733,7 @@ const Homeform = (props) => {
                   </div>
                   {isLoading && isLoadingState === 1 &&
                     <div className="loading1">
-                      <div className="loading_input_container">
+                      <div className="loading_input_container1">
 
                         <CiSearch />
                         <input
@@ -846,7 +846,7 @@ const Homeform = (props) => {
                         )}
                     </div>}
                 </Grid>
-                <Grid item xs={12} sm={5.5} md={2} id="hero2" className="hero" onMouseEnter={() => {
+                <Grid item xs={12} sm={5.5} md={2} id="hero2" className="hero0" onMouseEnter={() => {
                   setIsLoading(true)
 
                   setIsLoadingState(2)
@@ -923,7 +923,7 @@ const Homeform = (props) => {
                     />} */}
                   </div>
                 </Grid>
-                <Grid item xs={12} sm={5.5} md={2} id="hero3" className="hero" onMouseEnter={() => {
+                <Grid item xs={12} sm={5.5} md={2} id="hero3" className="hero0" onMouseEnter={() => {
                   setIsLoading(true)
 
                   setIsLoadingState(3)
@@ -999,7 +999,7 @@ const Homeform = (props) => {
                   </div>}
                 </Grid>
 
-                <Grid item xs={12} sm={5.5} md={3} id="hero4" className="hero" onMouseEnter={() => {
+                <Grid item xs={12} sm={5.5} md={3} id="hero4" className="hero0" onMouseEnter={() => {
                   setIsLoading(true)
 
                   setIsLoadingState(4)
@@ -1039,18 +1039,18 @@ const Homeform = (props) => {
                         <h1>
                           Rooms
                         </h1>
-                        <select
+                        <select className="select_S"
                           name="room"
                           value={roomValue}
                           onChange={(event)=>handleFromInputRoomChange(event)}
                           >
 
-                          <option value="1">1</option>
-                          <option value="2">2</option>
-                          <option value="3">3</option>
-                          <option value="4">4</option>
-                          <option value="5">5</option>
-                          <option value="6">6</option>
+                          <option className="option_0" value="1">1</option>
+                          <option className="option_0" value="2">2</option>
+                          <option className="option_0" value="3">3</option>
+                          <option className="option_0" value="4">4</option>
+                          <option className="option_0" value="5">5</option>
+                          <option className="option_0" value="6">6</option>
 
                         </select>
                       </div>
@@ -1073,7 +1073,7 @@ const Homeform = (props) => {
                     </div>}
 
                 </Grid>
-                <Grid item xs={12} sm={5.5} md={2} id="hero5" className="hero" onMouseEnter={() => {
+                <Grid item xs={12} sm={5.5} md={2} id="hero5" className="hero0" onMouseEnter={() => {
                   setIsLoading(true)
 
                   setIsLoadingState(5)
@@ -1094,17 +1094,17 @@ const Homeform = (props) => {
 
                   </div>
                   {isLoading && isLoadingState === 5 && <div className="loading1 ">
-                    <select
+                    <select className="select_S"
                       name="room"
                       value={values.star}
                       onChange={(e) => setValue({ ...values, star: e.target.value })}
 
                     // onChange={handleInputChangeStar}
                     >
-                      <option value={1}>1 Star</option>
-                      <option value={2}>2 Star</option>
-                      <option value={3}>3 Star</option>
-                      <option value={4}>4 Star</option>
+                      <option className="option_0" value={1}>1 Star</option>
+                      <option className="option_0" value={2}>2 Star</option>
+                      <option className="option_0" value={3}>3 Star</option>
+                      <option className="option_0" value={4}>4 Star</option>
 
 
 
@@ -1202,7 +1202,7 @@ const Homeform = (props) => {
           <div className="LOREM">
             <h1>LOREM IPSUM</h1>
           </div>
-          <div className="OFFERS">
+          {/* <div className="OFFERS">
             <div className="OFFERS1">
 
               <div className="OFFERS2">
@@ -1326,7 +1326,7 @@ const Homeform = (props) => {
 
 
 
-          </div>
+          </div> */}
           <div className="LOREM">
             <h1>LOREM IPSUM</h1>
           </div>
@@ -1335,7 +1335,7 @@ const Homeform = (props) => {
             height: "200px",
             backgroundColor: '#071c2c'
           }} />
-          {/* <div className="row content_row" >
+          <div className="row content_row" >
             <div className="col-12" mx={5}>
               <Box sx={{ width: "100%", typography: "body1" }}>
                 <TabContext value={value} centered>
@@ -1540,19 +1540,19 @@ const Homeform = (props) => {
                             <Box paddingRight={1}>
                               <div className="hotel_form_input">
                                 <label className="form_lable">Room*</label>
-                                <select
+                                <select 
                                   name="room"
                                   value={values.room}
                                   onChange={handleInputChange}
-                                  className="hotel_input_select"
+                                  className="hotel_input_select select_S"
                                 >
-                                  <option>0</option>
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                  <option>6</option>
+                                  <option className="option_0">0</option>
+                                  <option className="option_0">1</option>
+                                  <option className="option_0">2</option>
+                                  <option className="option_0">3</option>
+                                  <option className="option_0">4</option>
+                                  <option className="option_0">5</option>
+                                  <option className="option_0">6</option>
                                 </select>
                                 {error && values.room.length < 1 ? (
                                   <label
@@ -1599,21 +1599,21 @@ const Homeform = (props) => {
                             <Box px={1}>
                               <div className="hotel_form_input">
                                 <label className="form_lable">Adult*</label>
-                                <select
+                                <select 
                                   name="adult"
                                   value={values.adult}
                                   onChange={handleInputChange}
-                                  className="hotel_input_select"
+                                  className="hotel_input_select select_S"
                                 >
-                                  <option>0</option>
-                                  <option>1</option>
-                                  <option>2</option>
-                                  <option>3</option>
-                                  <option>4</option>
-                                  <option>5</option>
-                                  <option>6</option>
-                                  <option>7</option>
-                                  <option>8</option>
+                                  <option className="option_0">0</option>
+                                  <option className="option_0">1</option>
+                                  <option className="option_0">2</option>
+                                  <option className="option_0">3</option>
+                                  <option className="option_0">4</option>
+                                  <option className="option_0">5</option>
+                                  <option className="option_0">6</option>
+                                  <option className="option_0">7</option>
+                                  <option className="option_0">8</option>
                                 </select>
                                 {error && values.adult.length < 1 ? (
                                   <label
@@ -1638,17 +1638,17 @@ const Homeform = (props) => {
                             <Box paddingRight={1}>
                               <div className="hotel_form_input">
                                 <label className="form_lable">Star Rating*</label>
-                                <select
+                                <select 
                                   name="star"
                                   value={values.star}
                                   onChange={handleInputChange}
-                                  className="hotel_input_select"
+                                  className="hotel_input_select select_S"
                                 >
-                                  <option value="1">1 Star</option>
-                                  <option value="2">2 Star</option>
-                                  <option value="3">3 Star</option>
-                                  <option value="4">4 Star</option>
-                                  <option value="5">5 Star</option>
+                                  <option className="option_0" value="1">1 Star</option>
+                                  <option className="option_0" value="2">2 Star</option>
+                                  <option className="option_0" value="3">3 Star</option>
+                                  <option className="option_0" value="4">4 Star</option>
+                                  <option className="option_0" value="5">5 Star</option>
                                 </select>
                                 <div></div>
                               </div>
@@ -1685,7 +1685,7 @@ const Homeform = (props) => {
                               <label for="from" className="form_lable">
                                 Country, Property Name Or Location
                               </label>
-                              <select
+                              <select className="select_S"
                                 name=""
                                 id=""
                                 style={{
@@ -1696,15 +1696,15 @@ const Homeform = (props) => {
                                   paddingLeft: "25px",
                                 }}
                               >
-                                <option mx={5}>Enter Country or airport </option>
-                                <option
+                                <option className="option_0" mx={5}>Enter Country or airport </option>
+                                <option className="option_0"
                                   sx={{ fontSize: "9px", fontWeight: "bold" }}
                                 >
                                   hello1
                                 </option>
-                                <option>hello2</option>
-                                <option>hello3</option>
-                                <option mx={5}>hello4</option>
+                                <option className="option_0">hello2</option>
+                                <option className="option_0">hello3</option>
+                                <option className="option_0" mx={5}>hello4</option>
                               </select>
                             </div>
                           </div>
@@ -1753,7 +1753,7 @@ const Homeform = (props) => {
                                 Price Per Night
                               </label>
 
-                              <select
+                              <select className="select_S"
                                 name=""
                                 id=""
                                 style={{
@@ -1764,11 +1764,11 @@ const Homeform = (props) => {
                                   paddingLeft: "25px",
                                 }}
                               >
-                                <option mx={5}>₹0 - ₹1500</option>
-                                <option>₹0 - ₹1500</option>
-                                <option>₹0 - ₹1500</option>
-                                <option>₹0 - ₹1500</option>
-                                <option mx={5}>₹0 - ₹1500</option>
+                                <option className="option_0" mx={5}>₹0 - ₹1500</option>
+                                <option className="option_0">₹0 - ₹1500</option>
+                                <option className="option_0">₹0 - ₹1500</option>
+                                <option className="option_0">₹0 - ₹1500</option>
+                                <option className="option_0" mx={5}>₹0 - ₹1500</option>
                               </select>
                             </div>
                           </div>
@@ -1792,7 +1792,7 @@ const Homeform = (props) => {
                 </TabContext>
               </Box>
             </div>
-          </div> */}
+          </div>
         </div>
       </section>
     </>

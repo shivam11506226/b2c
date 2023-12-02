@@ -12,6 +12,9 @@ import PriceSlider from "./PriceSlider";
 import errorImg from "../../../utility/404.gif";
 import hotelpreLoader from "../../../utility/hotelpreLoader.gif";
 import { useSelector } from "react-redux";
+import { IoIosSearch } from "react-icons/io";
+import { MdOutlineLocationOn } from "react-icons/md";
+import { MdStarBorder } from "react-icons/md";
 
 const HotelResult = () => {
   const [selectedOption, setSelectedOption] = useState("");
@@ -38,9 +41,9 @@ const HotelResult = () => {
           style={{
             width: "100%",
             height: "100%",
-            background: "#B1DDF8",
+            background: "#F4F3F3",
             position: 'absolute',
-            top: '102px',
+            top: '10px',
             display: "flex",
             justifyContent: "center",
             zIndex: '555554444'
@@ -60,43 +63,45 @@ const HotelResult = () => {
             <div className="SORT">
               <h1>SORT BY:</h1>
             </div>
-            <div className="filter1" >
+            <div id="filter1" >
               <div>
-                <p>Popular</p>
+                <p className="sort_p">Popular</p>
               </div>
               <div>
-                <p>User Rating</p>
+                <p className="sort_p">User Rating</p>
               </div>
               <div>
-                <p>Price (Highest First)</p>
+                <p className="sort_p">Prices<span>(Highest First)</span></p>
               </div>
               <div>
-                <p>Value for Money</p>
+                <p className="sort_p">Value for Money</p>
               </div>
             </div>
             <div className="View-Map">
               <div>
+                <MdOutlineLocationOn className="searchIcon" />
                 <h5>
-                View Map
+                  View Map
                 </h5>
               </div>
               <div>
-                <input type="text" />
+                <IoIosSearch className="searchIcon" />
+                <input type="text" placeholder="Search for locality / hotel name" />
               </div>
             </div>
           </div>
-          <div className="container ">
-            <div className="row">
-              <div className="col-md-12">
+          <div className="" >
+            <div className="" style={{ backgroundColor: "#F4F3F3" }}>
+              <div className="">
                 <Box
                   my={2}
                   sx={{
-                    backgroundColor: "white",
-                    borderRadius: "20px",
+                    backgroundColor: "",
+                    // borderRadius: "20px",
                     padding: "10px 58px",
                   }}
                 >
-                  <Grid item xs={12}>
+                  {/* <Grid item xs={12}>
                     <Box
                       style={{
                         display: "flex",
@@ -136,481 +141,223 @@ const HotelResult = () => {
                         <PrimarySearchAppBar />
                       </Box>
                     </Box>
-                  </Grid>
+                  </Grid> */}
 
-                  <Box sx={{ flexGrow: 1, mt: 3 }}>
+                  <div sx={{ flexGrow: 1, mt: 3 }}>
                     <Grid container spacing={3}>
                       <Grid item xs={12} md={3}>
-                        <Box className="leftshadow">
-                          <Typography className="selectfilter">
-                            Select Filter
-                          </Typography>
-                          <Divider
-                            sx={{ backgroundColor: "gray", marginY: "8px" }}
-                          />
-                          <Typography className="suggested">
-                            Suggested For You
-                          </Typography>
-                          <Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="option1"
-                                  checked={selectedOption === "option1"}
-                                  onClick={(e) => setSelectedOption("option1")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                {" "}
-                                5 Star Properties
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="option2"
-                                  checked={selectedOption === "option2"}
-                                  onClick={(e) => setSelectedOption("option2")}
-                                />
-                              </Typography>
-                              <Typography className="value">Resort</Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="option3"
-                                  checked={selectedOption === "option3"}
-                                  onClick={(e) => setSelectedOption("option3")}
-                                />
-                              </Typography>
-                              <Typography className="value">Villas</Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="option4"
-                                  checked={selectedOption === "option4"}
-                                  onClick={(e) => setSelectedOption("option4")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                {" "}
-                                North Goa
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="option5"
-                                  checked={selectedOption === "option5"}
-                                  onClick={(e) => setSelectedOption("option5")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                {" "}
-                                Beach Front
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                          </Box>
-                          <Divider
-                            sx={{ backgroundColor: "gray", marginY: "8px" }}
-                          />
-                          <Box>
-                            <Box>
-                              <Typography className="price">
-                                Price (Per Night)
-                              </Typography>
+                        <div className="gap_filter_lable">
+                          <div className="selectfilter">
+                            Select Filters
+                          </div>
 
-                              <PriceSlider />
-                            </Box>
-                          </Box>
-                          <Divider
-                            sx={{ backgroundColor: "gray", marginY: "8px" }}
-                          />
-                          {/* -------------------------------------------------------------------- */}
-                          <Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <Typography className="starrating">
-                                {" "}
-                                Star Rating
-                              </Typography>
-                              <Box>
-                                <Typography className="clearfilter">
-                                  Clear Filter
-                                </Typography>
-                              </Box>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="rating1"
-                                  checked={ratingOption === "rating1"}
-                                  onClick={(e) => setRatingOption("rating1")}
-                                />
-                              </Typography>
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="rating2"
-                                  checked={ratingOption === "rating2"}
-                                  onClick={(e) => setRatingOption("rating2")}
-                                />
-                              </Typography>
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="rating3"
-                                  checked={ratingOption === "rating3"}
-                                  onClick={(e) => setRatingOption("rating3")}
-                                />
-                              </Typography>
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="rating4"
-                                  checked={ratingOption === "rating4"}
-                                  onClick={(e) => setRatingOption("rating4")}
-                                />
-                              </Typography>
-                              <StarIcon style={{ color: "yellow" }} />
-                              <StarIcon style={{ color: "yellow" }} />
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="rating5"
-                                  checked={ratingOption === "rating5"}
-                                  onClick={(e) => setRatingOption("rating5")}
-                                />
-                              </Typography>
-                              <StarIcon style={{ color: "yellow" }} />
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="rating6"
-                                  checked={ratingOption === "rating6"}
-                                  onClick={(e) => setRatingOption("rating6")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                Unrated Hotel
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                          </Box>
-                          <Divider
-                            sx={{ backgroundColor: "gray", marginY: "8px" }}
-                          />
-                          <Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                justifyContent: "space-between",
-                              }}
-                            >
-                              <Typography className="starrating">
-                                {" "}
-                                Booking Prefrence
-                              </Typography>
-                              <Box>
-                                <Typography className="clearfilter">
-                                  Clear Filter
-                                </Typography>
-                              </Box>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="booking1"
-                                  checked={bookingOption === "booking1"}
-                                  onClick={(e) => setBookingOption("booking1")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                Entire Property
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="booking2"
-                                  checked={bookingOption === "booking2"}
-                                  onClick={(e) => setBookingOption("booking2")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                Caretaker
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="booking3"
-                                  checked={bookingOption === "booking3"}
-                                  onClick={(e) => setBookingOption("booking3")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                Instant Book
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                            <Box
-                              style={{
-                                display: "flex",
-                                alignItems: "center",
-                                marginTop: "8px",
-                              }}
-                            >
-                              <Typography className="content">
-                                <input
-                                  className="radio"
-                                  type="radio"
-                                  value="booking4"
-                                  checked={bookingOption === "booking4"}
-                                  onClick={(e) => setBookingOption("booking4")}
-                                />
-                              </Typography>
-                              <Typography className="value">
-                                Homestays
-                              </Typography>
-                              <Typography
-                                style={{ flexGrow: 1 }}
-                                className="value"
-                              >
-                                (12)
-                              </Typography>
-                            </Box>
-                          </Box>
-                        </Box>
+                          <div className="suggested_input_Container">
+                            <div className="suggested">
+                              Suggested for you
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">Last Minute Deals</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">suggested_input_Container_inner</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">Allows Unmarried Couples</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">Perfect or 1 night stay</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">Free Cancellation</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">Perfect Breakfast</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                          </div>
+                          <div className="suggested_input_Container">
+                            <div className="rating_price">Rating</div>
+
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <div>
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                </div>
+
+                              </div>
+
+                              <p className="item_match">(18)</p>
+
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <div>
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                </div>
+
+                              </div>
+
+                              <p className="item_match">(18)</p>
+
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <div>
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                </div>
+
+                              </div>
+
+                              <p className="item_match">(18)</p>
+
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <div>
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                </div>
+
+                              </div>
+
+                              <p className="item_match">(18)</p>
+
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <div>
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                  <StarIcon />
+                                </div>
+
+                              </div>
+
+                              <p className="item_match">(18)</p>
+
+                            </div>
+                          </div>
+
+
+                          <div className="suggested_input_Container">
+                            <div className="rating_price">
+                              Price per night
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">₹0-2,000</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">₹2,000-3,000</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">₹3,000-6,500</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">₹6,500-10,000</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">₹10,000 and Above</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                            <div className="suggested_input_Container_inner">
+                              <div className="suggested_input">
+                                <input type="checkbox" className="scales" name="scales" />
+                                <label for="scales" className="input_lable">Perfect Breakfast</label>
+                              </div>
+
+                              <p className="item_match">(18)</p>
+                            </div>
+                          </div>
+
+                        </div>
                       </Grid>
                       <Grid item xs={12} md={9}>
                         <Box>
-                          <Typography className="title">
-                            Showing Properties in Goa
+                          <Typography className="title_1">
+                            Showing Properties in Delhi Region
                           </Typography>
                         </Box>
                         <HotelInfoCard />
                       </Grid>
                     </Grid>
-                  </Box>
+                  </div>
                 </Box>
               </div>
             </div>

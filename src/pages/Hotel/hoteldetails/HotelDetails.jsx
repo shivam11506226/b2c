@@ -16,11 +16,11 @@ const HotelDetails = () => {
     <div className="hotel_banner">
       <Searchnavbar />
 
-        <Blankdiv />
+        {/* <Blankdiv /> */}
 
         <HotelDetailsInfo />
         <HotelResult /> 
-          <Footer />
+          {/* <Footer /> */}
  
     </div>
   );
