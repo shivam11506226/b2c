@@ -7,7 +7,7 @@
 .leftsection {
     width: 100%;
     height: auto;
-    background: white;
+    /* background: white; */
   
     border-radius: 10px;
 
@@ -148,7 +148,7 @@
     .leftsection {
         width: 50%;
         height: auto;
-        background: white;
+        /* background: white; */
       
         border-radius: 10px;
     

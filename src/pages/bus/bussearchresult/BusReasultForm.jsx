@@ -291,7 +291,7 @@ function CompleteBooking() {
 
     // Navigate to the payment page
 
-    navigate("/nonstopflight");
+    navigate("/paymentReturn");
   }
 
   return (
@@ -305,7 +305,7 @@ function CompleteBooking() {
       <div className="flightsummarybus" style={{ padding: "20px" }}>
         <div
           class="leftbus"
-          style={{ border: "2px solid red", padding: "20px" }}
+          style={{padding: "20px" }}
         >
           <div className="booking-details-container">
             <div className="left-section">
@@ -452,16 +452,18 @@ function CompleteBooking() {
                   </AccordionSummary>
                   <AccordionDetails>
                     <Box>
-                      <Grid container spacing={4}>
-                        <Grid item xs={12} sm={6} md={4} mb={5}>
+                      <Grid container spacing={1}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
-                              <label className="form_label">First name*</label>
+                              <label hotel_form_input className="form_lable">
+                                Title*
+                              </label>
                               <input
-                                className="hotel_input_select"
-                                name="FirstName"
-                                placeholder="Enter your name"
-                                // value={passengerData.FirstName}
+                                name="title"
+                                type="text"
+                                placeholder="Enter your title"
+                                // value={passengerList?.ContactNo}
                                 // onChange={(e) =>
                                 //   handleServiceChange(e, index)
                                 // }
@@ -469,14 +471,33 @@ function CompleteBooking() {
                             </div>
                           </Box>
                         </Grid>
-                        <Grid item xs={12} sm={6} md={4} mb={5}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
-                              <label className="form_label">Last name*</label>
+                              <label className="form_lable ">First Name*</label>
                               <input
-                                name="LastName"
+                                name="firstname"
+                                type="text"
+                                placeholder="Enter your first name"
+                                // value={passengerList?.ContactNo}
+                                // onChange={(e) =>
+                                //   handleServiceChange(e, index)
+                                // }
+                              />
+                            </div>
+                          </Box>
+                        </Grid>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
+                          <Box>
+                            <div className="hotel_form_input">
+                              <label hotel_form_input className="form_lable">
+                                Last Name*
+                              </label>
+                              <input
+                                type="text"
+                                name="lastname"
+                                className="hotel_input_select"
                                 placeholder="Enter your last name"
-                                // value={passengerData.LastName}
                                 // onChange={(e) =>
                                 //   handleServiceChange(e, index)
                                 // }
@@ -486,8 +507,8 @@ function CompleteBooking() {
                         </Grid>
                       </Grid>
 
-                      <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} md={4} mb={2}>
+                      <Grid container spacing={1}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
                               <label className="form_lable">Gender*</label>
@@ -506,7 +527,7 @@ function CompleteBooking() {
                             </div>
                           </Box>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4} py={1}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
                               <label hotel_form_input className="form_lable">
@@ -524,9 +545,7 @@ function CompleteBooking() {
                             </div>
                           </Box>
                         </Grid>
-                      </Grid>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} md={4} mb={2}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
                               <label hotel_form_input className="form_lable">
@@ -543,27 +562,9 @@ function CompleteBooking() {
                             </div>
                           </Box>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4} mb={2}>
-                          <Box>
-                            <div className="hotel_form_input">
-                              <label hotel_form_input className="form_lable">
-                                Title*
-                              </label>
-                              <input
-                                name="title"
-                                type="text"
-                                placeholder="Enter your title"
-                                // value={passengerList?.ContactNo}
-                                // onChange={(e) =>
-                                //   handleServiceChange(e, index)
-                                // }
-                              />
-                            </div>
-                          </Box>
-                        </Grid>
                       </Grid>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6} md={4} mb={5}>
+                      <Grid container spacing={1}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
                               <label hotel_form_input className="form_lable">
@@ -580,7 +581,7 @@ function CompleteBooking() {
                             </div>
                           </Box>
                         </Grid>
-                        <Grid item xs={12} sm={12} md={4} py={1}>
+                        <Grid item xs={12} sm={12} md={4} mb={3}>
                           <Box>
                             <div className="hotel_form_input">
                               <label hotel_form_input className="form_lable">
@@ -589,7 +590,7 @@ function CompleteBooking() {
                               <input
                                 name="passportexpiry"
                                 type="text"
-                                placeholder="Enter your passportexpiry"
+                                placeholder="Enter your passport"
                                 // value={passengerList?.ContactNo}
                                 // // onChange={(e) =>
                                 //   handleServiceChange(e, index)
@@ -712,6 +713,23 @@ function CompleteBooking() {
           {/* <Link to="/conformation"> */}
 
           {/* </Link> */}
+          <Button
+            type="submit"
+            variant="contained"
+            className="btntext"
+            sx={{
+              color: "white",
+              backgroundColor: "#E73C33",
+              fontSize: "18px",
+              borderRadius: "16px",
+              marginTop: "16px",
+              boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.30)",
+              padding: "5px 30px",
+            }}
+            onClick={handleButtonClick}
+          >
+            Continue
+          </Button>
         </div>
         <div class="right1">
           <div className="fare-summary-container">
@@ -742,21 +760,6 @@ function CompleteBooking() {
           </div>
         </div>
       </div>
-      <Button
-        type="submit"
-        variant="contained"
-        sx={{
-          color: "white",
-          backgroundColor: "#E73C33",
-          fontSize: "18px",
-          borderRadius: "16px",
-          marginTop: "16px",
-          boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.30)",
-        }}
-        onClick={handleButtonClick}
-      >
-        Continue
-      </Button>
 
       {/* Add other components as needed */}
     </div>
