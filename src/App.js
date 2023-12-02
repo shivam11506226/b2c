@@ -41,6 +41,7 @@ import PaymentReturn from './pages/Return/PaymentReturn';
 import Conformation from './pages/Return/Conformation';
 import NonStopFlight from './pages/Return/NonStopFlight';
 import BusResult from './pages/bus/bussearchresult/BusResult';
+import Download from './pages/home/Download';
 function App() {
   const location = useLocation();
  
@@ -99,6 +100,7 @@ function App() {
 
         {/* Taxi */}
         <Route path="taxi" element={<Taxi />}></Route>
+        
       </Routes>
       <Footer />
       

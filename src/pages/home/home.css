@@ -441,6 +441,7 @@ body .form-group:not(:last-child) {
   height: 50px !important;
   position: relative;
   width: 100% !important;
+  
 }
 
 .hotel_form_input input {

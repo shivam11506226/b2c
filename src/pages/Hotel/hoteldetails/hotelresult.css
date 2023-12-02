@@ -148,7 +148,7 @@ h6 {
   gap: 10px;
 }
 .selectfilter {
-  text-align: center;
+  text-align: left;
   font: normal normal bold 16px/20px Quicksand !important;
   letter-spacing: 0px;
   color: #252525;

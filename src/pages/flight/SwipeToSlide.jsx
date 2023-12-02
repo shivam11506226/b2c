@@ -51,7 +51,7 @@ const SwipeToSlide = () => {
 
   return (
     <section>
-      <div className="container">
+      <div className="container" style={{backgroundColor:"white"}}>
                 <Box py={1}>
           <Slider {...settings}>
             {[...Array(15).keys()].map((index) => (
@@ -62,7 +62,7 @@ const SwipeToSlide = () => {
                       Dec {22 + index}
                     </Typography>
                   </div>
-                  <div className="space"></div>
+                 
                   <div style={{ textAlign: "center" }}>Price:</div>
                 </div>
               </div>
