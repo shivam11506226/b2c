@@ -636,7 +636,7 @@ import Checkbox from "@mui/material/Checkbox";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { styled } from "@mui/material/styles";
-
+import SwipeToSlide from "../../flight/SwipeToSlide";
 import { useNavigate } from "react-router-dom";
 
 import "./seatlayout.css";
@@ -646,6 +646,32 @@ function SeatLayout() {
   function handleClick(){
      navigate("/BusReviewBooking")
   }
+  const dropSectionData = [
+    {
+      id: 1,
+      time: "11:00, 26 OCT",
+      locationName: "Thane west",
+      locationDetails: "Thane, teen hath naka Chanakya Travels",
+    },
+    {
+      id: 2,
+      time: "14:30, 27 OCT",
+      locationName: "Mumbai Central",
+      locationDetails: "Mumbai, near Central Station",
+    },
+    {
+      id: 3,
+      time: "09:15, 28 OCT",
+      locationName: "Vashi",
+      locationDetails: "Navi Mumbai, Vashi Plaza",
+    },
+    {
+      id: 4,
+      time: "16:45, 29 OCT",
+      locationName: "Dadar",
+      locationDetails: "Mumbai, Dadar Circle",
+    },
+  ];
   return (
     <div>
       <div className="sort-filter-bar">
@@ -664,14 +690,122 @@ function SeatLayout() {
       </div>
       <div className="seatlayout">
         <div className="seatlayoutleft">
-          <div className="leftsection">
+        <div className="leftsection">
             <Typography pt={1} px={5} className="selectfilter">
               Select Filters
             </Typography>
-            <Typography pt={1} px={5} className="suggest">
-              Suggested for you
+            <Typography pt={1} px={5} className="selectfilter">
+              AC
             </Typography>
-            <Box p={3} display="block">
+            <div className="ac-container">
+              <div className="option-container">
+                <div className="icon" style={{border:"2px solid red"}}>
+                  <div className="icon-backgroundac" />
+                  <div className="inner-iconac" >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <mask
+                        id="mask0_688_5012"
+                        maskUnits="userSpaceOnUse"
+                        x="0"
+                        y="0"
+                        width="16"
+                        height="16"
+                      >
+                        <rect width="16" height="16" />
+                      </mask>
+                      <g mask="url(#mask0_688_5012)">
+                        <path
+                          d="M7.33594 14.6666V11.8999L5.16927 14.0333L4.23594 13.0999L7.33594 9.99992V8.66658H6.0026L2.9026 11.7666L1.96927 10.8333L4.1026 8.66658H1.33594V7.33325H4.1026L1.96927 5.16658L2.9026 4.23325L6.0026 7.33325H7.33594V5.99992L4.23594 2.89992L5.16927 1.96659L7.33594 4.09992V1.33325H8.66927V4.09992L10.8359 1.96659L11.7693 2.89992L8.66927 5.99992V7.33325H10.0026L13.1026 4.23325L14.0359 5.16658L11.9026 7.33325H14.6693V8.66658H11.9026L14.0359 10.8333L13.1026 11.7666L10.0026 8.66658H8.66927V9.99992L11.7693 13.0999L10.8359 14.0333L8.66927 11.8999V14.6666H7.33594Z"
+                          fill="#BBBBBB"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div className="textac">AC</div>
+              </div>
+              <div className="option-container">
+                <div className="icon">
+                  <div className="icon-background">
+                    <div className="inner-icon" />
+                  </div>
+                  <div className="second-icon" />
+                </div>
+                <div className="textac">Non AC</div>
+              </div>
+            </div>
+            <Typography pt={1} px={5} className="selectfilter">
+              Seat Type
+            </Typography>
+            <div className="ac-container">
+              <div className="option-container">
+                <div className="icon">
+                  <div className="icon-backgroundac" />
+                  <div className="inner-iconac">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 16 16"
+                      fill="none"
+                    >
+                      <mask
+                        id="mask0_688_5012"
+                        maskUnits="userSpaceOnUse"
+                        x="0"
+                        y="0"
+                        width="16"
+                        height="16"
+                      >
+                        <rect width="16" height="16" />
+                      </mask>
+                      <g mask="url(#mask0_688_5012)">
+                        <path
+                          d="M7.33594 14.6666V11.8999L5.16927 14.0333L4.23594 13.0999L7.33594 9.99992V8.66658H6.0026L2.9026 11.7666L1.96927 10.8333L4.1026 8.66658H1.33594V7.33325H4.1026L1.96927 5.16658L2.9026 4.23325L6.0026 7.33325H7.33594V5.99992L4.23594 2.89992L5.16927 1.96659L7.33594 4.09992V1.33325H8.66927V4.09992L10.8359 1.96659L11.7693 2.89992L8.66927 5.99992V7.33325H10.0026L13.1026 4.23325L14.0359 5.16658L11.9026 7.33325H14.6693V8.66658H11.9026L14.0359 10.8333L13.1026 11.7666L10.0026 8.66658H8.66927V9.99992L11.7693 13.0999L10.8359 14.0333L8.66927 11.8999V14.6666H7.33594Z"
+                          fill="#BBBBBB"
+                        />
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div className="textac">Sleeper</div>
+              </div>
+              <div className="option-container">
+                {/* <div className="icon">
+                  <div className="icon-background">
+                    <div className="inner-icon" />
+                  </div>
+                  <div className="second-icon" />
+                </div> */}
+                <div className="textac">Seater</div>
+              </div>
+            </div>
+
+            <Typography pt={1} px={5} className="selectfilter">
+              Single Seater/Sleeper
+            </Typography>
+            <Box  pl={5} display="block">
+              <form action="">
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                  Single
+                </div>
+              </form>
+            </Box>
+            <Typography pt={1} pl={5} className="selectfilter">
+              Pick up point - Delhi
+            </Typography>
+            <Box pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -708,12 +842,10 @@ function SeatLayout() {
                 </div>
               </form>
             </Box>
-
-        
-            <Typography pt={1} px={5}>
+            <Typography pt={1} px={5} className="selectfilter">
               Pick up point - Delhi
             </Typography>
-            <Box p={3} display="block">
+            <Box  pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -750,10 +882,10 @@ function SeatLayout() {
                 </div>
               </form>
             </Box>
-            <Typography pt={1} px={5}>
+            <Typography pt={1} px={5} className="selectfilter">
               Drop point - Mumbai
             </Typography>
-            <Box p={3} display="block">
+            <Box  pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -790,10 +922,10 @@ function SeatLayout() {
                 </div>
               </form>
             </Box>
-            <Typography pt={1} px={5}>
+            <Typography pt={1} px={5} className="selectfilter">
               Drop time - Mumbai
             </Typography>
-            <Box p={3} display="block">
+            <Box  pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -837,6 +969,7 @@ function SeatLayout() {
             <div className="titleseat">Buses from New Delhi to Mumbai</div>
             {/* Add other components/content as needed */}
           </div>
+         <div className="swipetoslide"><SwipeToSlide/></div> 
           <div className="bus-detailsseat">
             <div className="bus-details-container">
               <div className="info-wrapper">
@@ -847,7 +980,7 @@ function SeatLayout() {
                 <div className="info-item1">
                   <div className="timeseat">
                     <span className="time-bold">23:30</span>
-                    <span>29 Oct</span>
+                    <span className="date-value">29 Oct</span>
                   </div>
                 </div>
                 <div className="info-item1">
@@ -856,7 +989,7 @@ function SeatLayout() {
                 <div className="info-item1">
                   <div className="timeseat">
                     <span className="time-bold">08:20</span>
-                    <span>29 Oct</span>
+                    <span className="date-value">29 Oct</span>
                   </div>
                 </div>
               </div>
@@ -1008,7 +1141,7 @@ function SeatLayout() {
                     </div>
                   </div>
                   <div className="link-item">
-                    <div className="link-text">Pickups & Drops</div>
+                    <div className="link-text">Pickups</div>
                     <div className="arrow-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -1057,13 +1190,7 @@ function SeatLayout() {
           <div className="selectseat">
             <div className="selectleft">
               <div
-                style={{
-                  color: "black",
-                  fontSize: 12,
-                  fontFamily: "Montserrat",
-                  fontWeight: "700",
-                  wordWrap: "break-word",
-                }}
+                className="selecttext"
               >
                 Select Seats
               </div>
@@ -1072,10 +1199,11 @@ function SeatLayout() {
               </div>
             </div>
             <div className="selectright">
-              {/* <div style={{color: 'black', fontSize: 12, fontFamily: 'Montserrat', fontWeight: '700', wordWrap: 'break-word'}}>Select Pickup & Drop Points</div> */}
+               <div className="selecttext">Select Pickup & Drop Points</div>
               <div className="selectrightdata">
+                
                 <div className="containerseats">
-                  <div className="pickUpPoint">Pick Up Point</div>
+                  <div className="pickUpPoint">PICK UP POINT</div>
                   <div className="pickUpDetails">
                     <div className="pickUpTime">
                       <div className="detailsTop">
@@ -1147,7 +1275,7 @@ function SeatLayout() {
                   </div>
                 </div>
                 <div className="containerdrop">
-                  <div className="pickUpPoint">Pick Up Point</div>
+                  <div className="pickUpPoint">DROP POINT</div>
                   <div className="pickUpDetails">
                     <div className="pickUpTime">
                       <div className="detailsTop">
@@ -1195,17 +1323,21 @@ function SeatLayout() {
                   {/* ... */}
 
                   {/* Example of a responsive drop section */}
-                  <div className="dropSection section">
-                    <div className="timeLocation">
-                      <div className="timeDetails">
-                        <div className="timeInfo">11:00, 26 OCT</div>
-                      </div>
-                      <div className="locationName">Thane west</div>
-                    </div>
-                    <div className="locationDetails">
-                      Thane, teen hath naka Chanakya Travels
-                    </div>
-                  </div>
+                 
+                   
+                  <div>
+      {dropSectionData.map((drop, index) => (
+        <div key={drop.id} className="dropSection section">
+          <div className="timeLocation">
+            <div className="timeDetails">
+              <div className="timeInfo">{drop.time}</div>
+            </div>
+            <div className="locationName">{drop.locationName}</div>
+          </div>
+          <div className="locationDetails">{drop.locationDetails}</div>
+        </div>
+      ))}
+    </div>
                 </div>
               </div>
 
@@ -1236,7 +1368,7 @@ function SeatLayout() {
                 <div className="info-item1">
                   <div className="timeseat">
                     <span className="time-bold">23:30</span>
-                    <span>29 Oct</span>
+                    <span className="date-value">29 Oct</span>
                   </div>
                 </div>
                 <div className="info-item1">
@@ -1245,7 +1377,7 @@ function SeatLayout() {
                 <div className="info-item1">
                   <div className="timeseat">
                     <span className="time-bold">08:20</span>
-                    <span>29 Oct</span>
+                    <span className="date-value">30 Oct</span>
                   </div>
                 </div>
               </div>
@@ -1397,7 +1529,7 @@ function SeatLayout() {
                     </div>
                   </div>
                   <div className="link-item">
-                    <div className="link-text">Pickups & Drops</div>
+                    <div className="link-text">Pickups</div>
                     <div className="arrow-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -1436,11 +1568,14 @@ function SeatLayout() {
                   </div>
                 </div>
               </div>
-              <div className="hide-seats">
-                <div className="hide-seats-button">
-                  <div className="button-label">SELECT SEATS</div>
+              {/* <div className="select-seats">
+                <div className="select-seats-button">
+                  <div className="button-label1">SELECT SEATS</div>
                 </div>
-              </div>
+              </div> */}
+              <div className="button-container">
+      <div className="button-text">SELECT SEATS</div>
+    </div>
             </div>
           </div>
         </div>

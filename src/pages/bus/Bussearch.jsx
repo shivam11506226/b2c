@@ -427,7 +427,7 @@ const Homeform = (props) => {
                       <input
                         name="from"
                         placeholder="Enter city or airport"
-                        value={from}
+                        // value={from}
                         autoComplete="off"
                         // onChange={(event) => {
                         //   handleFromInputChange(event);
@@ -539,14 +539,14 @@ const Homeform = (props) => {
                       <input
                         name="to"
                         placeholder="Enter city or airport"
-                        value={to}
+                        // value={to}
                         // required
                         // onChange={(event) => {
                         //   handleToInputChange(event);
                         //   setIsLoadingTo(true); // Set loading state for TO input
                         //   handleToSearch(event.target.value);
                         // }}
-                        autoComplete="off"
+                        // autoComplete="off"
                         style={{
                           border: "none",
 
@@ -657,7 +657,7 @@ const Homeform = (props) => {
                   </div> */}
                   <div className="searchContainer">
                     <div className="searchButton">
-                      <div className="buttonText">SEARCH</div>
+                      <div className="buttonText" onClick={handleFromClicks}>SEARCH</div>
                     </div>
                   </div>
                 </Box>

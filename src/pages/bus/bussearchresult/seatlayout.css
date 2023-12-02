@@ -2,7 +2,7 @@
 
 .sort-filter-bar {
     width: 100%;
-    height: 76px;
+   
    
     background: white;
     box-shadow: 0px 2px 8px 8px rgba(0, 0, 0, 0.15);
@@ -76,7 +76,7 @@
   .seatlayout{
     display: flex;
     margin: auto;
-    border: 2px solid red;
+   
     width: 90%;
     gap:5%;
    
@@ -85,12 +85,12 @@
   .seatlayoutleft{
    
   
-    border: 2px solid rgb(43, 255, 0);
-    width: 30%;
+   
+    width: 25%;
   }
   .seatlayoutright{
    
-    border: 2px solid rgb(17, 0, 255);
+   
     width: 65%;
   }
 
@@ -203,7 +203,7 @@ margin-bottom: 20px;
     font-size: 24px;
     font-family: 'Montserrat';
     font-weight: 700;
-    line-height: 12px;
+    line-height: 25px;
     letter-spacing: 1.20;
     word-wrap: break-word;
   }
@@ -237,7 +237,7 @@ margin-bottom: 20px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
-    align-items: center;
+   
     gap: 8px;
   }
   
@@ -252,13 +252,19 @@ margin-bottom: 20px;
     width: 100%;
     height: 100%;
     position: absolute;
-    border-radius: 50%;
+    margin-bottom: -20px;
+
   }
   
-  .icon-backgroundLay {
-   
+ 
+  .date-value{
+    color: #BBB;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+
   }
-  
   
   
   .icon-value {
@@ -351,6 +357,10 @@ margin-bottom: 20px;
     font-weight: 700;
     word-wrap: break-word;
     padding: 10px;
+   
+text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+
+line-height: normal;
   }
 
   .hide-seats1{
@@ -372,6 +382,7 @@ margin-bottom: 20px;
     font-weight: 700;
     word-wrap: break-word;
     padding: 13px;
+    cursor: pointer;
   }
   
 
@@ -477,7 +488,7 @@ margin-bottom: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 16px;
+    
   }
   
   .link-item {
@@ -496,11 +507,8 @@ margin-bottom: 20px;
   }
   
   .arrow-icon {
-    width: 20px;
-    height: 20px;
-    position: absolute;
-    transform: rotate(-90deg);
-    transform-origin: 0 0;
+    width: 30px;
+    display: flex;
   }
   
   .arrow-icon::before {
@@ -549,6 +557,17 @@ margin-bottom: 20px;
   .timeseat,
   .duration {
     width: 100%;
+    gap:4px;
+    display: flex;
+  }
+  
+  .bus-type{
+    color: #BBB;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
   }
   
   .priceseat {
@@ -580,7 +599,7 @@ margin-bottom: 20px;
   }
   
   .selectseat{
-    border:2px solid red;
+  
     display:flex;
     gap:2%;
    
@@ -589,13 +608,13 @@ margin-bottom: 20px;
   }
 
   .selectleft{
-    border:2px solid black;
+   
    
     width: 40%;
   }
 
   .selectright{
-    border:2px solid black;
+   
    
     width: 58%;
     /* display: flex;
@@ -824,9 +843,7 @@ margin-bottom: 20px;
     position: absolute;
   }
   
-  .backgroundMarker {
-    background: #D9D9D9;
-  }
+  
   
   .foregroundMarker {
     width: 16.67px;
@@ -863,6 +880,7 @@ margin-bottom: 20px;
     display: flex;
     margin: auto;
     width:90%;
+    margin-top: 10px;
   }
   
   @media (max-width: 768px) {
@@ -923,15 +941,13 @@ margin-bottom: 20px;
     background: #E73C33;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.30);
     border-radius: 16px;
-    /* justify-content: center;
-    align-items: center;
-    gap: 10px;
-    display: inline-flex; */
+   
     margin: auto;
     align-items: center;
     justify-content: center;
     gap: 10px;
     display: flex;
+    margin-top: 10px;
   }
   
   @media (max-width: 768px) {
@@ -955,3 +971,124 @@ margin-bottom: 20px;
     word-wrap: break-word;
   }
   
+  .sort-option:hover{
+     border-bottom: #E73C33 2px solid;
+  }
+
+
+
+  .ac-container {
+    width: 75%;
+    height: 28px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    margin: auto;
+  }
+  
+  .option-container {
+    height: 28px;
+    padding: 0px 20px;
+    border-radius: 8px;
+    border: 1px #BBBBBB solid;
+    display: flex;
+    width:200px;
+    
+    gap: 4px;
+  }
+  .texttop{
+    color: #071C2C;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: normal;
+  }
+  .iconac {
+    width: 16px;
+    height: 16px;
+    position: relative;
+  }
+  
+  .icon-backgroundac {
+    width: 16px;
+    height: 16px;
+    left: 0;
+    top: 0;
+    position: absolute;
+    background: #D9D9D9;
+  }
+  .textac{
+    color: #BBB;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 500;
+
+  }
+  .inner-icon {
+    width: 13.33px;
+    height: 13.33px;
+    left: 1.33px;
+    top: 1.33px;
+    position: absolute;
+    background: #BBBBBB;
+  }
+  
+  .second-icon {
+    width: 16.78px;
+    height: 1.14px;
+    left: 1.70px;
+    top: 2.32px;
+    position: absolute;
+    transform: rotate(37.65deg);
+    transform-origin: 0 0;
+    border: 1.50px black solid;
+  }
+  
+  .text {
+    color: #BBBBBB;
+    font-size: 16px;
+    font-family: 'Montserrat';
+    font-weight: 500;
+    word-wrap: break-word;
+  }
+  
+.selecttext{
+    color: #000;
+font-family: 'Montserrat';
+font-size: 20px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+margin-bottom:15px;
+}
+
+
+.button-container {
+    width: 210px;
+    height: 52px;
+    padding: 12px 20px;
+    background: #E73C33;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.30);
+    border-radius: 16px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .button-text {
+   
+    color: #FFFBFB;
+text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+font-family: 'Montserrat';
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+  }
+  .swipetoslide{
+    margin: 10px;
+  }

@@ -662,7 +662,7 @@ import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import { styled } from "@mui/material/styles";
 
 import { useNavigate } from "react-router-dom";
-
+import SwipeToSlide from "../../flight/SwipeToSlide";
 import "./seatlayout.css";
 import BusSearchresult from "./BusSearchresult";
 import PriceSlider from "../../Hotel/hoteldetails/PriceSlider";
@@ -706,7 +706,7 @@ function BusSearchresultDetail() {
                     icon={<RadioButtonUncheckedIcon />}
                     checkedIcon={<RadioButtonCheckedIcon />}
                   />
-                  Non Stop
+                 Dhaula Kuan
                 </div>
                 <div>
                   <Checkbox
@@ -714,7 +714,7 @@ function BusSearchresultDetail() {
                     icon={<RadioButtonUncheckedIcon />}
                     checkedIcon={<RadioButtonCheckedIcon />}
                   />
-                  Prenoon Departure
+                Morigate
                 </div>
 
                 <div>
@@ -723,16 +723,9 @@ function BusSearchresultDetail() {
                     icon={<RadioButtonUncheckedIcon />}
                     checkedIcon={<RadioButtonCheckedIcon />}
                   />
-                  indiGo
+               Others
                 </div>
-                <div>
-                  <Checkbox
-                    {...label}
-                    icon={<RadioButtonUncheckedIcon />}
-                    checkedIcon={<RadioButtonCheckedIcon />}
-                  />
-                  Vistara
-                </div>
+               
               </form>
             </Box>
 
@@ -858,6 +851,11 @@ function BusSearchresultDetail() {
               </form>
             </Box>
           </div>
+
+
+
+
+          
         </div>
         <div className="seatlayoutright">
           <div className="bus-info-containers">
@@ -865,7 +863,7 @@ function BusSearchresultDetail() {
             {/* Add other components/content as needed */}
           </div>
 
-
+          <div className="swipetoslide"><SwipeToSlide /></div>
 
           <div className="bus-detailsseat">
             <div className="bus-details-container">
@@ -877,7 +875,7 @@ function BusSearchresultDetail() {
                 <div className="info-item1">
                   <div className="timeseat">
                     <span className="time-bold">23:30</span>
-                    <span>29 Oct</span>
+                    <span className="date-value">29 Oct</span>
                   </div>
                 </div>
                 <div className="info-item1">
@@ -886,7 +884,7 @@ function BusSearchresultDetail() {
                 <div className="info-item1">
                   <div className="timeseat">
                     <span className="time-bold">08:20</span>
-                    <span>29 Oct</span>
+                    <span className="date-value">29 Oct</span>
                   </div>
                 </div>
               </div>
@@ -1038,7 +1036,7 @@ function BusSearchresultDetail() {
                     </div>
                   </div>
                   <div className="link-item">
-                    <div className="link-text">Pickups & Drops</div>
+                    <div className="link-text">Pickups</div>
                     <div className="arrow-icon">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -1138,14 +1136,7 @@ function BusSearchresultDetail() {
                               </g>
                             </svg>
                           </div>
-                          {/* <div className="foregroundMarker" ><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
-  <mask id="mask0_688_5881" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
-    <rect width="20" height="20" fill="#D9D9D9"/>
-  </mask>
-  <g mask="url(#mask0_688_5881)">
-    <path d="M8.83073 13.8337L14.7057 7.95866L13.5391 6.79199L8.83073 11.5003L6.45573 9.12533L5.28906 10.292L8.83073 13.8337ZM9.9974 18.3337C8.84462 18.3337 7.76128 18.1149 6.7474 17.6774C5.73351 17.2399 4.85156 16.6462 4.10156 15.8962C3.35156 15.1462 2.75781 14.2642 2.32031 13.2503C1.88281 12.2364 1.66406 11.1531 1.66406 10.0003C1.66406 8.84755 1.88281 7.76421 2.32031 6.75033C2.75781 5.73644 3.35156 4.85449 4.10156 4.10449C4.85156 3.35449 5.73351 2.76074 6.7474 2.32324C7.76128 1.88574 8.84462 1.66699 9.9974 1.66699C11.1502 1.66699 12.2335 1.88574 13.2474 2.32324C14.2613 2.76074 15.1432 3.35449 15.8932 4.10449C16.6432 4.85449 17.237 5.73644 17.6745 6.75033C18.112 7.76421 18.3307 8.84755 18.3307 10.0003C18.3307 11.1531 18.112 12.2364 17.6745 13.2503C17.237 14.2642 16.6432 15.1462 15.8932 15.8962C15.1432 16.6462 14.2613 17.2399 13.2474 17.6774C12.2335 18.1149 11.1502 18.3337 9.9974 18.3337Z" fill="#071C2C"/>
-  </g>
-</svg> </div> */}
+                       
                         </div>
                       </div>
                       <div className="locationInfo">
