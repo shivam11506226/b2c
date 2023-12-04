@@ -3,9 +3,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Rating from "@mui/material/Rating";
 import "./hotelbillainfo.css";
+import {useNavigate} from "react-router-dom"
 
 const HotelInfoCard = () => {
   const reducerState = useSelector((state) => state);
+  const navigate=useNavigate()
   const hotelDetails =
     reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult
       ?.HotelResults;
@@ -17,6 +19,7 @@ const HotelInfoCard = () => {
     console.log("Handel Click Index Key", resultIndex, hotelCode);
     sessionStorage.setItem("ResultIndex", resultIndex);
     sessionStorage.setItem("HotelCode", hotelCode);
+    navigate("/hotel/HotelSearchResult")
   };
   return (
     <div className="hotel_detail_main_container">
@@ -30,6 +33,10 @@ const HotelInfoCard = () => {
 
             key={indx}
             className="boxshaow hotel-result-container"
+            onClick={() => {
+              handleBookHotel(resultIndex, hotelCode);
+            }}
+
 
 
           >
@@ -77,26 +84,26 @@ const HotelInfoCard = () => {
 
 
               <div
-              className="hitel_detail_right"
+                className="hitel_detail_right"
               >
                 <div>
-                <h1
-                  className="OfferedPrice"
-                >
-                  {ele?.Price?.OfferedPrice}
-                </h1>
+                  <h1
+                    className="OfferedPrice"
+                  >
+                    {ele?.Price?.OfferedPrice}
+                  </h1>
 
-                <h1
-                  className="PublishedPrice"
-                >
-                  ₹{ele?.Price?.PublishedPrice}
-                </h1>
-                <p className="extra_price">+₹ 1,181 taxes & fees Per Night</p>
+                  <h1
+                    className="PublishedPrice"
+                  >
+                    ₹{ele?.Price?.PublishedPrice}
+                  </h1>
+                  <p className="extra_price">+₹ 1,181 taxes & fees Per Night</p>
                 </div>
                 <div>
-                  <h1 className="hotel_detail_no_cost">No Cost EMI <span></span></h1>
+                  <h1 className="hotel_detail_no_cost">No Cost EMI <span>starts at ₹6,281</span></h1>
                 </div>
-                {/* <form action="/hotel/HotelSearchResult" >
+                <form action="/hotel/HotelSearchResult" >
                   <Button variant="contained" textAlign="right" type="submit" onClick={() => {
                     console.log(
                       "resultIndex, hotelCode",
@@ -107,7 +114,7 @@ const HotelInfoCard = () => {
                   }}>
                     Book Now
                   </Button>
-                </form> */}
+                </form>
               </div>
 
 
