@@ -26,6 +26,36 @@
     display: inline-flex;
     position: relative;
   }
+  .from-containerholi{
+    height: 109px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right:0px;
+    border-top-left-radius: 12px;
+    border-right: 0.50px black solid;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: inline-flex;
+    position: relative;
+  }
+
+  .from-containerholi1{
+    height: 109px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 24px;
+    padding-right:0px;
+    border-top-left-radius: 12px;
+   
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: inline-flex;
+    position: relative;
+  }
+
 
   .from-container1{
     /* height: 109px; */
