@@ -13,7 +13,7 @@
   
   /* From Container */
   .from-container {
-    height: 109px;
+    /* height: 109px; */
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 24px;
@@ -28,7 +28,7 @@
   }
 
   .from-container1{
-    height: 109px;
+    /* height: 109px; */
     padding-top: 12px;
     padding-bottom: 12px;
     padding-left: 24px;
@@ -109,7 +109,7 @@
   
   /* Traveller Container */
   .traveller-container {
-    height: 109px;
+    /* height: 109px; */
     
     padding-top:10px;
     padding-bottom: 24px;

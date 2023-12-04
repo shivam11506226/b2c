@@ -10,9 +10,9 @@ import HotelSearcResultDetail from './HotelSearcResultDetail';
 const HotelSearch = () => {
   return (
     <div className='hotel_search_banner'>
-      <Searchnavbar/>
+      {/* <Searchnavbar/> */}
       <Blankdiv/>
-      <HotelSearcResultDetail/>
+      {/* <HotelSearcResultDetail/> */}
       <HotelResultInfo/>
       <Footer/>
     </div>

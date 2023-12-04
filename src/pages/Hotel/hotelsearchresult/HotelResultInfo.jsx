@@ -143,11 +143,13 @@ const HotelResultInfo = () => {
   }, []);
   const hotelInfo =
     reducerState?.hotelSearchResult?.hotelInfo?.HotelInfoResult?.HotelDetails;
-  console.error("hotel Info data", hotelInfo);
+  console.log("hotel Info data", hotelInfo);
   // useEffect(() => {
 
   //     setImageLinks(reducerState?.hotelSearchResult?.hotelInfo?.HotelInfoResult?.HotelDetails?.Images)
   // }, [])
+  const hotelNewInfo = reducerState?.hotelSearchResult?.hotelInfo?.HotelInfoResult;
+  console.log("hotel shaan data", hotelNewInfo);
 
   useEffect(() => {
     if (
@@ -338,11 +340,11 @@ const HotelResultInfo = () => {
   };
   return (
     <>
-      <div className="container bg-light h_detail my-3 p-3">
-        <div className="row">
-          <div className="col-12">
-            <Box>
-              <Typography mt={2} className="hotel_info_head">
+      <div className="">
+        <div className="">
+          <div className="">
+            <div>
+              {/* <Typography mt={2} className="hotel_info_head">
                 {" "}
                 {hotelInfo?.HotelName == undefined ? (
                   <Skeleton
@@ -364,8 +366,8 @@ const HotelResultInfo = () => {
                     />{" "}
                   </>
                 )}{" "}
-              </Typography>
-              <Typography my={2} className="hotel_info_para">
+              </Typography> */}
+              {/* <Typography my={2} className="hotel_info_para">
                 {hotelInfo?.Address == undefined ? (
                   <Skeleton
                     animation="wave"
@@ -380,8 +382,8 @@ const HotelResultInfo = () => {
                     <LocationOn /> {hotelInfo?.Address}
                   </>
                 )}
-              </Typography>
-            </Box>
+              </Typography> */}
+            </div>
             <Box>
               <Grid container spacing={3}>
                 <Grid item sm={12} lg={8} xs={12}>

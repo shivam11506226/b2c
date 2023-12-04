@@ -2,17 +2,17 @@
 
 .containerTour {
     width: 74%;
-    height: 66px;
-    padding-left: 24px;
-    padding-right: 24px;
+    /* height: 66px; */
     background: white;
     border-radius: 28px;
     border: 0.50px #071C2C solid;
     justify-content: center;
     align-items: center;
-    gap: 72px;
+    
+    justify-content: space-around;
     display: flex;
     margin: auto;
+    margin-top: 20px;
   }
   
   .item {
