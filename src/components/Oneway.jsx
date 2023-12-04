@@ -271,17 +271,7 @@ const Homeform = (props) => {
     dispatch(tokenAction(payload));
   }, [reducerState?.ip?.ipData]);
 
-  // useEffect(() => {
-  //   if (reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results) {
-  //     navigate("/Searchresult");
-  //   }
-  //   else if(reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Error?.ErrorMessage ==== "No Result Found"){
-  //     navigate("/");
-  //   }
-  // }, [
-  //   reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results,
-  //   navigate,
-  // ]);
+  
 
   const [data2, setData] = useState({
     adult: 0,
