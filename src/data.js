@@ -13,7 +13,7 @@ export const mainheaderlogos = [
     },
     {
         avatar: require("./images/hotelpackages.png"),
-        name: "Holiday Packages",
+        name: "Packages",
         path: "/holidaypackages"
     },
     {
@@ -37,31 +37,31 @@ export const mainheaderlogos = [
 
 export const cardimages = [
     {
-        avatar:require("./images/card/bali.png"),
+        avatar: require("./images/card/bali.png"),
         name: "Bali"
     },
     {
-        avatar:require("./images/card/thailand.png"),
+        avatar: require("./images/card/thailand.png"),
         name: "Thailand"
     },
     {
-        avatar:require("./images/card/nepal.png"),
+        avatar: require("./images/card/nepal.png"),
         name: "Nepal"
     },
     {
-        avatar:require("./images/card/maldives.png"),
+        avatar: require("./images/card/maldives.png"),
         name: "Maldives"
     },
     {
-        avatar:require("./images/card/paris.png"),
+        avatar: require("./images/card/paris.png"),
         name: "Paris"
     },
     {
-        avatar:require("./images/card/switzerland.png"),
+        avatar: require("./images/card/switzerland.png"),
         name: "Switzerland"
     },
     {
-        avatar:require("./images/card/moscow.png"),
+        avatar: require("./images/card/moscow.png"),
         name: "Mascow"
     },
 

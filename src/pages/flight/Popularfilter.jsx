@@ -23,16 +23,16 @@ const Popularfilter = (props) => {
   const [value, setValue] = React.useState("1");
 
   return (
-    <section>
-      <div style={{ width: "95%", margin: "5px auto" }}>
+    <section className="mx-5">
+      {/* <div style={{ width: "95%", margin: "5px auto" }}>
         <div className="row popular_content">
           <div className="col-12">
             <div className="row" style={{ display: "flex" }}>
               <div className="col-md-3 fixed_row">
                 <div className="leftsection" >
-                  
+
                   <Typography pt={1} px={5} className="filter">
-                  Select Filters
+                    Select Filters
                   </Typography>
                   <Typography pt={1} px={5} className="suggest" >
                     Suggested for you
@@ -45,7 +45,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                      Non Stop
+                        Non Stop
                       </div>
                       <div>
                         <Checkbox
@@ -53,7 +53,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                         Prenoon Departure
+                        Prenoon Departure
                       </div>
 
                       <div>
@@ -62,7 +62,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                      indiGo
+                        indiGo
                       </div>
                       <div>
                         <Checkbox
@@ -70,84 +70,10 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                      Vistara
+                        Vistara
                       </div>
-                     
-                    
-                      
-                     
                     </form>
                   </Box>
-                 
-                
-                 
-                 
-                  {/* <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-around",
-                      marginY: "15px",
-                      marginX: "20px",
-                    }}
-                  >
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      Direct
-                    </Button>
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      1 Stop
-                    </Button>
-                  </Box> */}
-                  {/* <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      marginY: "15px",
-                      marginX: "20px",
-                    }}
-                  >
-                    <Button
-                      variant="contained"
-                      href="#contained-buttons"
-                      size="large"
-                      className="Bton_filter"
-                      sx={{
-                        background: "white",
-                        color: "gray",
-                        boxShadow: "2px 2px 8px gray",
-                        borderRadius: "20px",
-                        fontSize: "9px",
-                      }}
-                      mt={5}
-                    >
-                      2+ Stops
-                    </Button>
-                  </Box> */}
                   <Divider sx={{ backgroundColor: "gray" }} />
                   <Typography pt={1} px={5}>
                     One Way Price
@@ -175,7 +101,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                         6 AM-12 PM
+                        6 AM-12 PM
                       </div>
 
                       <div>
@@ -184,7 +110,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                       12 PM-6 PM
+                        12 PM-6 PM
                       </div>
                       <div>
                         <Checkbox
@@ -192,16 +118,16 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                       After 6 PM
+                        After 6 PM
                       </div>
-                     
-                    
-                      
-                     
+
+
+
+
                     </form>
                   </Box>
                   <Typography pt={1} px={5}>
-                     Airlines
+                    Airlines
                   </Typography>
                   <Box pl={3} display="block">
                     <form action="">
@@ -219,7 +145,7 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                       Air India Express (1)
+                        Air India Express (1)
                       </div>
 
                       <div>
@@ -236,12 +162,8 @@ const Popularfilter = (props) => {
                           icon={<RadioButtonUncheckedIcon />}
                           checkedIcon={<RadioButtonCheckedIcon />}
                         />
-                      AKasa Air (3)
+                        AKasa Air (3)
                       </div>
-                     
-                      
-                     
-                     
                     </form>
                   </Box>
                 </div>
@@ -250,9 +172,6 @@ const Popularfilter = (props) => {
                 <Box className="rightslide">
                   <Priceslider />
                 </Box>
-                {/* <Box sx={{ backgroundColor: "white" }} my={3}>
-                  <Searchtab />
-                </Box> */}
                 <Box my={3}>
                   <Selectflight />
                 </Box>
@@ -260,7 +179,152 @@ const Popularfilter = (props) => {
             </div>
           </div>
         </div>
+      </div> */}
+
+      <div className="contaier-fluid">
+        <div className="row">
+          <div className="col-lg-3">
+            <div className="flightFilterBox">
+              <div className="filterTitle">
+                <p>Select Filters</p>
+              </div>
+              <div className="innerFilter">
+                <p>Suggested for you</p>
+                <form action="">
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Non Stop
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Prenoon Departure
+                  </div>
+
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    indiGo
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Vistara
+                  </div>
+                </form>
+
+                <p>
+                  One Way Price
+                </p>
+                <div>
+                  <Rangeslide />
+                </div>
+                <Divider sx={{ backgroundColor: "gray" }} />
+                <p>
+                  Departure from New Delhi
+                </p>
+
+                <form action="">
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Before 6AM
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    6 AM-12 PM
+                  </div>
+
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    12 PM-6 PM
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    After 6 PM
+                  </div>
+                </form>
+
+                <p>
+                  Airlines
+                </p>
+                <form action="">
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Air India (9)
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Air India Express (1)
+                  </div>
+
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Air Asia (7)
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    AKasa Air (3)
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          <div className="col-lg-9">
+            {/* <Box className="rightslide">
+              <Priceslider />
+            </Box> */}
+
+            <Selectflight />
+
+          </div>
+        </div>
       </div>
+
     </section>
   );
 };
