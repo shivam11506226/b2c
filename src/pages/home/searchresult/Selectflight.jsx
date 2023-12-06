@@ -9,7 +9,7 @@ import Viewflightdetails from "./Viewflightdetails";
 import Viewtravvolt from "./Viewtravvolt";
 import Viewsupper from "./Viewsupper";
 import Viewsaver from "./Viewsaver";
-import Zoom from '@mui/material/Zoom';
+import Zoom from "@mui/material/Zoom";
 import { useDispatch, useSelector } from "react-redux";
 import SendIcon from "@mui/icons-material/Send";
 import ReactPaginate from "react-paginate";
@@ -30,14 +30,14 @@ import TabPanel from "@mui/lab/TabPanel";
 
 // Location based Clear store
 
-import { useLocation, useNavigate } from 'react-router-dom';
-import Paper from '@mui/material/Paper';
-import LocalMallIcon from '@mui/icons-material/LocalMall';
-import NextWeekIcon from '@mui/icons-material/NextWeek';
-import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import AirlineSeatReclineExtraIcon from '@mui/icons-material/AirlineSeatReclineExtra';
-import FastfoodIcon from '@mui/icons-material/Fastfood';
+import { useLocation, useNavigate } from "react-router-dom";
+import Paper from "@mui/material/Paper";
+import LocalMallIcon from "@mui/icons-material/LocalMall";
+import NextWeekIcon from "@mui/icons-material/NextWeek";
+import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
 import {
   quoteAction,
   ruleAction,
@@ -46,10 +46,10 @@ import { resetOneWay } from "../../../Redux/FlightSearch/oneWay";
 import LoginForm from "../../../components/Login";
 // ../../../Redux/FlightFareQuoteRule/actionFlightQuote
 const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
   padding: theme.spacing(1),
-  textAlign: 'center',
+  textAlign: "center",
   color: theme.palette.text.secondary,
 }));
 
@@ -59,7 +59,7 @@ function Items({ currentItems }) {
   const dispatch = useDispatch();
   const [value, setValue] = useState(true);
   const reducerState = useSelector((state) => state);
-  console.error("redux",reducerState);
+  console.error("redux", reducerState);
   const [flightDetailsValue, setFlightDetailsValue] = React.useState("1");
   const navigate = useNavigate();
   const queryParams = new URLSearchParams(location.search);
@@ -67,9 +67,9 @@ function Items({ currentItems }) {
   const childCount = queryParams.get("child");
   const infantCount = queryParams.get("infant");
   const checkLogin = reducerState?.logIn?.isLogin;
-  const authenticUser = reducerState?.logIn?.loginData?.status
-  console.error("check Login",checkLogin)
-  
+  const authenticUser = reducerState?.logIn?.loginData?.status;
+  console.error("check Login", checkLogin);
+
   // Login Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Need to payload
@@ -78,13 +78,14 @@ function Items({ currentItems }) {
   //   dispatch(quoteAction(payload));
   // }, []);
 
-  const flightImg = reducerState?.oneWay?.oneWayData?.data.data?.Response?.Results?.[0]?.map((ele)=> ele?.AirlineCode)
-  console.log("IMG DATA",flightImg)  
+  const flightImg =
+    reducerState?.oneWay?.oneWayData?.data.data?.Response?.Results?.[0]?.map(
+      (ele) => ele?.AirlineCode
+    );
+  console.log("IMG DATA", flightImg);
   // const img = flight?.Airline?.AirlineCode;
 
-
   const clickme = () => {
-   
     setValue(!value);
   };
   const results =
@@ -92,20 +93,17 @@ function Items({ currentItems }) {
   const items = [...Array(results[0].length).keys()];
 
   const handleIndexId = (ResultIndex) => {
-  //  Check user is logged in or not while booking flight
-    
-      navigate(`booknow?adult=${adultCount}&child=${childCount}&infant=${infantCount} `);
-      sessionStorage.setItem("ResultIndex", ResultIndex);
-    
+    //  Check user is logged in or not while booking flight
+
+    navigate(
+      `booknow?adult=${adultCount}&child=${childCount}&infant=${infantCount} `
+    );
+    sessionStorage.setItem("ResultIndex", ResultIndex);
   };
 
   // Time formate
-  const TicketDetails = reducerState?.flightFare?.flightQuoteData?.Results
+  const TicketDetails = reducerState?.flightFare?.flightQuoteData?.Results;
 
-
-
-
-  
   const [anchorEl, setAnchorEl] = React.useState(null);
   return (
     currentItems &&
@@ -115,33 +113,34 @@ function Items({ currentItems }) {
 
       //  Flight Details
 
-      const dateString =  results[0][item]?.Segments[0][0]?.Origin?.DepTime;
+      const dateString = results[0][item]?.Segments[0][0]?.Origin?.DepTime;
       const date1 = new Date(dateString);
-      const time1 = date1.toLocaleTimeString()?.slice(0,4);
-    
+      const time1 = date1.toLocaleTimeString()?.slice(0, 4);
+
       const day1 = date1.getDate();
       const month1 = date1.toLocaleString("default", {
         month: "short",
       });
       const year1 = date1.getFullYear();
-      const formattedDate1 = `${day1 + " "} ${month1 + ' '} ${year1 + ' '}`;
-    
-      const dateString1 =  results[0][item]?.Segments[0][0]?.Destination?.ArrTime;
-              const date2 = new Date(dateString1);
-              const time2 = `${date2.toLocaleTimeString()?.slice(0,4)}  `  ;
-    
-              const day2 = `${date2.getDate() }  ` ;
-              const month2 = date2.toLocaleString("default", {
-                month: "short",
-              });
-              const year2 = date2.getFullYear();
-              const formattedDate2 = `${day2}  ${month2} ${year2}`;
-    
-              // Duration
-              const totalMinutes = results[0][item]?.Segments[0][0]?.Duration;
-              const durationHours = Math.floor(totalMinutes / 60);
-              const durationMinutes = totalMinutes % 60;
-              const duration_Time = `${durationHours}h ${durationMinutes} m`
+      const formattedDate1 = `${day1 + " "} ${month1 + " "} ${year1 + " "}`;
+
+      const dateString1 =
+        results[0][item]?.Segments[0][0]?.Destination?.ArrTime;
+      const date2 = new Date(dateString1);
+      const time2 = `${date2.toLocaleTimeString()?.slice(0, 4)}  `;
+
+      const day2 = `${date2.getDate()}  `;
+      const month2 = date2.toLocaleString("default", {
+        month: "short",
+      });
+      const year2 = date2.getFullYear();
+      const formattedDate2 = `${day2}  ${month2} ${year2}`;
+
+      // Duration
+      const totalMinutes = results[0][item]?.Segments[0][0]?.Duration;
+      const durationHours = Math.floor(totalMinutes / 60);
+      const durationMinutes = totalMinutes % 60;
+      const duration_Time = `${durationHours}h ${durationMinutes} m`;
 
       const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -159,11 +158,9 @@ function Items({ currentItems }) {
       };
 
       // Date
-      
 
       return (
         <>
-       
           <Box
             sx={{ flexGrow: 5, backgroundColor: "white", borderRadius: "10px" }}
             my={3}
@@ -171,39 +168,44 @@ function Items({ currentItems }) {
             <Accordion>
               <AccordionSummary>
                 <Grid container p={2} display="flex" justifyContent="center">
-
-                <Grid
-                  sx={{
-                    width: "auto",
-                    height: "40px",
-                    backgroundColor: "white",
-                  }}
-                >
-                  <img
-                    src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`}
-                    alt="flight"
-                    style={{
-                      width: "80px",
+                  <Grid
+                    sx={{
+                      width: "auto",
                       height: "40px",
                       backgroundColor: "white",
                     }}
-                  />
-                  <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {" "}
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
-                      </Typography>
-                      <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
-                        {
-                          results[0][item]?.Segments[0][0]?.Airline
-                            ?.FlightNumber
-                        }
-                        {
-                          results[0][item]?.IsLCC == false ? <span style={{background:'green',padding:'7px 12px',color:'white'}} >LCC</span> : ''
-                        }
-
-                      </Typography>
-                </Grid>
+                  >
+                    <img
+                      src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`}
+                      alt="flight"
+                      style={{
+                        width: "80px",
+                        height: "40px",
+                        backgroundColor: "white",
+                      }}
+                    />
+                    <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
+                      {" "}
+                      {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
+                    </Typography>
+                    <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
+                      {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
+                      {results[0][item]?.Segments[0][0]?.Airline?.FlightNumber}
+                      {results[0][item]?.IsLCC == false ? (
+                        <span
+                          style={{
+                            background: "green",
+                            padding: "7px 12px",
+                            color: "white",
+                          }}
+                        >
+                          LCC
+                        </span>
+                      ) : (
+                        ""
+                      )}
+                    </Typography>
+                  </Grid>
 
                   <Grid
                     md={2}
@@ -213,7 +215,7 @@ function Items({ currentItems }) {
                   >
                     <Box px={1}>
                       <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                      {time1} {' ' +formattedDate1}
+                        {time1} {" " + formattedDate1}
                       </Typography>
                       <Typography
                         sx={{
@@ -243,7 +245,7 @@ function Items({ currentItems }) {
                           color: "#707070",
                         }}
                       >
-                       {duration_Time}
+                        {duration_Time}
                       </Typography>
                       <Typography
                         sx={{
@@ -264,7 +266,7 @@ function Items({ currentItems }) {
                   >
                     <Box px={1}>
                       <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                      {time2} {formattedDate2}
+                        {time2} {formattedDate2}
                       </Typography>
                       <Typography
                         sx={{
@@ -280,7 +282,7 @@ function Items({ currentItems }) {
                       </Typography>
                     </Box>
                   </Grid>
-                 
+
                   <Grid
                     md={2}
                     display="flex"
@@ -343,7 +345,6 @@ function Items({ currentItems }) {
                       <div>
                         {/* Flight Details tab */}
                         <Flightdetailtab />
-                       
                       </div>
                     </Popover>
                   </div>
@@ -359,61 +360,191 @@ function Items({ currentItems }) {
                     {/* View Price Btn */}
                     {/* <Viewpricebtn /> */}
 
-                    <form style={{width:'100%'}}>
-            <Box sx={{ flexGrow: 1 }}>
-                <Grid container spacing={2}>
-                    <Grid item xs={12}>
-                        <Item>
-
-                            <Typography px={2} className='main_heading'>Flexi Plus</Typography>
-                            <Typography px={2} className='normal_head'>Fare offer by Airline</Typography>
-                            <Box display='flex' justifyContent="space-around" my={2}>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<LocalMallIcon style={{ color: "#FF951A" }} ></LocalMallIcon>}  >
-                                 
-                                    Cabin Bags  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}> {results[0][item]?.Segments[0]?.[0]?.CabinBaggage}</Typography>
+                    <form style={{ width: "100%" }}>
+                      <Box sx={{ flexGrow: 1 }}>
+                        <Grid container spacing={2}>
+                          <Grid item xs={12}>
+                            <Item>
+                              <Typography px={2} className="main_heading">
+                                Flexi Plus
+                              </Typography>
+                              <Typography px={2} className="normal_head">
+                                Fare offer by Airline
+                              </Typography>
+                              <Box
+                                display="flex"
+                                justifyContent="space-around"
+                                my={2}
+                              >
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <LocalMallIcon
+                                      style={{ color: "#FF951A" }}
+                                    ></LocalMallIcon>
+                                  }
+                                >
+                                  Cabin Bags{" "}
+                                  <Typography
+                                    style={{
+                                      color: "#005CFF",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    {" "}
+                                    {
+                                      results[0][item]?.Segments[0]?.[0]
+                                        ?.CabinBaggage
+                                    }
+                                  </Typography>
                                 </Button>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<NextWeekIcon style={{ color: "#FF951A" }} ></NextWeekIcon>}  >
-                                    Check-In Bags  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>{results[0][item]?.Segments[0]?.[0]?.Baggage}</Typography>
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <NextWeekIcon
+                                      style={{ color: "#FF951A" }}
+                                    ></NextWeekIcon>
+                                  }
+                                >
+                                  Check-In Bags{" "}
+                                  <Typography
+                                    style={{
+                                      color: "#005CFF",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    {
+                                      results[0][item]?.Segments[0]?.[0]
+                                        ?.Baggage
+                                    }
+                                  </Typography>
                                 </Button>
-                                <Button mx={2} className="propsi" variant="contained" sx={{ backgroundColor: '#DAF2FC', color: 'black', borderRadius: '10px', fontSize: '10px' }} startIcon={<AttachMoneyIcon style={{ color: "#FF951A" }} ></AttachMoneyIcon>}  >
-                                    
-                                      {/* <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $300</Typography> */}
-                                      <Tooltip TransitionComponent={Zoom} title={results[0][item]?.TicketAdvisory}>
-                                      <Button>Cancellation</Button>
-                                      </Tooltip>      
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  sx={{
+                                    backgroundColor: "#DAF2FC",
+                                    color: "black",
+                                    borderRadius: "10px",
+                                    fontSize: "10px",
+                                  }}
+                                  startIcon={
+                                    <AttachMoneyIcon
+                                      style={{ color: "#FF951A" }}
+                                    ></AttachMoneyIcon>
+                                  }
+                                >
+                                  {/* <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $300</Typography> */}
+                                  <Tooltip
+                                    TransitionComponent={Zoom}
+                                    title={results[0][item]?.TicketAdvisory}
+                                  >
+                                    <Button>Cancellation</Button>
+                                  </Tooltip>
                                 </Button>
-                                <Typography px={5} className='price_'>${results[0][item]?.Fare?.OfferedFare}</Typography>
-                            </Box>
-                            <Box display='flex' justifyContent="left" mt={2}>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<CalendarTodayIcon style={{ color: "#FF951A" }} ></CalendarTodayIcon>}  >
-                                    Date Change<Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $250</Typography>
+                                <Typography px={5} className="price_">
+                                  ${results[0][item]?.Fare?.OfferedFare}
+                                </Typography>
+                              </Box>
+                              <Box display="flex" justifyContent="left" mt={2}>
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <CalendarTodayIcon
+                                      style={{ color: "#FF951A" }}
+                                    ></CalendarTodayIcon>
+                                  }
+                                >
+                                  Date Change
+                                  <Typography
+                                    style={{
+                                      color: "#005CFF",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    Cancellation Fee Starting $250
+                                  </Typography>
                                 </Button>
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<AirlineSeatReclineExtraIcon style={{ color: "#FF951A" }} ></AirlineSeatReclineExtraIcon>}  >
-                                    Seat <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>{results[0][item]?.Segments[0]?.[0]?.NoOfSeatAvailable}</Typography>
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <AirlineSeatReclineExtraIcon
+                                      style={{ color: "#FF951A" }}
+                                    ></AirlineSeatReclineExtraIcon>
+                                  }
+                                >
+                                  Seat{" "}
+                                  <Typography
+                                    style={{
+                                      color: "#005CFF",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    {
+                                      results[0][item]?.Segments[0]?.[0]
+                                        ?.NoOfSeatAvailable
+                                    }
+                                  </Typography>
+                                </Button>
+                              </Box>
+
+                              <Box
+                                display="flex"
+                                justifyContent="space-between"
+                                mt={2}
+                              >
+                                <Button
+                                  mx={2}
+                                  className="propsi"
+                                  variant="contained"
+                                  startIcon={
+                                    <FastfoodIcon
+                                      style={{ color: "#FF951A" }}
+                                    ></FastfoodIcon>
+                                  }
+                                >
+                                  Meal{" "}
+                                  <Typography
+                                    style={{
+                                      color: "#005CFF",
+                                      marginLeft: "10px",
+                                      fontSize: "10px",
+                                    }}
+                                  >
+                                    Get Complimentary Meals
+                                  </Typography>
                                 </Button>
 
-
-                            </Box>
-
-                            <Box display='flex' justifyContent="space-between" mt={2}>
-
-                                <Button mx={2} className="propsi" variant="contained" startIcon={<FastfoodIcon style={{ color: "#FF951A" }} ></FastfoodIcon>}  >
-                                    Meal  <Typography style={{ color: "#005CFF", marginLeft: '10px', fontSize: '10px' }}>Get Complimentary Meals</Typography>
+                                <Button
+                                  onClick={() => {
+                                    handleIndexId(
+                                      results[0][item]?.ResultIndex
+                                    );
+                                  }}
+                                  variant="contained"
+                                  className="booknow_btn"
+                                >
+                                  Book Now
                                 </Button>
-
-                                <Button onClick={() => {
-                   
-                        handleIndexId(results[0][item]?.ResultIndex);
-                      }}  variant='contained' className='booknow_btn'>Book Now</Button>
-
-                            </Box>
-
-                        </Item>
-                    </Grid>
-                </Grid>
-            </Box>
-        </form>
-                   
+                              </Box>
+                            </Item>
+                          </Grid>
+                        </Grid>
+                      </Box>
+                    </form>
                   </Grid>
                   {/* <Grid
                     container
@@ -454,7 +585,8 @@ function Items({ currentItems }) {
 
 export default function BasicGrid() {
   const reducerState = useSelector((state) => state);
-  const results = reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results;
+  const results =
+    reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results;
 
   // ============================================> paginations =================================//
 
