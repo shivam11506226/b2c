@@ -42,6 +42,7 @@ import Conformation from './pages/Return/Conformation';
 import NonStopFlight from './pages/Return/NonStopFlight';
 import BusResult from './pages/bus/bussearchresult/BusResult';
 import Download from './pages/home/Download';
+import Holidayinfo from './pages/holidaypackages/holidaypackagesearchresult/Holidayinfo';
 function App() {
   const location = useLocation();
  
@@ -82,7 +83,7 @@ function App() {
 
         {/* Holiday packages routes */}
         <Route path="holidaypackages" element={<Holidaypackages />}></Route>
-        <Route path="/HolidaypackageInfo" element={<HolidaypackageInfo/>}/> 
+        <Route path="/HolidayInfo" element={<Holidayinfo/>}/> 
         <Route path="/holidaypassengerdetail" element={<HolidayPassengerDetail />}></Route>
         <Route path="/HolidayPackageSearchResult" element={<HolidayPackageSearchResult/>}/>
 

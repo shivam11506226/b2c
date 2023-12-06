@@ -10,10 +10,10 @@ const HolidayPackageSearchResult = () => {
     return (
         <div className='holiday_package_banner'>
             <Searchnavbar />
-            <Blankdiv/>
+           
             <HolidayPackagesDetail/>
-            <OfferSwipeToSlide/>
-            <Footer></Footer>
+           
+           
         </div>
     )
 }

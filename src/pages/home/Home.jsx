@@ -18,7 +18,7 @@ const Home = () => {
             {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
             <Toursection></Toursection>
             <OfferCard/>
-            <SwipeToSlide></SwipeToSlide>
+            {/* <SwipeToSlide></SwipeToSlide> */}
             <Download></Download>
           
 

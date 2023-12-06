@@ -1,873 +1,600 @@
-import { Grid, Typography, Box, Divider, Button } from "@mui/material";
-import React, { useState } from "react";
-import PriceSlider from "../../Hotel/hoteldetails/PriceSlider";
-import StarIcon from "@mui/icons-material/Star";
-import "./holidaypackagesdetail.css";
-import building from "../../../images/icons/building.png";
-import night from "../../../images/icons/night.png";
-import beds from "../../../images/icons/beds.png";
-import unitednations from "../../../images/icons/unitednations.png";
-import addgroup from "../../../images/icons/addgroup.png";
-import review from "../../../images/icons/review.png";
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import "./holidayCard.css";
-import { useDispatch, useSelector } from "react-redux";
-import {HolidayButton} from '../../../utility/CSS/Button/Button'
-import { styled } from '@mui/material/styles';
-import Tooltip, { tooltipClasses } from '@mui/material/Tooltip';
-// Icons
-import CommitIcon from "@mui/icons-material/Commit";
-import TramIcon from "@mui/icons-material/Tram";
-import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
-import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
-import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
-import ApartmentIcon from "@mui/icons-material/Apartment";
-import HolidayVillageIcon from "@mui/icons-material/HolidayVillage";
-import BlurOnIcon from "@mui/icons-material/BlurOn";
-import DeckIcon from "@mui/icons-material/Deck";
-import EngineeringIcon from "@mui/icons-material/Engineering";
-import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
-import LiquorIcon from "@mui/icons-material/Liquor";
-import ArticleIcon from "@mui/icons-material/Article";
-import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
-import ParaglidingIcon from "@mui/icons-material/Paragliding";
-import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
-import LandslideIcon from "@mui/icons-material/Landslide";
-import KitesurfingIcon from "@mui/icons-material/Kitesurfing";
-import PoolIcon from "@mui/icons-material/Pool";
-import DownhillSkiingIcon from "@mui/icons-material/DownhillSkiing";
-import ForestIcon from "@mui/icons-material/Forest";
-import FastfoodIcon from "@mui/icons-material/Fastfood";
-import LocationCityIcon from "@mui/icons-material/LocationCity";
-import SwapVerticalCircleIcon from '@mui/icons-material/SwapVerticalCircle';
+import React from "react";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import { Grid, Paper, Radio, Typography } from "@mui/material";
+import Divider from "@mui/material/Divider";
+
+import Checkbox from "@mui/material/Checkbox";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import { styled } from "@mui/material/styles";
+import Umbrella1 from "../../../images/umbrella1.png";
+import Umbrella2 from "../../../images/umbrella2.png";
 import { useNavigate } from "react-router-dom";
-import { savePackageId } from "../../../Redux/HolidayBookingRequest/actionBooking";
-import { submitFormData } from "../../../Redux/BookingPackageData/actionType";
-import { packageBookingID } from "../../../Redux/BookingPackageData/actionBooking";
-// Tooltip 
-const BootstrapTooltip = styled(({ className, ...props }) => (
-    <Tooltip {...props} arrow classes={{ popper: className }} />
-  ))(({ theme }) => ({
-    [`& .${tooltipClasses.arrow}`]: {
-      color: theme.palette.common.black,
-    },
-    [`& .${tooltipClasses.tooltip}`]: {
-      backgroundColor: theme.palette.common.black,
-    },
-  }));
+import SwipeToSlide from "../../flight/SwipeToSlide";
+import { useState } from "react";
+import "./holidaypackagee.css";
+const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-const HolidayPackagesDetail = () => {
+function HolidayPackagesDetail() {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  var settings = {
-    dots: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-  };
-  const [selectedOption, setSelectedOption] = useState("");
-  console.log(selectedOption);
-  const [ratingOption, setRatingOption] = useState("");
-  console.log(ratingOption);
-  const [bookingOption, setBookingOption] = useState("");
-  console.log(bookingOption);
-
-  const reducerState = useSelector((state) => state);
-  const searchedPackage =
-    reducerState?.searchOneResult?.OneSearchPackageResult?.data?.data?.pakage;
-  console.warn("IIDDDD", reducerState);
-
-  
-
-const handleBookPackage =(id)=>{
-  // e.preventDefault();
-  localStorage.setItem('PackageBookingId', id);
-  // dispatch(savePackageId(id))
-  dispatch(packageBookingID(id));
-  navigate("/holidaypassengerdetail")
+  function handleclick() {
+    navigate("/HolidayInfo");
   }
+  const tripsData = [
+    {
+      image: Umbrella1,
+      image1: Umbrella2,
+      title: "Luxurious Dubai Trip",
+      subtitle: "Customisable",
+      activitytext: "5 Activities",
+      flighttext: "2 Flight",
+      hoteltext: "1 Hotel",
+      transfertext: "2 Transfers",
+      pointtext: "Mandovi River Cruise",
+      pointtext1: "North Dubai Sightseeing",
 
+      value: "₹ 9,450",
+      taxesAndFees: "₹ 14,250",
+      taxesAndFeesText: "+₹ 1,181 taxes & fees Per Person",
+
+      duration: "5D / 4N",
+    },
+    {
+      image: Umbrella1,
+      image1: Umbrella2,
+      title: "Luxurious Dubai Trip",
+      subtitle: "Customisable",
+      activitytext: "5 Activities",
+      flighttext: "2 Flight",
+      hoteltext: "1 Hotel",
+      transfertext: "2 Transfers",
+      pointtext: "Mandovi River Cruise",
+      pointtext1: "North Dubai Sightseeing",
+
+      value: "₹ 9,450",
+      taxesAndFees: "₹ 14,250",
+      taxesAndFeesText: "+₹ 1,181 taxes & fees Per Person",
+
+      duration: "5D / 4N",
+    },
+
+    {
+      image: Umbrella1,
+      image1: Umbrella2,
+      title: "Luxurious Dubai Trip",
+      subtitle: "Customisable",
+      activitytext: "5 Activities",
+      flighttext: "2 Flight",
+      hoteltext: "1 Hotel",
+      transfertext: "2 Transfers",
+      pointtext: "Mandovi River Cruise",
+      pointtext1: "North Dubai Sightseeing",
+
+      value: "₹ 9,450",
+      taxesAndFees: "₹ 14,250",
+      taxesAndFeesText: "+₹ 1,181 taxes & fees Per Person",
+
+      duration: "5D / 4N",
+    },
+
+    {
+      image: Umbrella1,
+      image1: Umbrella2,
+      title: "Luxurious Dubai Trip",
+      subtitle: "Customisable",
+      activitytext: "5 Activities",
+      flighttext: "2 Flight",
+      hoteltext: "1 Hotel",
+      transfertext: "2 Transfers",
+      pointtext: "Mandovi River Cruise",
+      pointtext1: "North Dubai Sightseeing",
+
+      value: "₹ 9,450",
+      taxesAndFees: "₹ 14,250",
+      taxesAndFeesText: "+₹ 1,181 taxes & fees Per Person",
+
+      duration: "5D / 4N",
+    },
+
+    // Add more objects as needed
+  ];
 
   return (
-    <div className="container">
-      <Grid container spacing={3}>
-        <Grid item sm={12} xs={12} lg={3}>
-          <Box className="leftshadow" py={3}>
-            <Typography className="selectfilter">
-              Your Holiday Package
+    <div className="mainpackage">
+      <div className="sort-filter-bar">
+        <div className="result-count">SORT BY:</div>
+        <div className="sort-options">
+          <div className="sort-options-list">
+            <div className="sort-option active">Popular</div>
+            <div className="sort-option">Thailand</div>
+            <div className="sort-option">Singapore</div>
+            <div className="sort-option">Maldives</div>
+            <div className="sort-option">Mexico</div>
+            <div className="sort-option">London</div>
+            <div className="sort-option">Paris</div>
+            <div className="sort-option">United Kingdom</div>
+          </div>
+        </div>
+      </div>
+      <div className="seatlayout">
+        <div className="seatlayoutleft">
+          <div className="leftsection">
+            <Typography pt={1} px={5} className="selectfilter">
+              Select Filters
             </Typography>
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            <Box>
-              <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-                <img src={building} />
-                <Typography className="holiday_text" ml={1}>
-                  New Delhi To Dubai
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-                <img src={night} style={{ width: "8%", height: "20%" }} />
-                <Typography className="holiday_text" ml={1}>
-                  3 Night(s)(05 Feb-08 Feb, 2023)
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-                <img src={beds} />
-                <Typography className="holiday_text" ml={1}>
-                  1 Room(s)
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-                <img src={unitednations} />
-                <Typography className="holiday_text" ml={1}>
-                  Indian
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-                <img src={addgroup} />
-                <Typography className="holiday_text" ml={1}>
-                  2 Adult(s)
-                </Typography>
-              </Box>
-              <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-                <img src={review} />
-                <Typography className="holiday_text" ml={1}>
-                  5 Star or more
-                </Typography>
-              </Box>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  marginY: "15px",
-                  marginX: "20px",
-                }}
-              >
-                <Button variant="contained" className="btn_mod">
-                  Modify Search
-                </Button>
-              </Box>
-            </Box>
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            <Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography className="starrating">Flights</Typography>
-                <Box>
-                  <Typography className="clearfilter">Clear Filter</Typography>
-                </Box>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-around",
-                }}
-                my={1}
-              >
-                <Button className="button_package" variant="contained">
-                  <Typography className="btn_package">With Flight</Typography>
-                </Button>
-                <Button className="button_package" variant="contained">
-                  <Typography className="btn_package">
-                    Without Flight
-                  </Typography>
-                </Button>
-              </Box>
-            </Box>
+           
+          
+           
+            
 
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            <Typography className="suggested">Hot Deals</Typography>
-            <Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="option1"
-                    checked={selectedOption === "option1"}
-                    onClick={(e) => setSelectedOption("option1")}
+           
+            <Typography pt={1} pl={5} className="theme">
+            Themes
+            </Typography>
+            <Box pl={5} display="block">
+              <form action="">
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
                   />
-                </Typography>
-                <Typography className="value"> Hot Deals</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-            </Box>
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            <Box>
-              <Box>
-                <Typography className="price">Price (Per Night)</Typography>
-
-                <PriceSlider />
-              </Box>
-            </Box>
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            {/* -------------------------------------------------------------------- */}
-            <Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography className="starrating"> Star Rating</Typography>
-                <Box>
-                  <Typography className="clearfilter">Clear Filter</Typography>
-                </Box>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="rating1"
-                    checked={ratingOption === "rating1"}
-                    onClick={(e) => setRatingOption("rating1")}
-                  />
-                </Typography>
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="rating2"
-                    checked={ratingOption === "rating2"}
-                    onClick={(e) => setRatingOption("rating2")}
-                  />
-                </Typography>
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="rating3"
-                    checked={ratingOption === "rating3"}
-                    onClick={(e) => setRatingOption("rating3")}
-                  />
-                </Typography>
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="rating4"
-                    checked={ratingOption === "rating4"}
-                    onClick={(e) => setRatingOption("rating4")}
-                  />
-                </Typography>
-                <StarIcon style={{ color: "yellow" }} />
-                <StarIcon style={{ color: "yellow" }} />
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="rating5"
-                    checked={ratingOption === "rating5"}
-                    onClick={(e) => setRatingOption("rating5")}
-                  />
-                </Typography>
-                <StarIcon style={{ color: "yellow" }} />
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="rating6"
-                    checked={ratingOption === "rating6"}
-                    onClick={(e) => setRatingOption("rating6")}
-                  />
-                </Typography>
-                <Typography className="value">Unrated Hotel</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-            </Box>
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            <Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography className="starrating"> Theme</Typography>
-                <Box>
-                  <Typography className="clearfilter">Clear Filter</Typography>
-                </Box>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking1"
-                    checked={bookingOption === "booking1"}
-                    onClick={(e) => setBookingOption("booking1")}
-                  />
-                </Typography>
-                <Typography className="value">Bus Packages</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking2"
-                    checked={bookingOption === "booking2"}
-                    onClick={(e) => setBookingOption("booking2")}
-                  />
-                </Typography>
-                <Typography className="value">Honeymoon</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking3"
-                    checked={bookingOption === "booking3"}
-                    onClick={(e) => setBookingOption("booking3")}
-                  />
-                </Typography>
-                <Typography className="value">Luxury</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking4"
-                    checked={bookingOption === "booking4"}
-                    onClick={(e) => setBookingOption("booking4")}
-                  />
-                </Typography>
-                <Typography className="value">Adventures</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking4"
-                    checked={bookingOption === "booking4"}
-                    onClick={(e) => setBookingOption("booking4")}
-                  />
-                </Typography>
-                <Typography className="value">Beach</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking4"
-                    checked={bookingOption === "booking4"}
-                    onClick={(e) => setBookingOption("booking4")}
-                  />
-                </Typography>
-                <Typography className="value">Mountain</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-            </Box>
-            <Divider sx={{ backgroundColor: "gray", marginY: "8px" }} />
-            <Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "space-between",
-                }}
-              >
-                <Typography className="starrating"> Holiday Type</Typography>
-                <Box>
-                  <Typography className="clearfilter">Clear Filter</Typography>
-                </Box>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking1"
-                    checked={bookingOption === "booking1"}
-                    onClick={(e) => setBookingOption("booking1")}
-                  />
-                </Typography>
-                <Typography className="value">Short Break</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking2"
-                    checked={bookingOption === "booking2"}
-                    onClick={(e) => setBookingOption("booking2")}
-                  />
-                </Typography>
-                <Typography className="value">Most Popular</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking3"
-                    checked={bookingOption === "booking3"}
-                    onClick={(e) => setBookingOption("booking3")}
-                  />
-                </Typography>
-                <Typography className="value">Experiential Stays</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-              <Box
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  marginTop: "8px",
-                }}
-              >
-                <Typography className="content">
-                  <input
-                    className="radio"
-                    type="radio"
-                    value="booking4"
-                    checked={bookingOption === "booking4"}
-                    onClick={(e) => setBookingOption("booking4")}
-                  />
-                </Typography>
-                <Typography className="value">Offbeat</Typography>
-                <Typography style={{ flexGrow: 1 }} className="value">
-                  (12)
-                </Typography>
-              </Box>
-            </Box>
-          </Box>
-        </Grid>
-        <Grid
-          sx={{ backgroundColor: "white" }}
-          display="flex"
-          justifyContent='space-around'
-          mt={3}
-          item
-          sm={12}
-          xs={12}
-          lg={9}
-        >
-          {/* <Slider {...settings}> */}
-            {searchedPackage?.map((ele, indx) => (
-              <div class="card">
-                <div class="header">
-                    {ele?.schedule?.flexible && (<><span className="flex"><SwapVerticalCircleIcon /> Flexi Pakckage</span></> )}
-                <span class="Package_title">{`${ele?.pakage_title?.slice(0,25)}...`}</span>
-                  <img
-                    src={ele?.pakage_img}
-                    style={{ width: "100%", height: "128px" }}
-                    alt={indx}
-                  />
-                  <span class="tag">
-                    {`${ele?.days + 1}N`} / {`${ele?.days}D`}
-                  </span>
+                Adventure
                 </div>
-                <Box display="flex" justifyContent="space-around">
-                  {ele?.insclusions?.map((item, index) => {
-                    return (
-                      <>
-                        {item?.flexibility && (
-                          <BootstrapTooltip  title="Flight" arrow>
-                            <span>
-                              {" "}
-                              <CommitIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.train && (
-                          <BootstrapTooltip  title="Train" arrow>
-                            <span>
-                              {" "}
-                              <TramIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.bus && (
-                          <BootstrapTooltip  title="Bus" arrow>
-                            <span>
-                              {" "}
-                              <DirectionsBusIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.cab && (
-                          <BootstrapTooltip  title="Cab" arrow>
-                            <span>
-                              {" "}
-                              <DirectionsCarIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.hotel && (
-                          <BootstrapTooltip  title="Hotel" arrow>
-                            <span>
-                              {" "}
-                              <ApartmentIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.homeStays && (
-                          <BootstrapTooltip  title="HomeStays" arrow>
-                            <span>
-                              {" "}
-                              <HolidayVillageIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.guestHouse && (
-                          <BootstrapTooltip  title="GuestHouse" arrow>
-                            <span>
-                              {" "}
-                              <LocationCityIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.cruise && (
-                          <BootstrapTooltip  title="Cruise" arrow>
-                            <span>
-                              {" "}
-                              <BlurOnIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.sightSeeing && (
-                          <BootstrapTooltip  title="SightSeeing" arrow>
-                            <span>
-                              {" "}
-                              <DeckIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.guide && (
-                          <BootstrapTooltip  title="Guide" arrow>
-                            <span>
-                              {" "}
-                              <EngineeringIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.meals && (
-                          <BootstrapTooltip  title="Meals" arrow>
-                            <span>
-                              {" "}
-                              <FastfoodIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.breakfast && (
-                          <BootstrapTooltip  title="Breakfast">
-                            <span>
-                              {" "}
-                              <DinnerDiningIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.drink && (
-                          <BootstrapTooltip  title="Drink" arrow>
-                            <span>
-                              {" "}
-                              <LiquorIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.visa && (
-                          <BootstrapTooltip  title="Visa" arrow>
-                            <span>
-                              {" "}
-                              <ArticleIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.moterBike && (
-                          <BootstrapTooltip  title="MmoterBike" arrow>
-                            <span>
-                              {" "}
-                              <TwoWheelerIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.travelInsurance && (
-                          <BootstrapTooltip  title="TravelInsurance" arrow>
-                            <span>
-                              {" "}
-                              <AccountBalanceIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.safeTravel && (
-                          <BootstrapTooltip  title="Safe Travel" arrow>
-                            <span>
-                              {" "}
-                              <ParaglidingIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.wildlife && (
-                          <BootstrapTooltip  title="Wildlife" arrow>
-                            <span>
-                              {" "}
-                              <NaturePeopleIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.heritage && (
-                          <BootstrapTooltip  title="Heritage" arrow>
-                            <span>
-                              {" "}
-                              <LandslideIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.adventure && (
-                          <BootstrapTooltip  title="Adventure" arrow>
-                            <span>
-                              {" "}
-                              <KitesurfingIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.beach && (
-                          <BootstrapTooltip  title="Beach" arrow>
-                            <span>
-                              {" "}
-                              <PoolIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.hillStation && (
-                          <BootstrapTooltip  title="Hill Station" arrow>
-                            <span>
-                              {" "}
-                              <DownhillSkiingIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                        {item?.nature && (
-                          <BootstrapTooltip  title="Nature" arrow>
-                            <span>
-                              {" "}
-                              <ForestIcon />{" "}
-                            </span>
-                          </BootstrapTooltip >
-                        )}
-                      </>
-                    );
-                  })}
-                </Box>
-                <div class="info">
-
-                <p class="description">
-                    {`${ele?.overview.slice(0, 95)}...`}
-                </p>
-                
-
-                  {/* <p class="description">
-                  {showFullOverview ? ele?.overview : `${ele?.overview.slice(0, 95)}...`}
-                  <span style={{color:'blue'}} onClick={() => setShowFullOverview(!showFullOverview)}>
-                  {showFullOverview ? "Show Less" : "Show More"}
-                 </span>
-                  </p> */}
-                 
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                Honeymoon
                 </div>
-                {console.log("👍👍👍👍👍",ele?._id)}
-                {/* action="holidaypassengerdetail" */}
-                <form>
-                <HolidayButton 
-                // type="submit" 
-                onClick={() => handleBookPackage(ele?._id)}>
-                  Continue
-                  </HolidayButton>
+
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                 Wildlife
+                </div>
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                 Break from Work
+                </div>
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                 Cultural/Religious
+                </div>
               </form>
+            </Box>
+            <Typography pt={1} px={5} className="selectfilter">
+            Budget
+            </Typography>
+            <Box pl={5} display="block">
+              <form action="">
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                ₹5,000-15,000
+                </div>
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+               ₹5,000-15,000
+                </div>
 
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                 ₹5,000-15,000
+                </div>
+                <div>
+                  <Checkbox
+                    {...label}
+                    icon={<RadioButtonUncheckedIcon />}
+                    checkedIcon={<RadioButtonCheckedIcon />}
+                  />
+                 ₹5,000-15,000
+                </div>
+              </form>
+            </Box>
+           
+          </div>
+        </div>
+        <div className="seatlayoutright">
+          <div className="bus-info-containers">
+            <div className="titleseat">Showing Popular Packages</div>
+            {/* Add other components/content as needed */}
+          </div>
 
-              {/* 
-              Not working
-              holidaypackages/HolidayPackageSearchResult/holidaypassengerdetail */}
+          {/* <div>
+            <div className="your-containerholi">
+              <div className="left-sectionholi">
+                <div className="image-section">
+                  <img
+                    src={Umbrella2}
+                    alt="Placeholder"
+                    className="main-image"
+                  />
+                  <div className="icon-section">
+                    <img src={Umbrella1} alt="Icon 1" />
+                    <img src={Umbrella1} alt="Icon 2" />
+                    <img src={Umbrella1} alt="Icon 3" />
+                    <img src={Umbrella1} alt="Icon 4" />
+                    <div className="view-all">
+                      <div className="view-all-text">View All</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="empty-section">
+                  <div className="your-containerpackage">
+                    <div className="header-sectionpackage">
+                      <div className="title-sectionpackage">
+                        <div className="main-titlepackage">
+                          Luxurious Dubai Trip
+                        </div>
+                        <div className="subtitlepackage">Customisable</div>
+                      </div>
+                    </div>
+                    <div className="your-containerpack">
+                      <div className="icon-section">
+                        <div className="activity-icon">
+                          <div className="icon-bg">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25"
+                              height="24"
+                              viewBox="0 0 25 24"
+                              fill="none"
+                            >
+                              <mask
+                                id="mask0_646_11903"
+                                maskUnits="userSpaceOnUse"
+                                x="0"
+                                y="0"
+                                width="25"
+                                height="24"
+                              >
+                                <rect
+                                  x="0.410156"
+                                  width="24"
+                                  height="24"
+                                  fill="#D9D9D9"
+                                />
+                              </mask>
+                              <g mask="url(#mask0_646_11903)">
+                                <path
+                                  d="M5.81016 20L4.41016 18.6L14.0102 9H11.4102V11H9.41016V7H15.2352C15.5018 7 15.7602 7.05 16.0102 7.15C16.2602 7.25 16.4768 7.39167 16.6602 7.575L19.6602 10.55C20.1102 11 20.6602 11.35 21.3102 11.6C21.9602 11.85 22.6602 11.9833 23.4102 12V14C22.3768 14 21.4393 13.8417 20.5977 13.525C19.756 13.2083 19.0102 12.7333 18.3602 12.1L17.3602 11.05L15.1602 13.25L17.4102 15.5L10.8602 19.275L9.86016 17.55L14.1602 15.075L12.4602 13.375L5.81016 20ZM3.41016 13V11H8.41016V13H3.41016ZM1.41016 10V8H6.41016V10H1.41016ZM19.8852 8C19.3352 8 18.8602 7.80417 18.4602 7.4125C18.0602 7.02083 17.8602 6.55 17.8602 6C17.8602 5.45 18.0602 4.97917 18.4602 4.5875C18.8602 4.19583 19.3352 4 19.8852 4C20.4352 4 20.9102 4.19583 21.3102 4.5875C21.7102 4.97917 21.9102 5.45 21.9102 6C21.9102 6.55 21.7102 7.02083 21.3102 7.4125C20.9102 7.80417 20.4352 8 19.8852 8ZM3.41016 7V5H8.41016V7H3.41016Z"
+                                  fill="#071C2C"
+                                />
+                              </g>
+                            </svg>
+                          </div>
+                          <div className="icon-shape"></div>
+                          <div className="icon-text">5 Activities</div>
+                        </div>
+                        <div className="hotel-icon">
+                          <div className="icon-bg">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="21"
+                              height="20"
+                              viewBox="0 0 21 20"
+                              fill="none"
+                            >
+                              <path
+                                d="M19.8451 0.565062C19.0786 -0.201477 17.8329 -0.185507 17.0824 0.597001L12.9942 4.86087L2.98125 1.55517L0.889243 3.64718L9.22535 8.77341L5.00939 13.181L2.31053 12.7339L0.410156 14.6342L4.38657 16.0236L5.77592 20L7.6763 18.0996L7.22915 15.4008L11.6208 11.1848L16.747 19.5209L18.839 17.4289L15.5493 7.416L19.8132 3.31182C20.5957 2.57722 20.6116 1.3316 19.8451 0.565062Z"
+                                fill="#071C2C"
+                              />
+                            </svg>
+                          </div>
+                          <div className="icon-text">2 Flight</div>
+                        </div>
+                        <div className="hotel-icon">
+                          <div className="icon-bg">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="21"
+                              height="20"
+                              viewBox="0 0 21 20"
+                              fill="none"
+                            >
+                              <path
+                                d="M19.7383 18.8281V4.70312H16.207V18.8281H15.0352V0H6.78516V18.8281H5.61328V7.0625H2.08203V18.8281H0.910156V20H20.9102V18.8281H19.7383ZM17.3789 7.0625H18.5508V8.23438H17.3789V7.0625ZM17.3789 9.40625H18.5508V10.5781H17.3789V9.40625ZM17.3789 11.7656H18.5508V12.9375H17.3789V11.7656ZM17.3789 14.125H18.5508V15.2969H17.3789V14.125ZM17.3789 16.4688H18.5508V17.6406H17.3789V16.4688ZM3.26953 9.40625H4.44141V10.5781H3.26953V9.40625ZM3.26953 11.7656H4.44141V12.9375H3.26953V11.7656ZM3.26953 14.125H4.44141V15.2969H3.26953V14.125ZM3.26953 16.4688H4.44141V17.6406H3.26953V16.4688ZM11.5039 2.35938H12.6758V3.53125H11.5039V2.35938ZM11.5039 4.70312H12.6758V5.875H11.5039V4.70312ZM11.5039 7.0625H12.6758V8.23438H11.5039V7.0625ZM11.5039 9.40625H12.6758V10.5781H11.5039V9.40625ZM11.5039 11.7656H12.6758V12.9375H11.5039V11.7656ZM9.14453 2.35938H10.3164V3.53125H9.14453V2.35938ZM9.14453 4.70312H10.3164V5.875H9.14453V4.70312ZM9.14453 7.0625H10.3164V8.23438H9.14453V7.0625ZM9.14453 9.40625H10.3164V10.5781H9.14453V9.40625ZM9.14453 11.7656H10.3164V12.9375H9.14453V11.7656ZM11.5039 18.8281V15.2969H10.332V18.8281H9.16016V14.125H12.6914V18.8281H11.5039Z"
+                                fill="#071C2C"
+                              />
+                            </svg>
+                          </div>
+                          <div className="icon-text">1 Hotel</div>
+                        </div>
+                        <div className="transfer-icon">
+                          <div className="icon-bg">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="25"
+                              height="24"
+                              viewBox="0 0 25 24"
+                              fill="none"
+                            >
+                              <mask
+                                id="mask0_646_11917"
+                                maskUnits="userSpaceOnUse"
+                                x="0"
+                                y="0"
+                                width="25"
+                                height="24"
+                              >
+                                <rect
+                                  x="0.410156"
+                                  width="24"
+                                  height="24"
+                                  fill="#D9D9D9"
+                                />
+                              </mask>
+                              <g mask="url(#mask0_646_11917)">
+                                <path
+                                  d="M6.41016 19V20C6.41016 20.2833 6.31432 20.5208 6.12266 20.7125C5.93099 20.9042 5.69349 21 5.41016 21H4.41016C4.12682 21 3.88932 20.9042 3.69766 20.7125C3.50599 20.5208 3.41016 20.2833 3.41016 20V12L5.51016 6C5.61016 5.7 5.78932 5.45833 6.04766 5.275C6.30599 5.09167 6.59349 5 6.91016 5H9.41016V3H15.4102V5H17.9102C18.2268 5 18.5143 5.09167 18.7727 5.275C19.031 5.45833 19.2102 5.7 19.3102 6L21.4102 12V20C21.4102 20.2833 21.3143 20.5208 21.1227 20.7125C20.931 20.9042 20.6935 21 20.4102 21H19.4102C19.1268 21 18.8893 20.9042 18.6977 20.7125C18.506 20.5208 18.4102 20.2833 18.4102 20V19H6.41016ZM6.21016 10H18.6102L17.5602 7H7.26016L6.21016 10ZM7.91016 16C8.32682 16 8.68099 15.8542 8.97266 15.5625C9.26432 15.2708 9.41016 14.9167 9.41016 14.5C9.41016 14.0833 9.26432 13.7292 8.97266 13.4375C8.68099 13.1458 8.32682 13 7.91016 13C7.49349 13 7.13932 13.1458 6.84766 13.4375C6.55599 13.7292 6.41016 14.0833 6.41016 14.5C6.41016 14.9167 6.55599 15.2708 6.84766 15.5625C7.13932 15.8542 7.49349 16 7.91016 16ZM16.9102 16C17.3268 16 17.681 15.8542 17.9727 15.5625C18.2643 15.2708 18.4102 14.9167 18.4102 14.5C18.4102 14.0833 18.2643 13.7292 17.9727 13.4375C17.681 13.1458 17.3268 13 16.9102 13C16.4935 13 16.1393 13.1458 15.8477 13.4375C15.556 13.7292 15.4102 14.0833 15.4102 14.5C15.4102 14.9167 15.556 15.2708 15.8477 15.5625C16.1393 15.8542 16.4935 16 16.9102 16ZM5.41016 17H19.4102V12H5.41016V17Z"
+                                  fill="#071C2C"
+                                />
+                              </g>
+                            </svg>
+                          </div>
+                          <div className="icon-shape"></div>
+                          <div className="icon-text">2 Transfers</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="details-section">
+                      <div className="bullet-points">
+                        <div className="bullet"></div>
+                        <div className="point-text">Mandovi River Cruise</div>
+                      </div>
+                      <div className="bullet-points">
+                        <div className="bullet"></div>
+                        <div className="point-text">
+                          North Dubai Sightseeing
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="right-sectionholi">
+                <div className="price-section">
+                  <div className="top-price">
+                    <div className="price-value">₹ 9,450</div>
+                    <div className="price-line"></div>
+                  </div>
+                  <div className="bottom-price">
+                    <div className="main-price">
+                      <div className="taxes-and-fees">₹ 14,250</div>
+                      <div className="discount-icon"></div>
+                    </div>
+                    <div className="taxes-and-fees">
+                      +₹ 1,181 taxes & fees
+                      <br />
+                      Per Person
+                    </div>
+                  </div>
+                </div>
+                <div className="duration-section1">
+                  <div className="duration-value1">5D / 4N</div>
+                </div>
+              </div>
+            </div>
+          </div> */}
 
-{/* holidaypackages/holidaypassengerdetail? */}
-
-              {/* <HolidayButton onClick={handleBookPackage}>Continue</HolidayButton> */}
+          <div>
+            {tripsData.map((trip, index) => (
+              <div key={index} className="your-containerholi" onClick={handleclick}>
+                <div className="left-sectionholi">
+                  <div className="image-section">
+                    <img
+                      src={trip.image1}
+                      alt="Placeholder"
+                      className="main-image"
+                    />
+                    <div className="icon-section">
+                      <img src={trip.image} alt="Icon 1" />
+                      <img src={trip.image} alt="Icon 2" />
+                      <img src={trip.image} alt="Icon 3" />
+                      <img src={trip.image} alt="Icon 4" />
+                      {/* <div className="view-all">
+                        <div className="view-all-text">View All</div>
+                      </div> */}
+                    </div>
+                  </div>
+                  <div className="empty-section">
+                    <div className="your-containerpackage">
+                      <div className="header-sectionpackage">
+                        <div className="title-sectionpackage">
+                          <div className="main-titlepackage">{trip.title}</div>
+                          <div className="subtitlepackage">{trip.subtitle}</div>
+                        </div>
+                      </div>
+                      <div className="your-containerpack">
+                        <div className="icon-section">
+                          <div className="activity-icon">
+                            <div className="icon-bg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="25"
+                                height="24"
+                                viewBox="0 0 25 24"
+                                fill="none"
+                              >
+                                <mask
+                                  id="mask0_646_11903"
+                                  maskUnits="userSpaceOnUse"
+                                  x="0"
+                                  y="0"
+                                  width="25"
+                                  height="24"
+                                >
+                                  <rect
+                                    x="0.410156"
+                                    width="24"
+                                    height="24"
+                                    fill="#D9D9D9"
+                                  />
+                                </mask>
+                                <g mask="url(#mask0_646_11903)">
+                                  <path
+                                    d="M5.81016 20L4.41016 18.6L14.0102 9H11.4102V11H9.41016V7H15.2352C15.5018 7 15.7602 7.05 16.0102 7.15C16.2602 7.25 16.4768 7.39167 16.6602 7.575L19.6602 10.55C20.1102 11 20.6602 11.35 21.3102 11.6C21.9602 11.85 22.6602 11.9833 23.4102 12V14C22.3768 14 21.4393 13.8417 20.5977 13.525C19.756 13.2083 19.0102 12.7333 18.3602 12.1L17.3602 11.05L15.1602 13.25L17.4102 15.5L10.8602 19.275L9.86016 17.55L14.1602 15.075L12.4602 13.375L5.81016 20ZM3.41016 13V11H8.41016V13H3.41016ZM1.41016 10V8H6.41016V10H1.41016ZM19.8852 8C19.3352 8 18.8602 7.80417 18.4602 7.4125C18.0602 7.02083 17.8602 6.55 17.8602 6C17.8602 5.45 18.0602 4.97917 18.4602 4.5875C18.8602 4.19583 19.3352 4 19.8852 4C20.4352 4 20.9102 4.19583 21.3102 4.5875C21.7102 4.97917 21.9102 5.45 21.9102 6C21.9102 6.55 21.7102 7.02083 21.3102 7.4125C20.9102 7.80417 20.4352 8 19.8852 8ZM3.41016 7V5H8.41016V7H3.41016Z"
+                                    fill="#071C2C"
+                                  />
+                                </g>
+                              </svg>
+                            </div>
+                            <div className="icon-shape"></div>
+                            <div className="icon-text">{trip.activitytext}</div>
+                          </div>
+                          <div className="hotel-icon">
+                            <div className="icon-bg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="21"
+                                height="20"
+                                viewBox="0 0 21 20"
+                                fill="none"
+                              >
+                                <path
+                                  d="M19.8451 0.565062C19.0786 -0.201477 17.8329 -0.185507 17.0824 0.597001L12.9942 4.86087L2.98125 1.55517L0.889243 3.64718L9.22535 8.77341L5.00939 13.181L2.31053 12.7339L0.410156 14.6342L4.38657 16.0236L5.77592 20L7.6763 18.0996L7.22915 15.4008L11.6208 11.1848L16.747 19.5209L18.839 17.4289L15.5493 7.416L19.8132 3.31182C20.5957 2.57722 20.6116 1.3316 19.8451 0.565062Z"
+                                  fill="#071C2C"
+                                />
+                              </svg>
+                            </div>
+                            <div className="icon-text">{trip.flighttext}</div>
+                          </div>
+                          <div className="hotel-icon">
+                            <div className="icon-bg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="21"
+                                height="20"
+                                viewBox="0 0 21 20"
+                                fill="none"
+                              >
+                                <path
+                                  d="M19.7383 18.8281V4.70312H16.207V18.8281H15.0352V0H6.78516V18.8281H5.61328V7.0625H2.08203V18.8281H0.910156V20H20.9102V18.8281H19.7383ZM17.3789 7.0625H18.5508V8.23438H17.3789V7.0625ZM17.3789 9.40625H18.5508V10.5781H17.3789V9.40625ZM17.3789 11.7656H18.5508V12.9375H17.3789V11.7656ZM17.3789 14.125H18.5508V15.2969H17.3789V14.125ZM17.3789 16.4688H18.5508V17.6406H17.3789V16.4688ZM3.26953 9.40625H4.44141V10.5781H3.26953V9.40625ZM3.26953 11.7656H4.44141V12.9375H3.26953V11.7656ZM3.26953 14.125H4.44141V15.2969H3.26953V14.125ZM3.26953 16.4688H4.44141V17.6406H3.26953V16.4688ZM11.5039 2.35938H12.6758V3.53125H11.5039V2.35938ZM11.5039 4.70312H12.6758V5.875H11.5039V4.70312ZM11.5039 7.0625H12.6758V8.23438H11.5039V7.0625ZM11.5039 9.40625H12.6758V10.5781H11.5039V9.40625ZM11.5039 11.7656H12.6758V12.9375H11.5039V11.7656ZM9.14453 2.35938H10.3164V3.53125H9.14453V2.35938ZM9.14453 4.70312H10.3164V5.875H9.14453V4.70312ZM9.14453 7.0625H10.3164V8.23438H9.14453V7.0625ZM9.14453 9.40625H10.3164V10.5781H9.14453V9.40625ZM9.14453 11.7656H10.3164V12.9375H9.14453V11.7656ZM11.5039 18.8281V15.2969H10.332V18.8281H9.16016V14.125H12.6914V18.8281H11.5039Z"
+                                  fill="#071C2C"
+                                />
+                              </svg>
+                            </div>
+                            <div className="icon-text">{trip.hoteltext}</div>
+                          </div>
+                          <div className="transfer-icon">
+                            <div className="icon-bg">
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="25"
+                                height="24"
+                                viewBox="0 0 25 24"
+                                fill="none"
+                              >
+                                <mask
+                                  id="mask0_646_11917"
+                                  maskUnits="userSpaceOnUse"
+                                  x="0"
+                                  y="0"
+                                  width="25"
+                                  height="24"
+                                >
+                                  <rect
+                                    x="0.410156"
+                                    width="24"
+                                    height="24"
+                                    fill="#D9D9D9"
+                                  />
+                                </mask>
+                                <g mask="url(#mask0_646_11917)">
+                                  <path
+                                    d="M6.41016 19V20C6.41016 20.2833 6.31432 20.5208 6.12266 20.7125C5.93099 20.9042 5.69349 21 5.41016 21H4.41016C4.12682 21 3.88932 20.9042 3.69766 20.7125C3.50599 20.5208 3.41016 20.2833 3.41016 20V12L5.51016 6C5.61016 5.7 5.78932 5.45833 6.04766 5.275C6.30599 5.09167 6.59349 5 6.91016 5H9.41016V3H15.4102V5H17.9102C18.2268 5 18.5143 5.09167 18.7727 5.275C19.031 5.45833 19.2102 5.7 19.3102 6L21.4102 12V20C21.4102 20.2833 21.3143 20.5208 21.1227 20.7125C20.931 20.9042 20.6935 21 20.4102 21H19.4102C19.1268 21 18.8893 20.9042 18.6977 20.7125C18.506 20.5208 18.4102 20.2833 18.4102 20V19H6.41016ZM6.21016 10H18.6102L17.5602 7H7.26016L6.21016 10ZM7.91016 16C8.32682 16 8.68099 15.8542 8.97266 15.5625C9.26432 15.2708 9.41016 14.9167 9.41016 14.5C9.41016 14.0833 9.26432 13.7292 8.97266 13.4375C8.68099 13.1458 8.32682 13 7.91016 13C7.49349 13 7.13932 13.1458 6.84766 13.4375C6.55599 13.7292 6.41016 14.0833 6.41016 14.5C6.41016 14.9167 6.55599 15.2708 6.84766 15.5625C7.13932 15.8542 7.49349 16 7.91016 16ZM16.9102 16C17.3268 16 17.681 15.8542 17.9727 15.5625C18.2643 15.2708 18.4102 14.9167 18.4102 14.5C18.4102 14.0833 18.2643 13.7292 17.9727 13.4375C17.681 13.1458 17.3268 13 16.9102 13C16.4935 13 16.1393 13.1458 15.8477 13.4375C15.556 13.7292 15.4102 14.0833 15.4102 14.5C15.4102 14.9167 15.556 15.2708 15.8477 15.5625C16.1393 15.8542 16.4935 16 16.9102 16ZM5.41016 17H19.4102V12H5.41016V17Z"
+                                    fill="#071C2C"
+                                  />
+                                </g>
+                              </svg>
+                            </div>
+                            <div className="icon-shape"></div>
+                            <div className="icon-text">{trip.transfertext}</div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="details-section">
+                        <div className="bullet-points">
+                          <div className="bullet"></div>
+                          <div className="point-text">{trip.pointtext}</div>
+                        </div>
+                        <div className="bullet-points">
+                          <div className="bullet"></div>
+                          <div className="point-text">{trip.pointtext1}</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div className="right-sectionholi">
+                  <div className="price-section">
+                    <div className="top-price">
+                      <div className="price-value">{trip.value}</div>
+                    </div>
+                    <div className="bottom-price">
+                      <div className="your-componentprice">
+                        <div className="price-container1">
+                          <div className="price-value1">₹ 14,250</div>
+                        </div>
+                        <div className="arrowicons">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="30"
+                            height="30"
+                            viewBox="0 0 21 20"
+                            fill="none"
+                          >
+                            <path
+                              fill-rule="evenodd"
+                              clip-rule="evenodd"
+                              d="M7.70373 14.707C7.51625 14.5194 7.41094 14.2651 7.41094 14C7.41094 13.7348 7.51625 13.4805 7.70373 13.293L10.9967 9.99997L7.70373 6.70697C7.60822 6.61472 7.53203 6.50438 7.47962 6.38237C7.42721 6.26037 7.39963 6.12915 7.39847 5.99637C7.39732 5.86359 7.42262 5.73191 7.4729 5.60902C7.52318 5.48612 7.59744 5.37447 7.69133 5.28057C7.78522 5.18668 7.89687 5.11243 8.01977 5.06215C8.14267 5.01187 8.27435 4.98656 8.40713 4.98772C8.53991 4.98887 8.67113 5.01646 8.79313 5.06887C8.91513 5.12128 9.02548 5.19746 9.11773 5.29297L13.1177 9.29297C13.3052 9.4805 13.4105 9.7348 13.4105 9.99997C13.4105 10.2651 13.3052 10.5194 13.1177 10.707L9.11773 14.707C8.9302 14.8944 8.67589 14.9998 8.41073 14.9998C8.14556 14.9998 7.89125 14.8944 7.70373 14.707Z"
+                              fill="#E73C33"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="taxes-and-fees">
+                        {trip.taxesAndFeesText}
+                      </div>
+                    </div>
+                  </div>
+                  <div className="duration-section1">
+                    <div className="duration-value1">{trip.duration}</div>
+                  </div>
+                </div>
               </div>
             ))}
-          {/* </Slider> */}
-        </Grid>
-      </Grid>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
+}
 
 export default HolidayPackagesDetail;
