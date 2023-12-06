@@ -8,20 +8,21 @@ import SwipeToSlide from "../../components/Card";
 import Download from "../../components/Download";
 import Footer from "../../layouts/Footer";
 import LuxurySection from "../../components/LuxurySection";
-
 // hotelHome.css link 
 import "./hotelhome.css";
+import HotelForm from "./HotelForm";
 
 const Hotelhome = () => {
     return (
         <div className="hotel_banner">
-            
-            <Hotelsearch header="Book Domestic and International Property Online. To list your property click here"></Hotelsearch>
+
+            {/* <Hotelsearch header="Book Domestic and International Property Online. To list your property click here"></Hotelsearch> */}
+            <HotelForm />
             <Toursection></Toursection>
             <LuxurySection />
             <OfferSwipeToSlide></OfferSwipeToSlide>
             <Download></Download>
-          
+
         </div>
     )
 }

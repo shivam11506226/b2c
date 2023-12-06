@@ -40,20 +40,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import dayjs from 'dayjs';
 
 import { StaticDatePicker } from '@mui/x-date-pickers/StaticDatePicker';
-// import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-// import { LocalizationProvider } from '@mui/x-date-pickers-pro';
-// import { AdapterDayjs } from '@mui/x-date-pickers-pro/AdapterDayjs';
-// import { DateRangeCalendar } from '@mui/x-date-pickers-pro/DateRangeCalendar';
-
-
-// const Item = styled(Paper)(({ theme }) => ({
-//   backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-//   ...theme.typography.body2,
-//   padding: theme.spacing(1),
-//   textAlign: 'center',
-//   color: theme.palette.text.secondary,
-
-// }));
 import { styled } from '@mui/material/styles'
 
 const StyledStaticDatePicker = styled(StaticDatePicker)({
@@ -126,13 +112,13 @@ const Homeform = (props) => {
   const [star, setStar] = useState(5)
   const [roomValue, setRoomValue] = useState(1)
   const [passengerDetails, setPassengerDetails] = useState([])
-  const roomOrignal= [{room:1,adult:0,child:0,childAge:[]}]
-  const[roomOrignal1,setroomOrignal]= useState([{room:1,adult:0,child:0,childAge:[]}])
+  const roomOrignal = [{ room: 1, adult: 0, child: 0, childAge: [] }]
+  const [roomOrignal1, setroomOrignal] = useState([{ room: 1, adult: 0, child: 0, childAge: [] }])
 
 
 
   const passengerDetail = []
- 
+
   const changeHandler = (e) => {
     if (e.target.value === "number") {
       setIsVisible(true);
@@ -183,60 +169,28 @@ const Homeform = (props) => {
     setSelectedFrom(result);
     setdisplayFrom(false);
   };
-  useEffect(()=>{
-    const roomss=[]
+  useEffect(() => {
+    const roomss = []
     for (let i = 1; i <= roomValue; i++) {
-      roomss.push({room:i,adult:1,child:0,childAge:[]})
+      roomss.push({ room: i, adult: 1, child: 0, childAge: [] })
     }
-    
+
     setroomOrignal(roomss)
     console.log("Room value", roomValue)
-      console.warn("RoomSS:",roomOrignal1 )
-},[roomValue])
+    console.warn("RoomSS:", roomOrignal1)
+  }, [roomValue])
 
   const handleFromInputRoomChange = async (event) => {
     // setdisplayFrom(true);
     // setFrom(event.target.value);
     // setDisplay(event.target.value);
     // setSelectedFrom(null);
-  await  setRoomValue(event.target.value);
-//   const roomss=[]
-//   for (let i = 1; i <= roomValue; i++) {
-//    await roomss.push({room:i,adult:1,child:0,childAge:[]})
-//   }
-  
-//  await setroomOrignal(roomss)
-//   console.log("Room value", roomValue)
-//     console.warn("RoomSS:",roomOrignal1 )
-    
+    await setRoomValue(event.target.value);
+
+
   };
 
-  // const handleFromInputRoomChange = (event) => {
-  //   setRoomValue(event.target.value);
-  //   console.log("Room value", roomValue);
-  
-  //   const roomss = [];
-  //   for (let i = 1; i <= roomValue; i++) {
-  //     roomss.push({ room: i + 1, adult: 1, child: 0, childAge: [] });
-  //   }
-  
-  //   setroomOrignal(roomss);
-  //   console.warn("RoomSS:", roomOrignal1);
-  // };
 
-  // const handleFromInputRoomChange = (event) => {
-  //   const selectedValue = event.target.value;
-  //   console.log(selectedValue, "selected value")
-
-  // setRoomValue(selectedValue);
-  //   const roomss = [];
-  //   for (let i = 1; i <= selectedValue; i++) {
-  //     roomss.push({ room: i + 1, adult: 1, child: 0, childAge: [] });
-  //   }
-  
-  //   setroomOrignal(...roomss);
-  //   console.warn("RoomSS:", roomOrignal1);
-  // };
 
   const handleFromInputChange = (event) => {
     setdisplayFrom(true);
@@ -514,21 +468,21 @@ const Homeform = (props) => {
 
     input.click();
   };
-  function handleChildAge(e,index,i){
-    let data={...roomOrignal1}
-    data[index].childAge[i] ={rooom:Number(e)};
+  function handleChildAge(e, index, i) {
+    let data = { ...roomOrignal1 }
+    data[index].childAge[i] = { rooom: Number(e) };
     setroomOrignal(data)
     // roomOrignal[index].childAge[i]=Number(e);
     // roomOrignal[index]={...roomOrignal[index],childAge:(childAge[]=e)}
-    console.warn(roomOrignal1,"handleChildAge",e,index,i)
+    console.warn(roomOrignal1, "handleChildAge", e, index, i)
   }
   const renderChildrenAges = (index) => {
     const childrenAges = [];
 
-    for (let i = 0; i <= roomOrignal1[index]?.child-1; i++) {
+    for (let i = 0; i <= roomOrignal1[index]?.child - 1; i++) {
       // You can modify this logic based on how you want to calculate or obtain the ages
       const age = Math.floor(Math.random() * 18) + 1; // Random age between 1 and 18
-      childrenAges.push(<div key={i} className="child_input_box" onChange={(e)=>handleChildAge(e.target.value,index,i)}>Child {i}<select className="select_S"
+      childrenAges.push(<div key={i} className="child_input_box" onChange={(e) => handleChildAge(e.target.value, index, i)}>Child {i}<select className="select_S"
         name="room"
       // value={values.room}
       // onChange={handleInputChange}
@@ -558,43 +512,44 @@ const Homeform = (props) => {
   const length = 3;
   const init = 0;
   const room1 = 2
-  const handleInputChangeAdult= (e,index)=>{
-    const data={...roomOrignal1}
-     data[index].adult =Number(e)
+  const handleInputChangeAdult = (e, index) => {
+    const data = { ...roomOrignal1 }
+    data[index].adult = Number(e)
     setroomOrignal(data)
-  
-    console.log(roomOrignal1,"origroomAddult............",data)
+
+    console.log(roomOrignal1, "origroomAddult............", data)
   }
-  const handleInputChangeChild=async(e,index)=>{
-     let data=await {...roomOrignal1};
-    data[index].child =Number(e)
+  const handleInputChangeChild = async (e, index) => {
+    let data = await { ...roomOrignal1 };
+    data[index].child = Number(e)
     setroomOrignal(data)
-    let age=[]
-    for (let i=0; i<roomOrignal1[index].child; i++){
-      let room=`room${i}`
-      age.push({ room:0}) 
+    let age = []
+    for (let i = 0; i < roomOrignal1[index].child; i++) {
+      let room = `room${i}`
+      age.push({ room: 0 })
 
     }
-    data={...roomOrignal1};
-    data[index].childAge=age
+    data = { ...roomOrignal1 };
+    data[index].childAge = age
     setroomOrignal(data)
 
-    console.log(roomOrignal1,"origroomCHild............","roomIndex",index,"child",roomOrignal1[index].child)
+    console.log(roomOrignal1, "origroomCHild............", "roomIndex", index, "child", roomOrignal1[index].child)
   }
   // const result = Array.from({ length }, () => "hiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii");
   // const result=   Array.from({ room1 }, () => {
 
   // })
-  function RoomData(){
-   let  data=[]
-  
-     for (let i = 0; i <=roomValue; i++){
-      for (let i = 0; i <=roomOrignal[i].adult; i++){
-        
+  function RoomData() {
+    let data = []
+
+    for (let i = 0; i <= roomValue; i++) {
+      for (let i = 0; i <= roomOrignal[i].adult; i++) {
 
 
-     }
-  }}
+
+      }
+    }
+  }
   function range(end) {
     return Array.from({ length: end }, (_, index) => (<div className="room_flex">
       <div key={index}>
@@ -608,7 +563,7 @@ const Homeform = (props) => {
         <select className="select_S"
           name="adult"
           value={roomOrignal1[index]?.adult}
-          onChange={(e)=>handleInputChangeAdult(e.target.value,index)} 
+          onChange={(e) => handleInputChangeAdult(e.target.value, index)}
         >
 
           <option className="option_0" value='1'>1</option>
@@ -630,7 +585,7 @@ const Homeform = (props) => {
         <select className="select_S"
           name="child"
           // value={roomOrignal1[index].child}
-          onChange={(e)=>handleInputChangeChild(e.target.value,index)}
+          onChange={(e) => handleInputChangeChild(e.target.value, index)}
 
         >
           <option className="option_0" value='0'>0 </option>
@@ -649,7 +604,7 @@ const Homeform = (props) => {
 
         </select>
       </div>
-      {roomOrignal1[index]?.child !==0 &&
+      {roomOrignal1[index]?.child !== 0 &&
         <div className="child">
           <div>
             <h1 >
@@ -674,8 +629,8 @@ const Homeform = (props) => {
         passengerDetail.push({
           City: "",
           nationality: "",
-          room: i+1,
-          adult: j+1,
+          room: i + 1,
+          adult: j + 1,
           // child: "0",
           star: "5"
         })
@@ -684,9 +639,9 @@ const Homeform = (props) => {
         passengerDetail.push({
           City: "",
           nationality: "",
-          room: i+1,
+          room: i + 1,
           //  adult: j,
-          child: k+1,
+          child: k + 1,
           star: "5"
         })
       }
@@ -1042,8 +997,8 @@ const Homeform = (props) => {
                         <select className="select_S"
                           name="room"
                           value={roomValue}
-                          onChange={(event)=>handleFromInputRoomChange(event)}
-                          >
+                          onChange={(event) => handleFromInputRoomChange(event)}
+                        >
 
                           <option className="option_0" value="1">1</option>
                           <option className="option_0" value="2">2</option>
@@ -1135,7 +1090,7 @@ const Homeform = (props) => {
                 </div>
                 <div>
                   <Button id="btn-ht-search"
-                    // type="submit"
+                  // type="submit"
                   // onClick={()=>console.log(values,"%%%%%%%%%%%5")}
 
                   >
@@ -1202,132 +1157,11 @@ const Homeform = (props) => {
           <div className="LOREM">
             <h1>LOREM IPSUM</h1>
           </div>
-          {/* <div className="OFFERS">
-            <div className="OFFERS1">
-
-              <div className="OFFERS2">
-
-
-                <div className="OFFERS3">
-
-                  <h1 >OFFERS</h1>
-
-                </div>
-
-                <div className="OFFERS4">
-
-
-                  <div className="OFFERS5">
-                    <div onClick={() => setOffersToggle(1)} className={offersToggle === 1 ? " OFFERS_Active" : ""}>
-                      <h1 className={offersToggle === 1 ? "OFFERS_Active_h1" : ""} >
-
-                        ON 1st BOOKING
-                      </h1>
-                    </div>
-                    <div onClick={() => setOffersToggle(2)} className={offersToggle === 2 ? " OFFERS_Active" : ""} >
-                      <h1 className={offersToggle === 2 ? "OFFERS_Active_h1" : ""} >
-
-                        Hotels
-                      </h1>
-                    </div>
-                    <div onClick={() => setOffersToggle(3)} className={offersToggle === 3 ? " OFFERS_Active" : ""} >
-                      <h1 className={offersToggle === 3 ? "OFFERS_Active_h1" : ""} >
-
-                        All Offers
-                      </h1>
-                    </div>
-                    <div onClick={() => setOffersToggle(4)} className={offersToggle === 4 ? " OFFERS_Active" : ""} >
-                      <h1 className={offersToggle === 4 ? "OFFERS_Active_h1" : ""} >
-
-                        Flights
-                      </h1>
-                    </div>
-                    <div onClick={() => setOffersToggle(5)} className={offersToggle === 5 ? " OFFERS_Active" : ""} >
-                      <h1 className={offersToggle === 5 ? "OFFERS_Active_h1" : ""} >
-
-                        Holidays
-                      </h1>
-                    </div>
-
-                    <div onClick={() => setOffersToggle(6)} className={offersToggle === 6 ? " OFFERS_Active" : ""} >
-                      <h1 className={offersToggle === 6 ? "OFFERS_Active_h1" : ""} >
-
-                        Bank Offers
-                      </h1>
-                    </div>
-
-                  </div>
-                </div>
-              </div>
-              <div className="offers_inner">
-                <div className="offers_inner-left">
-                  <div>
-                    <div><img src={o1} alt="" className="offer_img" /></div>
-                    <div>
-                      <p>Use Code: <span>WELCOMESKY</span></p>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <div>
-                        <h4>
-                          For Your 1st Holiday Booking!
-                        </h4>
-                      </div>
-                      <div>
-                        <p>
-                          Up to 30% OFF*
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="VIEW_DETAILS">
-                      <h4>VIEW DETAILS</h4>
-                    </div>
-                  </div>
-                </div>
-                <div className="offers_inner-right">
-
-
-                  <div className="offers_inner-right1">
-                    <div>
-                      <h4>
-                        VIEW ALL
-                      </h4>
-                    </div>
-                    <div>
-                      <h1>
-                        OFFERS
-                      </h1>
-                    </div>
-                    <div>
-
-                      <button className="offer-btn">
-                        Click here
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div >
-                <div className="chanege"  >
-                  <div onClick={() => setOffersToggle1(0)} className={offersToggle1 === 0 ? " chanege_active" : ""} />
-                  <div onClick={() => setOffersToggle1(1)} className={offersToggle1 === 1 ? " chanege_active" : ""} />
-                  <div onClick={() => setOffersToggle1(2)} className={offersToggle === 2 ? " chanege_active" : ""} />
-                  <div onClick={() => setOffersToggle1(3)} className={offersToggle1 === 3 ? " chanege_active" : ""} />
-                  <div onClick={() => setOffersToggle1(4)} className={offersToggle1 === 4 ? " chanege_active" : ""} />
-
-                </div>
-              </div>
-
-            </div>
 
 
 
 
-
-          </div> */}
-          <div className="LOREM">
+          {/* <div className="LOREM">
             <h1>LOREM IPSUM</h1>
           </div>
           <div style={{
@@ -1651,7 +1485,7 @@ const Homeform = (props) => {
                                   <option className="option_0" value="5">5 Star</option>
                                 </select>
                                 <div></div>
-                              </div>
+                              </div>  
                             </Box>
                           </Grid>
                         </Grid>
@@ -1792,7 +1626,7 @@ const Homeform = (props) => {
                 </TabContext>
               </Box>
             </div>
-          </div>
+          </div> */}
         </div>
       </section>
     </>
