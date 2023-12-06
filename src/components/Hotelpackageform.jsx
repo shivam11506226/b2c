@@ -25,6 +25,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearHolidayReducer } from "../Redux/OnePackageSearchResult/actionOneSearchPackage";
 import OfferCard from "../pages/flight/OfferCard";
 import SkyCollection from "./SkyCollection";
+import SliderContainer from "./SliderContainer";
+
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 const Homeform = (props) => {
   const settings = {
@@ -108,7 +110,7 @@ const Homeform = (props) => {
     navigate("/HolidayPackageSearchResult");
   };
   function handleFromClicks() {
-    navigate("/searchresult");
+    navigate("/HolidayPackageSearchResult");
   }
   return (
     <section>
@@ -463,7 +465,7 @@ const Homeform = (props) => {
                             </div>
                           )} */}
                     </div>
-                    <div className="to-details">Country..</div>
+                    <div className="to-details">Monday..</div>
                   </div>
                  
 
@@ -504,6 +506,9 @@ const Homeform = (props) => {
         
         </div>
         <SkyCollection/>
+        <SliderContainer/>
+       
+
       </div>
     </section>
   );
