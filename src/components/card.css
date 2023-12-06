@@ -183,10 +183,38 @@
   width: 100%;
   font-family: "Montserrat";
 }
+.wrapper1 {
+  background: #fff;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  display: flex;
+  width: 73%;
+  font-family: "Montserrat";
+}
 
 .wrapper .option {
   height: 30px;
   width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 5px 5px;
+  border-radius: 10px;
+  cursor: pointer;
+
+  background: #f3f3f3;
+  transition: all 0.3s ease;
+
+ 
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  font-family: "Montserrat";
+}
+.wrapper1 .option1 {
+  height: 30px;
+ 
   display: flex;
   align-items: center;
   justify-content: space-evenly;

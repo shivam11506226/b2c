@@ -1,0 +1,8 @@
+.BigNavItems {
+    display: flex;
+    flex-direction: row;
+    gap: 52px;
+    align-items: center;
+    margin-bottom: 0 !important;
+    padding: 13px 0px;
+}

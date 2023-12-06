@@ -1,4 +1,4 @@
-import {  Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import BookWrapper from "./pages/flight/Bookwrapper";
 import Searchresult from "./pages/flight/Searchresult";
@@ -35,56 +35,67 @@ import Mainheader from './UI/Mainheader';
 import Mainheader1 from './UI/Mainheader1';
 import Navbar from "./layouts/Navbar";
 import OfferCard from './pages/flight/OfferCard';
-import { useLocation} from "react-router-dom";
-import  ReturnFlight from "./pages/Return/ReturnFlight"
+import { useLocation } from "react-router-dom";
+import ReturnFlight from "./pages/Return/ReturnFlight"
 import PaymentReturn from './pages/Return/PaymentReturn';
 import Conformation from './pages/Return/Conformation';
 import NonStopFlight from './pages/Return/NonStopFlight';
 import BusResult from './pages/bus/bussearchresult/BusResult';
 import Download from './pages/home/Download';
+
+import Holidayinfo from './pages/holidaypackages/holidaypackagesearchresult/Holidayinfo';
+
+import BigNavbar from './UI/BigNavbar/BigNavbar';
+
 function App() {
   const location = useLocation();
- 
+
   const isSearchResult = location.pathname.includes('/Searchresult');
   const isPayment = location.pathname.includes('/payment');
   return (
     <div className='background_gradient'>
-      
-         {/* /Searchresult */}
-       
-         <div className='mainimg'>
-          <Navbar></Navbar>
-          
-        <Mainheader/>
+
+      {/* /Searchresult */}
+
+      <div className='mainimg'>
+        <Navbar />
+
+        <BigNavbar />
+
+        <Mainheader />
       </div>
-          
+
       <Routes>
 
-      <Route index element={<Home/>}></Route>
-      <Route path="login" element={<LoginForm />}></Route>
+        <Route index element={<Home />}></Route>
+        <Route path="login" element={<LoginForm />}></Route>
         <Route path="signup" element={<SignUp />}></Route>
-      <Route path="Searchresult/booknow" element={<BookWrapper />}> </Route>
-      <Route path="/Searchresult" element={<Searchresult />} />
-      
-      <Route path="/payment" element={<Payment />} />
-      <Route path="/returnflight" element={<ReturnFlight/>} />
-      <Route path="/booking" element={<Booking/>} />
-      <Route path="/completebooking" element={<CompleteBooking/>} />
-      <Route path="/paymentReturn" element={<PaymentReturn/>} />
-      <Route path="/conformation" element={<Conformation/>} />
-      <Route path="/nonstopflight" element={<NonStopFlight/>} />
+        <Route path="Searchresult/booknow" element={<BookWrapper />}> </Route>
+        <Route path="/Searchresult" element={<Searchresult />} />
 
-      <Route path="hotel" element={<Hotel />}></Route>
-      <Route path="/Hotelsearch" element={<HotelHomeResult/>}/>
-        <Route path="/hotel/HotelDetails" element={<HotelDetails/>}/>
-        <Route path="hotel/HotelSearchResult" element={<HotelSearchResult/>}/>
-        <Route path="/HotelReviewBooking" element={<HotelReviewBooking/>}/>
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/returnflight" element={<ReturnFlight />} />
+        <Route path="/booking" element={<Booking />} />
+        <Route path="/completebooking" element={<CompleteBooking />} />
+        <Route path="/paymentReturn" element={<PaymentReturn />} />
+        <Route path="/conformation" element={<Conformation />} />
+        <Route path="/nonstopflight" element={<NonStopFlight />} />
+
+        <Route path="hotel" element={<Hotel />}></Route>
+        <Route path="/Hotelsearch" element={<HotelHomeResult />} />
+        <Route path="/hotel/HotelDetails" element={<HotelDetails />} />
+        <Route path="hotel/HotelSearchResult" element={<HotelSearchResult />} />
+        <Route path="/HotelReviewBooking" element={<HotelReviewBooking />} />
 
         {/* Holiday packages routes */}
         <Route path="holidaypackages" element={<Holidaypackages />}></Route>
-        <Route path="/HolidaypackageInfo" element={<HolidaypackageInfo/>}/> 
+
+        <Route path="/HolidayInfo" element={<Holidayinfo/>}/> 
+
+        <Route path="/HolidaypackageInfo" element={<HolidaypackageInfo />} />
+
         <Route path="/holidaypassengerdetail" element={<HolidayPassengerDetail />}></Route>
-        <Route path="/HolidayPackageSearchResult" element={<HolidayPackageSearchResult/>}/>
+        <Route path="/HolidayPackageSearchResult" element={<HolidayPackageSearchResult />} />
 
         {/* Bus */}
         <Route path="bus" element={<Bus />}></Route>
@@ -92,18 +103,18 @@ function App() {
         <Route path="/BusReviewBooking" element={<BusReviewBooking />}></Route>
         <Route path="/BusBookingConfirmation" element={<BusBookingConfirmation />}></Route>
         <Route path="/SelectBusSeat" element={<SeatLayout />}></Route>
-        <Route path="/busresult" element={<BusResult/>}></Route>
+        <Route path="/busresult" element={<BusResult />}></Route>
 
-        
+
         {/* Forex */}
-        <Route path="/forex" element={<Forex/>}/>
+        <Route path="/forex" element={<Forex />} />
 
         {/* Taxi */}
         <Route path="taxi" element={<Taxi />}></Route>
-        
+
       </Routes>
       <Footer />
-      
+
     </div>
   );
 }

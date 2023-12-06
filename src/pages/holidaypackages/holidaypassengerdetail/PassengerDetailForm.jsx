@@ -187,7 +187,7 @@ const PassengerDetailForm = () => {
 
     setDobError(false);
 
-    if(authenticUser == 200){
+    if(authenticUser === 200){
       const payload = {
         pakageid: onePackage?._id,
         userId: "63c64d0da580ea586068112e",

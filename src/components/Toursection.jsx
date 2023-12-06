@@ -20,7 +20,7 @@ export default function Toursection() {
           </svg></div>
 
         </div>
-        <div className="text">Where to Go</div>
+        <div className="toursection_text">Where to Go</div>
       </div>
 
       <div className="item">
@@ -35,9 +35,9 @@ export default function Toursection() {
           </svg></div>
 
         </div>
-        <div className="text">
+        <div className="toursection_text">
           <span>Insurance<br /></span>
-          <span style={{ color: '#BBBBBB', fontSize: 12, fontFamily: 'Montserrat', fontWeight: '600', wordWrap: 'break-word' }}>For International Trips</span>
+          <p>For International Trips</p>
 
         </div>
       </div>
@@ -54,9 +54,9 @@ export default function Toursection() {
           </svg></div>
           <div className="icon" style={{ width: '17.43px', height: '17.40px', left: '3.30px', top: '3.30px' }}></div>
         </div>
-        <div className="text">
+        <div className="toursection_text">
           <span>Explore International Flights<br /></span>
-          <span style={{ color: '#BBBBBB', fontSize: 12, fontFamily: 'Montserrat', fontWeight: '600', wordWrap: 'break-word' }}>Cheapest Flights to Paris, Bali, Tokyo & more</span>
+          <p >Cheapest Flights to Paris, Bali, Tokyo & more</p>
         </div>
       </div>
     </div>
