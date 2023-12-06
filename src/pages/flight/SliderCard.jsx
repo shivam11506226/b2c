@@ -28,17 +28,17 @@ const SliderCard = () => {
       code: 'FLIGHTSALE',
     },
     {
-        image: groupfriend1,
-        title: 'Amazing Flight Discounts!',
-        discount: 'Fly for Less*',
-        code: 'FLIGHTSALE',
-      },
-      {
-        image: groupfriend1,
-        title: 'Amazing Flight Discounts!',
-        discount: 'Fly for Less*',
-        code: 'FLIGHTSALE',
-      },
+      image: groupfriend1,
+      title: 'Amazing Flight Discounts!',
+      discount: 'Fly for Less*',
+      code: 'FLIGHTSALE',
+    },
+    {
+      image: groupfriend1,
+      title: 'Amazing Flight Discounts!',
+      discount: 'Fly for Less*',
+      code: 'FLIGHTSALE',
+    },
     // Add more slides as needed
   ];
 
@@ -49,46 +49,69 @@ const SliderCard = () => {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
-    autoplay: true, // Enable automatic sliding
-    autoplaySpeed: 3000, 
-    customPaging: (i) => (
-      <div
-        style={{
-          width: '10px',
-        height: '10px',
-        background: i === 0 ? 'red' : 'black',
-        borderRadius: '50%',
-        marginTop: '20px',
-        transition: 'background 0.5s ease', // Add a transition for a smoother effect
-      }}
-      />
-    ),
+    autoplay: true,
+    autoplaySpeed: 3000,
+    // customPaging: (i) => (
+    //   <div
+    //     style={{
+    //       width: '10px',
+    //       height: '10px',
+    //       background: i === 0 ? 'red' : 'black',
+    //       borderRadius: '50%',
+    //       marginTop: '20px',
+    //       transition: 'background 0.5s ease', 
+    //     }}
+    //   />
+    // ),
   };
 
   return (
-    <Slider {...settings} className="slider-container" style={{boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.25)",borderRadius:"12px"}}>
+    <Slider {...settings} className="slider-container custom py-5" >
       {slideContent.map((slide, index) => (
-        <div key={index} className="offer-card">
-          <div className="offer-details">
-            <div className="image-container">
-              <img className="offer-image" src={slide.image} alt="Offer" />
-            </div>
-            <div className="offer-description">
-              <div className="title">{slide.title}</div>
-              <div className="discount">{slide.discount}</div>
-            </div>
+        // <div key={index} className="offer-card">
+        //   <div className="offer-details">
+        //     <div className="image-container">
+        //       <img className="offer-image" src={slide.image} alt="Offer" />
+        //     </div>
+        //     <div className="offer-description">
+        //       <div className="title">{slide.title}</div>
+        //       <div className="discount">{slide.discount}</div>
+        //     </div>
+        //   </div>
+        //   <div className="code-details">
+        //     <span className="code-label">
+        //       Use Code: <span className="code-value">{slide.code}</span>
+        //     </span>
+        //     <div className="view-details">
+        //       <div className="code-label">VIEW DETAILS</div>
+        //     </div>
+        //   </div>
+        // .slick - slide img {
+        // width: 350px;
+        // display: block;
+        // }
+        // </div>
+
+        <div className="offerCard py-5">
+          <div className="OfferCardImage">
+            <img className="" src={slide.image} alt="Offer" />
           </div>
-          <div className="code-details">
-            <span className="code-label">
-              Use Code: <span className="code-value">{slide.code}</span>
-            </span>
-            <div className="view-details">
-              <div className="code-label">VIEW DETAILS</div>
+          <div className="offerCardContent">
+            <div className="offerCardContentOne">
+
+              <p>{slide.title}</p>
             </div>
+            <div className="">
+              <p>{slide.discount}</p>
+            </div>
+            <p className="">Use Code: <span className="code-value">{slide.code}</span>
+            </p>
+            <button>VIEW DETAILS</button>
           </div>
         </div>
-      ))}
-    </Slider>
+      ))
+      }
+    </Slider >
   );
 };
 

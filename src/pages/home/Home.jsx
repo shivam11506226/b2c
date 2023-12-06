@@ -7,8 +7,8 @@ import Download from "./Download";
 import Footer from "../../layouts/Footer";
 import Oneway from '../../components/Oneway';
 import OfferCard from "../flight/OfferCard";
-// home css 
 import "./home.css";
+import FlightLoader from "../flight/FlightLoader/FlightLoader";
 
 const Home = () => {
     return (
@@ -16,11 +16,12 @@ const Home = () => {
             {/* <Homeform header=""></Homeform> */}
             <Oneway header="" />
             {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
-            <Toursection></Toursection>
-            <OfferCard/>
-            <SwipeToSlide></SwipeToSlide>
-            <Download></Download>
-          
+            {/* <Toursection></Toursection> */}
+            <Toursection />
+            <OfferCard />
+            <SwipeToSlide />
+            <Download />
+
 
         </div>
     )
