@@ -531,8 +531,8 @@ export default function BookWrapper() {
                             <Typography
                               sx={{
                                 fontSize: "16px",
-                               
-                                color:"#071C2C",
+
+                                color: "#071C2C",
                                 lineHeight: "1",
                                 font: " normal normal bold 16px/16px Quicksand !important",
                               }}
@@ -885,7 +885,7 @@ export default function BookWrapper() {
                           backgroundColor: "white",
                           boxShadow: "0px 3px 6px #00000029",
                           borderRadius: "10px",
-                          
+
                         }}
                         p={2}
                       >

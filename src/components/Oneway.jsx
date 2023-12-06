@@ -1,7 +1,6 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-// hotel tabs
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -11,16 +10,14 @@ import Button from "@mui/material/Button";
 import { Grid, Typography } from "@mui/material";
 import { apiURL } from "../Constants/constant";
 import { ipAction, tokenAction } from "../Redux/IP/actionIp";
-// import Searchresult from './Searchresult';
 import Addanothercity from "./Addanothercity";
 import { oneWayAction, resetOneWay } from "../Redux/FlightSearch/oneWay";
 import { useNavigate } from "react-router-dom";
 import FlightTakeoffTwoToneIcon from "@mui/icons-material/FlightTakeoffTwoTone";
 import FlightLandTwoToneIcon from "@mui/icons-material/FlightLandTwoTone";
-import DateRangePickers from "./DateRangePickers";
 import 'react-date-range/dist/styles.css'; // Import the styles
 import 'react-date-range/dist/theme/default.css'; // Import the theme
-
+import "./style/Oneway.css"
 //import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 
 // travel class modal
@@ -29,16 +26,43 @@ import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 
+
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+
 // bootstrap
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 // css
 import "./card.css";
 import "./flight.css";
 import axios from "axios";
-import { red } from "@mui/material/colors";
+import TravelerCounter from "./TravelerCounter";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
+
+
 const Homeform = (props) => {
+
+
+
+
+
+
+
+
+  // handle departure days selection 
+
+  const [startDate, setStartDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const getDayOfWeek = (date) => {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return daysOfWeek[date.getDay()];
+  };
+
   // From code start from here
   const [fromSearchResults, setFromSearchResults] = useState([]);
   const [fromQuery, setFromQuery] = useState("");
@@ -67,6 +91,39 @@ const Homeform = (props) => {
   const [totalCount, setCountPassanger] = useState(0);
   const [showDropdown, setShowDropdown] = useState(false);
 
+
+
+
+
+  // handle travellers modal
+
+
+  const handleTravelerCountChange = (category, value) => {
+    if (category === 'adult') {
+      setActiveIdAdult(prevCount => Math.max(0, prevCount + value));
+    } else if (category === 'child') {
+      setActiveIdChild(prevCount => Math.max(0, prevCount + value));
+    } else if (category === 'infant') {
+      setActiveIdInfant(prevCount => Math.max(0, prevCount + value));
+    }
+  };
+
+  const getClassLabel = (classId) => {
+    const selectedClass = ClassItems.find(item => item.id === classId);
+    return selectedClass ? selectedClass.label : '';
+  };
+
+  // const handleClassItemClick = (classId) => {
+  //   setActiveIdClass(classId);
+  // };
+
+
+  // handle travellers modal 
+
+
+
+
+
   const ClassItems = [
     { id: "1", label: "All" },
     { id: "2", label: "Economy" },
@@ -79,6 +136,7 @@ const Homeform = (props) => {
     { id: "1", label: "Regular Fares" },
     { id: "2", label: "Armed Forces Fares" },
     { id: "3", label: "Student Fares" },
+    { id: "4", label: "Senior Citizens Fares" },
     { id: "4", label: "Senior Citizens Fares" },
     { id: "5", label: "Doctors & Nurses Fares" },
     { id: "6", label: "Double Seat Fares" },
@@ -101,8 +159,8 @@ const Homeform = (props) => {
       setOpenTravelModal(false);
       setCountPassanger(
         parseInt(activeIdChild) +
-          parseInt(activeIdInfant) +
-          parseInt(activeIdAdult)
+        parseInt(activeIdInfant) +
+        parseInt(activeIdAdult)
       );
     }
   };
@@ -271,7 +329,7 @@ const Homeform = (props) => {
     dispatch(tokenAction(payload));
   }, [reducerState?.ip?.ipData]);
 
-  
+
 
   const [data2, setData] = useState({
     adult: 0,
@@ -294,7 +352,7 @@ const Homeform = (props) => {
   };
   function handleOnewaySubmit(event) {
     event.preventDefault();
-    if(validation()){
+    if (validation()) {
       return
     }
     const formData = new FormData(event.target);
@@ -354,8 +412,8 @@ const Homeform = (props) => {
     dispatch(oneWayAction(payload));
   }
 
-  function validation(){
-    if(from===""||to===""|| document.getElementById("departure").value===""){
+  function validation() {
+    if (from === "" || to === "" || document.getElementById("departure").value === "") {
       return true
     }
   }
@@ -366,7 +424,7 @@ const Homeform = (props) => {
   };
   const DateRangePickerComponent = () => {
     const [dateRanges, setDateRanges] = useState([]);
-  
+
     const handleDateChange = (ranges) => {
       const [range] = ranges;
       const newDate = {
@@ -374,1287 +432,1143 @@ const Homeform = (props) => {
         start: range.startDate.toISOString().split('T')[0],
         end: range.endDate.toISOString().split('T')[0]
       };
-  
+
       setDateRanges([...dateRanges, newDate]);
     };
-  
+
     const removeDate = (key) => {
       const updatedDates = dateRanges.filter((date) => date.key !== key);
       setDateRanges(updatedDates);
     };
 
   }
+
+
+  // swapping origin and destination
+
+
+  // const handleRoundLogoClick = () => {
+  //   const tempFrom = from;
+  //   const tempTo = to;
+  //   handleFromInputChange({ target: { value: tempTo } });
+  //   handleToInputChange({ target: { value: tempFrom } });
+  //   setdisplayFrom(false);
+  //   setdisplayTo(false);
+
+  //   const tempSelectedFrom = selectedFrom;
+  //   setSelectedFrom(selectedTo);
+  //   setSelectedTo(tempSelectedFrom);
+  // };
+
+  const handleRoundLogoClick = () => {
+    // Swap the values of 'from' and 'to'
+    const tempFrom = from;
+    setFrom(to);
+    setTO(tempFrom);
+
+    // Swap the selectedFrom and selectedTo values
+    const tempSelectedFrom = selectedFrom;
+    setSelectedFrom(selectedTo);
+    setSelectedTo(tempSelectedFrom);
+  };
+
+
+  // swapping origin and destination 
+
+
+
   return (
-    <section>
-      <div className="container homeform_container" >
-        {/* <p className="header_row">
-          <h5>{props.header}</h5>
-        </p> */}
-        <div
-          className="row content_row"
-          style={{ zIndex: "1px", position: "relative", top: "-30px"}}
-        >
-          <div
-            className="col-12"
-            mx={8}
-            style={{
-              backgroundColor: "#fff",
-              borderRadius: "12px",
+    <section className="margin-pecentage">
+      <div className="container-fluid " >
+        <div className="row oneWayBg">
 
-              boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.25)",
-            }}
-          >
-            <Box sx={{ width: "100%", typography: "body1" }}>
-              <TabContext value={value} centered>
-                <Box
-                  pt={3}
-                  style={{
-                    display: "flex",
-                    justifyContent: "end",
-                    flexWrap: "wrap",
-                  
-                    marginTop:"20px"
-                  }}
+          <div className="col-12">
+            <TabContext value={value} centered>
+              <Box
+                pt={3}
+                style={{
+                  display: "flex",
+                  justifyContent: "end",
+                  flexWrap: "wrap",
+
+                  marginTop: "20px"
+                }}
+              >
+                <TabList
+                  onChange={handleChange}
+                  aria-label="lab API tabs example"
+                  TabIndicatorProps={{ style: { display: "none" } }}
+                  sx={{ marginX: "40px", marginY: "-10px" }}
                 >
-                  <TabList
-                    onChange={handleChange}
-                    aria-label="lab API tabs example"
-                    TabIndicatorProps={{ style: { display: "none" } }}
-                    sx={{ marginX: "40px", marginY: "-10px" }}
-                  >
-                    <Tab
-                      label="Oneway"
-                      value="1"
-                      sx={{
-                        fontSize: "15px",
-                        color: "black",
-                        fontWeight: "bold",
-                        marginX: "5px",
-                        borderRadius: "10px",
-                      }}
-                    ></Tab>
-                    <Tab
-                      label="Round Trip"
-                      value="2"
-                      sx={{
-                        fontSize: "15px",
-                        color: "black",
-                        fontWeight: "bold",
-                        marginX: "5px",
-                        borderRadius: "10px",
-                      }}
-                    />
-                    {/* <Tab
-      label="Multycity "
-      value="3"
-      sx={{
-        fontSize: "15px",
-        color: "black",
-        fontWeight: "bold",
-        background: "white",
-        marginX: "5px",
-        borderRadius: "10px",
-      }}
-    /> */}
-                  </TabList>
+                  <Tab
+                    label="Oneway"
+                    value="1"
+                    sx={{
+                      fontSize: "15px",
+                      color: "black",
+                      fontWeight: "bold",
+                      marginX: "5px",
+                      borderRadius: "10px",
+                    }}
+                  ></Tab>
+                  <Tab
+                    label="Round Trip"
+                    value="2"
+                    sx={{
+                      fontSize: "15px",
+                      color: "black",
+                      fontWeight: "bold",
+                      marginX: "5px",
+                      borderRadius: "10px",
+                    }}
+                  />
+                </TabList>
 
-                  <div style={{ flex: 1, textAlign: "right" }}>
-                    <p className="para">
-                      Book International and Domestic Flights
-                    </p>
+                <div style={{ flex: 1, textAlign: "right", padding: "0px 30px 0px 0px" }}>
+                  <p className="para">
+                    Book International and Domestic Flights
+                  </p>
+                </div>
+              </Box>
+
+              {/* Oneway start */}
+
+              <TabPanel value="1">
+
+
+                <form onSubmit={handleOnewaySubmit}>
+                  <div className="your-container">
+                    <div className="from-container">
+                      <span>From</span>
+                      <div>
+                        <input
+                          name="from"
+                          placeholder="Enter city or airport"
+                          value={from}
+                          autoComplete="off"
+                          onChange={(event) => {
+                            handleFromInputChange(event);
+                            setIsLoadingFrom(true);
+                            handleFromSearch(event.target.value);
+                          }}
+                          required
+                          style={{
+                            outline: "none",
+                            border: "none",
+                          }}
+                        />
+                        {/* {isLoadingFrom && <div>Loading...</div>} */}
+                        {fromSearchResults &&
+                          fromSearchResults.length > 0 && fromQuery.length >= 2 && (
+                            <div
+                              ref={fromSearchRef}
+                              className="from-search-results"
+                              style={{
+
+                                display: displayFrom ? "flex" : "none",
+                              }}
+                            >
+
+                              <ul className="from_Search_Container">
+                                <Box
+                                  sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    maxHeight: 161,
+                                    overflow: "hidden",
+                                    overflowY: "scroll",
+                                  }}
+                                  className="scroll_style"
+                                >
+                                  {fromSearchResults.map((result) => (
+                                    <li
+                                      className="to_List"
+                                      key={result._id}
+                                      onClick={() => handleFromClick(result)}
+                                    >
+                                      <div className="onewayResultBox">
+
+                                        <div className="onewayResultFirst">
+                                          <div><FlightTakeoffTwoToneIcon /></div>
+                                          <div className="resultOriginName">
+                                            <p>{result.name}</p>
+                                            <span>{result.code}</span>
+                                          </div>
+                                        </div>
+                                        <div className="resultAirportCode">
+                                          <p>{result.AirportCode}</p>
+                                        </div>
+                                      </div>
+                                    </li>
+                                  ))}
+                                </Box>
+                              </ul>
+                            </div>
+                          )}
+                      </div>
+                      {fromSearchResults && fromSearchResults.length > 0 && fromQuery.length >= 2 ? (
+                        <span>
+                          {selectedFrom ? (
+                            <>
+                              {selectedFrom.code}, {selectedFrom.name}
+                            </>
+                          ) : (
+                            <>
+                              {fromSearchResults[0].code}, {fromSearchResults[0].name}
+                            </>
+                          )}
+                        </span>
+                      ) :
+                        (
+                          <span>Airport Name</span>
+                        )
+
+                      }
+
+
+                      <div className="roundlogo" onClick={handleRoundLogoClick}
+                        style={{ cursor: 'pointer' }}>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="40"
+                          viewBox="0 0 40 40"
+                          fill="none"
+                        >
+                          <circle
+                            cx="20"
+                            cy="20"
+                            r="19"
+                            fill="white"
+                            stroke="#071C2C"
+                            stroke-width="2"
+                          />
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          justifyContent="center"
+                        >
+                          <path
+                            d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
+                            stroke="#071C2C"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+
+                    <div className="from-container">
+                      <span>To</span>
+                      <div>
+                        <input
+                          name="to"
+                          placeholder="Enter city or airport"
+                          value={to}
+                          required
+                          onChange={(event) => {
+                            handleToInputChange(event);
+                            setIsLoadingTo(true);
+                            handleToSearch(event.target.value);
+                          }}
+                          autoComplete="off"
+                          style={{
+                            border: "none",
+
+                            outline: "none",
+                          }}
+                        />
+                        {/* {isLoadingTo && <div>Loading...</div>} */}
+                        {toSearchResults && toSearchResults.length > 0 && toQuery.length >= 2 && (
+                          <div
+                            ref={toSearchRef}
+                            className="from-search-results"
+                            style={{
+                              display: displayTo ? "flex" : "none",
+                            }}
+                          >
+                            <ul className="from_Search_Container">
+                              <Box
+                                sx={{
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  maxHeight: 161,
+                                  overflow: "hidden",
+                                  overflowY: "scroll",
+                                }}
+                                className="scroll_style"
+                              >
+                                {toSearchResults.map((result) => (
+                                  <li
+                                    className="to_List"
+                                    key={result._id}
+                                    onClick={() => handleToClick(result)}
+                                  >
+                                    <div className="onewayResultBox">
+                                      <div className="onewayResultFirst">
+                                        <div><FlightTakeoffTwoToneIcon /></div>
+                                        <div className="resultOriginName">
+                                          <p>{result.name}</p>
+                                          <span>{result.code}</span>
+                                        </div>
+                                      </div>
+
+                                      <div className="resultAirportCode">
+                                        <p>{result.AirportCode}</p>
+                                      </div>
+
+                                    </div>
+                                  </li>
+                                ))}
+                              </Box>
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                      {toSearchResults && toSearchResults.length > 0 && toQuery.length >= 2 ? (
+                        <span>
+                          {selectedTo ? (
+                            <>
+                              {selectedTo.code}, {selectedTo.name}
+                            </>
+                          ) : (
+                            <>
+                              {toSearchResults[0].code}, {toSearchResults[0].name}
+                            </>
+                          )}
+                        </span>
+                      ) :
+                        (
+                          <span>Airport Name</span>
+                        )
+
+                      }
+
+                    </div>
+                    <div className="from-container">
+                      <span>Departure</span>
+                      <div className="">
+                        <div>
+                          <DatePicker
+                            name="departure"
+                            id="departure"
+                            selected={startDate}
+                            onChange={handleDateChange}
+                          />
+                        </div>
+                      </div>
+                      <span>{getDayOfWeek(startDate)}</span>
+                    </div>
+
+                    <div className="travellerContainer ">
+                      <div
+                        onClick={handleTravelClickOpen}
+                        className="travellerButton">
+                        <span>
+                          Traveller & Class
+                        </span>
+                        <p >
+                          <span>{(totalCount === 0 && 1) || totalCount} </span> Traveller
+                        </p>
+                        <div>
+                          <span>
+                            {(activeIdClass === 1 && "All") ||
+                              (activeIdClass === 2 && "Economy") ||
+                              (activeIdClass === 3 && "Premium Economy") ||
+                              (activeIdClass === 4 && "Business")(
+                                activeIdClass === 5 && "Business Economy"
+                              )(activeIdClass === 6 && "First Class")}
+                          </span>
+                        </div>
+                      </div>
+                      <Dialog
+                        sx={{ zIndex: "99999" }}
+                        disableEscapeKeyDown
+                        open={openTravelModal}
+                        onClose={handleTravelClose}
+                      >
+                        <DialogContent>
+                          <>
+                            <div className="travellerModal">
+                              <div><h3>TRAVELLERS & CLASS</h3></div>
+                              <div className="travellerPeople">
+                                {/* Use the TravelerCounter component for each category */}
+                                <TravelerCounter
+                                  label="Adults (Age 12+ Years)"
+                                  count={activeIdAdult}
+                                  onIncrement={() => handleTravelerCountChange('adult', 1)}
+                                  onDecrement={() => handleTravelerCountChange('adult', -1)}
+                                />
+                                <TravelerCounter
+                                  label="Children (Age 2-12 Years)"
+                                  count={activeIdChild}
+                                  onIncrement={() => handleTravelerCountChange('child', 1)}
+                                  onDecrement={() => handleTravelerCountChange('child', -1)}
+                                />
+                                <TravelerCounter
+                                  label="Infants (Age 0-2 Years)"
+                                  count={activeIdInfant}
+                                  onIncrement={() => handleTravelerCountChange('infant', 1)}
+                                  onDecrement={() => handleTravelerCountChange('infant', -1)}
+                                />
+                              </div>
+                              <div><h3>Choose Travel Class</h3></div>
+                              <div>
+                                <ul className="classButtonTravel">
+                                  {ClassItems?.map((ele) => (
+                                    <>
+                                      <li
+                                        style={{
+                                          backgroundColor:
+                                            ele.id === activeIdClass
+                                              ? "#e73c33"
+                                              : "#fff",
+                                          color:
+                                            ele.id === activeIdClass
+                                              ? "#fff"
+                                              : "#e73c33",
+                                        }}
+                                        data-id={ele.id}
+                                      // onClick={handleClassItemClick}
+                                      >
+                                        {ele?.label}
+                                      </li>
+                                    </>
+                                  ))}
+                                </ul>
+                              </div>
+                            </div>
+                          </>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button
+                            style={{
+                              backgroundColor: "#21325d",
+                              color: "white",
+                            }}
+                            onClick={handleTravelClose}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            style={{
+                              backgroundColor: "#21325d",
+                              color: "white",
+                            }}
+                            onClick={handleTravelClose}
+                          >
+                            Ok
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                    </div>
                   </div>
-                </Box>
 
-                {/* Oneway start */}
 
-                <TabPanel value="1">
-                  <form onSubmit={handleOnewaySubmit}>
-                    <div className="your-container">
-                      <div className="from-container">
-                        <div className="from-label">From</div>
-                        <div className="from-city">
-                          {" "}
-                          <input
-                            name="from"
-                            placeholder="Enter city or airport"
-                            value={from}
-                            autoComplete="off"
-                            onChange={(event) => {
-                              handleFromInputChange(event);
-                              setIsLoadingFrom(true);
-                              handleFromSearch(event.target.value);
-                            }}
-                            required
-                            style={{
-                              outline: "none",
-                              border: "none",
-                            }}
-                          />
-                          {isLoadingFrom && <div>Loading...</div>}
-                          {fromSearchResults &&
-                            fromSearchResults.length > 0 && (
-                              <div
-                                ref={fromSearchRef}
-                                className="from-search-results"
-                                style={{
-                                  backgroundColor: "white",
-                                  borderRadius: "10px",
-                                  zIndex: 1999900,
-                                  width: "100%",
-                                  boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                                  textAlign: "left",
-                                  cursor: "pointer",
-                                  display: displayFrom ? "block" : "none",
-                                }}
-                              >
-                                <ul className="from_Search_Container">
-                                  {fromSearchResults.map((result) => (
-                                    <li
-                                      className="to_List"
-                                      key={result._id}
-                                      onClick={() => handleFromClick(result)}
-                                    >
-                                      <div>
-                                        <span className="to_List_container">
-                                          <FlightTakeoffTwoToneIcon />{" "}
-                                          <strong>{result.name}</strong>{" "}
-                                          <strong
-                                            className="to_airport_code"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "12px",
-                                            }}
-                                          >
-                                            {result.AirportCode}
-                                          </strong>
-                                        </span>
-                                        <span
-                                          style={{
-                                            fontSize: "13px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                          }}
-                                        >
-                                          {result.code}
-                                        </span>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                        </div>
-                        <div className="from-details">
-                          DEL, Delhi Airport India
-                        </div>
-                       
-                        
-                             
-                      
-                    
-                        <div className="roundlogo">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="40"
-                            height="40"
-                            viewBox="0 0 40 40"
-                            fill="none"
-                          >
-                            <circle
-                              cx="20"
-                              cy="20"
-                              r="19"
-                              fill="white"
-                              stroke="#071C2C"
-                              stroke-width="2"
-                            />
-                          </svg>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="20"
-                            viewBox="0 0 18 20"
-                            fill="none"
-                            justifyContent="center"
-                          >
-                            <path
-                              d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
-                              stroke="#071C2C"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </div>
+
+
+
+
+
+
+                  <Box display="flex" justifyContent="center">
+                    <div class="wrapper_oneway">
+                      <div className="wraOne">
+                        <p>Select A Fare Type:</p>
                       </div>
+                      <input
+                        type="radio"
+                        name="select"
+                        id="option-1"
+                        checked
+                      />
+                      <input type="radio" name="select" id="option-2" />
+                      <input type="radio" name="select" id="option-3" />
+                      <input type="radio" name="select" id="option-4" />
+                      <input type="radio" name="select" id="option-5" />
+                      <input type="radio" name="select" id="option-6" />
 
-                      <div className="from-container">
-                        <div className="to-label">To</div>
-                        <div className="to-city">
-                          {" "}
-                          <input
-                            name="to"
-                            placeholder="Enter city or airport"
-                            value={to}
-                            required
-                            onChange={(event) => {
-                              handleToInputChange(event);
-                              setIsLoadingTo(true); // Set loading state for TO input
-                              handleToSearch(event.target.value);
-                            }}
-                            autoComplete="off"
-                            style={{
-                              border: "none",
+                      <label for="option-1" class="option option-1">
+                        <text>Regular Fares</text>
+                      </label>
+                      <label for="option-2" class="option option-2">
+                        <text>Armed Forces Fares</text>
+                      </label>
+                      <label for="option-3" class="option option-3">
+                        <text>Student Fares</text>
+                      </label>
+                      <label for="option-4" class="option option-4">
+                        <text>Senior Citizen Fares</text>
+                      </label>
+                      <label for="option-5" class="option option-5">
+                        <text>Doctors & Nurses Fares</text>
+                      </label>
+                      <label for="option-6" class="option option-6">
+                        <text>Double Seat Fares</text>
+                      </label>
+                      <div className="col-auto fare_search_oneWay ">
+                        <button
+                          type="submit"
+                          path=""
+                          justifyContent="center"
+                        >
+                          Search
+                        </button>
+                      </div>
+                    </div>
+                  </Box>
+                </form>
 
-                              outline: "none",
-                            }}
-                          />
-                          {isLoadingTo && <div>Loading...</div>}
-                          {toSearchResults && toSearchResults.length > 0 && (
+                {/* =====================> 2nd form here <============================================= */}
+              </TabPanel>
+
+              {/* Oneway end */}
+
+              {/* Round trip start */}
+
+              <TabPanel value="2">
+                <form>
+                  <div className="your-container">
+                    <div className="from-container1">
+                      <div className="from-label">From</div>
+                      <div className="from-city">
+                        {" "}
+                        <input
+                          name="from"
+                          placeholder="Enter city or airport"
+                          // value={from}
+                          autoComplete="off"
+                          // onChange={(event) => {
+                          //   handleFromInputChange(event);
+                          //   setIsLoadingFrom(true);
+                          //   handleFromSearch(event.target.value);
+                          // }}
+                          // required
+                          style={{
+                            outline: "none",
+                            border: "none",
+                          }}
+                        />
+                        {isLoadingFrom && <div>Loading...</div>}
+                        {fromSearchResults &&
+                          fromSearchResults.length > 0 && (
                             <div
-                              ref={toSearchRef}
-
+                              ref={fromSearchRef}
+                              className="from-search-results"
                               style={{
                                 backgroundColor: "white",
                                 borderRadius: "10px",
-                                zIndex: 9999991,
+                                zIndex: 1999900,
                                 width: "100%",
                                 boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
                                 textAlign: "left",
                                 cursor: "pointer",
-                                display: displayTo ? "block" : "none",
+                                display: displayFrom ? "block" : "none",
                               }}
                             >
-                              <ul className="to_Search_Container">
-                                <Box
-                                  sx={{
-                                    mb: 1,
-                                    mt: 1,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    maxHeight: 161,
-                                    overflow: "hidden",
-                                    overflowY: "scroll",
-                                  }}
-                                  className="scroll_style"
-                                >
-                                  {toSearchResults.map((result) => (
-                                    <li
-                                      className="to_List"
-                                      key={result._id}
-                                      onClick={() => handleToClick(result)}
-                                    >
-                                      <div>
-                                        <span className="to_List_container">
-                                          <FlightLandTwoToneIcon />{" "}
-                                          <strong>{result.name}</strong>{" "}
-                                          <strong
-                                            className="to_airport_code"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "12px",
-                                            }}
-                                          >
-                                            {result.AirportCode}
-                                          </strong>
-                                        </span>
-                                        <span
+                              <ul className="from_Search_Container">
+                                {fromSearchResults.map((result) => (
+                                  <li
+                                    className="to_List"
+                                    key={result._id}
+                                    onClick={() => handleFromClick(result)}
+                                  >
+                                    <div>
+                                      <span className="to_List_container">
+                                        <FlightTakeoffTwoToneIcon />{" "}
+                                        <strong>{result.name}</strong>{" "}
+                                        <strong
+                                          className="to_airport_code"
                                           style={{
-                                            fontSize: "13px",
-                                            display: "flex",
-                                            justifyContent: "center",
+                                            color: "gray",
+                                            fontSize: "12px",
                                           }}
                                         >
-                                          {result.code}
-                                        </span>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </Box>
+                                          {result.AirportCode}
+                                        </strong>
+                                      </span>
+                                      <span
+                                        style={{
+                                          fontSize: "13px",
+                                          display: "flex",
+                                          justifyContent: "center",
+                                        }}
+                                      >
+                                        {result.code}
+                                      </span>
+                                    </div>
+                                  </li>
+                                ))}
                               </ul>
                             </div>
                           )}
-                        </div>
-                        <div className="to-details">
-                          BLR, Bengaluru International Airport In..
-                        </div>
                       </div>
-                      <div className="from-container">
-                        <div className="departure-label">Departure</div>
-                        <div className="date-container">
-                          <div className="date-info">
-                            <div className="datee">
-                              <input
-                                type="date"
-                                name="departure"
-                                id="departure"
-                                className="deaprture_input"
-                                placeholder="Enter city or airport"
-                                style={{
-                                  border: "none",
-                                  outline: "none",
-                                }}
-                              ></input>
-                            </div>
-                          </div>
-                          <div className="day">Thursday</div>
-                        </div>
+                      <div className="from-details">
+                        DEL, Delhi Airport India
                       </div>
 
-                      <div className="traveller-container ">
-                        {/* <div className="traveller-label">Traveller & Class</div>
-                      <div className="traveller-count">
-                        <div className="traveller-number">1</div>
-                        <div className="traveller-type">Traveller</div>
-                      </div>
-                      <div className="class-details">
-                        Economy/Premium Economy
-                      </div> */}
-                        <Button
-                          sx={{
-                            height: "80px",
-                            color: "gray",
-                            border: "none",
-                            borderRadius: "12px",
-                            display: "flex",
-                            flexDirection: "column",
-                            textAlign: "left",
-                          }}
-                          onClick={handleTravelClickOpen}
-                          className="Travel_Btn"
+                      <div className="roundlogo">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="40"
+                          height="40"
+                          viewBox="0 0 40 40"
+                          fill="none"
                         >
-                          <div
-                            className="traveller-label"
-                            sx={{
-                              textTransform: "capitalize",
-                            }}
-                          >
-                            Traveller & Class
-                          </div>
-                          <div>
-                            <span
-                              style={{
-                                display: "flex",
-                                justifyContent: "start",
-                              }}
-                            >
-                              <Typography
-                                fontWeight={800}
-                                variant="button"
-                                fontSize={16}
-                              >
-                                {(totalCount === 0 && 1) || totalCount}
-                              </Typography>
-                              <Typography
-                                fontSize={16}
-                                variant="button"
-                                textTransform="capitalize"
-                              >
-                                Traveller
-                              </Typography>
-                            </span>
-                            <div style={{ fontSize: "11px" }}>
-                              {(activeIdClass === 1 && "All") ||
-                                (activeIdClass === 2 && "Economy") ||
-                                (activeIdClass === 3 && "Premium Economy") ||
-                                (activeIdClass === 4 && "Business")(
-                                  activeIdClass === 5 && "Business Economy"
-                                )(activeIdClass === 6 && "First Class")}
-                            </div>
-                          </div>
-                        </Button>
-                        <Dialog
-                          sx={{ zIndex: "99999" }}
-                          disableEscapeKeyDown
-                          open={openTravelModal}
-                          onClose={handleTravelClose}
+                          <circle
+                            cx="20"
+                            cy="20"
+                            r="19"
+                            fill="white"
+                            stroke="#071C2C"
+                            stroke-width="2"
+                          />
+                        </svg>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="18"
+                          height="20"
+                          viewBox="0 0 18 20"
+                          fill="none"
+                          justifyContent="center"
                         >
-                          <DialogContent>
-                            <Box component="form">
-                              {/* form layout */}
-                              <div>TRAVELLERS & CLASS </div>
-                              <Grid
-                                display="flex"
-                                flexDirection="column"
-                                p={2}
-                                borderRadius="30px"
-                                justifyContent="center"
-                              >
-                                <Grid
-                                  item
-                                  textAlign="center"
-                                  px={1}
-                                  display="flex"
-                                  justifyContent="space-between"
-                                >
-                                  <Typography textAlign="left" fontSize="15px">
-                                    Adults
-                                    <span
-                                      style={{
-                                        fontSize: "10px",
-                                        marginLeft: "7px",
-                                      }}
-                                    >
-                                      (Age 12+ years)
-                                    </span>
-                                  </Typography>
-
-                                  <ul className="Adult_Count">
-                                    {adultCount?.map((adult) => (
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            adult === activeIdAdult
-                                              ? "green"
-                                              : "white",
-                                          color:
-                                            adult === activeIdAdult
-                                              ? "white"
-                                              : "black",
-                                        }}
-                                        data-id={adult}
-                                        onClick={handleAdultClick}
-                                      >
-                                        {adult}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Grid>
-                                <Grid
-                                  item
-                                  textAlign="center"
-                                  mt={2}
-                                  px={1}
-                                  display="flex"
-                                  justifyContent="space-between"
-                                >
-                                  <Typography textAlign="left" fontSize="15px">
-                                    Child
-                                    <span
-                                      style={{
-                                        fontSize: "10px",
-                                        marginLeft: "7px",
-                                      }}
-                                    >
-                                      (Aged 2-12 years)
-                                    </span>
-                                  </Typography>
-
-                                  <ul className="Adult_Count">
-                                    {childCount?.map((child) => (
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            child === activeIdChild
-                                              ? "green"
-                                              : "white",
-                                          color:
-                                            child === activeIdChild
-                                              ? "white"
-                                              : "black",
-                                        }}
-                                        data-id={child}
-                                        onClick={handleChildClick}
-                                      >
-                                        {child}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Grid>
-                                <Grid
-                                  item
-                                  textAlign="center"
-                                  mt={2}
-                                  px={1}
-                                  display="flex"
-                                  justifyContent="space-between"
-                                >
-                                  <Typography textAlign="left" fontSize="15px">
-                                    Infants
-                                    <span
-                                      style={{
-                                        fontSize: "10px",
-                                        marginLeft: "7px",
-                                      }}
-                                    >
-                                      (Below 2 years)
-                                    </span>
-                                  </Typography>
-
-                                  <ul className="Adult_Count">
-                                    {infantCount?.map((Infants) => (
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            Infants === activeIdInfant
-                                              ? "green"
-                                              : "white",
-                                          color:
-                                            Infants === activeIdInfant
-                                              ? "white"
-                                              : "black",
-                                        }}
-                                        data-id={Infants}
-                                        onClick={handleInfantClick}
-                                      >
-                                        {Infants}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Grid>
-                              </Grid>
-
-                              <Grid
-                                display="flex"
-                                style={{ margin: "7px 22px" }}
-                              >
-                                <Typography textAlign="left" fontSize="15px">
-                                  Choose Travel Class
-                                </Typography>
-                              </Grid>
-
-                              <Grid display="flex">
-                                <ul className="classButton">
-                                  {ClassItems?.map((ele) => (
-                                    <>
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            ele.id === activeIdClass
-                                              ? "#071C2C"
-                                              : "#E73C33",
-                                        }}
-                                        data-id={ele.id}
-                                        // onClick={handleClassItemClick}
-                                      >
-                                        {ele?.label}
-                                      </li>
-                                    </>
-                                  ))}
-                                </ul>
-                              </Grid>
-                            </Box>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button
-                              style={{
-                                backgroundColor: "#071C2C",
-                                color: "white",
-                              }}
-                              onClick={handleTravelClose}
-                            >
-                              Cancel
-                            </Button>
-                            <Button
-                              style={{
-                                backgroundColor: "#071C2C",
-                                color: "white",
-                              }}
-                              onClick={handleTravelClose}
-                            >
-                              Ok
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
+                          <path
+                            d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
+                            stroke="#071C2C"
+                            stroke-width="2"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                          />
+                        </svg>
                       </div>
                     </div>
 
-                    <Box display="flex" justifyContent="center">
-                      <div class="wrapper">
-                        <text>Select A Fare Type:</text>
+                    <div className="from-container">
+                      <div className="to-label">To</div>
+                      <div className="to-city">
+                        {" "}
                         <input
-                          type="radio"
-                          name="select"
-                          id="option-1"
-                          checked
-                        />
-                        <input type="radio" name="select" id="option-2" />
-                        <input type="radio" name="select" id="option-3" />
-                        <input type="radio" name="select" id="option-4" />
-                        <input type="radio" name="select" id="option-5" />
-                        <input type="radio" name="select" id="option-6" />
-                        <label for="option-1" class="option option-1">
-                          <text>Regular Fares</text>
-                        </label>
-                        <label for="option-2" class="option option-2">
-                          <text>Armed Forces Fares</text>
-                        </label>
-                        <label for="option-3" class="option option-3">
-                          <text>Student Fares</text>
-                        </label>
-                        <label for="option-4" class="option option-4">
-                          <text>Senior Citizen Fares</text>
-                        </label>
-                        <label for="option-5" class="option option-5">
-                          <text>Doctors & Nurses Fares</text>
-                        </label>
-                        <label for="option-6" class="option option-6">
-                          <text>Double Seat Fares</text>
-                        </label>
-                        <text className="col-auto fare_search ">
-                          {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
-                           <button type="submit" path="" className="search" justifyContent="center">
-                              Search
-                                  </button>                             Search
-                                                    </button> */}
-                          <button
-                            type="submit"
-                            path=""
-                            className="search"
-                            justifyContent="center"
-                          >
-                            Search
-                          </button>
-                        </text>
-                      </div>
-                    </Box>
-                  </form>
-
-                  {/* =====================> 2nd form here <============================================= */}
-                </TabPanel>
-
-                {/* Oneway end */}
-
-                {/* Round trip start */}
-
-                <TabPanel value="2">
-                  <form>
-                    <div className="your-container">
-                      <div className="from-container1">
-                        <div className="from-label">From</div>
-                        <div className="from-city">
-                          {" "}
-                          <input
-                            name="from"
-                            placeholder="Enter city or airport"
-                            // value={from}
-                            autoComplete="off"
-                            // onChange={(event) => {
-                            //   handleFromInputChange(event);
-                            //   setIsLoadingFrom(true);
-                            //   handleFromSearch(event.target.value);
-                            // }}
-                            // required
-                            style={{
-                              outline: "none",
-                              border: "none",
-                            }}
-                          />
-                          {isLoadingFrom && <div>Loading...</div>}
-                          {fromSearchResults &&
-                            fromSearchResults.length > 0 && (
-                              <div
-                                ref={fromSearchRef}
-                                className="from-search-results"
-                                style={{
-                                  backgroundColor: "white",
-                                  borderRadius: "10px",
-                                  zIndex: 1999900,
-                                  width: "100%",
-                                  boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                                  textAlign: "left",
-                                  cursor: "pointer",
-                                  display: displayFrom ? "block" : "none",
-                                }}
-                              >
-                                <ul className="from_Search_Container">
-                                  {fromSearchResults.map((result) => (
-                                    <li
-                                      className="to_List"
-                                      key={result._id}
-                                      onClick={() => handleFromClick(result)}
-                                    >
-                                      <div>
-                                        <span className="to_List_container">
-                                          <FlightTakeoffTwoToneIcon />{" "}
-                                          <strong>{result.name}</strong>{" "}
-                                          <strong
-                                            className="to_airport_code"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "12px",
-                                            }}
-                                          >
-                                            {result.AirportCode}
-                                          </strong>
-                                        </span>
-                                        <span
-                                          style={{
-                                            fontSize: "13px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                          }}
-                                        >
-                                          {result.code}
-                                        </span>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )}
-                        </div>
-                        <div className="from-details">
-                          DEL, Delhi Airport India
-                        </div>
-
-                        <div className="roundlogo">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="40"
-                            height="40"
-                            viewBox="0 0 40 40"
-                            fill="none"
-                          >
-                            <circle
-                              cx="20"
-                              cy="20"
-                              r="19"
-                              fill="white"
-                              stroke="#071C2C"
-                              stroke-width="2"
-                            />
-                          </svg>
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="18"
-                            height="20"
-                            viewBox="0 0 18 20"
-                            fill="none"
-                            justifyContent="center"
-                          >
-                            <path
-                              d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
-                              stroke="#071C2C"
-                              stroke-width="2"
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-
-                      <div className="from-container">
-                        <div className="to-label">To</div>
-                        <div className="to-city">
-                          {" "}
-                          <input
-                            name="to"
-                            placeholder="Enter city or airport"
-                            // value={to}
-                            // required
-                            // onChange={(event) => {
-                            //   handleToInputChange(event);
-                            //   setIsLoadingTo(true); // Set loading state for TO input
-                            //   handleToSearch(event.target.value);
-                            // }}
-                            autoComplete="off"
-                            style={{
-                              border: "none",
-
-                              outline: "none",
-                            }}
-                          />
-                          {isLoadingTo && <div>Loading...</div>}
-                          {toSearchResults && toSearchResults.length > 0 && (
-                            <div
-                              ref={toSearchRef}
-                              style={{
-                                backgroundColor: "white",
-                                borderRadius: "10px",
-                                zIndex: 9999991,
-                                width: "100%",
-                                boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                                textAlign: "left",
-                                cursor: "pointer",
-                                display: displayTo ? "block" : "none",
-                              }}
-                            >
-                              <ul className="to_Search_Container">
-                                <Box
-                                  sx={{
-                                    mb: 1,
-                                    mt: 1,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    maxHeight: 161,
-                                    overflow: "hidden",
-                                    overflowY: "scroll",
-                                  }}
-                                  className="scroll_style"
-                                >
-                                  {toSearchResults.map((result) => (
-                                    <li
-                                      className="to_List"
-                                      key={result._id}
-                                      onClick={() => handleToClick(result)}
-                                    >
-                                      <div>
-                                        <span className="to_List_container">
-                                          <FlightLandTwoToneIcon />{" "}
-                                          <strong>{result.name}</strong>{" "}
-                                          <strong
-                                            className="to_airport_code"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "12px",
-                                            }}
-                                          >
-                                            {result.AirportCode}
-                                          </strong>
-                                        </span>
-                                        <span
-                                          style={{
-                                            fontSize: "13px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                          }}
-                                        >
-                                          {result.code}
-                                        </span>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </Box>
-                              </ul>
-                            </div>
-                          )}
-                        </div>
-                        <div className="to-details">
-                          BLR, Bengaluru International Airport In..
-                        </div>
-                      </div>
-                      <div className="from-container">
-                        <div className="departure-label">Departure</div>
-                        <div className="date-container">
-                          <div className="date-info">
-                            <div className="datee">
-                              <input
-                                type="date"
-                                name="departure"
-                                id="departure"
-                                className="deaprture_input"
-                                placeholder="Enter city or airport"
-                                style={{
-                                  border: "none",
-                                  outline: "none",
-                                }}
-                              ></input>
-                                 
-                                {/* <div  style={{
-                                  border: "none",
-                                  outline: "none",
-                                }}>  <DateRangePickers/></div>  */}
-                            </div>
-                          </div>
-                         
-                        </div>
-                      </div>
-                   
-                      <div className="from-container">
-                        <div className="return-label">Return</div>
-                        <div className="date-container">
-                          <div className="date-info">
-                            <div className="datee">
-                              <input
-                                type="date"
-                                name="returnDate"
-                                id="returnDate"
-                                className="return_input"
-                                placeholder="Enter return date"
-                                style={{
-                                  border: "none",
-                                  outline: "none",
-                                }}
-                              ></input>
-                            </div>
-                          </div>
-                        
-                        </div>
-                      </div>
-
-                      <div className="traveller-container ">
-                        {/* <div className="traveller-label">Traveller & Class</div>
-                      <div className="traveller-count">
-                        <div className="traveller-number">1</div>
-                        <div className="traveller-type">Traveller</div>
-                      </div>
-                      <div className="class-details">
-                        Economy/Premium Economy
-                      </div> */}
-                        <Button
-                          sx={{
-                            height: "80px",
-                            color: "gray",
+                          name="to"
+                          placeholder="Enter city or airport"
+                          // value={to}
+                          // required
+                          // onChange={(event) => {
+                          //   handleToInputChange(event);
+                          //   setIsLoadingTo(true); // Set loading state for TO input
+                          //   handleToSearch(event.target.value);
+                          // }}
+                          autoComplete="off"
+                          style={{
                             border: "none",
-                            borderRadius: "12px",
-                            display: "flex",
-                            flexDirection: "column",
-                            textAlign: "left",
+
+                            outline: "none",
                           }}
-                          onClick={handleTravelClickOpen}
-                          className="Travel_Btn"
-                        >
+                        />
+                        {isLoadingTo && <div>Loading...</div>}
+                        {toSearchResults && toSearchResults.length > 0 && (
                           <div
-                            className="traveller-label"
-                            sx={{
-                              textTransform: "capitalize",
+                            ref={toSearchRef}
+                            style={{
+                              backgroundColor: "white",
+                              borderRadius: "10px",
+                              zIndex: 9999991,
+                              width: "100%",
+                              boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
+                              textAlign: "left",
+                              cursor: "pointer",
+                              display: displayTo ? "block" : "none",
                             }}
                           >
-                            Traveller & Class
+                            <ul className="to_Search_Container">
+                              <Box
+                                sx={{
+                                  mb: 1,
+                                  mt: 1,
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  maxHeight: 161,
+                                  overflow: "hidden",
+                                  overflowY: "scroll",
+                                }}
+                                className="scroll_style"
+                              >
+                                {toSearchResults.map((result) => (
+                                  <li
+                                    className="to_List"
+                                    key={result._id}
+                                    onClick={() => handleToClick(result)}
+                                  >
+                                    <div>
+                                      <span className="to_List_container">
+                                        <FlightLandTwoToneIcon />{" "}
+                                        <strong>{result.name}</strong>{" "}
+                                        <strong
+                                          className="to_airport_code"
+                                          style={{
+                                            color: "gray",
+                                            fontSize: "12px",
+                                          }}
+                                        >
+                                          {result.AirportCode}
+                                        </strong>
+                                      </span>
+                                      <span
+                                        style={{
+                                          fontSize: "13px",
+                                          display: "flex",
+                                          justifyContent: "center",
+                                        }}
+                                      >
+                                        {result.code}
+                                      </span>
+                                    </div>
+                                  </li>
+                                ))}
+                              </Box>
+                            </ul>
                           </div>
-                          <div>
-                            <span
-                              style={{
-                                display: "flex",
-                                justifyContent: "start",
-                              }}
-                            >
-                              <Typography
-                                fontWeight={800}
-                                variant="button"
-                                fontSize={16}
-                              >
-                                {(totalCount === 0 && 1) || totalCount}
-                              </Typography>
-                              <Typography
-                                fontSize={16}
-                                variant="button"
-                                textTransform="capitalize"
-                              >
-                                Traveller
-                              </Typography>
-                            </span>
-                            <div style={{ fontSize: "11px" }}>
-                              {(activeIdClass === 1 && "All") ||
-                                (activeIdClass === 2 && "Economy") ||
-                                (activeIdClass === 3 && "Premium Economy") ||
-                                (activeIdClass === 4 && "Business")(
-                                  activeIdClass === 5 && "Business Economy"
-                                )(activeIdClass === 6 && "First Class")}
-                            </div>
-                          </div>
-                        </Button>
-                        <Dialog
-                          sx={{ zIndex: "99999" }}
-                          disableEscapeKeyDown
-                          open={openTravelModal}
-                          onClose={handleTravelClose}
-                        >
-                          <DialogContent>
-                            <Box component="form">
-                              {/* form layout */}
-                              <div>TRAVELLERS & CLASS </div>
-                              <Grid
-                                display="flex"
-                                flexDirection="column"
-                                p={2}
-                                borderRadius="30px"
-                                justifyContent="center"
-                              >
-                                <Grid
-                                  item
-                                  textAlign="center"
-                                  px={1}
-                                  display="flex"
-                                  justifyContent="space-between"
-                                >
-                                  <Typography textAlign="left" fontSize="15px">
-                                    Adults
-                                    <span
-                                      style={{
-                                        fontSize: "10px",
-                                        marginLeft: "7px",
-                                      }}
-                                    >
-                                      (Age 12+ years)
-                                    </span>
-                                  </Typography>
-
-                                  <ul className="Adult_Count">
-                                    {adultCount?.map((adult) => (
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            adult === activeIdAdult
-                                              ? "green"
-                                              : "white",
-                                          color:
-                                            adult === activeIdAdult
-                                              ? "white"
-                                              : "black",
-                                        }}
-                                        data-id={adult}
-                                        onClick={handleAdultClick}
-                                      >
-                                        {adult}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Grid>
-                                <Grid
-                                  item
-                                  textAlign="center"
-                                  mt={2}
-                                  px={1}
-                                  display="flex"
-                                  justifyContent="space-between"
-                                >
-                                  <Typography textAlign="left" fontSize="15px">
-                                    Child
-                                    <span
-                                      style={{
-                                        fontSize: "10px",
-                                        marginLeft: "7px",
-                                      }}
-                                    >
-                                      (Aged 2-12 years)
-                                    </span>
-                                  </Typography>
-
-                                  <ul className="Adult_Count">
-                                    {childCount?.map((child) => (
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            child === activeIdChild
-                                              ? "green"
-                                              : "white",
-                                          color:
-                                            child === activeIdChild
-                                              ? "white"
-                                              : "black",
-                                        }}
-                                        data-id={child}
-                                        onClick={handleChildClick}
-                                      >
-                                        {child}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Grid>
-                                <Grid
-                                  item
-                                  textAlign="center"
-                                  mt={2}
-                                  px={1}
-                                  display="flex"
-                                  justifyContent="space-between"
-                                >
-                                  <Typography textAlign="left" fontSize="15px">
-                                    Infants
-                                    <span
-                                      style={{
-                                        fontSize: "10px",
-                                        marginLeft: "7px",
-                                      }}
-                                    >
-                                      (Below 2 years)
-                                    </span>
-                                  </Typography>
-
-                                  <ul className="Adult_Count">
-                                    {infantCount?.map((Infants) => (
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            Infants === activeIdInfant
-                                              ? "green"
-                                              : "white",
-                                          color:
-                                            Infants === activeIdInfant
-                                              ? "white"
-                                              : "black",
-                                        }}
-                                        data-id={Infants}
-                                        onClick={handleInfantClick}
-                                      >
-                                        {Infants}
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </Grid>
-                              </Grid>
-
-                              <Grid
-                                display="flex"
-                                style={{ margin: "7px 22px" }}
-                              >
-                                <Typography textAlign="left" fontSize="15px">
-                                  Choose Travel Class
-                                </Typography>
-                              </Grid>
-
-                              <Grid display="flex">
-                                <ul className="classButton">
-                                  {ClassItems?.map((ele) => (
-                                    <>
-                                      <li
-                                        style={{
-                                          backgroundColor:
-                                            ele.id === activeIdClass
-                                              ? "#071C2C"
-                                              : "#E73C33",
-                                        }}
-                                        data-id={ele.id}
-                                        onClick={handleClassItemClick}
-                                      >
-                                        {ele?.label}
-                                      </li>
-                                    </>
-                                  ))}
-                                </ul>
-                              </Grid>
-                            </Box>
-                          </DialogContent>
-                          <DialogActions>
-                            <Button
-                              style={{
-                                backgroundColor: "#071C2C",
-                                color: "white",
-                              }}
-                              onClick={handleTravelClose}
-                            >
-                              Cancel
-                            </Button>
-                            <Button
-                              style={{
-                                backgroundColor: "#071C2C",
-                                color: "white",
-                              }}
-                              onClick={handleTravelClose}
-                            >
-                              Ok
-                            </Button>
-                          </DialogActions>
-                        </Dialog>
+                        )}
+                      </div>
+                      <div className="to-details">
+                        BLR, Bengaluru International Airport In..
                       </div>
                     </div>
-
-                    <Box display="flex" justifyContent="center">
-                      <div class="wrapper">
-                        <text>Select A Fare Type:</text>
-                        <input
-                          type="radio"
-                          name="select"
-                          id="option-1"
-                          checked
-                        />
-                        <input type="radio" name="select" id="option-2" />
-                        <input type="radio" name="select" id="option-3" />
-                        <input type="radio" name="select" id="option-4" />
-                        <input type="radio" name="select" id="option-5" />
-                        <input type="radio" name="select" id="option-6" />
-                        <label for="option-1" class="option option-1">
-                          <text>Regular Fares</text>
-                        </label>
-                        <label for="option-2" class="option option-2">
-                          <text>Armed Forces Fares</text>
-                        </label>
-                        <label for="option-3" class="option option-3">
-                          <text>Student Fares</text>
-                        </label>
-                        <label for="option-4" class="option option-4">
-                          <text>Senior Citizen Fares</text>
-                        </label>
-                        <label for="option-5" class="option option-5">
-                          <text>Doctors & Nurses Fares</text>
-                        </label>
-                        <label for="option-6" class="option option-6">
-                          <text>Double Seat Fares</text>
-                        </label>
-                        <text className="col-auto fare_search ">
-                          {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
-                           <button type="submit" path="" className="search" justifyContent="center">
-                              Search
-                                  </button>                             Search
-                                                    </button> */}
-                          <button
-                            // type="submit"
-                            path=""
-                            className="search"
-                            justifyContent="center"
-                            onClick={handleButtonClick}
-                          >
-                            Search
-                          </button>
-                        </text>
-                      </div>
-                    </Box>
-                  </form>
-
-                  {/* ====================================================> 4th form here <=========================================== */}
-                </TabPanel>
-
-                {/* Round trip end */}
-
-                {/* Multicity start */}
-
-                <TabPanel value="3">
-                  <Box
-                    py={2}
-                    sx={{ backgroundColor: "white", borderRadius: "20px" }}
-                  >
-                    {/* =================================> 5th form here <========================================== */}
-                    <form action="/Searchresult">
-                      <div className="row">
-                        <div className="col-12 col-md-6 col-lg-3 mb-3">
-                          <div className="form_input">
-                            <label for="from" className="form_lable">
-                              FROM
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="Enter City or airport"
-                              name=""
-                              id=""
-                              style={{
-                                width: "100%",
-                                borderRadius: "20px",
-                                height: "5rem",
-                                border: "3px solid #70707069",
-                                paddingLeft: "25px",
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-3 mb-3">
-                          <div className="form_input">
-                            <label for="to" className="form_lable">
-                              TO
-                            </label>
-                            <input
-                              type="text"
-                              placeholder="Enter City or airport"
-                              name=""
-                              id=""
-                              style={{
-                                width: "100%",
-                                borderRadius: "20px",
-                                height: "5rem",
-                                border: "3px solid #70707069",
-                                paddingLeft: "25px",
-                              }}
-                            />
-                          </div>
-                        </div>
-                        <div className="col-12 col-md-6 col-lg-2 mb-3">
-                          <div className="form_input">
-                            <label for="departure" className="form_lable">
-                              DEPARTURE
-                            </label>
-
+                    <div className="from-container">
+                      <div className="departure-label">Departure</div>
+                      <div className="date-container">
+                        <div className="date-info">
+                          <div className="datee">
                             <input
                               type="date"
                               name="departure"
                               id="departure"
                               className="deaprture_input"
                               placeholder="Enter city or airport"
+                              style={{
+                                border: "none",
+                                outline: "none",
+                              }}
+                            ></input>
+
+                            {/* <div  style={{
+                                  border: "none",
+                                  outline: "none",
+                                }}>  <DateRangePickers/></div>  */}
+                          </div>
+                        </div>
+
+                      </div>
+                    </div>
+
+                    <div className="from-container">
+                      <div className="return-label">Return</div>
+                      <div className="date-container">
+                        <div className="date-info">
+                          <div className="datee">
+                            <input
+                              type="date"
+                              name="returnDate"
+                              id="returnDate"
+                              className="return_input"
+                              placeholder="Enter return date"
+                              style={{
+                                border: "none",
+                                outline: "none",
+                              }}
                             ></input>
                           </div>
                         </div>
 
-                        {/* <div className="col-12 col-md-6 col-lg-2 mb-3">
+                      </div>
+                    </div>
+
+                    <div className="traveller-container ">
+                      {/* <div className="traveller-label">Traveller & Class</div>
+                      <div className="traveller-count">
+                        <div className="traveller-number">1</div>
+                        <div className="traveller-type">Traveller</div>
+                      </div>
+                      <div className="class-details">
+                        Economy/Premium Economy
+                      </div> */}
+                      <Button
+                        sx={{
+                          height: "80px",
+                          color: "gray",
+                          border: "none",
+                          borderRadius: "12px",
+                          display: "flex",
+                          flexDirection: "column",
+                          textAlign: "left",
+                        }}
+                        onClick={handleTravelClickOpen}
+                        className="Travel_Btn"
+                      >
+                        <div
+                          className="traveller-label"
+                          sx={{
+                            textTransform: "capitalize",
+                          }}
+                        >
+                          Traveller & Class
+                        </div>
+                        <div>
+                          <span
+                            style={{
+                              display: "flex",
+                              justifyContent: "start",
+                            }}
+                          >
+                            <Typography
+                              fontWeight={800}
+                              variant="button"
+                              fontSize={16}
+                            >
+                              {(totalCount === 0 && 1) || totalCount}
+                            </Typography>
+                            <Typography
+                              fontSize={16}
+                              variant="button"
+                              textTransform="capitalize"
+                            >
+                              Traveller
+                            </Typography>
+                          </span>
+                          <div style={{ fontSize: "11px" }}>
+                            {(activeIdClass === 1 && "All") ||
+                              (activeIdClass === 2 && "Economy") ||
+                              (activeIdClass === 3 && "Premium Economy") ||
+                              (activeIdClass === 4 && "Business")(
+                                activeIdClass === 5 && "Business Economy"
+                              )(activeIdClass === 6 && "First Class")}
+                          </div>
+                        </div>
+                      </Button>
+                      <Dialog
+                        sx={{ zIndex: "99999" }}
+                        disableEscapeKeyDown
+                        open={openTravelModal}
+                        onClose={handleTravelClose}
+                      >
+                        <DialogContent>
+                          <Box component="form">
+                            {/* form layout */}
+                            <div>TRAVELLERS & CLASS </div>
+                            <Grid
+                              display="flex"
+                              flexDirection="column"
+                              p={2}
+                              borderRadius="30px"
+                              justifyContent="center"
+                            >
+                              <Grid
+                                item
+                                textAlign="center"
+                                px={1}
+                                display="flex"
+                                justifyContent="space-between"
+                              >
+                                <Typography textAlign="left" fontSize="15px">
+                                  Adults
+                                  <span
+                                    style={{
+                                      fontSize: "10px",
+                                      marginLeft: "7px",
+                                    }}
+                                  >
+                                    (Age 12+ years)
+                                  </span>
+                                </Typography>
+
+                                <ul className="Adult_Count">
+                                  {adultCount?.map((adult) => (
+                                    <li
+                                      style={{
+                                        backgroundColor:
+                                          adult === activeIdAdult
+                                            ? "green"
+                                            : "white",
+                                        color:
+                                          adult === activeIdAdult
+                                            ? "white"
+                                            : "black",
+                                      }}
+                                      data-id={adult}
+                                      onClick={handleAdultClick}
+                                    >
+                                      {adult}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </Grid>
+                              <Grid
+                                item
+                                textAlign="center"
+                                mt={2}
+                                px={1}
+                                display="flex"
+                                justifyContent="space-between"
+                              >
+                                <Typography textAlign="left" fontSize="15px">
+                                  Child
+                                  <span
+                                    style={{
+                                      fontSize: "10px",
+                                      marginLeft: "7px",
+                                    }}
+                                  >
+                                    (Aged 2-12 years)
+                                  </span>
+                                </Typography>
+
+                                <ul className="Adult_Count">
+                                  {childCount?.map((child) => (
+                                    <li
+                                      style={{
+                                        backgroundColor:
+                                          child === activeIdChild
+                                            ? "green"
+                                            : "white",
+                                        color:
+                                          child === activeIdChild
+                                            ? "white"
+                                            : "black",
+                                      }}
+                                      data-id={child}
+                                      onClick={handleChildClick}
+                                    >
+                                      {child}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </Grid>
+                              <Grid
+                                item
+                                textAlign="center"
+                                mt={2}
+                                px={1}
+                                display="flex"
+                                justifyContent="space-between"
+                              >
+                                <Typography textAlign="left" fontSize="15px">
+                                  Infants
+                                  <span
+                                    style={{
+                                      fontSize: "10px",
+                                      marginLeft: "7px",
+                                    }}
+                                  >
+                                    (Below 2 years)
+                                  </span>
+                                </Typography>
+
+                                <ul className="Adult_Count">
+                                  {infantCount?.map((Infants) => (
+                                    <li
+                                      style={{
+                                        backgroundColor:
+                                          Infants === activeIdInfant
+                                            ? "green"
+                                            : "white",
+                                        color:
+                                          Infants === activeIdInfant
+                                            ? "white"
+                                            : "black",
+                                      }}
+                                      data-id={Infants}
+                                      onClick={handleInfantClick}
+                                    >
+                                      {Infants}
+                                    </li>
+                                  ))}
+                                </ul>
+                              </Grid>
+                            </Grid>
+
+                            <Grid
+                              display="flex"
+                              style={{ margin: "7px 22px" }}
+                            >
+                              <Typography textAlign="left" fontSize="15px">
+                                Choose Travel Class
+                              </Typography>
+                            </Grid>
+
+                            <Grid display="flex">
+                              <ul className="classButton">
+                                {ClassItems?.map((ele) => (
+                                  <>
+                                    <li
+                                      style={{
+                                        backgroundColor:
+                                          ele.id === activeIdClass
+                                            ? "#071C2C"
+                                            : "#E73C33",
+                                      }}
+                                      data-id={ele.id}
+                                      onClick={handleClassItemClick}
+                                    >
+                                      {ele?.label}
+                                    </li>
+                                  </>
+                                ))}
+                              </ul>
+                            </Grid>
+                          </Box>
+                        </DialogContent>
+                        <DialogActions>
+                          <Button
+                            style={{
+                              backgroundColor: "#071C2C",
+                              color: "white",
+                            }}
+                            onClick={handleTravelClose}
+                          >
+                            Cancel
+                          </Button>
+                          <Button
+                            style={{
+                              backgroundColor: "#071C2C",
+                              color: "white",
+                            }}
+                            onClick={handleTravelClose}
+                          >
+                            Ok
+                          </Button>
+                        </DialogActions>
+                      </Dialog>
+                    </div>
+                  </div>
+
+                  <Box display="flex" justifyContent="center">
+                    <div class="wrapper">
+                      <text>Select A Fare Type:</text>
+                      <input
+                        type="radio"
+                        name="select"
+                        id="option-1"
+                        checked
+                      />
+                      <input type="radio" name="select" id="option-2" />
+                      <input type="radio" name="select" id="option-3" />
+                      <input type="radio" name="select" id="option-4" />
+                      <input type="radio" name="select" id="option-5" />
+                      <input type="radio" name="select" id="option-6" />
+                      <label for="option-1" class="option option-1">
+                        <text>Regular Fares</text>
+                      </label>
+                      <label for="option-2" class="option option-2">
+                        <text>Armed Forces Fares</text>
+                      </label>
+                      <label for="option-3" class="option option-3">
+                        <text>Student Fares</text>
+                      </label>
+                      <label for="option-4" class="option option-4">
+                        <text>Senior Citizen Fares</text>
+                      </label>
+                      <label for="option-5" class="option option-5">
+                        <text>Doctors & Nurses Fares</text>
+                      </label>
+                      <label for="option-6" class="option option-6">
+                        <text>Double Seat Fares</text>
+                      </label>
+                      <text className="col-auto fare_search ">
+                        {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
+                           <button type="submit" path="" className="search" justifyContent="center">
+                              Search
+                                  </button>                             Search
+                                                    </button> */}
+                        <button
+                          // type="submit"
+                          path=""
+                          className="search"
+                          justifyContent="center"
+                          onClick={handleButtonClick}
+                        >
+                          Search
+                        </button>
+                      </text>
+                    </div>
+                  </Box>
+                </form>
+
+                {/* ====================================================> 4th form here <=========================================== */}
+              </TabPanel>
+
+              {/* Round trip end */}
+
+              {/* Multicity start */}
+
+              <TabPanel value="3">
+                <Box
+                  py={2}
+                  sx={{ backgroundColor: "white", borderRadius: "20px" }}
+                >
+                  {/* =================================> 5th form here <========================================== */}
+                  <form action="/Searchresult">
+                    <div className="row">
+                      <div className="col-12 col-md-6 col-lg-3 mb-3">
+                        <div className="form_input">
+                          <label for="from" className="form_lable">
+                            FROM
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Enter City or airport"
+                            name=""
+                            id=""
+                            style={{
+                              width: "100%",
+                              borderRadius: "20px",
+                              height: "5rem",
+                              border: "3px solid #70707069",
+                              paddingLeft: "25px",
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-lg-3 mb-3">
+                        <div className="form_input">
+                          <label for="to" className="form_lable">
+                            TO
+                          </label>
+                          <input
+                            type="text"
+                            placeholder="Enter City or airport"
+                            name=""
+                            id=""
+                            style={{
+                              width: "100%",
+                              borderRadius: "20px",
+                              height: "5rem",
+                              border: "3px solid #70707069",
+                              paddingLeft: "25px",
+                            }}
+                          />
+                        </div>
+                      </div>
+                      <div className="col-12 col-md-6 col-lg-2 mb-3">
+                        <div className="form_input">
+                          <label for="departure" className="form_lable">
+                            DEPARTURE
+                          </label>
+
+                          <input
+                            type="date"
+                            name="departure"
+                            id="departure"
+                            className="deaprture_input"
+                            placeholder="Enter city or airport"
+                          ></input>
+                        </div>
+                      </div>
+
+                      {/* <div className="col-12 col-md-6 col-lg-2 mb-3">
                                                     <div className="form_input">
                                                         <label className="form_lable">RETURN</label>
                                                         <input type="date" name="departure" id="departure" className="deaprture_input" placeholder="Enter city or airport">
@@ -1663,8 +1577,8 @@ const Homeform = (props) => {
                                                     </div>
                                                 </div> */}
 
-                        <div className="col-12 col-md-6 col-lg-4 mb-3">
-                          {/* <div className="form_input">
+                      <div className="col-12 col-md-6 col-lg-4 mb-3">
+                        {/* <div className="form_input">
                             <label className="form_lable">
                               TRAVELLERS & CLASS{" "}
                             </label>
@@ -1688,59 +1602,59 @@ const Homeform = (props) => {
                             </div>
                           </div> */}
 
-                          {/* Travel data modal code */}
-                          <div>
-                            <Button onClick={handleTravelClickOpen}>
-                              Open select dialog
-                            </Button>
-                            <Dialog
-                              disableEscapeKeyDown
-                              open={openTravelModal}
-                              onClose={handleTravelClose}
-                            >
-                              <DialogTitle>Fill the form</DialogTitle>
-                              <DialogContent></DialogContent>
-                              <DialogActions>
-                                <Button onClick={handleTravelClose}>
-                                  Cancel
-                                </Button>
-                                <Button onClick={handleTravelClose}>Ok</Button>
-                              </DialogActions>
-                            </Dialog>
-                          </div>
+                        {/* Travel data modal code */}
+                        <div>
+                          <Button onClick={handleTravelClickOpen}>
+                            Open select dialog
+                          </Button>
+                          <Dialog
+                            disableEscapeKeyDown
+                            open={openTravelModal}
+                            onClose={handleTravelClose}
+                          >
+                            <DialogTitle>Fill the form</DialogTitle>
+                            <DialogContent></DialogContent>
+                            <DialogActions>
+                              <Button onClick={handleTravelClose}>
+                                Cancel
+                              </Button>
+                              <Button onClick={handleTravelClose}>Ok</Button>
+                            </DialogActions>
+                          </Dialog>
                         </div>
                       </div>
-                    </form>
-                  </Box>
-                  <Box sx={{ backgroundColor: "white", borderRadius: "20px" }}>
-                    <Addanothercity />
-                  </Box>
-                  {/* =============================================> 6th form here <================================================= */}
-                  <form action="/Searchresult">
-                    <Box display="flex" justifyContent="center">
-                      <div class="wrapper">
-                        <text className="col-auto fare_search ">
-                          <button
-                            type="submit"
-                            path=""
-                            className="search"
-                            onClick={handleButtonClick}
-                          >
-                            Search
-                          </button>
+                    </div>
+                  </form>
+                </Box>
+                <Box sx={{ backgroundColor: "white", borderRadius: "20px" }}>
+                  <Addanothercity />
+                </Box>
+                {/* =============================================> 6th form here <================================================= */}
+                <form action="/Searchresult">
+                  <Box display="flex" justifyContent="center">
+                    <div class="wrapper">
+                      <text className="col-auto fare_search ">
+                        <button
+                          type="submit"
+                          path=""
+                          className="search"
+                          onClick={handleButtonClick}
+                        >
+                          Search
+                        </button>
 
-                          {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
+                        {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
                                                         Search
                                                     </button> */}
-                        </text>
-                      </div>
-                    </Box>
-                  </form>
-                </TabPanel>
+                      </text>
+                    </div>
+                  </Box>
+                </form>
+              </TabPanel>
 
-                {/* Multicity end */}
-              </TabContext>
-            </Box>
+              {/* Multicity end */}
+            </TabContext>
+            {/* </Box> */}
           </div>
         </div>
       </div>

@@ -9,46 +9,40 @@ import app from "../../images/app.png";
 import google from "../../images/google.png"
 const Download = () => {
   return (
-    <React.Fragment>
-      <section>
-        <div className="container homeform_container" >
+
+    <section className="margin-pecentage">
+      {/* <div className="container homeform_container" >
           <Box pt={3}>
-            <Paper elevation={3} py={2} sx={{ borderRadius: "15px",width:"90%",margin:"auto"}} >
-              {/* <div className="download_header">
-                                    <h3>Download App Now !</h3>
-                                  
-                                </div> */}
+            <Paper elevation={3} py={2} sx={{ borderRadius: "15px", width: "90%", margin: "auto" }} >
               <div
                 className="download_info"
-                style={{gap:"40px",paddingTop:"20px",paddingBottom:"20px"}}
+                style={{ gap: "40px", paddingTop: "20px", paddingBottom: "20px" }}
               >
                 <div className="tickets" >
-                  <img src={ticket}  className="ticketimg" alt="download App" />
+                  <img src={ticket} className="ticketimg" alt="download App" />
                 </div>
                 <div className="down">
                   <h3 className="header">Download App Now !</h3>
                   <p className="paragraph">
-                    Use code <span style={{color:"#E73C33"}}>WELCOMESKY</span> and get Up to <span style={{color:"#E73C33"}}>Rs.5000 OFF</span>  on your first
+                    Use code <span style={{ color: "#E73C33" }}>WELCOMESKY</span> and get Up to <span style={{ color: "#E73C33" }}>Rs.5000 OFF</span>  on your first
                     domestic hotel booking
                   </p>
                   <div
                     className="lastimg"
                     style={{
-                    
+
                       display: "flex",
                       gap: "5px",
                     }}
                   >
                     <div >
-                      {/* Content for the first inner div */}
                       <img
                         src={google}
                         alt=""
                         style={{ width: "140px", height: "65px" }}
                       />
                     </div>
-                    <div style={{ paddingTop:"10px" }}>
-                      {/* Content for the second inner div */}
+                    <div style={{ paddingTop: "10px" }}>
                       <img
                         src={app}
                         alt=""
@@ -58,21 +52,35 @@ const Download = () => {
                   </div>
                 </div>
                 <div
-                  className="scan_wrapper"
-                 
-                >
-                 
-                 
-                    <img src={scan} className="scan-logo" alt="scan logo" />
-                  </div>
-                  
-              
+                  className="scan_wrapper">
+                  <img src={scan} className="scan-logo" alt="scan logo" />
+                </div>
               </div>
             </Paper>
           </Box>
+        </div> */}
+
+      <div className="container-fluid">
+        <div className="qrBox">
+          <div className="qrboxDownload">
+            <img src={ticket} className="ticketimg" alt="download App" />
+          </div>
+          <div className="qrTextDownload">
+            <div>
+              <h3>Download App Now!</h3>
+            </div>
+            <p>Use code <span>WELCOMESKY</span> and get Up to <span>Rs.5000 OFF</span> on your first domestic hotel booking</p>
+            <div className="PlayQr">
+              <img src={google} />
+              <img src={app} />
+            </div>
+          </div>
+          <div className="ourQr">
+            <img src={scan} className="scan-logo" alt="scan logo" />
+          </div>
         </div>
-      </section>
-    </React.Fragment>
+      </div>
+    </section>
   );
 };
 

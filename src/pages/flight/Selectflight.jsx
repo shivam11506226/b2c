@@ -25,6 +25,8 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
 
+import "./selectflight.css"
+
 // Location based Clear store
 
 import { useLocation, useNavigate } from "react-router-dom";
@@ -70,10 +72,7 @@ function Items({ currentItems }) {
   // Login Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   // Need to payload
-  // useEffect(() => {
-  //   dispatch(ruleAction(payload));
-  //   dispatch(quoteAction(payload));
-  // }, []);
+
 
   const flightImg =
     reducerState?.oneWay?.oneWayData?.data.data?.Response?.Results?.[0]?.map(
@@ -86,6 +85,8 @@ function Items({ currentItems }) {
   const results =
     reducerState?.oneWay?.oneWayData?.data?.data?.Response?.Results;
   const items = [...Array(results[0].length).keys()];
+
+  console.log(results, "results of oneway")
 
   const handleIndexId = (ResultIndex) => {
     //  Check user is logged in or not while booking flight
@@ -103,41 +104,6 @@ function Items({ currentItems }) {
   return (
     currentItems &&
     currentItems.map((item) => {
-      const date = new Date(results[0][item]?.Segments[0][0]?.Duration);
-      const time = date.toTimeString().slice(0, 5);
-
-      //  Flight Details
-
-      const dateString = results[0][item]?.Segments[0][0]?.Origin?.DepTime;
-      console.error(".....<<<<", dateString);
-      const date1 = new Date(dateString);
-      const time1 = date1.toLocaleTimeString()?.slice(0, 4);
-
-      const day1 = date1.getDate();
-      const month1 = date1.toLocaleString("default", {
-        month: "short",
-      });
-      const year1 = date1.getFullYear();
-      const formattedDate1 = `${day1 + " "} ${month1 + " "} ${year1 + " "}`;
-
-      const dateString1 =
-        results[0][item]?.Segments[0][0]?.Destination?.ArrTime;
-      const date2 = new Date(dateString1);
-      const time2 = `${date2.toLocaleTimeString()?.slice(0, 4)}  `;
-
-      const day2 = `${date2.getDate()}  `;
-      const month2 = date2.toLocaleString("default", {
-        month: "short",
-      });
-      const year2 = date2.getFullYear();
-      const formattedDate2 = `${day2}  ${month2} ${year2}`;
-
-      // Duration
-      const totalMinutes = results[0][item]?.Segments[0][0]?.Duration;
-      const durationHours = Math.floor(totalMinutes / 60);
-      const durationMinutes = totalMinutes % 60;
-      const duration_Time = `${durationHours}h ${durationMinutes} m`;
-
       const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
       };
@@ -155,74 +121,79 @@ function Items({ currentItems }) {
 
       // Date
 
+
+
+      const duration = `${Math.floor(results[0][item]?.Segments[0][0]?.Duration / 60)}hr ${results[0][item]?.Segments[0][0]?.Duration % 60
+        }min`;
+
+      const dateString = results[0][item]?.Segments[0][0]?.Origin?.DepTime;
+      const date = new Date(dateString);
+      const options = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      };
+      const formattedDate = date.toLocaleString("en-US", options);
+
+      const [month, day, year, time, ampm] = formattedDate.split(" ");
+      const desiredFormat = `${day}${month}-${year} ${time} ${ampm}`;
+
+      const dateString1 = results[0][item]?.Segments[0][0]?.Destination?.ArrTime;
+      const date1 = new Date(dateString1);
+      const options1 = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      };
+      const formattedDate1 = date1.toLocaleString("en-US", options1);
+      const [month1, day1, year1, time1, ampm1] =
+        formattedDate1.split(" ");
+      const desiredFormat1 = `${day1}${month1}-${year1} ${time1} ${ampm1}`;
+
+
+      const dateString2 = results[0][item]?.Segments[0][1]?.Destination?.ArrTime;
+      const date2 = new Date(dateString2);
+      const options2 = {
+        year: "numeric",
+        month: "short",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+        hour12: true,
+      };
+      const formattedDate2 = date2.toLocaleString("en-US", options2);
+      const [month2, day2, year2, time2, ampm2] =
+        formattedDate2.split(" ");
+      const desiredFormatStopped = `${day2}${month2}-${year2} ${time2} ${ampm2}`;
+
+
+      let a =
+        results[0][item]?.Segments[0]?.[1]?.Destination?.Airport?.CityName;
+
+      console.log(a, "cityname")
+
+
       return (
         <>
-          <Box
-            sx={{ flexGrow: 5, backgroundColor: "white", borderRadius: "10px" }}
-            my={3}
-          >
-            <Accordion>
-              <AccordionSummary sx={{ padding: "0" }}>
-                <Grid container p={1} display="flex" justifyContent="center">
-                  {/* <Grid
-                  sx={{
-                    width: "auto",
-                    height: "40px",
-                    backgroundColor: "white",
-                  }}
-                >
-                  <img
-                    src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`}
-                    alt="flight"
-                    style={{
-                      width: "60px",
-                      height: "40px",
-                      backgroundColor: "white",
-                    }}
-                  />
-                  <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {" "}
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
-                      </Typography>
-                      <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
-                        {
-                          results[0][item]?.Segments[0][0]?.Airline
-                            ?.FlightNumber
-                        }
-                        {
-                          results[0][item]?.IsLCC === false ? <span style={{background:'green',padding:'7px 12px',color:'white'}} >LCC</span> : ''
-                        }
 
-                      </Typography>
-                </Grid> */}
-                  <Grid
-                    container
-                    item
-                    md={2}
-                    alignItems="center"
-                    sx={{
-                      width: "auto",
-                      height: "40px",
-                      backgroundColor: "white",
-                    }}
-                  >
-                    <Grid item>
-                      <img
-                        src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`}
-                        alt="flight"
-                        style={{
-                          width: "60px",
-                          height: "40px",
-                          backgroundColor: "white",
-                        }}
-                      />
-                    </Grid>
-                    <Grid item sx={{ marginLeft: 1 }}>
-                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
-                      </Typography>
-                      <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
+
+          {
+            results[0][item]?.Segments[0].length == 2 ?
+              (
+                <>
+                  <div className="singleFlightBox">
+                    <div className="singleFlightBoxOne">
+                      <div>
+                        <img src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`} />{" "}
+                      </div>
+                      <span>{results[0][item]?.Segments[0][0]?.Airline?.AirlineName}</span>
+                      <p>
                         {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
                         {
                           results[0][item]?.Segments[0][0]?.Airline
@@ -235,452 +206,311 @@ function Items({ currentItems }) {
                         ) : (
                           ""
                         )}
-                      </Typography>
-                    </Grid>
-                    {/* <Grid item sx={{ marginLeft: 2 }}>
-                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineName}
-                      </Typography>
-                      <Typography sx={{ fontSize: "12px", fontWeight: "bold" }}>
-                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
-                        {results[0][item]?.Segments[0][0]?.Airline?.FlightNumber}
-                        {results[0][item]?.IsLCC === false ? <span style={{ background: 'green', padding: '7px 12px', color: 'white' }}>LCC</span> : ''}
-                      </Typography>
-                    </Grid>
-                    <Grid item sx={{ marginLeft: 2 }}>
-                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {time1} {' ' + formattedDate1}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: "bold",
-                          color: "#707070",
-                          textAlign: "center"
-                        }}
-                      >
-                        {
-                          results[0][item]?.Segments[0][0]?.Origin?.Airport
-                            ?.CityName
-                        }
-                      </Typography>
-                    </Grid> */}
-                  </Grid>
+                      </p>
+                    </div>
+                    <div className="singleFlightBoxTwo">
+                      <span>{results[0][item]?.Segments[0][0]?.Origin?.Airport?.CityName}</span>
+                      <p>{desiredFormat.slice(0, 12)}</p>
+                      <p style={{ fontSize: "14px" }}>{desiredFormat.slice(13)}</p>
+                    </div>
 
-                  {/* <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Box px={1}>
-                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {time1} {' ' + formattedDate1}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: "bold",
-                          color: "#707070",
-                        }}
-                      >
-                        {
-                          results[0][item]?.Segments[0][0]?.Origin?.Airport
-                            ?.CityName
-                        }
-                      </Typography>
-                    </Box>
-                  </Grid> */}
-                  {/* <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Box px={1}>
-                      <Typography
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: "bold",
-                          color: "#707070",
-                        }}
-                      >
-                        {duration_Time}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: "10px",
-                          fontWeight: "bold",
-                          color: "#707070",
-                        }}
-                      >
-                        1 Stop via Jaipur
-                      </Typography>
-                    </Box>
-                  </Grid> */}
-
-                  <Grid item sx={{ marginLeft: 1 }}>
-                    <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                      {time1} {" " + formattedDate1}
-                    </Typography>
-                    <Typography
-                      sx={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        color: "#707070",
-                        textAlign: "center",
-                      }}
-                    >
-                      {
-                        results[0][item]?.Segments[0][0]?.Origin?.Airport
-                          ?.CityName
-                      }
-                    </Typography>
-                  </Grid>
-                  <Grid item sx={{ marginLeft: 3 }}>
-                    <Typography
-                      sx={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        color: "#707070",
-                        textAlign: "center",
-                      }}
-                    >
-                      {duration_Time}
-                    </Typography>
-                    <Divider
-                      orientation="vertical"
-                      flexItem
-                      sx={{
-                        backgroundColor: "green",
-                        marginX: "8px", // Adjust the margin as needed
-                        height: "3px", // Adjust the height as needed
-                      }}
-                    />
-                    <Typography
-                      sx={{
-                        fontSize: "10px",
-                        fontWeight: "bold",
-                        color: "#707070",
-                      }}
-                    >
-                      1 Stop via Jaipur
-                    </Typography>
-                  </Grid>
-
-                  <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Grid item sx={{ marginLeft: 1 }}>
-                      <Typography sx={{ fontSize: "16px", fontWeight: "bold" }}>
-                        {time2} {formattedDate2}
-                      </Typography>
-                      <Typography
-                        sx={{
-                          fontSize: "12px",
-                          fontWeight: "bold",
-                          color: "#707070",
-                          textAlign: "center",
-                        }}
-                      >
-                        {
-                          results[0][item]?.Segments[0][0]?.Destination?.Airport
-                            ?.CityName
-                        }
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                  <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Box px={1}>
-                      <Typography
-                        sx={{
-                          fontSize: "20px",
-                          fontWeight: "bold",
-                          color: "white",
-                        }}
-                      >
-                        ₹{results[0][item]?.Fare?.PublishedFare}
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  {/* <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Button
-                      variant="contained"
-                      onClick={clickme}
-                      sx={{
-                        borderRadius: "30px",
-                        background: "#4260D8 0% 0% no-repeat padding-box",
-                      }}
-                      endIcon={<SendIcon />}
-                    >
-                      View Price
-                    </Button>
-                  </Grid> */}
-                  <Grid
-                    md={2}
-                    display="flex"
-                    justifyContent="center"
-                    alignItems="center"
-                  >
-                    <Button
-                      variant="contained"
-                      onClick={clickme}
-                      sx={{
-                        borderRadius: "30px",
-                        background: "#E73C33 no-repeat padding-box",
-                        fontSize: "16px", // Adjust the font size as needed
-                        padding: "7px 6px", // Adjust the padding as needed
-                      }}
-                      endIcon={<SendIcon />}
-                    >
-                      View Price
-                    </Button>
-                  </Grid>
-
-                  {/* <Grid
-                    md={12}
-                    display="flex"
-                    justifyContent="right"
-                    alignItems="right"
-                  >
-                    <Typography
-                      sx={{
-                        color: "#0AFF2B",
-                        fontSize: "14px",
-                        fontWeight: "bold",
-                      }}
-                    >
-                      Use Travvolt and get Rs 299 instant discount
-                    </Typography>
-                  </Grid> */}
-                </Grid>
-              </AccordionSummary>
-              <AccordionDetails>
-                <Grid container display="flex" justifyContent="space-between">
-                  {/* <Viewflightdetails /> */}
-
-                  {/* View Flight Details */}
-                  <div>
-                    <Button
-                      aria-describedby={id}
-                      onClick={handleClick}
-                      style={{ fontSize: "14px", color: "#21325D",fontWeight:"bold" }}
-                    >
-                      View Flight Details
-                    </Button>
-                    <Popover
-                      id={id}
-                      open={open}
-                      anchorEl={anchorEl}
-                      onClose={handleClose}
-                      anchorOrigin={{
-                        vertical: "bottom",
-                        horizontal: "left",
-                      }}
-                    >
-                      <div>
-                        {/* Flight Details tab */}
-                        <Flightdetailtab />
+                    <div className="singleFlightBoxThree">
+                      <h4>{`${Math.floor(results[0][item]?.Segments[0][0]?.Duration / 60)}hr ${results[0][item]?.Segments[0][0]?.Duration % 60
+                        }min`}   - {`${Math.floor(results[0][item]?.Segments[0][1]?.Duration / 60)}hr ${results[0][item]?.Segments[0][0]?.Duration % 60
+                          }min`}</h4>
+                      <div className="stopBef">
+                        <Divider
+                          orientation="vertical"
+                          flexItem
+                          sx={{
+                            backgroundColor: "green",
+                            marginX: "8px",
+                            height: "3px",
+                          }}
+                          className=""
+                        />
                       </div>
-                    </Popover>
-                  </div>
-                </Grid>
-                <Box className={(value) => (value ? "active" : "inactive")}>
-                  <Grid
-                    container
-                    px={2}
-                    py={1}
-                    display="flex"
-                    justifyContent="space-between"
-                  >
-                    {/* View Price Btn */}
-                    {/* <Viewpricebtn /> */}
+                      <p>{`1 stop via ${results[0][item]?.Segments[0][0]?.Destination?.Airport?.CityName}`}</p>
 
-                    <form style={{ width: "100%" }}>
-                      <Box sx={{ flexGrow: 1 }}>
-                        <Grid container spacing={2}>
-                          <Grid item xs={12}>
-                            <Item>
-                              <Box display="flex" my={2} >
+                      <span>{results[0][item]?.Segments[0][0]?.NoOfSeatAvailable} Seats Left</span>
+                    </div>
+
+                    <div className="singleFlightBoxFour">
+                      <span>{results[0][item]?.Segments[0][1]?.Destination?.Airport?.CityName}</span>
+                      <p>{desiredFormatStopped.slice(0, 12)}</p>
+                      <p style={{ fontSize: "14px" }}>{desiredFormatStopped.slice(13)}</p>
+                    </div>
+
+
+                    <div className="singleFlightBoxSeven">
+                      <p>₹ {' '}{results[0][item]?.Fare?.OfferedFare}</p>
+                      <button
+                        onClick={() => {
+                          handleIndexId(
+                            results[0][item]?.ResultIndex
+                          );
+                        }}
+                      >
+                        View Details →
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )
+              :
+              (
+                <>
+                  <div className="singleFlightBox">
+                    <div className="singleFlightBoxOne">
+                      <div>
+                        <img src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`} />{" "}
+                      </div>
+                      <span>{results[0][item]?.Segments[0][0]?.Airline?.AirlineName}</span>
+                      <p>
+                        {results[0][item]?.Segments[0][0]?.Airline?.AirlineCode}
+                        {
+                          results[0][item]?.Segments[0][0]?.Airline
+                            ?.FlightNumber
+                        }
+                        {results[0][item]?.IsLCC === false ? (
+                          <span style={{ background: "green", color: "white" }}>
+                            LCC
+                          </span>
+                        ) : (
+                          ""
+                        )}
+                      </p>
+                    </div>
+                    <div className="singleFlightBoxTwo">
+                      <span>{results[0][item]?.Segments[0][0]?.Origin?.Airport?.CityName}</span>
+                      <p>{desiredFormat.slice(0, 12)}</p>
+                      <p style={{ fontSize: "14px" }}>{desiredFormat.slice(13)}</p>
+                    </div>
+
+                    <div className="singleFlightBoxThree">
+
+                      <h4>{duration}</h4>
+
+                      <div>
+                        <Divider
+                          orientation="vertical"
+                          flexItem
+                          sx={{
+                            backgroundColor: "green",
+                            marginX: "8px",
+                            height: "3px",
+                          }}
+                        />
+                      </div>
+
+                      <p>Non Stop</p>
+
+                      <span>{results[0][item]?.Segments[0][0]?.NoOfSeatAvailable} Seats Left</span>
+                    </div>
+
+                    <div className="singleFlightBoxFour">
+                      <span>{results[0][item]?.Segments[0][0]?.Destination?.Airport?.CityName}</span>
+                      <p>{desiredFormat1.slice(0, 12)}</p>
+                      <p style={{ fontSize: "14px" }}>{desiredFormat1.slice(13)}</p>
+                    </div>
+
+                    <div className="singleFlightBoxSeven">
+                      <p>₹ {' '}{results[0][item]?.Fare?.OfferedFare}</p>
+                      <button
+                        onClick={() => {
+                          handleIndexId(
+                            results[0][item]?.ResultIndex
+                          );
+                        }}
+                      >
+                        View Details →
+                      </button>
+                    </div>
+                  </div>
+                </>
+              )
+          }
+
+
+
+
+          {/* <Accordion>
+            <AccordionSummary sx={{ padding: "0" }}>
+            </AccordionSummary>
+            <AccordionDetails>
+              <Grid container display="flex" justifyContent="space-between">
+                <div>
+                  <Button
+                    aria-describedby={id}
+                    onClick={handleClick}
+                    style={{ fontSize: "14px", color: "#21325D", fontWeight: "bold" }}
+                  >
+                    View Flight Details
+                  </Button>
+                  <Popover
+                    id={id}
+                    open={open}
+                    anchorEl={anchorEl}
+                    onClose={handleClose}
+                    anchorOrigin={{
+                      vertical: "bottom",
+                      horizontal: "left",
+                    }}
+                  >
+                    <div>
+                      <Flightdetailtab />
+                    </div>
+                  </Popover>
+                </div>
+              </Grid>
+              <Box className={(value) => (value ? "active" : "inactive")}>
+                <Grid
+                  container
+                  px={2}
+                  py={1}
+                  display="flex"
+                  justifyContent="space-between"
+                >
+
+                  <form style={{ width: "100%" }}>
+                    <Box sx={{ flexGrow: 1 }}>
+                      <Grid container spacing={2}>
+                        <Grid item xs={12}>
+                          <Item>
+                            <Box display="flex" my={2} >
                               <Typography px={2} className="main_heading">
                                 Flexi Plus
                               </Typography>
                               <Typography px={2} className="normal_head">
                                 Fare offer by Airline
                               </Typography>
-                              </Box>
-                              
-                              <Box
-                                display="flex"
-                              
-                                my={2}
+                            </Box>
+
+                            <Box
+                              display="flex"
+
+                              my={2}
+                            >
+                              <Button
+                                mx={2}
+                                className="propsi"
+                                variant="contained"
+                                startIcon={
+                                  <LocalMallIcon
+                                    style={{ color: "white" }}
+                                  ></LocalMallIcon>
+                                }
                               >
-                                <Button
-                                  mx={2}
-                                  className="propsi"
-                                  variant="contained"
-                                  startIcon={
-                                    <LocalMallIcon
-                                      style={{ color: "white" }}
-                                    ></LocalMallIcon>
-                                  }
-                                >
-                                  Cabin Bags{" "}
-                                  <Typography
-                                    style={{
-                                      color: "white",
-                                      marginLeft: "10px",
-                                      fontSize: "10px",
-                                    }}
-                                  >
-                                    {" "}
-                                    {
-                                      results[0][item]?.Segments[0]?.[0]
-                                        ?.CabinBaggage
-                                    }
-                                  </Typography>
-                                </Button>
-                                <Button
-                                  mx={2}
-                                  className="propsi"
-                                  variant="contained"
-                                  startIcon={
-                                    <NextWeekIcon
-                                      style={{ color: "white" }}
-                                    ></NextWeekIcon>
-                                  }
-                                >
-                                  Check-In Bags{" "}
-                                  <Typography
-                                    style={{
-                                      color: "white",
-                                      marginLeft: "10px",
-                                      fontSize: "10px",
-                                    }}
-                                  >
-                                    {
-                                      results[0][item]?.Segments[0]?.[0]
-                                        ?.Baggage
-                                    }
-                                  </Typography>
-                                </Button>
-                                <Button
-                                  mx={2}
-                                  className="propsi"
-                                  variant="contained"
-                                  sx={{
-                                    backgroundColor: "#DAF2FC",
+                                Cabin Bags{" "}
+                                <Typography
+                                  style={{
                                     color: "white",
-                                    borderRadius: "10px",
+                                    marginLeft: "10px",
                                     fontSize: "10px",
                                   }}
-                                  startIcon={
-                                    <AttachMoneyIcon
-                                      style={{ color: "white" }}
-                                    ></AttachMoneyIcon>
-                                  }
                                 >
-                                  {/* <Typography style={{ color: "white", marginLeft: '10px', fontSize: '10px' }}>Cancellation Fee Starting $300</Typography> */}
-                                  <Tooltip
-                                    TransitionComponent={Zoom}
-                                    title={results[0][item]?.TicketAdvisory}
-                                  >
-                                    <Button sx={{color:"white"}}>Cancellation</Button>
-                                  </Tooltip>
-                                </Button>
-                                {/* <Typography px={5} className='price_'>${results[0][item]?.Fare?.OfferedFare}</Typography> */}
-                              </Box>
-                              <Box display="flex" my={2}>
-                                <Button
-                                  mx={2}
-                                  className="propsi"
-                                  variant="contained"
-                                  startIcon={
-                                    <CalendarTodayIcon
-                                      style={{ color: "white" }}
-                                    ></CalendarTodayIcon>
+                                  {" "}
+                                  {
+                                    results[0][item]?.Segments[0]?.[0]
+                                      ?.CabinBaggage
                                   }
-                                >
-                                  Date Change
-                                  <Typography
-                                    style={{
-                                      color: "white",
-                                      marginLeft: "10px",
-                                      fontSize: "10px",
-                                    }}
-                                  >
-                                    Cancellation Fee Starting $250
-                                  </Typography>
-                                </Button>
-                                <Typography px={2} className="price_">
-                                  ${results[0][item]?.Fare?.OfferedFare}
                                 </Typography>
-                                {/* <Button mx={2} className="propsi" variant="contained" startIcon={<AirlineSeatReclineExtraIcon style={{ color: "#FF951A" }} ></AirlineSeatReclineExtraIcon>}  >
-                                  Seat <Typography style={{ color: "white", marginLeft: '10px', fontSize: '10px' }}>{results[0][item]?.Segments[0]?.[0]?.NoOfSeatAvailable}</Typography>
-                                </Button> */}
-                                <Button
-                                  onClick={() => {
-                                    handleIndexId(
-                                      results[0][item]?.ResultIndex
-                                    );
+                              </Button>
+                              <Button
+                                mx={2}
+                                className="propsi"
+                                variant="contained"
+                                startIcon={
+                                  <NextWeekIcon
+                                    style={{ color: "white" }}
+                                  ></NextWeekIcon>
+                                }
+                              >
+                                Check-In Bags{" "}
+                                <Typography
+                                  style={{
+                                    color: "white",
+                                    marginLeft: "10px",
+                                    fontSize: "10px",
                                   }}
-                                  className="booknow_btn"
                                 >
-                                  Book Now
-                                </Button>
-                              </Box>
+                                  {
+                                    results[0][item]?.Segments[0]?.[0]
+                                      ?.Baggage
+                                  }
+                                </Typography>
+                              </Button>
+                              <Button
+                                mx={2}
+                                className="propsi"
+                                variant="contained"
+                                sx={{
+                                  backgroundColor: "#DAF2FC",
+                                  color: "white",
+                                  borderRadius: "10px",
+                                  fontSize: "10px",
+                                }}
+                                startIcon={
+                                  <AttachMoneyIcon
+                                    style={{ color: "white" }}
+                                  ></AttachMoneyIcon>
+                                }
+                              >
+                                <Tooltip
+                                  TransitionComponent={Zoom}
+                                  title={results[0][item]?.TicketAdvisory}
+                                >
+                                  <Button sx={{ color: "white" }}>Cancellation</Button>
+                                </Tooltip>
+                              </Button>
+                            </Box>
+                            <Box display="flex" my={2}>
+                              <Button
+                                mx={2}
+                                className="propsi"
+                                variant="contained"
+                                startIcon={
+                                  <CalendarTodayIcon
+                                    style={{ color: "white" }}
+                                  ></CalendarTodayIcon>
+                                }
+                              >
+                                Date Change
+                                <Typography
+                                  style={{
+                                    color: "white",
+                                    marginLeft: "10px",
+                                    fontSize: "10px",
+                                  }}
+                                >
+                                  Cancellation Fee Starting $250
+                                </Typography>
+                              </Button>
+                              <Typography px={2} className="price_">
+                                ${results[0][item]?.Fare?.OfferedFare}
+                              </Typography>
+                              <Button
+                                onClick={() => {
+                                  handleIndexId(
+                                    results[0][item]?.ResultIndex
+                                  );
+                                }}
+                                className="booknow_btn"
+                              >
+                                Book Now
+                              </Button>
+                            </Box>
 
-                              
-                            </Item>
-                          </Grid>
+                          </Item>
                         </Grid>
-                      </Box>
-                    </form>
-                  </Grid>
-                  {/* <Grid
-                    container
-                    px={2}
-                    py={1}
-                    display="flex"
-                    justifyContent="space-between"
-                  >
-                    <Viewsaver />
-                  </Grid> */}
-                  {/* <Grid
-                    container
-                    px={2}
-                    py={1}
-                    display="flex"
-                    justifyContent="space-between"
-                  >
-                    <Viewsupper />
-                  </Grid> */}
-                  {/* <Grid
-                    container
-                    px={2}
-                    py={1}
-                    display="flex"
-                    justifyContent="space-between"
-                  >
-                    <Viewtravvolt />
-                  </Grid> */}
-                </Box>
-              </AccordionDetails>
-            </Accordion>
-          </Box>
+                      </Grid>
+                    </Box>
+                  </form>
+                </Grid>
+              </Box>
+            </AccordionDetails>
+          </Accordion> */}
+
         </>
       );
     })
@@ -705,17 +535,13 @@ export default function BasicGrid() {
   useEffect(() => {
     // Fetch items from another resources.
     const endOffset = itemOffset + itemsPerPage;
-    // console.log(`Loading items from ${itemOffset} to ${endOffset}`);
     setCurrentItems(items.slice(itemOffset, endOffset));
     setPageCount(Math.ceil(items.length / itemsPerPage));
   }, [itemOffset, itemsPerPage]);
 
-  // Invoke when user click to request another page.
+
   const handlePageClick = (event) => {
     const newOffset = (event.selected * itemsPerPage) % items.length;
-    // console.log(
-    //   `User requested page number ${event.selected}, which is offset ${newOffset}`
-    // );
     setItemOffset(newOffset);
   };
   return (

@@ -36,10 +36,10 @@ const Header = () => {
           display: "flex",
           justifyContent: "space-between",
           flexWrap: "wrap",
-          backgroundImage:"url('../images/app.png')",  // Add the path to your background image
+          backgroundImage: "url('../images/app.png')",  // Add the path to your background image
           backgroundSize: 'cover',  // Adjust the background size as needed
-          backgroundRepeat: 'no-repeat', 
-          paddingLeft:'20px'
+          backgroundRepeat: 'no-repeat',
+          paddingLeft: '20px'
         }}
       >
         <div>
@@ -50,17 +50,6 @@ const Header = () => {
         </div>
 
         <div className="seconddiv">
-          {/* {isMatch ? (
-            <>
-              <DrawerComp />
-            </>
-          ) : (
-            <>
-              <Tabs sx={{ marginLeft: "auto" }}>
-                <Countrypicker />
-              </Tabs>
-            </>
-          )} */}
           <Countrypicker />
         </div>
       </div>
