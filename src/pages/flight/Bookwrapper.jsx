@@ -21,7 +21,11 @@ import Checkbox from "@mui/material/Checkbox";
 import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
 import AddIcon from "@mui/icons-material/Add";
 
-import { bookActionGDS } from "../../Redux/FlightBook/actionFlightBook";
+import {
+  bookActionGDS,
+  bookAction,
+  bookTicketGDS,
+} from "../../Redux/FlightBook/actionFlightBook";
 import { FiArrowRight } from "react-icons/fi";
 import CancellationRefundPolicy from "./CancellationRefundPolicy";
 import TripSecureComponent from "./TripSecureComponent";
@@ -140,14 +144,6 @@ export default function BookWrapper() {
     setExpanded(newExpanded ? panel : false);
   };
 
-  const handleButtonClick = () => {
-    // Perform any necessary actions before navigation
-    // For example, make API calls, form validation, etc.
-
-    // Navigate to the payment page
-    navigate("/payment");
-  };
-
   const [value, setValue] = React.useState("1");
 
   // Add form of passenger
@@ -162,11 +158,11 @@ export default function BookWrapper() {
     PassportExpiry: "",
     AddressLine1: "test",
     AddressLine2: "test2",
-    Fare: "",
+    Fare: farePrice,
     City: "gurgaon",
     CountryCode: "IN",
     CellCountryCode: "+91-",
-    ContactNo: "",
+    ContactNo: apiURL.phoneNo,
     Nationality: "",
     Email: apiURL.flightEmail,
     IsLeadPax: true,
@@ -187,7 +183,7 @@ export default function BookWrapper() {
     Gender: 1,
     PassportNo: "",
     PassportExpiry: "",
-    Fare: "",
+    Fare: farePrice,
     IsLeadPax: false,
     FFAirlineCode: null,
     FFNumber: "",
@@ -201,7 +197,7 @@ export default function BookWrapper() {
     Gender: 1,
     PassportNo: "",
     PassportExpiry: "",
-    Fare: "",
+    Fare: farePrice,
     IsLeadPax: false,
     FFAirlineCode: null,
     FFNumber: "",
@@ -236,6 +232,13 @@ export default function BookWrapper() {
       });
     }
   }, [fareValue]);
+
+  useEffect(() => {
+    if (reducerState?.flightBook?.flightBookDataGDS?.Error?.ErrorMessage=="") {
+      getTicketForNonLCC();
+    }
+  }, [reducerState?.flightBook?.flightBookDataGDS?.Response]);
+
   for (let i = 0; i < adultCount; i++) {
     passengerLists.push({
       ...passengerTemplate,
@@ -285,22 +288,6 @@ export default function BookWrapper() {
     setPassengerData(list);
   };
 
-  const handleChildChange = (e, index) => {
-    // const { name, value } = e.target;
-    // setPassengerData((prevList) => {
-    //   const newList = [...prevList];
-    //   newList[index + parseInt(adultCount)] = {
-    //     ...newList[index + parseInt(adultCount)],
-    //     [name]: value,
-    //   };
-    //   return newList;
-    // });
-    const { name, value } = e.target;
-    const list = [...passengerData];
-    list[index + parseInt(adultCount)][name] = value;
-    setPassengerData(list);
-  };
-
   console.error(passengerData);
 
   const dateString = TicketDetails?.Segments[0][0]?.Origin?.DepTime;
@@ -336,12 +323,8 @@ export default function BookWrapper() {
   const [isRegModalOpen, setRegIsModalOpen] = useState(false);
 
   // form submission
-  function handleSubmit(event) {
-    event.preventDefault();
-
+  const handleButtonClick = () => {
     if (authenticUser === 200) {
-      const formData = new FormData(event.target);
-
       const payloadGDS = {
         ResultIndex: ResultIndex,
         Passengers: passengerData,
@@ -350,15 +333,46 @@ export default function BookWrapper() {
         TraceId:
           reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
       };
-      console.log("payload passenger", payloadGDS.Passengers);
-      dispatch(bookActionGDS(payloadGDS));
-      // if (fareValue?.IsLCC == false) {
-      //
-      // }
-    } else {
-      setIsModalOpen(true);
+      const payloadLcc = {
+        ResultIndex: ResultIndex,
+        EndUserIp: reducerState?.ip?.ipData,
+        TokenId: reducerState?.ip?.tokenData,
+        TraceId:
+          reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
+        Passengers: passengerData,
+      };
+
+      if (fareValue?.IsLCC == false) {
+        dispatch(bookActionGDS(payloadGDS));
+      } else if (fareValue?.IsLCC == true) {
+        dispatch(bookAction(payloadLcc));
+      }
     }
-  }
+  };
+  const getTicketForNonLCC = () => {
+    const payLoadDomestic = {
+      EndUserIp: reducerState?.ip?.ipData,
+      TokenId: reducerState?.ip?.tokenData,
+      TraceId: reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
+      PNR: reducerState?.flightBook?.flightBookDataGDS?.Response?.PNR,
+      BookingId:
+        reducerState?.flightBook?.flightBookDataGDS?.Response?.BookingId,
+    };
+    const payLoadInternational = {
+      EndUserIp: reducerState?.ip?.ipData,
+      TokenId: reducerState?.ip?.tokenData,
+      TraceId: reducerState?.oneWay?.oneWayData?.data?.data?.Response?.TraceId,
+      PNR: reducerState?.flightBook?.flightBookDataGDS?.Response?.PNR,
+      BookingId:
+        reducerState?.flightBook?.flightBookDataGDS?.Response?.BookingId,
+      Passport: passengerData,
+    };
+    if (isPassportRequired) {
+      dispatch(bookTicketGDS(payLoadInternational));
+    } else {
+      dispatch(bookTicketGDS(payLoadDomestic));
+    }
+  };
 
   return (
     <>
@@ -684,7 +698,6 @@ export default function BookWrapper() {
                           backgroundColor: "white",
                           boxShadow: "0px 3px 6px #00000029",
                           borderRadius: "10px",
-
                         }}
                         p={2}
                       >
@@ -832,8 +845,8 @@ export default function BookWrapper() {
                                                   PassportNo*
                                                 </label>
                                                 <input
-                                                  type="date"
-                                                  name="passportNo"
+                                                  type="text"
+                                                  name="PassportNo"
                                                   className="hotel_input_select"
                                                   onChange={(e) =>
                                                     handleServiceChange(
@@ -861,12 +874,9 @@ export default function BookWrapper() {
                                                   PassportExpiry*
                                                 </label>
                                                 <input
-                                                  name="passportexpiry"
-                                                  type="text"
+                                                  name="PassportExpiry"
+                                                  type="date"
                                                   placeholder="Enter your passportexpiry"
-                                                  value={
-                                                    passengerList?.ContactNo
-                                                  }
                                                   onChange={(e) =>
                                                     handleServiceChange(
                                                       e,
@@ -969,7 +979,6 @@ export default function BookWrapper() {
                                               <input
                                                 name="LastName"
                                                 placeholder="Enter your last name"
-                                                value={passengerList.LastName}
                                                 onChange={(e) =>
                                                   handleServiceChange(
                                                     e,
@@ -998,8 +1007,8 @@ export default function BookWrapper() {
                                                     PassportNo*
                                                   </label>
                                                   <input
-                                                    type="date"
-                                                    name="passportNo"
+                                                    type="text"
+                                                    name="PassportNo"
                                                     className="hotel_input_select"
                                                     onChange={(e) =>
                                                       handleServiceChange(
@@ -1028,8 +1037,8 @@ export default function BookWrapper() {
                                                     PassportExpiry*
                                                   </label>
                                                   <input
-                                                    name="passportexpiry"
-                                                    type="text"
+                                                    name="PassportExpiry"
+                                                    type="date"
                                                     placeholder="Enter your passportexpiry"
                                                     onChange={(e) =>
                                                       handleServiceChange(
@@ -1214,7 +1223,6 @@ export default function BookWrapper() {
                                             <select
                                               name="Gender"
                                               className="hotel_input_select"
-                                              value={passengerList.Gender}
                                               onChange={(e) =>
                                                 handleServiceChange(
                                                   e,
@@ -1272,8 +1280,8 @@ export default function BookWrapper() {
                                                   PassportNo*
                                                 </label>
                                                 <input
-                                                  type="date"
-                                                  name="passportNo"
+                                                  type="text"
+                                                  name="PassportNo"
                                                   className="hotel_input_select"
                                                   onChange={(e) =>
                                                     handleServiceChange(
@@ -1303,8 +1311,8 @@ export default function BookWrapper() {
                                                   PassportExpiry*
                                                 </label>
                                                 <input
-                                                  name="passportExpiry"
-                                                  type="text"
+                                                  name="PassportExpiry"
+                                                  type="date"
                                                   placeholder="Enter your passportexpiry"
                                                   onChange={(e) =>
                                                     handleServiceChange(
@@ -1331,7 +1339,7 @@ export default function BookWrapper() {
                             </Box>
                           ))}
                       </Box>
-                      <form onSubmit={handleSubmit} className="form">
+                      <form className="form">
                         <Box margin="10px 15px">
                           <Box style={{ marginTop: "10px" }} px={2}>
                             <Typography
@@ -1355,7 +1363,7 @@ export default function BookWrapper() {
                                   <label htmlFor="email">EMAIL ADDRESS</label>
                                   <input
                                     type="email"
-                                    placeholder="Type your Email Address "
+                                    placeholder="Email Address "
                                     name="sendEmail"
                                     value={email}
                                     onChange={(e) => {
@@ -1386,7 +1394,7 @@ export default function BookWrapper() {
                                   <label htmlFor="email">MOBILE NUMBER</label>
                                   <input
                                     type="phone"
-                                    placeholder="Add Mobile Number"
+                                    placeholder="Mobile Number"
                                     name="sendNumber"
                                     value={cNumber}
                                     onChange={(e) => {
