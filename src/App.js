@@ -6,10 +6,10 @@ import './App.css';
 import LoginForm from "./components/Login";
 import SignUp from "./components/Signup";
 import Hotel from "./pages/Hotel/HotelHome";
-import HotelHomeResult from "./pages/Hotel/hotelsearchresult/HotelSearchResult";
-import HotelDetails from "./pages/Hotel/hoteldetails/HotelDetails";
-import HotelSearchResult from "./pages/Hotel/hotelsearchresult/HotelSearchResult";
-import HotelReviewBooking from "./pages/Hotel/hotelreviewbooking/HotelReviewBooking";
+// import HotelHomeResult from "./pages/Hotel/hotelsearchresult/HotelSearchResult";
+// import HotelDetails from "./pages/Hotel/hoteldetails/HotelDetails";
+// import HotelSearchResult from "./pages/Hotel/hotelsearchresult/HotelSearchResult";
+// import HotelReviewBooking from "./pages/Hotel/hotelreviewbooking/HotelReviewBooking";
 // Holiday package
 import HolidayPackageSearchResult from "./pages/holidaypackages/holidaypackagesearchresult/HolidayPackageSearchResult";
 import HolidaypackageInfo from "./pages/holidaypackages/holidaypackageInfo/HolidaypackageInfo";
@@ -47,6 +47,10 @@ import Holidayinfo from './pages/holidaypackages/holidaypackagesearchresult/Holi
 
 import BigNavbar from './UI/BigNavbar/BigNavbar';
 
+import HotelSearch from './pages/Hotel/hotelsearch/HotelSearch';
+import HotelBooknow from './pages/Hotel/hotelbokknow/HotelBooknow'
+import Reviewbooking from './pages/Hotel/hotelreviewbooking/Reviewbooking'
+
 function App() {
   const location = useLocation();
 
@@ -82,10 +86,24 @@ function App() {
         <Route path="/nonstopflight" element={<NonStopFlight />} />
 
         <Route path="hotel" element={<Hotel />}></Route>
-        <Route path="/Hotelsearch" element={<HotelHomeResult />} />
-        <Route path="/hotel/HotelDetails" element={<HotelDetails />} />
+        {/* <Route path="/Hotelsearch" element={<HotelHomeResult />} /> */}
+        <Route
+          path="/hotel/hotelsearch"
+          element={<HotelSearch />}
+        />
+        <Route
+          exact
+          path="/hotel/hotelsearch/HotelBooknow"
+          element={<HotelBooknow />}
+        />
+        <Route
+          exact
+          path="/hotel/hotelsearch/HotelBooknow/Reviewbooking"
+          element={<Reviewbooking />}
+        />
+        {/* <Route path="/hotel/HotelDetails" element={<HotelDetails />} />
         <Route path="hotel/HotelSearchResult" element={<HotelSearchResult />} />
-        <Route path="/HotelReviewBooking" element={<HotelReviewBooking />} />
+        <Route path="/HotelReviewBooking" element={<HotelReviewBooking />} /> */}
 
         {/* Holiday packages routes */}
         <Route path="holidaypackages" element={<Holidaypackages />}></Route>

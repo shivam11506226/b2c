@@ -444,21 +444,7 @@ const Homeform = (props) => {
   }
 
 
-  // swapping origin and destination
 
-
-  // const handleRoundLogoClick = () => {
-  //   const tempFrom = from;
-  //   const tempTo = to;
-  //   handleFromInputChange({ target: { value: tempTo } });
-  //   handleToInputChange({ target: { value: tempFrom } });
-  //   setdisplayFrom(false);
-  //   setdisplayTo(false);
-
-  //   const tempSelectedFrom = selectedFrom;
-  //   setSelectedFrom(selectedTo);
-  //   setSelectedTo(tempSelectedFrom);
-  // };
 
   const handleRoundLogoClick = () => {
     // Swap the values of 'from' and 'to'
