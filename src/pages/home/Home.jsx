@@ -16,11 +16,13 @@ const Home = () => {
             {/* <Homeform header=""></Homeform> */}
             <Oneway header="" />
             {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
+
             {/* <Toursection></Toursection> */}
             <Toursection />
             <OfferCard />
             <SwipeToSlide />
             <Download />
+
 
 
         </div>
