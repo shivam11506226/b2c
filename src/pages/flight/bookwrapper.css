@@ -1,0 +1,353 @@
+.booknowFlight {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+
+.bookaboveBox {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.bookaboveBox p {
+    color: #071C2C;
+    font-family: 'Montserrat';
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.bookaboveBox>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.bookaboveBox>div>.aboveSpan {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+}
+
+.bookaboveBox>div>.aboveSpan span {
+    color: #E73C33;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.bookaboveBox>div>.aboveSpan .aboveSOne {
+    color: #FFF;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #E73C33;
+}
+
+
+
+
+
+.bookaboveBox .aboveBelowSpan {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8px;
+}
+
+.bookaboveBox .aboveBelowSpan span {
+    color: #E73C33;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.bookaboveBox .aboveBelowSpan .aboveSOne {
+    color: #FFF;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    padding: 4px 8px;
+    border-radius: 4px;
+    background: #E73C33;
+}
+
+
+
+
+
+
+
+
+
+.bookcenteredBox {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.bookcenteredBox div img {
+    width: 100px;
+
+}
+
+.bookcenteredBox span {
+    color: #071C2C;
+
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 12px;
+    /* 75% */
+    letter-spacing: 0.8px;
+}
+
+.bookcenteredBox p {
+    color: #5B5B5B;
+    font-family: 'Montserrat';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 12px;
+    letter-spacing: 0.6px;
+}
+
+
+
+.bookbottomBox {
+    display: flex;
+    padding: 16px;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-self: stretch;
+    border-radius: 8px;
+    border: 0.5px solid #071C2C;
+    background: #F9EDED;
+}
+
+.bookbottomBox>div {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+
+.bookbottomBox .bookBottomOne {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.bookbottomBox .bookBottomOne p {
+    color: #071C2C;
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.bookbottomBox .bookBottomTwo img {
+    width: 30px;
+    height: 60px;
+}
+
+.bookbottomBox .bookBottomThree {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.bookbottomBox .bookBottomThree p {
+    color: #071C2C;
+
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+.bookbottomBox .bookBottomThree span {
+    color: #999;
+    margin-left: 8px;
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bookbottomBox .bookBottomFour {
+    display: flex;
+}
+
+.bookbottomBox .bookBottomFour>div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.bookbottomBox .bookBottomFour>div p {
+    color: #888;
+
+    text-align: center;
+    font-family: 'Montserrat';
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bookbottomBox .bookBottomFour>div span {
+    color: #071C2C;
+
+    text-align: center;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+
+/* cancellation design  */
+
+
+.bookNowCancel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+    align-items: flex-start;
+    background-color: white;
+    padding: 24px;
+    border-radius: 8px;
+}
+
+.bookNowCancel .bookCancleOne {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.bookNowCancel .bookCancleOne p {
+    color: #071C2C;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.bookCancleOne span {
+    color: #999;
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.bookNowCancel .bookCancleOne>div {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: center;
+}
+
+.bookNowCancel .bookCancleOne>div img {
+    width: 70px;
+}
+
+.bookNowCancel .bookCancleOne>div span {
+    color: #999;
+
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.bookCancleTwo {
+    color: #999;
+
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.bookCancleTwo>span {
+    word-wrap: nowrap;
+    margin-right: 20px;
+}
+
+.svgLineBox {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.svgLineBox svg {
+    position: relative;
+
+}
+
+.svgLineBox .svgCircle {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: #071C2C;
+    z-index: 1;
+}
+
+.svgLineBox>div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+}

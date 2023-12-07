@@ -4,7 +4,7 @@ import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import { Popover, Tooltip, Typography } from "@mui/material";
 import Button from "@mui/material/Button";
-
+import FlightLoader from "./FlightLoader/FlightLoader";
 import Zoom from "@mui/material/Zoom";
 import { useDispatch, useSelector } from "react-redux";
 import SendIcon from "@mui/icons-material/Send";
@@ -173,11 +173,10 @@ function Items({ currentItems }) {
       const desiredFormatStopped = `${day2}${month2}-${year2} ${time2} ${ampm2}`;
 
 
-      let a =
-        results[0][item]?.Segments[0]?.[1]?.Destination?.Airport?.CityName;
 
-      console.log(a, "cityname")
-
+      if (reducerState?.oneWay?.isLoading === true) {
+        return <FlightLoader />;
+      }
 
       return (
         <>
@@ -331,185 +330,6 @@ function Items({ currentItems }) {
               )
           }
 
-
-
-
-          {/* <Accordion>
-            <AccordionSummary sx={{ padding: "0" }}>
-            </AccordionSummary>
-            <AccordionDetails>
-              <Grid container display="flex" justifyContent="space-between">
-                <div>
-                  <Button
-                    aria-describedby={id}
-                    onClick={handleClick}
-                    style={{ fontSize: "14px", color: "#21325D", fontWeight: "bold" }}
-                  >
-                    View Flight Details
-                  </Button>
-                  <Popover
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                    onClose={handleClose}
-                    anchorOrigin={{
-                      vertical: "bottom",
-                      horizontal: "left",
-                    }}
-                  >
-                    <div>
-                      <Flightdetailtab />
-                    </div>
-                  </Popover>
-                </div>
-              </Grid>
-              <Box className={(value) => (value ? "active" : "inactive")}>
-                <Grid
-                  container
-                  px={2}
-                  py={1}
-                  display="flex"
-                  justifyContent="space-between"
-                >
-
-                  <form style={{ width: "100%" }}>
-                    <Box sx={{ flexGrow: 1 }}>
-                      <Grid container spacing={2}>
-                        <Grid item xs={12}>
-                          <Item>
-                            <Box display="flex" my={2} >
-                              <Typography px={2} className="main_heading">
-                                Flexi Plus
-                              </Typography>
-                              <Typography px={2} className="normal_head">
-                                Fare offer by Airline
-                              </Typography>
-                            </Box>
-
-                            <Box
-                              display="flex"
-
-                              my={2}
-                            >
-                              <Button
-                                mx={2}
-                                className="propsi"
-                                variant="contained"
-                                startIcon={
-                                  <LocalMallIcon
-                                    style={{ color: "white" }}
-                                  ></LocalMallIcon>
-                                }
-                              >
-                                Cabin Bags{" "}
-                                <Typography
-                                  style={{
-                                    color: "white",
-                                    marginLeft: "10px",
-                                    fontSize: "10px",
-                                  }}
-                                >
-                                  {" "}
-                                  {
-                                    results[0][item]?.Segments[0]?.[0]
-                                      ?.CabinBaggage
-                                  }
-                                </Typography>
-                              </Button>
-                              <Button
-                                mx={2}
-                                className="propsi"
-                                variant="contained"
-                                startIcon={
-                                  <NextWeekIcon
-                                    style={{ color: "white" }}
-                                  ></NextWeekIcon>
-                                }
-                              >
-                                Check-In Bags{" "}
-                                <Typography
-                                  style={{
-                                    color: "white",
-                                    marginLeft: "10px",
-                                    fontSize: "10px",
-                                  }}
-                                >
-                                  {
-                                    results[0][item]?.Segments[0]?.[0]
-                                      ?.Baggage
-                                  }
-                                </Typography>
-                              </Button>
-                              <Button
-                                mx={2}
-                                className="propsi"
-                                variant="contained"
-                                sx={{
-                                  backgroundColor: "#DAF2FC",
-                                  color: "white",
-                                  borderRadius: "10px",
-                                  fontSize: "10px",
-                                }}
-                                startIcon={
-                                  <AttachMoneyIcon
-                                    style={{ color: "white" }}
-                                  ></AttachMoneyIcon>
-                                }
-                              >
-                                <Tooltip
-                                  TransitionComponent={Zoom}
-                                  title={results[0][item]?.TicketAdvisory}
-                                >
-                                  <Button sx={{ color: "white" }}>Cancellation</Button>
-                                </Tooltip>
-                              </Button>
-                            </Box>
-                            <Box display="flex" my={2}>
-                              <Button
-                                mx={2}
-                                className="propsi"
-                                variant="contained"
-                                startIcon={
-                                  <CalendarTodayIcon
-                                    style={{ color: "white" }}
-                                  ></CalendarTodayIcon>
-                                }
-                              >
-                                Date Change
-                                <Typography
-                                  style={{
-                                    color: "white",
-                                    marginLeft: "10px",
-                                    fontSize: "10px",
-                                  }}
-                                >
-                                  Cancellation Fee Starting $250
-                                </Typography>
-                              </Button>
-                              <Typography px={2} className="price_">
-                                ${results[0][item]?.Fare?.OfferedFare}
-                              </Typography>
-                              <Button
-                                onClick={() => {
-                                  handleIndexId(
-                                    results[0][item]?.ResultIndex
-                                  );
-                                }}
-                                className="booknow_btn"
-                              >
-                                Book Now
-                              </Button>
-                            </Box>
-
-                          </Item>
-                        </Grid>
-                      </Grid>
-                    </Box>
-                  </form>
-                </Grid>
-              </Box>
-            </AccordionDetails>
-          </Accordion> */}
 
         </>
       );

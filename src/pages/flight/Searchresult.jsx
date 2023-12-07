@@ -1,3 +1,4 @@
+
 import Footer from "../../layouts/Footer";
 import Searchsection from './Searchsection';
 import Popularfilter from "./Popularfilter";
@@ -13,21 +14,15 @@ const Searchresult = () => {
         <>
             {
                 reducerState?.oneWay?.isLoading === true ? (
-
-                    <>
-                        <FlightLoader />
-                    </>
+                    <FlightLoader />
                 )
                     : (
-
                         <div className="UniComp_BG">
-
                             <Searchsection className='main_box' />
                             <Popularfilter />
-                            {/* <Demo></Demo> */}
-                            {/* <Download /> */}
+                        </div>
+                    )
 
-                        </div>)
             }
 
         </>
