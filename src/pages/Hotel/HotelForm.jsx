@@ -7,7 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import axios from "axios";
 import { clearHotelReducer, hotelAction } from "../../Redux/Hotel/hotel";
-// import Loader from "../../Loader/Loader";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { FaTrash } from "react-icons/fa";
@@ -20,6 +19,7 @@ import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
+import HotelLoading from './hotelLoading/HotelLoading';
 
 
 const variants = {
@@ -154,6 +154,11 @@ const HotelForm = () => {
         }
     }, [reducerState?.hotelSearchResult?.isLoading]);
 
+    console.log(reducerState, "reducerstate")
+    console.log(reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult
+        ?.HotelResults, "hotel result")
+
+
     useEffect(() => {
         if (
             reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult
@@ -161,6 +166,7 @@ const HotelForm = () => {
         ) {
             setLoader(false);
             navigate("/hotel/hotelsearch");
+            // navigate("login")
         }
     }, [
         reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult
@@ -227,7 +233,7 @@ const HotelForm = () => {
         const updatedFormData = [...formDataDynamic];
         updatedFormData[index].ChildAge[childIndex] = value;
         setFormData(updatedFormData);
-        console.log(updatedFormData, "updated form data ")
+        // console.log(updatedFormData, "updated form data ")
     };
 
 
@@ -411,7 +417,7 @@ const HotelForm = () => {
                 GuestNationality: "IN",
                 NoOfRooms: condition,
                 RoomGuests: [...formDataDynamic],
-                MaxRating: formData.get("star"),
+                MaxRating: 5,
                 MinRating: 0,
                 ReviewScore: null,
                 IsNearBySearchAllowed: false,
@@ -474,249 +480,253 @@ const HotelForm = () => {
             <div className="container-fluid " >
                 <div className="row hotelFormBg">
                     <div className="col-12 px4">
-                        <form onSubmit={handleSubmit}>
-                            <div className="yourHotel-container">
-                                <div className="hotel-container">
-                                    <span>From</span>
-                                    <div>
-                                        <input
-                                            name="City"
-                                            id="CitySearchID"
-                                            type="text"
-                                            placeholder="Search city name"
-                                            value={searchTerm}
-                                            onChange={(e) => { setSearchTerm(e.target.value); setdisplayFrom(true); }}
-                                            style={{
-                                                outline: "none",
-                                                border: "none",
-                                            }}
-                                            autoComplete="off"
-                                        />
-                                        {cityError !== "" && (
-                                            <span className="error">{cityError}</span>
-                                        )}
-                                        {results.length > 0 && (
-                                            <div
-                                                ref={fromSearchRef}
-                                                className="city-search-results"
-                                                style={{
+                        <>
+                            {loader ? (
+                                <HotelLoading />
+                            ) : (
+                                <form onSubmit={handleSubmit}>
+                                    <div className="yourHotel-container">
+                                        <div className="hotel-container">
+                                            <span>From</span>
+                                            <div>
+                                                <input
+                                                    name="City"
+                                                    id="CitySearchID"
+                                                    type="text"
+                                                    placeholder="Search city name"
+                                                    value={searchTerm}
+                                                    onChange={(e) => { setSearchTerm(e.target.value); setdisplayFrom(true); }}
+                                                    style={{
+                                                        outline: "none",
+                                                        border: "none",
+                                                    }}
+                                                    autoComplete="off"
+                                                />
+                                                {cityError !== "" && (
+                                                    <span className="error">{cityError}</span>
+                                                )}
+                                                {results.length > 0 && (
+                                                    <div
+                                                        ref={fromSearchRef}
+                                                        className="city-search-results"
+                                                        style={{
 
-                                                    display: displayFrom ? "flex" : "none",
-                                                }}
-                                            >
-
-                                                <ul className="city_Search_Container">
-                                                    <Box
-                                                        sx={{
-                                                            display: "flex",
-                                                            flexDirection: "column",
-                                                            maxHeight: 161,
-                                                            overflow: "hidden",
-                                                            overflowY: "scroll",
+                                                            display: displayFrom ? "flex" : "none",
                                                         }}
-                                                        className="scroll_style"
                                                     >
-                                                        {results.map((city, index) => (
-                                                            <li key={index} onClick={() => handleResultClick(city)}>
-                                                                {city.Destination}
-                                                            </li>
-                                                        ))}
-                                                    </Box>
-                                                </ul>
-                                            </div>
-                                        )}
-                                    </div>
 
-                                    <span>India</span>
-                                </div>
-
-                                <div className="hotel-container">
-                                    <span>Check In</span>
-                                    <div className="">
-                                        <div>
-                                            <DatePicker
-                                                selected={values.departure}
-                                                onChange={handleStartDateChange}
-                                                name="checkIn"
-                                                dateFormat="dd/MM/yyyy"
-                                                placeholderText="Check-In Date"
-                                                isClearable
-                                                minDate={new Date()}
-                                                autoComplete="off"
-                                            />
-                                        </div>
-                                    </div>
-                                    {/* <span>Monday</span> */}
-                                    {/* <span>{selectedDay}</span> */}
-                                    <span>{getDayOfWeek(selectedDay)}</span>
-                                    {sub && values.departure === ("" || undefined) && (
-                                        <span className="error">Enter Check-In Date </span>
-                                    )}
-                                </div>
-
-
-                                <div className="hotel-container">
-                                    <span>Check Out</span>
-                                    <div className="">
-                                        <div>
-                                            <DatePicker
-                                                selected={values.checkOutDeparture}
-                                                onChange={handleEndDateChange}
-                                                name="checkOut"
-                                                dateFormat="dd/MM/yyyy"
-                                                placeholderText="Check-Out Date"
-                                                minDate={values.departure || new Date()} // Disable dates before Check-In date
-                                                isClearable
-                                                autoComplete="off"
-                                            />
-                                        </div>
-                                    </div>
-                                    {/* <span>Thursday</span> */}
-                                    {/* <span>{selectedDayTwo}</span> */}
-                                    <span>{getDayOfWeek(selectedDayTwo)}</span>
-                                    {sub && values.checkOutDeparture === ("" || undefined) && (
-                                        <span className="error">Enter Check-Out Date </span>
-                                    )}
-                                </div>
-
-                                <div className="travellerContainer ">
-                                    <div
-                                        onClick={handleTravelClickOpen}
-                                        className="travellerButton">
-                                        <span>
-                                            Traveller & Class
-                                        </span>
-                                        <p >
-
-                                            {condition} {" "} Room
-                                        </p>
-                                        <div>
-                                            <span>
-                                                {numAdults} Adults {numChildren} Child
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <Dialog
-                                        sx={{ zIndex: "99999" }}
-                                        disableEscapeKeyDown
-                                        open={openTravelModal}
-                                        onClose={handleTravelClose}
-                                    >
-                                        <DialogContent>
-                                            <>
-                                                <div className="travellerModal">
-                                                    <div className='roomModal'>
-                                                        <div className="hotel_modal_form_input px-0">
-                                                            <label className="form_label">Room*</label>
-                                                            <select
-                                                                name="room"
-                                                                value={condition}
-                                                                onChange={handleConditionChange}
-                                                                className="hotel_input_select"
+                                                        <ul className="city_Search_Container">
+                                                            <Box
+                                                                sx={{
+                                                                    display: "flex",
+                                                                    flexDirection: "column",
+                                                                    maxHeight: 161,
+                                                                    overflow: "hidden",
+                                                                    overflowY: "scroll",
+                                                                }}
+                                                                className="scroll_style"
                                                             >
-
-                                                                <option>1</option>
-                                                                <option>2</option>
-                                                                <option>3</option>
-                                                                <option>4</option>
-                                                                <option>5</option>
-                                                                <option>6</option>
-                                                            </select>
-                                                        </div>
+                                                                {results.map((city, index) => (
+                                                                    <li key={index} onClick={() => handleResultClick(city)}>
+                                                                        {city.Destination}
+                                                                    </li>
+                                                                ))}
+                                                            </Box>
+                                                        </ul>
                                                     </div>
+                                                )}
+                                            </div>
+
+                                            <span>India</span>
+                                        </div>
+
+                                        <div className="hotel-container">
+                                            <span>Check In</span>
+                                            <div className="">
+                                                <div>
+                                                    <DatePicker
+                                                        selected={values.departure}
+                                                        onChange={handleStartDateChange}
+                                                        name="checkIn"
+                                                        dateFormat="dd/MM/yyyy"
+                                                        placeholderText="Check-In Date"
+                                                        isClearable
+                                                        minDate={new Date()}
+                                                        autoComplete="off"
+                                                    />
+                                                </div>
+                                            </div>
+                                            {/* <span>Monday</span> */}
+                                            {/* <span>{selectedDay}</span> */}
+                                            <span>{getDayOfWeek(selectedDay)}</span>
+                                            {sub && values.departure === ("" || undefined) && (
+                                                <span className="error">Enter Check-In Date </span>
+                                            )}
+                                        </div>
 
 
-                                                    <div className='px-1'>
-                                                        {condition > 0 &&
-                                                            Array.from({ length: condition }).map((_, index) => (
-                                                                <div key={index} className="room-modal-container">
-                                                                    <div >
-                                                                        <h5>ROOM {index + 1}</h5>
-                                                                    </div>
-                                                                    <div className="row">
+                                        <div className="hotel-container">
+                                            <span>Check Out</span>
+                                            <div className="">
+                                                <div>
+                                                    <DatePicker
+                                                        selected={values.checkOutDeparture}
+                                                        onChange={handleEndDateChange}
+                                                        name="checkOut"
+                                                        dateFormat="dd/MM/yyyy"
+                                                        placeholderText="Check-Out Date"
+                                                        minDate={values.departure || new Date()} // Disable dates before Check-In date
+                                                        isClearable
+                                                        autoComplete="off"
+                                                    />
+                                                </div>
+                                            </div>
+                                            {/* <span>Thursday</span> */}
+                                            {/* <span>{selectedDayTwo}</span> */}
+                                            <span>{getDayOfWeek(selectedDayTwo)}</span>
+                                            {sub && values.checkOutDeparture === ("" || undefined) && (
+                                                <span className="error">Enter Check-Out Date </span>
+                                            )}
+                                        </div>
 
-                                                                        <div className="hotel_modal_form_input">
-                                                                            <label className="form_label">No of Adults:</label>
-                                                                            <select
-                                                                                value={formDataDynamic[index]?.NoOfAdults || 1}
-                                                                                className="hotel_input_select"
-                                                                                onChange={(e) =>
-                                                                                    handleFormChange(
-                                                                                        index,
-                                                                                        "NoOfAdults",
-                                                                                        parseInt(e.target.value)
-                                                                                    )
-                                                                                }
-                                                                            >
-                                                                                {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
-                                                                                    <option key={num} value={num}>
-                                                                                        {num}
-                                                                                    </option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
+                                        <div className="travellerContainer ">
+                                            <div
+                                                onClick={handleTravelClickOpen}
+                                                className="travellerButton">
+                                                <span>
+                                                    Traveller & Class
+                                                </span>
+                                                <p >
 
-                                                                        <div className="hotel_modal_form_input">
-                                                                            <label className="form_label">No of Child:</label>
-                                                                            <select
-                                                                                value={formDataDynamic[index]?.NoOfChild || 0}
-                                                                                className="hotel_input_select"
-                                                                                name="noOfChild"
-                                                                                onChange={(e) =>
-                                                                                    handleFormChange(
-                                                                                        index,
-                                                                                        "NoOfChild",
-                                                                                        parseInt(e.target.value)
-                                                                                    )
-                                                                                }
-                                                                            >
-                                                                                {[0, 1, 2, 3, 4].map((childCount) => (
-                                                                                    <option key={childCount} value={childCount}>
-                                                                                        {childCount}
-                                                                                    </option>
-                                                                                ))}
-                                                                            </select>
-                                                                        </div>
+                                                    {condition} {" "} Room
+                                                </p>
+                                                <div>
+                                                    <span>
+                                                        {numAdults} Adults {numChildren} Child
+                                                    </span>
+                                                </div>
+                                            </div>
+                                            <Dialog
+                                                sx={{ zIndex: "99999" }}
+                                                disableEscapeKeyDown
+                                                open={openTravelModal}
+                                                onClose={handleTravelClose}
+                                            >
+                                                <DialogContent>
+                                                    <>
+                                                        <div className="travellerModal">
+                                                            <div className='roomModal'>
+                                                                <div className="hotel_modal_form_input px-0">
+                                                                    <label className="form_label">Room*</label>
+                                                                    <select
+                                                                        name="room"
+                                                                        value={condition}
+                                                                        onChange={handleConditionChange}
+                                                                        className="hotel_input_select"
+                                                                    >
 
-                                                                    </div>
-                                                                    {formDataDynamic[index]?.NoOfChild > 0 && (
-                                                                        <div className="hotel_modal_form_input_child_age">
-                                                                            <label className='mt-3'>Child Age:</label>
-                                                                            <div>
-                                                                                {Array.from({
-                                                                                    length: formDataDynamic[index]?.NoOfChild || 0,
-                                                                                }).map((_, childIndex) => (
-                                                                                    <div key={childIndex} className="">
-                                                                                        <select
-                                                                                            value={formDataDynamic[index]?.ChildAge?.[childIndex] || ""}
-                                                                                            className="hotel_input_select"
-                                                                                            onChange={(e) =>
-                                                                                                handleChildAgeChange(index, childIndex, e.target.value)
-                                                                                            }
-                                                                                        >
-                                                                                            {Array.from({ length: 12 }, (_, i) => (
-                                                                                                <option key={i} value={i + 1}>
-                                                                                                    {i + 1}
-                                                                                                </option>
-                                                                                            ))}
-                                                                                        </select>
-                                                                                    </div>
-                                                                                ))}
-                                                                            </div>
-                                                                        </div>
-                                                                    )}
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                        <option>5</option>
+                                                                        <option>6</option>
+                                                                    </select>
                                                                 </div>
-                                                            ))}
-                                                        {/* {condition > 1 && (
+                                                            </div>
+
+
+                                                            <div className='px-1'>
+                                                                {condition > 0 &&
+                                                                    Array.from({ length: condition }).map((_, index) => (
+                                                                        <div key={index} className="room-modal-container">
+                                                                            <div >
+                                                                                <h5>ROOM {index + 1}</h5>
+                                                                            </div>
+                                                                            <div className="row">
+
+                                                                                <div className="hotel_modal_form_input">
+                                                                                    <label className="form_label">No of Adults:</label>
+                                                                                    <select
+                                                                                        value={formDataDynamic[index]?.NoOfAdults || 1}
+                                                                                        className="hotel_input_select"
+                                                                                        onChange={(e) =>
+                                                                                            handleFormChange(
+                                                                                                index,
+                                                                                                "NoOfAdults",
+                                                                                                parseInt(e.target.value)
+                                                                                            )
+                                                                                        }
+                                                                                    >
+                                                                                        {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
+                                                                                            <option key={num} value={num}>
+                                                                                                {num}
+                                                                                            </option>
+                                                                                        ))}
+                                                                                    </select>
+                                                                                </div>
+
+                                                                                <div className="hotel_modal_form_input">
+                                                                                    <label className="form_label">No of Child:</label>
+                                                                                    <select
+                                                                                        value={formDataDynamic[index]?.NoOfChild || 0}
+                                                                                        className="hotel_input_select"
+                                                                                        name="noOfChild"
+                                                                                        onChange={(e) =>
+                                                                                            handleFormChange(
+                                                                                                index,
+                                                                                                "NoOfChild",
+                                                                                                parseInt(e.target.value)
+                                                                                            )
+                                                                                        }
+                                                                                    >
+                                                                                        {[0, 1, 2, 3, 4].map((childCount) => (
+                                                                                            <option key={childCount} value={childCount}>
+                                                                                                {childCount}
+                                                                                            </option>
+                                                                                        ))}
+                                                                                    </select>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            {formDataDynamic[index]?.NoOfChild > 0 && (
+                                                                                <div className="hotel_modal_form_input_child_age">
+                                                                                    <label className='mt-3'>Child Age:</label>
+                                                                                    <div>
+                                                                                        {Array.from({
+                                                                                            length: formDataDynamic[index]?.NoOfChild || 0,
+                                                                                        }).map((_, childIndex) => (
+                                                                                            <div key={childIndex} className="">
+                                                                                                <select
+                                                                                                    value={formDataDynamic[index]?.ChildAge?.[childIndex] || ""}
+                                                                                                    className="hotel_input_select"
+                                                                                                    onChange={(e) =>
+                                                                                                        handleChildAgeChange(index, childIndex, e.target.value)
+                                                                                                    }
+                                                                                                >
+                                                                                                    {Array.from({ length: 12 }, (_, i) => (
+                                                                                                        <option key={i} value={i + 1}>
+                                                                                                            {i + 1}
+                                                                                                        </option>
+                                                                                                    ))}
+                                                                                                </select>
+                                                                                            </div>
+                                                                                        ))}
+                                                                                    </div>
+                                                                                </div>
+                                                                            )}
+                                                                        </div>
+                                                                    ))}
+                                                                {/* {condition > 1 && (
                                                             <button onClick={handleDeleteRoom} className="delete-button">
                                                                 <FaTrash />
                                                             </button>
                                                         )} */}
 
-                                                    </div>
+                                                            </div>
 
 
-                                                    {/* <div className="col-lg-4 col-md-4 col-xs-12 ps-0 mb-3">
+                                                            {/* <div className="col-lg-4 col-md-4 col-xs-12 ps-0 mb-3">
                                                         <div className="hotel_form_input">
                                                             <label className="form_label">Star Rating*</label>
                                                             <select
@@ -740,7 +750,7 @@ const HotelForm = () => {
                                                     </div>*/}
 
 
-                                                    {/* <div className="col-lg-4 col-md-4 col-xs-12 ps-0 mb-3">
+                                                            {/* <div className="col-lg-4 col-md-4 col-xs-12 ps-0 mb-3">
                                                         <div className="hotel_form_input">
                                                             <label className="form_label">Nights</label>
                                                             <input
@@ -754,7 +764,7 @@ const HotelForm = () => {
                                                         </div>
                                                     </div> */}
 
-                                                    {/* <div className="col-lg-4 col-md-4 col-xs-12 ps-0 mb-3">
+                                                            {/* <div className="col-lg-4 col-md-4 col-xs-12 ps-0 mb-3">
                                                         <div className="hotel_form_input">
                                                             <label className="form_label">
                                                                 Nationality*
@@ -782,72 +792,74 @@ const HotelForm = () => {
                                                             )}
                                                         </div>
                                                     </div> */}
-                                                </div>
-                                            </>
-                                        </DialogContent>
-                                        <DialogActions>
-                                            <Button
-                                                style={{
-                                                    backgroundColor: "#21325d",
-                                                    color: "white",
-                                                }}
-                                                onClick={handleTravelClose}
-                                            >
-                                                Cancel
-                                            </Button>
-                                            <Button
-                                                style={{
-                                                    backgroundColor: "#21325d",
-                                                    color: "white",
-                                                }}
-                                                onClick={handleTravelClose}
-                                            >
-                                                Ok
-                                            </Button>
-                                        </DialogActions>
-                                    </Dialog>
-                                </div>
-                            </div>
-
-                            <Box>
-                                <div class="wrapper_hotel">
-                                    <div>
-                                        <div className="wraOne">
-                                            <p>Trending Searches:</p>
+                                                        </div>
+                                                    </>
+                                                </DialogContent>
+                                                <DialogActions>
+                                                    <Button
+                                                        style={{
+                                                            backgroundColor: "#21325d",
+                                                            color: "white",
+                                                        }}
+                                                        onClick={handleTravelClose}
+                                                    >
+                                                        Cancel
+                                                    </Button>
+                                                    <Button
+                                                        style={{
+                                                            backgroundColor: "#21325d",
+                                                            color: "white",
+                                                        }}
+                                                        onClick={handleTravelClose}
+                                                    >
+                                                        Ok
+                                                    </Button>
+                                                </DialogActions>
+                                            </Dialog>
                                         </div>
-                                        <input
-                                            type="radio"
-                                            name="select"
-                                            id="option-1"
-                                            checked
-                                        />
-                                        <input type="radio" name="select" id="option-2" />
-                                        <input type="radio" name="select" id="option-3" />
-                                        <input type="radio" name="select" id="option-4" />
-                                        <input type="radio" name="select" id="option-5" />
-                                        <input type="radio" name="select" id="option-6" />
-
-                                        <label for="option-1" class="option option-1">
-                                            <text>Singapore, Singapore</text>
-                                        </label>
-                                        <label for="option-2" class="option option-2">
-                                            <text>Dubai, United Arab Emirates</text>
-                                        </label>
-                                        <label for="option-3" class="option option-3">
-                                            <text>Mumbai, India</text>
-                                        </label>
                                     </div>
 
-                                    <div className="col-auto fare_search_oneWay ">
-                                        <button
-                                            type="submit"
-                                            className="hotelFormbutton"
-                                        >Search Hotel
-                                        </button>
-                                    </div>
-                                </div>
-                            </Box>
-                        </form>
+                                    <Box>
+                                        <div class="wrapper_hotel">
+                                            <div>
+                                                <div className="wraOne">
+                                                    <p>Trending Searches:</p>
+                                                </div>
+                                                <input
+                                                    type="radio"
+                                                    name="select"
+                                                    id="option-1"
+                                                    checked
+                                                />
+                                                <input type="radio" name="select" id="option-2" />
+                                                <input type="radio" name="select" id="option-3" />
+                                                <input type="radio" name="select" id="option-4" />
+                                                <input type="radio" name="select" id="option-5" />
+                                                <input type="radio" name="select" id="option-6" />
+
+                                                <label for="option-1" class="option option-1">
+                                                    <text>Singapore, Singapore</text>
+                                                </label>
+                                                <label for="option-2" class="option option-2">
+                                                    <text>Dubai, United Arab Emirates</text>
+                                                </label>
+                                                <label for="option-3" class="option option-3">
+                                                    <text>Mumbai, India</text>
+                                                </label>
+                                            </div>
+
+                                            <div className="col-auto fare_search_oneWay ">
+                                                <button
+                                                    type="submit"
+                                                    className="hotelFormbutton"
+                                                >Search Hotel
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </Box>
+                                </form>
+                            )}
+                        </>
                     </div>
                 </div>
             </div>

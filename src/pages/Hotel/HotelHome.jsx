@@ -11,7 +11,8 @@ import LuxurySection from "../../components/LuxurySection";
 // hotelHome.css link 
 import "./hotelhome.css";
 import HotelForm from "./HotelForm";
-
+import HotelLoading from "./hotelLoading/HotelLoading";
+// HotelLoading
 const Hotelhome = () => {
     return (
         <div className="hotel_banner">
