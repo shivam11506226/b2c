@@ -918,573 +918,9 @@ const Homeform = (props) => {
               {/* Round trip start */}
 
               <TabPanel value="2">
-                <form>
-                  <div className="your-container">
-                    <div className="from-container1">
-                      <div className="from-label">From</div>
-                      <div className="from-city">
-                        {" "}
-                        <input
-                          name="from"
-                          placeholder="Enter city or airport"
-                          // value={from}
-                          autoComplete="off"
-                          // onChange={(event) => {
-                          //   handleFromInputChange(event);
-                          //   setIsLoadingFrom(true);
-                          //   handleFromSearch(event.target.value);
-                          // }}
-                          // required
-                          style={{
-                            outline: "none",
-                            border: "none",
-                          }}
-                        />
-                        {isLoadingFrom && <div>Loading...</div>}
-                        {fromSearchResults &&
-                          fromSearchResults.length > 0 && (
-                            <div
-                              ref={fromSearchRef}
-                              className="from-search-results"
-                              style={{
-                                backgroundColor: "white",
-                                borderRadius: "10px",
-                                zIndex: 1999900,
-                                width: "100%",
-                                boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                                textAlign: "left",
-                                cursor: "pointer",
-                                display: displayFrom ? "block" : "none",
-                              }}
-                            >
-                              <ul className="from_Search_Container">
-                                {fromSearchResults.map((result) => (
-                                  <li
-                                    className="to_List"
-                                    key={result._id}
-                                    onClick={() => handleFromClick(result)}
-                                  >
-                                    <div>
-                                      <span className="to_List_container">
-                                        <FlightTakeoffTwoToneIcon />{" "}
-                                        <strong>{result.name}</strong>{" "}
-                                        <strong
-                                          className="to_airport_code"
-                                          style={{
-                                            color: "gray",
-                                            fontSize: "12px",
-                                          }}
-                                        >
-                                          {result.AirportCode}
-                                        </strong>
-                                      </span>
-                                      <span
-                                        style={{
-                                          fontSize: "13px",
-                                          display: "flex",
-                                          justifyContent: "center",
-                                        }}
-                                      >
-                                        {result.code}
-                                      </span>
-                                    </div>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          )}
-                      </div>
-                      <div className="from-details">
-                        DEL, Delhi Airport India
-                      </div>
 
-                      <div className="roundlogo">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="40"
-                          height="40"
-                          viewBox="0 0 40 40"
-                          fill="none"
-                        >
-                          <circle
-                            cx="20"
-                            cy="20"
-                            r="19"
-                            fill="white"
-                            stroke="#071C2C"
-                            stroke-width="2"
-                          />
-                        </svg>
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="18"
-                          height="20"
-                          viewBox="0 0 18 20"
-                          fill="none"
-                          justifyContent="center"
-                        >
-                          <path
-                            d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
-                            stroke="#071C2C"
-                            stroke-width="2"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                          />
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div className="from-container">
-                      <div className="to-label">To</div>
-                      <div className="to-city">
-                        {" "}
-                        <input
-                          name="to"
-                          placeholder="Enter city or airport"
-                          // value={to}
-                          // required
-                          // onChange={(event) => {
-                          //   handleToInputChange(event);
-                          //   setIsLoadingTo(true); // Set loading state for TO input
-                          //   handleToSearch(event.target.value);
-                          // }}
-                          autoComplete="off"
-                          style={{
-                            border: "none",
-
-                            outline: "none",
-                          }}
-                        />
-                        {isLoadingTo && <div>Loading...</div>}
-                        {toSearchResults && toSearchResults.length > 0 && (
-                          <div
-                            ref={toSearchRef}
-                            style={{
-                              backgroundColor: "white",
-                              borderRadius: "10px",
-                              zIndex: 9999991,
-                              width: "100%",
-                              boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                              textAlign: "left",
-                              cursor: "pointer",
-                              display: displayTo ? "block" : "none",
-                            }}
-                          >
-                            <ul className="to_Search_Container">
-                              <Box
-                                sx={{
-                                  mb: 1,
-                                  mt: 1,
-                                  display: "flex",
-                                  flexDirection: "column",
-                                  maxHeight: 161,
-                                  overflow: "hidden",
-                                  overflowY: "scroll",
-                                }}
-                                className="scroll_style"
-                              >
-                                {toSearchResults.map((result) => (
-                                  <li
-                                    className="to_List"
-                                    key={result._id}
-                                    onClick={() => handleToClick(result)}
-                                  >
-                                    <div>
-                                      <span className="to_List_container">
-                                        <FlightLandTwoToneIcon />{" "}
-                                        <strong>{result.name}</strong>{" "}
-                                        <strong
-                                          className="to_airport_code"
-                                          style={{
-                                            color: "gray",
-                                            fontSize: "12px",
-                                          }}
-                                        >
-                                          {result.AirportCode}
-                                        </strong>
-                                      </span>
-                                      <span
-                                        style={{
-                                          fontSize: "13px",
-                                          display: "flex",
-                                          justifyContent: "center",
-                                        }}
-                                      >
-                                        {result.code}
-                                      </span>
-                                    </div>
-                                  </li>
-                                ))}
-                              </Box>
-                            </ul>
-                          </div>
-                        )}
-                      </div>
-                      <div className="to-details">
-                        BLR, Bengaluru International Airport In..
-                      </div>
-                    </div>
-                    <div className="from-container">
-                      <div className="departure-label">Departure</div>
-                      <div className="date-container">
-                        <div className="date-info">
-                          <div className="datee">
-                            <input
-                              type="date"
-                              name="departure"
-                              id="departure"
-                              className="deaprture_input"
-                              placeholder="Enter city or airport"
-                              style={{
-                                border: "none",
-                                outline: "none",
-                              }}
-                            ></input>
-
-                            {/* <div  style={{
-                                  border: "none",
-                                  outline: "none",
-                                }}>  <DateRangePickers/></div>  */}
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div className="from-container">
-                      <div className="return-label">Return</div>
-                      <div className="date-container">
-                        <div className="date-info">
-                          <div className="datee">
-                            <input
-                              type="date"
-                              name="returnDate"
-                              id="returnDate"
-                              className="return_input"
-                              placeholder="Enter return date"
-                              style={{
-                                border: "none",
-                                outline: "none",
-                              }}
-                            ></input>
-                          </div>
-                        </div>
-
-                      </div>
-                    </div>
-
-                    <div className="traveller-container ">
-                      {/* <div className="traveller-label">Traveller & Class</div>
-                      <div className="traveller-count">
-                        <div className="traveller-number">1</div>
-                        <div className="traveller-type">Traveller</div>
-                      </div>
-                      <div className="class-details">
-                        Economy/Premium Economy
-                      </div> */}
-                      <Button
-                        sx={{
-                          height: "80px",
-                          color: "gray",
-                          border: "none",
-                          borderRadius: "12px",
-                          display: "flex",
-                          flexDirection: "column",
-                          textAlign: "left",
-                        }}
-                        onClick={handleTravelClickOpen}
-                        className="Travel_Btn"
-                      >
-                        <div
-                          className="traveller-label"
-                          sx={{
-                            textTransform: "capitalize",
-                          }}
-                        >
-                          Traveller & Class
-                        </div>
-                        <div>
-                          <span
-                            style={{
-                              display: "flex",
-                              justifyContent: "start",
-                            }}
-                          >
-                            <Typography
-                              fontWeight={800}
-                              variant="button"
-                              fontSize={16}
-                            >
-                              {(totalCount === 0 && 1) || totalCount}
-                            </Typography>
-                            <Typography
-                              fontSize={16}
-                              variant="button"
-                              textTransform="capitalize"
-                            >
-                              Traveller
-                            </Typography>
-                          </span>
-                          <div style={{ fontSize: "11px" }}>
-                            {(activeIdClass === 1 && "All") ||
-                              (activeIdClass === 2 && "Economy") ||
-                              (activeIdClass === 3 && "Premium Economy") ||
-                              (activeIdClass === 4 && "Business")(
-                                activeIdClass === 5 && "Business Economy"
-                              )(activeIdClass === 6 && "First Class")}
-                          </div>
-                        </div>
-                      </Button>
-                      <Dialog
-                        sx={{ zIndex: "99999" }}
-                        disableEscapeKeyDown
-                        open={openTravelModal}
-                        onClose={handleTravelClose}
-                      >
-                        <DialogContent>
-                          <Box component="form">
-                            {/* form layout */}
-                            <div>TRAVELLERS & CLASS </div>
-                            <Grid
-                              display="flex"
-                              flexDirection="column"
-                              p={2}
-                              borderRadius="30px"
-                              justifyContent="center"
-                            >
-                              <Grid
-                                item
-                                textAlign="center"
-                                px={1}
-                                display="flex"
-                                justifyContent="space-between"
-                              >
-                                <Typography textAlign="left" fontSize="15px">
-                                  Adults
-                                  <span
-                                    style={{
-                                      fontSize: "10px",
-                                      marginLeft: "7px",
-                                    }}
-                                  >
-                                    (Age 12+ years)
-                                  </span>
-                                </Typography>
-
-                                <ul className="Adult_Count">
-                                  {adultCount?.map((adult) => (
-                                    <li
-                                      style={{
-                                        backgroundColor:
-                                          adult === activeIdAdult
-                                            ? "green"
-                                            : "white",
-                                        color:
-                                          adult === activeIdAdult
-                                            ? "white"
-                                            : "black",
-                                      }}
-                                      data-id={adult}
-                                      onClick={handleAdultClick}
-                                    >
-                                      {adult}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </Grid>
-                              <Grid
-                                item
-                                textAlign="center"
-                                mt={2}
-                                px={1}
-                                display="flex"
-                                justifyContent="space-between"
-                              >
-                                <Typography textAlign="left" fontSize="15px">
-                                  Child
-                                  <span
-                                    style={{
-                                      fontSize: "10px",
-                                      marginLeft: "7px",
-                                    }}
-                                  >
-                                    (Aged 2-12 years)
-                                  </span>
-                                </Typography>
-
-                                <ul className="Adult_Count">
-                                  {childCount?.map((child) => (
-                                    <li
-                                      style={{
-                                        backgroundColor:
-                                          child === activeIdChild
-                                            ? "green"
-                                            : "white",
-                                        color:
-                                          child === activeIdChild
-                                            ? "white"
-                                            : "black",
-                                      }}
-                                      data-id={child}
-                                      onClick={handleChildClick}
-                                    >
-                                      {child}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </Grid>
-                              <Grid
-                                item
-                                textAlign="center"
-                                mt={2}
-                                px={1}
-                                display="flex"
-                                justifyContent="space-between"
-                              >
-                                <Typography textAlign="left" fontSize="15px">
-                                  Infants
-                                  <span
-                                    style={{
-                                      fontSize: "10px",
-                                      marginLeft: "7px",
-                                    }}
-                                  >
-                                    (Below 2 years)
-                                  </span>
-                                </Typography>
-
-                                <ul className="Adult_Count">
-                                  {infantCount?.map((Infants) => (
-                                    <li
-                                      style={{
-                                        backgroundColor:
-                                          Infants === activeIdInfant
-                                            ? "green"
-                                            : "white",
-                                        color:
-                                          Infants === activeIdInfant
-                                            ? "white"
-                                            : "black",
-                                      }}
-                                      data-id={Infants}
-                                      onClick={handleInfantClick}
-                                    >
-                                      {Infants}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </Grid>
-                            </Grid>
-
-                            <Grid
-                              display="flex"
-                              style={{ margin: "7px 22px" }}
-                            >
-                              <Typography textAlign="left" fontSize="15px">
-                                Choose Travel Class
-                              </Typography>
-                            </Grid>
-
-                            <Grid display="flex">
-                              <ul className="classButton">
-                                {ClassItems?.map((ele) => (
-                                  <>
-                                    <li
-                                      style={{
-                                        backgroundColor:
-                                          ele.id === activeIdClass
-                                            ? "#071C2C"
-                                            : "#E73C33",
-                                      }}
-                                      data-id={ele.id}
-                                      onClick={handleClassItemClick}
-                                    >
-                                      {ele?.label}
-                                    </li>
-                                  </>
-                                ))}
-                              </ul>
-                            </Grid>
-                          </Box>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button
-                            style={{
-                              backgroundColor: "#071C2C",
-                              color: "white",
-                            }}
-                            onClick={handleTravelClose}
-                          >
-                            Cancel
-                          </Button>
-                          <Button
-                            style={{
-                              backgroundColor: "#071C2C",
-                              color: "white",
-                            }}
-                            onClick={handleTravelClose}
-                          >
-                            Ok
-                          </Button>
-                        </DialogActions>
-                      </Dialog>
-                    </div>
-                  </div>
-
-                  <Box display="flex" justifyContent="center">
-                    <div class="wrapper">
-                      <text>Select A Fare Type:</text>
-                      <input
-                        type="radio"
-                        name="select"
-                        id="option-1"
-                        checked
-                      />
-                      <input type="radio" name="select" id="option-2" />
-                      <input type="radio" name="select" id="option-3" />
-                      <input type="radio" name="select" id="option-4" />
-                      <input type="radio" name="select" id="option-5" />
-                      <input type="radio" name="select" id="option-6" />
-                      <label for="option-1" class="option option-1">
-                        <text>Regular Fares</text>
-                      </label>
-                      <label for="option-2" class="option option-2">
-                        <text>Armed Forces Fares</text>
-                      </label>
-                      <label for="option-3" class="option option-3">
-                        <text>Student Fares</text>
-                      </label>
-                      <label for="option-4" class="option option-4">
-                        <text>Senior Citizen Fares</text>
-                      </label>
-                      <label for="option-5" class="option option-5">
-                        <text>Doctors & Nurses Fares</text>
-                      </label>
-                      <label for="option-6" class="option option-6">
-                        <text>Double Seat Fares</text>
-                      </label>
-                      <text className="col-auto fare_search ">
-                        {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
-                           <button type="submit" path="" className="search" justifyContent="center">
-                              Search
-                                  </button>                             Search
-                                                    </button> */}
-                        <button
-                          // type="submit"
-                          path=""
-                          className="search"
-                          justifyContent="center"
-                          onClick={handleButtonClick}
-                        >
-                          Search
-                        </button>
-                      </text>
-                    </div>
-                  </Box>
-                </form>
-
-                {/* ====================================================> 4th form here <=========================================== */}
               </TabPanel>
+
 
               {/* Round trip end */}
 
@@ -1649,3 +1085,573 @@ const Homeform = (props) => {
 };
 
 export default Homeform;
+
+
+
+
+
+
+
+
+
+// round trip
+
+// {/* <TabPanel value="2">
+//   <form>
+//     <div className="your-container">
+//       <div className="from-container1">
+//         <div className="from-label">From</div>
+//         <div className="from-city">
+//           {" "}
+//           <input
+//             name="from"
+//             placeholder="Enter city or airport"
+//             autoComplete="off"
+//             style={{
+//               outline: "none",
+//               border: "none",
+//             }}
+//           />
+//           {isLoadingFrom && <div>Loading...</div>}
+//           {fromSearchResults &&
+//             fromSearchResults.length > 0 && (
+//               <div
+//                 ref={fromSearchRef}
+//                 className="from-search-results"
+//                 style={{
+//                   backgroundColor: "white",
+//                   borderRadius: "10px",
+//                   zIndex: 1999900,
+//                   width: "100%",
+//                   boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
+//                   textAlign: "left",
+//                   cursor: "pointer",
+//                   display: displayFrom ? "block" : "none",
+//                 }}
+//               >
+//                 <ul className="from_Search_Container">
+//                   {fromSearchResults.map((result) => (
+//                     <li
+//                       className="to_List"
+//                       key={result._id}
+//                       onClick={() => handleFromClick(result)}
+//                     >
+//                       <div>
+//                         <span className="to_List_container">
+//                           <FlightTakeoffTwoToneIcon />{" "}
+//                           <strong>{result.name}</strong>{" "}
+//                           <strong
+//                             className="to_airport_code"
+//                             style={{
+//                               color: "gray",
+//                               fontSize: "12px",
+//                             }}
+//                           >
+//                             {result.AirportCode}
+//                           </strong>
+//                         </span>
+//                         <span
+//                           style={{
+//                             fontSize: "13px",
+//                             display: "flex",
+//                             justifyContent: "center",
+//                           }}
+//                         >
+//                           {result.code}
+//                         </span>
+//                       </div>
+//                     </li>
+//                   ))}
+//                 </ul>
+//               </div>
+//             )}
+//         </div>
+//         <div className="from-details">
+//           DEL, Delhi Airport India
+//         </div>
+
+//         <div className="roundlogo">
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="40"
+//             height="40"
+//             viewBox="0 0 40 40"
+//             fill="none"
+//           >
+//             <circle
+//               cx="20"
+//               cy="20"
+//               r="19"
+//               fill="white"
+//               stroke="#071C2C"
+//               stroke-width="2"
+//             />
+//           </svg>
+//           <svg
+//             xmlns="http://www.w3.org/2000/svg"
+//             width="18"
+//             height="20"
+//             viewBox="0 0 18 20"
+//             fill="none"
+//             justifyContent="center"
+//           >
+//             <path
+//               d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
+//               stroke="#071C2C"
+//               stroke-width="2"
+//               stroke-linecap="round"
+//               stroke-linejoin="round"
+//             />
+//           </svg>
+//         </div>
+//       </div>
+
+//       <div className="from-container">
+//         <div className="to-label">To</div>
+//         <div className="to-city">
+//           {" "}
+//           <input
+//             name="to"
+//             placeholder="Enter city or airport"
+//             // value={to}
+//             // required
+//             // onChange={(event) => {
+//             //   handleToInputChange(event);
+//             //   setIsLoadingTo(true); // Set loading state for TO input
+//             //   handleToSearch(event.target.value);
+//             // }}
+//             autoComplete="off"
+//             style={{
+//               border: "none",
+
+//               outline: "none",
+//             }}
+//           />
+//           {isLoadingTo && <div>Loading...</div>}
+//           {toSearchResults && toSearchResults.length > 0 && (
+//             <div
+//               ref={toSearchRef}
+//               style={{
+//                 backgroundColor: "white",
+//                 borderRadius: "10px",
+//                 zIndex: 9999991,
+//                 width: "100%",
+//                 boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
+//                 textAlign: "left",
+//                 cursor: "pointer",
+//                 display: displayTo ? "block" : "none",
+//               }}
+//             >
+//               <ul className="to_Search_Container">
+//                 <Box
+//                   sx={{
+//                     mb: 1,
+//                     mt: 1,
+//                     display: "flex",
+//                     flexDirection: "column",
+//                     maxHeight: 161,
+//                     overflow: "hidden",
+//                     overflowY: "scroll",
+//                   }}
+//                   className="scroll_style"
+//                 >
+//                   {toSearchResults.map((result) => (
+//                     <li
+//                       className="to_List"
+//                       key={result._id}
+//                       onClick={() => handleToClick(result)}
+//                     >
+//                       <div>
+//                         <span className="to_List_container">
+//                           <FlightLandTwoToneIcon />{" "}
+//                           <strong>{result.name}</strong>{" "}
+//                           <strong
+//                             className="to_airport_code"
+//                             style={{
+//                               color: "gray",
+//                               fontSize: "12px",
+//                             }}
+//                           >
+//                             {result.AirportCode}
+//                           </strong>
+//                         </span>
+//                         <span
+//                           style={{
+//                             fontSize: "13px",
+//                             display: "flex",
+//                             justifyContent: "center",
+//                           }}
+//                         >
+//                           {result.code}
+//                         </span>
+//                       </div>
+//                     </li>
+//                   ))}
+//                 </Box>
+//               </ul>
+//             </div>
+//           )}
+//         </div>
+//         <div className="to-details">
+//           BLR, Bengaluru International Airport In..
+//         </div>
+//       </div>
+//       <div className="from-container">
+//         <div className="departure-label">Departure</div>
+//         <div className="date-container">
+//           <div className="date-info">
+//             <div className="datee">
+//               <input
+//                 type="date"
+//                 name="departure"
+//                 id="departure"
+//                 className="deaprture_input"
+//                 placeholder="Enter city or airport"
+//                 style={{
+//                   border: "none",
+//                   outline: "none",
+//                 }}
+//               ></input>
+
+//               {/* <div  style={{
+//                                   border: "none",
+//                                   outline: "none",
+//                                 }}>  <DateRangePickers/></div>  */}
+//             </div>
+//           </div>
+
+//         </div>
+//       </div>
+
+//       <div className="from-container">
+//         <div className="return-label">Return</div>
+//         <div className="date-container">
+//           <div className="date-info">
+//             <div className="datee">
+//               <input
+//                 type="date"
+//                 name="returnDate"
+//                 id="returnDate"
+//                 className="return_input"
+//                 placeholder="Enter return date"
+//                 style={{
+//                   border: "none",
+//                   outline: "none",
+//                 }}
+//               ></input>
+//             </div>
+//           </div>
+
+//         </div>
+//       </div>
+
+//       <div className="traveller-container ">
+//         {/* <div className="traveller-label">Traveller & Class</div>
+//                       <div className="traveller-count">
+//                         <div className="traveller-number">1</div>
+//                         <div className="traveller-type">Traveller</div>
+//                       </div>
+//                       <div className="class-details">
+//                         Economy/Premium Economy
+//                       </div> */}
+//         <Button
+//           sx={{
+//             height: "80px",
+//             color: "gray",
+//             border: "none",
+//             borderRadius: "12px",
+//             display: "flex",
+//             flexDirection: "column",
+//             textAlign: "left",
+//           }}
+//           onClick={handleTravelClickOpen}
+//           className="Travel_Btn"
+//         >
+//           <div
+//             className="traveller-label"
+//             sx={{
+//               textTransform: "capitalize",
+//             }}
+//           >
+//             Traveller & Class
+//           </div>
+//           <div>
+//             <span
+//               style={{
+//                 display: "flex",
+//                 justifyContent: "start",
+//               }}
+//             >
+//               <Typography
+//                 fontWeight={800}
+//                 variant="button"
+//                 fontSize={16}
+//               >
+//                 {(totalCount === 0 && 1) || totalCount}
+//               </Typography>
+//               <Typography
+//                 fontSize={16}
+//                 variant="button"
+//                 textTransform="capitalize"
+//               >
+//                 Traveller
+//               </Typography>
+//             </span>
+//             <div style={{ fontSize: "11px" }}>
+//               {(activeIdClass === 1 && "All") ||
+//                 (activeIdClass === 2 && "Economy") ||
+//                 (activeIdClass === 3 && "Premium Economy") ||
+//                 (activeIdClass === 4 && "Business")(
+//                   activeIdClass === 5 && "Business Economy"
+//                 )(activeIdClass === 6 && "First Class")}
+//             </div>
+//           </div>
+//         </Button>
+//         <Dialog
+//           sx={{ zIndex: "99999" }}
+//           disableEscapeKeyDown
+//           open={openTravelModal}
+//           onClose={handleTravelClose}
+//         >
+//           <DialogContent>
+//             <Box component="form">
+//               {/* form layout */}
+//               <div>TRAVELLERS & CLASS </div>
+//               <Grid
+//                 display="flex"
+//                 flexDirection="column"
+//                 p={2}
+//                 borderRadius="30px"
+//                 justifyContent="center"
+//               >
+//                 <Grid
+//                   item
+//                   textAlign="center"
+//                   px={1}
+//                   display="flex"
+//                   justifyContent="space-between"
+//                 >
+//                   <Typography textAlign="left" fontSize="15px">
+//                     Adults
+//                     <span
+//                       style={{
+//                         fontSize: "10px",
+//                         marginLeft: "7px",
+//                       }}
+//                     >
+//                       (Age 12+ years)
+//                     </span>
+//                   </Typography>
+
+//                   <ul className="Adult_Count">
+//                     {adultCount?.map((adult) => (
+//                       <li
+//                         style={{
+//                           backgroundColor:
+//                             adult === activeIdAdult
+//                               ? "green"
+//                               : "white",
+//                           color:
+//                             adult === activeIdAdult
+//                               ? "white"
+//                               : "black",
+//                         }}
+//                         data-id={adult}
+//                         onClick={handleAdultClick}
+//                       >
+//                         {adult}
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </Grid>
+//                 <Grid
+//                   item
+//                   textAlign="center"
+//                   mt={2}
+//                   px={1}
+//                   display="flex"
+//                   justifyContent="space-between"
+//                 >
+//                   <Typography textAlign="left" fontSize="15px">
+//                     Child
+//                     <span
+//                       style={{
+//                         fontSize: "10px",
+//                         marginLeft: "7px",
+//                       }}
+//                     >
+//                       (Aged 2-12 years)
+//                     </span>
+//                   </Typography>
+
+//                   <ul className="Adult_Count">
+//                     {childCount?.map((child) => (
+//                       <li
+//                         style={{
+//                           backgroundColor:
+//                             child === activeIdChild
+//                               ? "green"
+//                               : "white",
+//                           color:
+//                             child === activeIdChild
+//                               ? "white"
+//                               : "black",
+//                         }}
+//                         data-id={child}
+//                         onClick={handleChildClick}
+//                       >
+//                         {child}
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </Grid>
+//                 <Grid
+//                   item
+//                   textAlign="center"
+//                   mt={2}
+//                   px={1}
+//                   display="flex"
+//                   justifyContent="space-between"
+//                 >
+//                   <Typography textAlign="left" fontSize="15px">
+//                     Infants
+//                     <span
+//                       style={{
+//                         fontSize: "10px",
+//                         marginLeft: "7px",
+//                       }}
+//                     >
+//                       (Below 2 years)
+//                     </span>
+//                   </Typography>
+
+//                   <ul className="Adult_Count">
+//                     {infantCount?.map((Infants) => (
+//                       <li
+//                         style={{
+//                           backgroundColor:
+//                             Infants === activeIdInfant
+//                               ? "green"
+//                               : "white",
+//                           color:
+//                             Infants === activeIdInfant
+//                               ? "white"
+//                               : "black",
+//                         }}
+//                         data-id={Infants}
+//                         onClick={handleInfantClick}
+//                       >
+//                         {Infants}
+//                       </li>
+//                     ))}
+//                   </ul>
+//                 </Grid>
+//               </Grid>
+
+//               <Grid
+//                 display="flex"
+//                 style={{ margin: "7px 22px" }}
+//               >
+//                 <Typography textAlign="left" fontSize="15px">
+//                   Choose Travel Class
+//                 </Typography>
+//               </Grid>
+
+//               <Grid display="flex">
+//                 <ul className="classButton">
+//                   {ClassItems?.map((ele) => (
+//                     <>
+//                       <li
+//                         style={{
+//                           backgroundColor:
+//                             ele.id === activeIdClass
+//                               ? "#071C2C"
+//                               : "#E73C33",
+//                         }}
+//                         data-id={ele.id}
+//                         onClick={handleClassItemClick}
+//                       >
+//                         {ele?.label}
+//                       </li>
+//                     </>
+//                   ))}
+//                 </ul>
+//               </Grid>
+//             </Box>
+//           </DialogContent>
+//           <DialogActions>
+//             <Button
+//               style={{
+//                 backgroundColor: "#071C2C",
+//                 color: "white",
+//               }}
+//               onClick={handleTravelClose}
+//             >
+//               Cancel
+//             </Button>
+//             <Button
+//               style={{
+//                 backgroundColor: "#071C2C",
+//                 color: "white",
+//               }}
+//               onClick={handleTravelClose}
+//             >
+//               Ok
+//             </Button>
+//           </DialogActions>
+//         </Dialog>
+//       </div>
+//     </div>
+
+//     <Box display="flex" justifyContent="center">
+//       <div class="wrapper">
+//         <text>Select A Fare Type:</text>
+//         <input
+//           type="radio"
+//           name="select"
+//           id="option-1"
+//           checked
+//         />
+//         <input type="radio" name="select" id="option-2" />
+//         <input type="radio" name="select" id="option-3" />
+//         <input type="radio" name="select" id="option-4" />
+//         <input type="radio" name="select" id="option-5" />
+//         <input type="radio" name="select" id="option-6" />
+//         <label for="option-1" class="option option-1">
+//           <text>Regular Fares</text>
+//         </label>
+//         <label for="option-2" class="option option-2">
+//           <text>Armed Forces Fares</text>
+//         </label>
+//         <label for="option-3" class="option option-3">
+//           <text>Student Fares</text>
+//         </label>
+//         <label for="option-4" class="option option-4">
+//           <text>Senior Citizen Fares</text>
+//         </label>
+//         <label for="option-5" class="option option-5">
+//           <text>Doctors & Nurses Fares</text>
+//         </label>
+//         <label for="option-6" class="option option-6">
+//           <text>Double Seat Fares</text>
+//         </label>
+//         <text className="col-auto fare_search ">
+//           {/* <button className='search' onClick={() => openInNewTab(<Searchresult />)}>
+//                            <button type="submit" path="" className="search" justifyContent="center">
+//                               Search
+//                                   </button>                             Search
+//                                                     </button> */}
+//           <button
+//             // type="submit"
+//             path=""
+//             className="search"
+//             justifyContent="center"
+//             onClick={handleButtonClick}
+//           >
+//             Search
+//           </button>
+//         </text>
+//       </div>
+//     </Box>
+//   </form>
+// </TabPanel> */}

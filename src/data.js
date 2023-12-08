@@ -21,16 +21,16 @@ export const mainheaderlogos = [
         name: "Bus",
         path: "/bus"
     },
-    {
-        avatar: require("./images/taxi.png"),
-        name: "Taxi",
-        path: "/taxi"
-    },
-    {
-        avatar: require("./images/forex.png"),
-        name: "Forex",
-        path: "/forex"
-    },
+    // {
+    //     avatar: require("./images/taxi.png"),
+    //     name: "Taxi",
+    //     path: "/taxi"
+    // },
+    // {
+    //     avatar: require("./images/forex.png"),
+    //     name: "Forex",
+    //     path: "/forex"
+    // },
 
 ]
 

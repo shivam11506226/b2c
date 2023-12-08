@@ -440,1115 +440,1514 @@ export default function BookWrapper() {
 
   return (
     <>
-      {/* {!reducerState?.flightFare?.flightQuoteData?.Results === true ? (
+      {!reducerState?.flightFare?.flightQuoteData?.Results === true ? (
         <FlightLoader />
-      ) : ( */}
-      <div className="container">
-        {isModalOpen && (
-          <LoginForm
-            isModalOpen={isModalOpen}
-            setIsModalOpen={setIsModalOpen}
-          />
-        )}
-        {isRegModalOpen && (
-          <SignUp
-            isRegModalOpen={isRegModalOpen}
-            setRegIsModalOpen={setRegIsModalOpen}
-          />
-        )}
-        <div className="row">
-          <div className="col-lg-9">
-            <div className="row">
+      ) : (
+        <div className="container">
+          {isModalOpen && (
+            <LoginForm
+              isModalOpen={isModalOpen}
+              setIsModalOpen={setIsModalOpen}
+            />
+          )}
+          {isRegModalOpen && (
+            <SignUp
+              isRegModalOpen={isRegModalOpen}
+              setRegIsModalOpen={setRegIsModalOpen}
+            />
+          )}
+          <div className="row">
+            <div className="col-lg-9">
+              <div className="row">
 
-              <div className="col-lg-12">
-                {
-                  TicketDetails?.Segments[0].length == 2 ?
-                    (
-                      <>
-                        <div className="booknowFlight">
-                          <div className="bookaboveBox">
-                            <div>
+                <div className="col-lg-12">
+                  {
+                    TicketDetails?.Segments[0].length == 2 ?
+                      (
+                        <>
+                          <div className="booknowFlight">
+                            <div className="bookaboveBox">
+                              <div>
+                                <p>
+                                  {
+                                    TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                      ?.CityName
+                                  }
+                                  <FiArrowRight style={{ margin: "5px" }} />{" "}
+                                  {
+                                    TicketDetails?.Segments[0][0]?.Destination
+                                      ?.Airport?.CityName
+                                  }
+                                </p>
+                                <div className="aboveSpan">
+                                  <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
+                                  <span>{`1 stop via ${TicketDetails?.Segments[0][0]?.Destination?.Airport?.CityName}`}{" "} {duration}</span>
+                                </div>
+                              </div>
+
+                              <div className="aboveBelowSpan">
+                                <span>Cancellation Fees Apply</span>
+                                <span className="aboveSOne">View Fare Rules</span>
+                              </div>
+                            </div>
+
+                            <div className="bookcenteredBox">
+                              <div>
+                                <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
+                              </div>
+                              <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
                               <p>
+                                {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
                                 {
-                                  TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                    ?.CityName
+                                  TicketDetails?.Segments[0][0]?.Airline
+                                    ?.FlightNumber
                                 }
-                                <FiArrowRight style={{ margin: "5px" }} />{" "}
-                                {
-                                  TicketDetails?.Segments[0][0]?.Destination
-                                    ?.Airport?.CityName
-                                }
+                                {TicketDetails?.IsLCC === false ? (
+                                  <span>
+                                    LCC
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </p>
-                              <div className="aboveSpan">
-                                <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
-                                <span>{`1 stop via ${TicketDetails?.Segments[0][0]?.Destination?.Airport?.CityName}`}{" "} {duration}</span>
-                              </div>
                             </div>
 
-                            <div className="aboveBelowSpan">
-                              <span>Cancellation Fees Apply</span>
-                              <span className="aboveSOne">View Fare Rules</span>
-                            </div>
-                          </div>
-
-                          <div className="bookcenteredBox">
-                            <div>
-                              <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
-                            </div>
-                            <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
-                            <p>
-                              {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
-                              {
-                                TicketDetails?.Segments[0][0]?.Airline
-                                  ?.FlightNumber
-                              }
-                              {TicketDetails?.IsLCC === false ? (
-                                <span>
-                                  LCC
-                                </span>
-                              ) : (
-                                ""
-                              )}
-                            </p>
-                          </div>
-
-                          <div className="bookbottomBox">
-                            <div>
-                              <div className="bookBottomOne">
-                                <p>{desiredFormat.slice(13)}</p>
-                                <p>{desiredFormat1.slice(13)}</p>
-                              </div>
-                              <div className="bookBottomTwo">
-                                <img src={fromTo} alt="icon" />
-                              </div>
-                              <div className="bookBottomThree">
-                                <p>
-                                  {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                    ?.CityName} {" "}
-                                  <span>
+                            <div className="bookbottomBox">
+                              <div>
+                                <div className="bookBottomOne">
+                                  <p>{desiredFormat.slice(13)}</p>
+                                  <p>{desiredFormat1.slice(13)}</p>
+                                </div>
+                                <div className="bookBottomTwo">
+                                  <img src={fromTo} alt="icon" />
+                                </div>
+                                <div className="bookBottomThree">
+                                  <p>
                                     {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                      ?.AirportName}
-                                  </span>
-                                </p>
-                                <p>
-                                  {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                    ?.CityName} {" "}
-                                  <span>
+                                      ?.CityName} {" "}
+                                    <span>
+                                      {TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                        ?.AirportName}
+                                    </span>
+                                  </p>
+                                  <p>
                                     {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                      ?.AirportName}
-                                  </span>
-                                </p>
+                                      ?.CityName} {" "}
+                                    <span>
+                                      {TicketDetails?.Segments[0][0]?.Destination?.Airport
+                                        ?.AirportName}
+                                    </span>
+                                  </p>
+                                </div>
+                              </div>
+
+
+
+                              <div className="bookBottomFour">
+                                <div>
+                                  <p>Baggage</p>
+                                  <span>ADULT</span>
+                                </div>
+                                <div>
+                                  <p>Check-in</p>
+                                  <span>15 Kgs</span>
+                                </div>
+                                <div>
+                                  <p>Cabin</p>
+                                  <span>7 Kgs</span>
+                                </div>
                               </div>
                             </div>
-
-
-
-                            <div className="bookBottomFour">
+                            <div className="bookbottomBox ">
                               <div>
-                                <p>Baggage</p>
-                                <span>ADULT</span>
-                              </div>
-                              <div>
-                                <p>Check-in</p>
-                                <span>15 Kgs</span>
-                              </div>
-                              <div>
-                                <p>Cabin</p>
-                                <span>7 Kgs</span>
-                              </div>
-                            </div>
-                          </div>
-                          <div className="bookbottomBox ">
-                            <div>
-                              <div className="bookBottomOne">
-                                <p>{desiredFormat1.slice(13)}</p>
-                                <p>{desiredFormatStopped.slice(13)}</p>
-                              </div>
-                              <div className="bookBottomTwo">
-                                <img src={fromTo} alt="icon" />
-                              </div>
-                              <div className="bookBottomThree">
-                                <p>
-                                  {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                    ?.CityName} {" "}
-                                  <span>
+                                <div className="bookBottomOne">
+                                  <p>{desiredFormat1.slice(13)}</p>
+                                  <p>{desiredFormatStopped.slice(13)}</p>
+                                </div>
+                                <div className="bookBottomTwo">
+                                  <img src={fromTo} alt="icon" />
+                                </div>
+                                <div className="bookBottomThree">
+                                  <p>
                                     {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                      ?.AirportName}
-                                  </span>
-                                </p>
-                                <p>
-                                  {TicketDetails?.Segments[0][1]?.Destination?.Airport
-                                    ?.CityName} {" "}
-                                  <span>
+                                      ?.CityName} {" "}
+                                    <span>
+                                      {TicketDetails?.Segments[0][0]?.Destination?.Airport
+                                        ?.AirportName}
+                                    </span>
+                                  </p>
+                                  <p>
                                     {TicketDetails?.Segments[0][1]?.Destination?.Airport
-                                      ?.AirportName}
-                                  </span>
-                                </p>
+                                      ?.CityName} {" "}
+                                    <span>
+                                      {TicketDetails?.Segments[0][1]?.Destination?.Airport
+                                        ?.AirportName}
+                                    </span>
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                            <div className="bookBottomFour">
-                              <div>
-                                <p>Baggage</p>
-                                <span>ADULT</span>
-                              </div>
-                              <div>
-                                <p>Check-in</p>
-                                <span>15 Kgs</span>
-                              </div>
-                              <div>
-                                <p>Cabin</p>
-                                <span>7 Kgs</span>
+                              <div className="bookBottomFour">
+                                <div>
+                                  <p>Baggage</p>
+                                  <span>ADULT</span>
+                                </div>
+                                <div>
+                                  <p>Check-in</p>
+                                  <span>15 Kgs</span>
+                                </div>
+                                <div>
+                                  <p>Cabin</p>
+                                  <span>7 Kgs</span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </>
-                    )
-                    :
-                    (
-                      <>
-                        <div className="booknowFlight">
-                          <div className="bookaboveBox">
-                            <div>
+                        </>
+                      )
+                      :
+                      (
+                        <>
+                          <div className="booknowFlight">
+                            <div className="bookaboveBox">
+                              <div>
+                                <p>
+                                  {
+                                    TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                      ?.CityName
+                                  }
+                                  <FiArrowRight style={{ margin: "5px" }} />{" "}
+                                  {
+                                    TicketDetails?.Segments[0][0]?.Destination
+                                      ?.Airport?.CityName
+                                  }
+                                </p>
+                                <div className="aboveSpan">
+                                  <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
+                                  <span>Non Stop {" "} {duration}</span>
+                                </div>
+                              </div>
+
+                              <div className="aboveBelowSpan">
+                                <span>Cancellation Fees Apply</span>
+                                <span className="aboveSOne">View Fare Rules</span>
+                              </div>
+                            </div>
+
+                            <div className="bookcenteredBox">
+                              <div>
+                                <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
+                              </div>
+                              <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
                               <p>
+                                {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
                                 {
-                                  TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                    ?.CityName
+                                  TicketDetails?.Segments[0][0]?.Airline
+                                    ?.FlightNumber
                                 }
-                                <FiArrowRight style={{ margin: "5px" }} />{" "}
-                                {
-                                  TicketDetails?.Segments[0][0]?.Destination
-                                    ?.Airport?.CityName
-                                }
+                                {TicketDetails?.IsLCC === false ? (
+                                  <span>
+                                    LCC
+                                  </span>
+                                ) : (
+                                  ""
+                                )}
                               </p>
-                              <div className="aboveSpan">
-                                <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
-                                <span>Non Stop {" "} {duration}</span>
-                              </div>
                             </div>
 
-                            <div className="aboveBelowSpan">
-                              <span>Cancellation Fees Apply</span>
-                              <span className="aboveSOne">View Fare Rules</span>
-                            </div>
-                          </div>
-
-                          <div className="bookcenteredBox">
-                            <div>
-                              <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
-                            </div>
-                            <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
-                            <p>
-                              {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
-                              {
-                                TicketDetails?.Segments[0][0]?.Airline
-                                  ?.FlightNumber
-                              }
-                              {TicketDetails?.IsLCC === false ? (
-                                <span>
-                                  LCC
-                                </span>
-                              ) : (
-                                ""
-                              )}
-                            </p>
-                          </div>
-
-                          <div className="bookbottomBox">
-                            <div>
-                              <div className="bookBottomOne">
-                                <p>{desiredFormat.slice(13)}</p>
-                                <p>{desiredFormat1.slice(13)}</p>
-                              </div>
-                              <div className="bookBottomTwo">
-                                <img src={fromTo} alt="icon" />
-                              </div>
-                              <div className="bookBottomThree">
-                                <p>
-                                  {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                    ?.CityName} {" "}
-                                  <span>
+                            <div className="bookbottomBox">
+                              <div>
+                                <div className="bookBottomOne">
+                                  <p>{desiredFormat.slice(13)}</p>
+                                  <p>{desiredFormat1.slice(13)}</p>
+                                </div>
+                                <div className="bookBottomTwo">
+                                  <img src={fromTo} alt="icon" />
+                                </div>
+                                <div className="bookBottomThree">
+                                  <p>
                                     {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                      ?.AirportName}
-                                  </span>
-                                </p>
-                                <p>
-                                  {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                    ?.CityName} {" "}
-                                  <span>
+                                      ?.CityName} {" "}
+                                    <span>
+                                      {TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                        ?.AirportName}
+                                    </span>
+                                  </p>
+                                  <p>
                                     {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                      ?.AirportName}
-                                  </span>
-                                </p>
+                                      ?.CityName} {" "}
+                                    <span>
+                                      {TicketDetails?.Segments[0][0]?.Destination?.Airport
+                                        ?.AirportName}
+                                    </span>
+                                  </p>
+                                </div>
                               </div>
-                            </div>
-                            <div className="bookBottomFour">
-                              <div>
-                                <p>Baggage</p>
-                                <span>ADULT</span>
-                              </div>
-                              <div>
-                                <p>Check-in</p>
-                                <span>15 Kgs</span>
-                              </div>
-                              <div>
-                                <p>Cabin</p>
-                                <span>7 Kgs</span>
+                              <div className="bookBottomFour">
+                                <div>
+                                  <p>Baggage</p>
+                                  <span>ADULT</span>
+                                </div>
+                                <div>
+                                  <p>Check-in</p>
+                                  <span>15 Kgs</span>
+                                </div>
+                                <div>
+                                  <p>Cabin</p>
+                                  <span>7 Kgs</span>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </>
-                    )
-                }
-              </div>
-              <div className="col-lg-12 mt-3">
-                <div className="bookNowCancel">
-                  <div className="bookCancleOne">
+                        </>
+                      )
+                  }
+                </div>
+                <div className="col-lg-12 mt-3">
+                  <div className="bookNowCancel">
+                    <div className="bookCancleOne">
 
-                    <p>
-                      Cancellation Refund Policy
-                    </p>
-                    <div>
-                      <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
-                      <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
+                      <p>
+                        Cancellation Refund Policy
+                      </p>
+                      <div>
+                        <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
+                        <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
+                      </div>
+                      <span>Cancellation Penalty :</span>
                     </div>
-                    <span>Cancellation Penalty :</span>
-                  </div>
 
-                  <div className="bookCancleTwo">
-                    <span>Cancel Between</span>
-                    <div className="svgLineBox">
-                      <div>
-                        <div className="svgCircle"></div>
-                        <svg xmlns="http://www.w3.org/2000/svg" max-width="560" height="9" viewBox="0 0 560 9" fill="none">
-                          <path d="M4 5L662 4" stroke="url(#paint0_linear_367_27446)" stroke-width="8" stroke-linecap="round" />
-                          <defs>
-                            <linearGradient id="paint0_linear_367_27446" x1="4.00583" y1="7.99358" x2="662.006" y2="7.98716" gradientUnits="userSpaceOnUse">
-                              <stop stop-color="#41754C" />
-                              <stop offset="0.494792" stop-color="#E2C735" />
-                              <stop offset="0.494892" stop-color="#DFCB66" />
-                              <stop offset="1" stop-color="#DA3030" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
-                      </div>
-                      <div>
-                        <span>From {detailsOfCancel?.[0]?.From}-{detailsOfCancel?.[0]?.To} {' '}
-                          {detailsOfCancel?.[0]?.Unit}
-                        </span>
-                        <span>From {detailsOfCancel?.[1]?.From}-{detailsOfCancel?.[1]?.To} {' '}
-                          {detailsOfCancel?.[1]?.Unit}</span>
-                      </div>
-                      <div>
-                        <span>{detailsOfCancel?.[0]?.Details}</span>
-                        <span>{detailsOfCancel?.[1]?.Details}</span>
-                      </div>
-                      {/* <div>
+                    <div className="bookCancleTwo">
+                      <span>Cancel Between</span>
+                      <div className="svgLineBox">
+                        <div>
+                          <div className="svgCircle"></div>
+                          <svg xmlns="http://www.w3.org/2000/svg" max-width="560" height="9" viewBox="0 0 560 9" fill="none">
+                            <path d="M4 5L662 4" stroke="url(#paint0_linear_367_27446)" stroke-width="8" stroke-linecap="round" />
+                            <defs>
+                              <linearGradient id="paint0_linear_367_27446" x1="4.00583" y1="7.99358" x2="662.006" y2="7.98716" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#41754C" />
+                                <stop offset="0.494792" stop-color="#E2C735" />
+                                <stop offset="0.494892" stop-color="#DFCB66" />
+                                <stop offset="1" stop-color="#DA3030" />
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </div>
+                        <div>
+                          <span>From {detailsOfCancel?.[0]?.From}-{detailsOfCancel?.[0]?.To} {' '}
+                            {detailsOfCancel?.[0]?.Unit}
+                          </span>
+                          <span>From {detailsOfCancel?.[1]?.From}-{detailsOfCancel?.[1]?.To} {' '}
+                            {detailsOfCancel?.[1]?.Unit}</span>
+                        </div>
+                        <div>
+                          <span>{detailsOfCancel?.[0]?.Details}</span>
+                          <span>{detailsOfCancel?.[1]?.Details}</span>
+                        </div>
+                        {/* <div>
                       </div> */}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="col-md-9 ">
-                <div
-                  className="leftsections"
-                  display="flex"
-                  justifyContent="center"
-                  alignItems="center"
-                  py={3}
-                >
-                  <Box p={3}>
-                    <Box
-                      style={{
-                        display: "flex",
-                        marginTop: "12px",
-                        marginBottom: "12px",
-                      }}
-                      px={2}
-                    >
-                      <Typography
-                        className="list_item"
-                        style={{ color: "black", marginY: "12px" }}
-                      >
-                        Traveller Details
-                      </Typography>
-                    </Box>
-                    <Box
-                      style={{
-                        backgroundColor: "white",
-                        boxShadow: "0px 3px 6px #00000029",
-                        borderRadius: "10px",
-                      }}
-                      p={2}
-                    >
-                      {/* For adult passenger List */}
-                      <Box
-                        display="flex"
-                        justifyContent="space-between"
-                        alignItems="center"
-                      >
-                        <Typography>
-                          <AccountCircleIcon /> Adult (18 yrs+)
-                        </Typography>
-                        <Typography className="Top_txt" py={3}>
-                          <Chip
-                            color="warning"
-                            label="Please Fill adult details"
-                            deleteIcon={<ErrorOutlineIcon />}
-                            variant="outlined"
-                          />
-                        </Typography>
-                      </Box>
-                      {adultCount > 0 &&
-                        Array.from({ length: adultCount }, (_, index) => (
-                          <Box>
-                            <div
-                              mb={2}
-                              key={index}
-                              className="services"
-                              py={1}
-                            >
-                              <Accordion
-                                expanded={accordionExpanded === index}
-                                onChange={handleAccordionChange(index)}
+
+                <div className="col-lg-12 mt-3">
+                  <div className="bookflightPassenger">
+                    <div className="headingBookFlight">
+                      <h3>Traveller Details</h3>
+                    </div>
+                    {adultCount > 0 &&
+                      Array.from({ length: adultCount }, (_, index) => (
+                        <div className="bookFlightPassInner">
+                          <div className="bookAdultIndex">
+                            <p>Adult {index + 1}</p>
+                          </div>
+                          <div className="row g-3 mb-3">
+                            <div className="col-lg-3 col-md-3">
+                              <select
+                                className="form-select h-100"
+                                name="Title"
+                                onChange={(e) =>
+                                  handleServiceChange(e, index)
+                                }
                               >
-                                <AccordionSummary
-                                  expandIcon={<ExpandMoreIcon />}
-                                  aria-controls="panel1a-content"
-                                  id="panel1a-header"
-                                >
-                                  <Typography>Adult {index + 1}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                  <Box>
-                                    <Grid container spacing={6}>
-                                      <Grid
-                                        item
-                                        xs={12}
-                                        sm={12}
-                                        md={4}
-                                        mb={2}
-                                      >
-                                        <Box>
-                                          <div className="form_input">
-                                            <label className="form_lable">
-                                              Title*
-                                            </label>
-                                            <select
-                                              name="Title"
-                                              onChange={(e) =>
-                                                handleServiceChange(e, index)
-                                              }
-                                            >
-                                              <option value="Mr">Mr.</option>
-                                              <option value="Mrs">
-                                                Mrs.
-                                              </option>
-                                              <option value="Miss">
-                                                Miss
-                                              </option>
-                                            </select>
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                      <Grid item xs={12} sm={6} md={4} mb={5}>
-                                        <Box>
-                                          <div className="hotel_form_input">
-                                            <label className="form_label">
-                                              First name*
-                                            </label>
-                                            <input
-                                              className="hotel_input_select"
-                                              name="FirstName"
-                                              placeholder="Enter your name"
-                                              onChange={(e) =>
-                                                handleServiceChange(e, index)
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                      <Grid item xs={12} sm={6} md={4} mb={5}>
-                                        <Box>
-                                          <div className="hotel_form_input">
-                                            <label className="form_label">
-                                              Last name*
-                                            </label>
-                                            <input
-                                              name="LastName"
-                                              placeholder="Enter your last name"
-                                              onChange={(e) =>
-                                                handleServiceChange(e, index)
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                    </Grid>
-                                    <Grid container spacing={6}>
-                                      <Grid item xs={12} sm={6} md={4} mb={2}>
-                                        <Box>
-                                          <div className="hotel_form_input">
-                                            <label
-                                              hotel_form_input
-                                              className="form_lable"
-                                            >
-                                              Date Of Birth*
-                                            </label>
-                                            <input
-                                              type="date"
-                                              name="DateOfBirth"
-                                              className="hotel_input_select"
-                                              onChange={(e) =>
-                                                handleServiceChange(e, index)
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                    </Grid>
-                                    {isPassportRequired == true ? (
-                                      <Grid container spacing={6}>
-                                        <Grid
-                                          item
-                                          xs={12}
-                                          sm={6}
-                                          md={4}
-                                          mb={5}
-                                        >
-                                          <Box>
-                                            <div className="hotel_form_input">
-                                              <label
-                                                hotel_form_input
-                                                className="form_lable"
-                                              >
-                                                PassportNo*
-                                              </label>
-                                              <input
-                                                type="text"
-                                                name="PassportNo"
-                                                className="hotel_input_select"
-                                                onChange={(e) =>
-                                                  handleServiceChange(
-                                                    e,
-                                                    index
-                                                  )
-                                                }
-                                              />
-                                            </div>
-                                          </Box>
-                                        </Grid>
-                                        <Grid
-                                          item
-                                          xs={12}
-                                          sm={12}
-                                          md={4}
-                                          py={1}
-                                        >
-                                          <Box>
-                                            <div className="hotel_form_input">
-                                              <label
-                                                hotel_form_input
-                                                className="form_lable"
-                                              >
-                                                PassportExpiry*
-                                              </label>
-                                              <input
-                                                name="PassportExpiry"
-                                                type="date"
-                                                placeholder="Enter your passportexpiry"
-                                                onChange={(e) =>
-                                                  handleServiceChange(
-                                                    e,
-                                                    index
-                                                  )
-                                                }
-                                              />
-                                            </div>
-                                          </Box>
-                                        </Grid>
-                                      </Grid>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </Box>
-                                </AccordionDetails>
-                              </Accordion>
-                              {/* {hand leServiceAdd()} */}
-                              {/* Form end */}
+                                <option value="Mr">Mr.</option>
+                                <option value="Mrs">
+                                  Mrs.
+                                </option>
+                                <option value="Miss">
+                                  Miss
+                                </option>
+                              </select>
                             </div>
-                          </Box>
-                        ))}
-
-                      {/* For Child passenger List */}
-
-                      {childCount > 0 && (
-                        <>
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                          >
-                            <Typography>
-                              <AccountCircleIcon /> Child (5 yrs+)
-                            </Typography>
-                            <Typography className="Top_txt" py={3}>
-                              Child {passengerList.length} / {childCount}{" "}
-                              <Typography variant="caption">added</Typography>
-                            </Typography>
-                          </Box>
-                        </>
-                      )}
-                      {childCount > 0 &&
-                        Array.from({ length: childCount }, (_, index) => (
-                          <Box>
-                            <div
-                              mb={2}
-                              key={index}
-                              className="services"
-                              py={1}
-                            >
-                              <Accordion>
-                                <AccordionSummary
-                                  expandIcon={<ExpandMoreIcon />}
-                                  aria-controls="panel1a-content"
-                                  id="panel1a-header"
-                                >
-                                  <Typography>Child {index + 1}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                  <Box>
-                                    <Grid container spacing={3} my={1}>
-                                      <Grid item xs={12} sm={12} md={4}>
-                                        <Box>
-                                          <div className="form_input">
-                                            <label
-                                              hotel_form_input
-                                              className="form_lable"
-                                            >
-                                              First name*
-                                            </label>
-                                            <input
-                                              name="FirstName"
-                                              placeholder="Enter your name"
-                                              onChange={(e) =>
-                                                handleServiceChange(
-                                                  e,
-                                                  index + Number(adultCount)
-                                                )
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                      <Grid
-                                        item
-                                        xs={12}
-                                        sm={12}
-                                        md={4}
-                                        py={1}
-                                      >
-                                        <Box>
-                                          <div className="form_input">
-                                            <label
-                                              hotel_form_input
-                                              className="form_lable"
-                                            >
-                                              Last name*
-                                            </label>
-                                            <input
-                                              name="LastName"
-                                              placeholder="Enter your last name"
-                                              onChange={(e) =>
-                                                handleServiceChange(
-                                                  e,
-                                                  index + Number(adultCount)
-                                                )
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                      {isPassportRequired == true ? (
-                                        <Grid container spacing={6}>
-                                          <Grid
-                                            item
-                                            xs={12}
-                                            sm={6}
-                                            md={4}
-                                            mb={5}
-                                          >
-                                            <Box>
-                                              <div className="hotel_form_input">
-                                                <label
-                                                  hotel_form_input
-                                                  className="form_lable"
-                                                >
-                                                  PassportNo*
-                                                </label>
-                                                <input
-                                                  type="text"
-                                                  name="PassportNo"
-                                                  className="hotel_input_select"
-                                                  onChange={(e) =>
-                                                    handleServiceChange(
-                                                      e,
-                                                      index +
-                                                      Number(adultCount)
-                                                    )
-                                                  }
-                                                />
-                                              </div>
-                                            </Box>
-                                          </Grid>
-                                          <Grid
-                                            item
-                                            xs={12}
-                                            sm={12}
-                                            md={4}
-                                            py={1}
-                                          >
-                                            <Box>
-                                              <div className="hotel_form_input">
-                                                <label
-                                                  hotel_form_input
-                                                  className="form_lable"
-                                                >
-                                                  PassportExpiry*
-                                                </label>
-                                                <input
-                                                  name="PassportExpiry"
-                                                  type="date"
-                                                  placeholder="Enter your passportexpiry"
-                                                  onChange={(e) =>
-                                                    handleServiceChange(
-                                                      e,
-                                                      index +
-                                                      Number(adultCount)
-                                                    )
-                                                  }
-                                                />
-                                              </div>
-                                            </Box>
-                                          </Grid>
-                                        </Grid>
-                                      ) : (
-                                        ""
-                                      )}
-                                    </Grid>
-                                    <Box
-                                      display="flex"
-                                      justifyContent="space-between"
-                                    >
-                                      <Box>
-                                        <div className="hotel_form_input">
-                                          <label className="form_lable">
-                                            Gender*
-                                          </label>
-                                          <select
-                                            name="Gender"
-                                            className="hotel_input_select"
-                                            onChange={(e) =>
-                                              handleServiceChange(
-                                                e,
-                                                index + Number(adultCount)
-                                              )
-                                            }
-                                          >
-                                            <option value="1">Female</option>
-                                            <option value="2">Male</option>
-                                          </select>
-                                        </div>
-                                      </Box>
-                                      <Box>
-                                        <div className="form_input">
-                                          <label
-                                            hotel_form_input
-                                            className="form_lable"
-                                          >
-                                            Date Of Birth*
-                                          </label>
-                                          <input
-                                            type="date"
-                                            name="DateOfBirth"
-                                            className="deaprture_input"
-                                            onChange={(e) =>
-                                              handleServiceChange(
-                                                e,
-                                                index + Number(adultCount)
-                                              )
-                                            }
-                                          />
-                                        </div>
-                                      </Box>
-                                    </Box>
-                                    <Box
-                                      pt={2}
-                                      display="flex"
-                                      justifyContent="space-around"
-                                    ></Box>
-                                  </Box>
-                                </AccordionDetails>
-                              </Accordion>
-
-                              {/* Form end */}
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input onChange={(e) =>
+                                  handleServiceChange(e, index)
+                                } type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
+                                <label for="floatingInput">First Name</label>
+                              </div>
                             </div>
-                          </Box>
-                        ))}
-
-                      {/* For Infant passenger List */}
-                      {infantCount > 0 && (
-                        <>
-                          <Box
-                            display="flex"
-                            justifyContent="space-between"
-                            alignItems="center"
-                          >
-                            <Typography>
-                              <AccountCircleIcon /> Infant (15 days to 2 yrs)
-                            </Typography>
-                            <Typography className="Top_txt" py={3}>
-                              Infant {passengerList.length} / {infantCount}{" "}
-                              <Typography variant="caption">added</Typography>
-                            </Typography>
-                          </Box>
-                        </>
-                      )}
-                      {infantCount > 0 &&
-                        Array.from({ length: infantCount }, (_, index) => (
-                          <Box>
-                            <div
-                              mb={2}
-                              key={index}
-                              className="services"
-                              py={1}
-                            >
-                              <Accordion>
-                                <AccordionSummary
-                                  expandIcon={<ExpandMoreIcon />}
-                                  aria-controls="panel1a-content"
-                                  id="panel1a-header"
-                                >
-                                  <Typography>infant {index + 1}</Typography>
-                                </AccordionSummary>
-                                <AccordionDetails>
-                                  <Box>
-                                    <Grid container spacing={3} my={1}>
-                                      <Grid item xs={12} sm={12} md={4}>
-                                        <Box>
-                                          <div className="form_input">
-                                            <label
-                                              hotel_form_input
-                                              className="form_lable"
-                                            >
-                                              First name*
-                                            </label>
-                                            <input
-                                              name="FirstName"
-                                              placeholder="Enter your name"
-                                              onChange={(e) =>
-                                                handleServiceChange(
-                                                  e,
-                                                  index +
-                                                  Number(adultCount) +
-                                                  Number(childCount)
-                                                )
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                      <Grid
-                                        item
-                                        xs={12}
-                                        sm={12}
-                                        md={4}
-                                        py={1}
-                                      >
-                                        <Box>
-                                          <div className="form_input">
-                                            <label
-                                              hotel_form_input
-                                              className="form_lable"
-                                            >
-                                              Last name*
-                                            </label>
-                                            <input
-                                              name="LastName"
-                                              placeholder="Enter your last name"
-                                              onChange={(e) =>
-                                                handleServiceChange(
-                                                  e,
-                                                  index +
-                                                  Number(adultCount) +
-                                                  Number(childCount)
-                                                )
-                                              }
-                                            />
-                                          </div>
-                                        </Box>
-                                      </Grid>
-                                    </Grid>
-                                    <Box
-                                      display="flex"
-                                      justifyContent="space-between"
-                                    >
-                                      {/* Form start */}
-
-                                      <Box>
-                                        <div className="hotel_form_input">
-                                          <label className="form_lable">
-                                            Gender*
-                                          </label>
-                                          <select
-                                            name="Gender"
-                                            className="hotel_input_select"
-                                            onChange={(e) =>
-                                              handleServiceChange(
-                                                e,
-                                                index +
-                                                Number(adultCount) +
-                                                Number(childCount)
-                                              )
-                                            }
-                                          >
-                                            <option value="1">Female</option>
-                                            <option value="2">Male</option>
-                                          </select>
-                                        </div>
-                                      </Box>
-                                      <Box>
-                                        <div className="form_input">
-                                          <label
-                                            hotel_form_input
-                                            className="form_lable"
-                                          >
-                                            Date Of Birth*
-                                          </label>
-                                          <input
-                                            type="date"
-                                            name="DateOfBirth"
-                                            className="deaprture_input"
-                                            onChange={(e) =>
-                                              handleServiceChange(
-                                                e,
-                                                index +
-                                                Number(adultCount) +
-                                                Number(childCount)
-                                              )
-                                            }
-                                          />
-                                        </div>
-                                      </Box>
-                                    </Box>
-
-                                    {isPassportRequired == true ? (
-                                      <Grid container spacing={6}>
-                                        <Grid
-                                          item
-                                          xs={12}
-                                          sm={6}
-                                          md={4}
-                                          mb={5}
-                                        >
-                                          <Box>
-                                            <div className="hotel_form_input">
-                                              <label
-                                                hotel_form_input
-                                                className="form_lable"
-                                              >
-                                                PassportNo*
-                                              </label>
-                                              <input
-                                                type="text"
-                                                name="PassportNo"
-                                                className="hotel_input_select"
-                                                onChange={(e) =>
-                                                  handleServiceChange(
-                                                    e,
-                                                    index +
-                                                    Number(adultCount) +
-                                                    Number(childCount)
-                                                  )
-                                                }
-                                              />
-                                            </div>
-                                          </Box>
-                                        </Grid>
-                                        <Grid
-                                          item
-                                          xs={12}
-                                          sm={12}
-                                          md={4}
-                                          py={1}
-                                        >
-                                          <Box>
-                                            <div className="hotel_form_input">
-                                              <label
-                                                hotel_form_input
-                                                className="form_lable"
-                                              >
-                                                PassportExpiry*
-                                              </label>
-                                              <input
-                                                name="PassportExpiry"
-                                                type="date"
-                                                placeholder="Enter your passportexpiry"
-                                                onChange={(e) =>
-                                                  handleServiceChange(
-                                                    e,
-                                                    index +
-                                                    Number(adultCount) +
-                                                    Number(childCount)
-                                                  )
-                                                }
-                                              />
-                                            </div>
-                                          </Box>
-                                        </Grid>
-                                      </Grid>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </Box>
-                                </AccordionDetails>
-                              </Accordion>
-
-                              {/* Form end */}
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input onChange={(e) =>
+                                  handleServiceChange(e, index)
+                                } type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
+                                <label for="floatingInput">Last Name</label>
+                              </div>
                             </div>
-                          </Box>
-                        ))}
-                    </Box>
-                    <form className="form">
-                      <Box margin="10px 15px">
-                        <Box style={{ marginTop: "10px" }} px={2}>
-                          <Typography
-                            className="list_item"
-                            style={{
-                              color: "black",
-                              marginTop: "12px",
-                            }}
-                          >
-                            Your Booking Details will be sent to
-                          </Typography>
-                          <Box
-                            style={{
-                              display: "flex",
-                              marginTop: "15px",
-                              justifyContent: "left",
-                            }}
-                          >
-                            <div style={{ display: "flex" }}>
-                              <Box mx={2}>
-                                <label htmlFor="email">EMAIL ADDRESS</label>
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
                                 <input
-                                  type="email"
-                                  placeholder="Email Address "
-                                  name="sendEmail"
-                                  value={email}
-                                  onChange={(e) => {
-                                    setEmail(e.target.value);
-                                  }}
-                                  mx={3}
-                                  style={{
-                                    height: "35px",
-                                    width: "100%",
-
-                                    boxShadow: "0px 3px 6px #00000029",
-                                    borderRadius: "5px",
-
-                                    border: "0.5px solid #BBB",
-
-                                    padding: "12px 15px",
-                                  }}
+                                  type="date"
+                                  name="DateOfBirth"
+                                  className="form-control"
+                                  onChange={(e) =>
+                                    handleServiceChange(e, index)
+                                  }
                                 />
-                              </Box>
+                              </div>
                             </div>
-                            <div
-                              style={{
-                                display: "flex",
-                                marginLeft: "200px",
-                              }}
-                            >
-                              <Box mx={2}>
-                                <label htmlFor="email">MOBILE NUMBER</label>
+                          </div>
+
+                          {/* passport details here */}
+                          {isPassportRequired == true ? (
+                            <>
+                              <div className="bookAdultIndex">
+                                <p>Passport Details</p>
+                              </div>
+                              <div className="row g-3 mb-3">
+
+                                <div className="col-lg-3 col-md-3">
+                                  <div class="form-floating">
+                                    <input onChange={(e) =>
+                                      handleServiceChange(e, index)
+                                    } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
+                                    <label for="floatingInput">Passport Number</label>
+                                  </div>
+                                </div>
+                                <div className="col-lg-3 col-md-3">
+                                  <div class="form-floating">
+                                    <input onChange={(e) =>
+                                      handleServiceChange(e, index)
+                                    } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
+                                    <label for="floatingInput">Passport Expiry</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : ("")
+                          }
+                        </div>
+                      ))}
+
+
+                    {/* child details here  */}
+
+                    {childCount > 0 &&
+                      Array.from({ length: childCount }, (_, index) => (
+                        <div className="bookFlightPassInner">
+                          <div className="bookAdultIndex">
+                            <p>Child {index + 1}</p>
+                          </div>
+                          <div className="row g-3 mb-3">
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input onChange={(e) =>
+                                  handleServiceChange(
+                                    e,
+                                    index + Number(adultCount)
+                                  )
+                                }
+                                  type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
+                                <label for="floatingInput">First Name</label>
+                              </div>
+                            </div>
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input onChange={(e) =>
+                                  handleServiceChange(
+                                    e,
+                                    index + Number(adultCount)
+                                  )
+                                }
+                                  type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
+                                <label for="floatingInput">Last Name</label>
+                              </div>
+                            </div>
+
+                            <div className="col-lg-3 col-md-3">
+                              <select
+                                className="form-select h-100"
+                                name="Gender"
+                                onChange={(e) =>
+                                  handleServiceChange(
+                                    e,
+                                    index + Number(adultCount)
+                                  )
+                                }
+                              >
+                                <option value="1">Female</option>
+                                <option value="2">Male</option>
+                              </select>
+                            </div>
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
                                 <input
-                                  type="phone"
-                                  placeholder="Mobile Number"
-                                  name="sendNumber"
-                                  value={cNumber}
-                                  onChange={(e) => {
-                                    setCnumber(e.target.value);
-                                  }}
-                                  mx={2}
-                                  style={{
-                                    height: "35px",
-                                    width: "100%",
-                                    boxShadow: "0px 3px 6px #00000029",
-                                    borderRadius: "5px",
-                                    border: "0.5px solid #BBB",
-                                    padding: "12px 15px",
-                                  }}
+                                  type="date"
+                                  name="DateOfBirth"
+                                  className="form-control"
+                                  onChange={(e) =>
+                                    handleServiceChange(
+                                      e,
+                                      index + Number(adultCount)
+                                    )
+                                  }
                                 />
-                              </Box>
+                              </div>
                             </div>
-                          </Box>
-                          <Box
-                            style={{
-                              marginTop: "10px",
-                              display: "flex",
-                            }}
-                          >
-                            <Checkbox {...label} />
-                            <Typography
-                              className="list_item1"
-                              display="flex"
-                              alignItems="center"
-                            >
-                              I have a GST number{" "}
-                              <span sx={{ color: "#BBBBBB" }}>
-                                (optional)
-                              </span>
-                            </Typography>
-                          </Box>
-                          <Box
-                            style={{
-                              marginTop: "10px",
-                              display: "flex",
-                              justifyContent: "center",
-                            }}
-                          ></Box>
-                        </Box>
-                      </Box>
+                          </div>
+                          {/* passport details here */}
+                          {isPassportRequired == true ? (
+                            <>
+                              <div className="bookAdultIndex">
+                                <p>Passport Details</p>
+                              </div>
+                              <div className="row g-3 mb-3">
+
+                                <div className="col-lg-3 col-md-3">
+                                  <div class="form-floating">
+                                    <input onChange={(e) =>
+                                      handleServiceChange(
+                                        e,
+                                        index +
+                                        Number(adultCount)
+                                      )
+                                    } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
+                                    <label for="floatingInput">Passport Number</label>
+                                  </div>
+                                </div>
+                                <div className="col-lg-3 col-md-3">
+                                  <div class="form-floating">
+                                    <input onChange={(e) =>
+                                      handleServiceChange(
+                                        e,
+                                        index +
+                                        Number(adultCount)
+                                      )
+                                    } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
+                                    <label for="floatingInput">Passport Expiry</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : ("")
+                          }
+                        </div>
+                      ))}
+
+
+                    {/* child details here  */}
+
+
+
+                    {/* infant details here  */}
+
+                    {infantCount > 0 &&
+                      Array.from({ length: infantCount }, (_, index) => (
+                        <div className="bookFlightPassInner">
+                          <div className="bookAdultIndex">
+                            <p>Infact {index + 1}</p>
+                          </div>
+                          <div className="row g-3 mb-3">
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input onChange={(e) =>
+                                  handleServiceChange(
+                                    e,
+                                    index +
+                                    Number(adultCount) +
+                                    Number(childCount)
+                                  )
+                                }
+                                  type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
+                                <label for="floatingInput">First Name</label>
+                              </div>
+                            </div>
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input onChange={(e) =>
+                                  handleServiceChange(
+                                    e,
+                                    index +
+                                    Number(adultCount) +
+                                    Number(childCount)
+                                  )
+                                }
+                                  type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
+                                <label for="floatingInput">Last Name</label>
+                              </div>
+                            </div>
+
+                            <div className="col-lg-3 col-md-3">
+                              <select
+                                className="form-select h-100"
+                                name="Gender"
+                                onChange={(e) =>
+                                  handleServiceChange(
+                                    e,
+                                    index +
+                                    Number(adultCount) +
+                                    Number(childCount)
+                                  )
+                                }
+                              >
+                                <option value="1">Female</option>
+                                <option value="2">Male</option>
+                              </select>
+                            </div>
+                            <div className="col-lg-3 col-md-3">
+                              <div class="form-floating">
+                                <input
+                                  type="date"
+                                  name="DateOfBirth"
+                                  className="form-control"
+                                  onChange={(e) =>
+                                    handleServiceChange(
+                                      e,
+                                      index +
+                                      Number(adultCount) +
+                                      Number(childCount)
+                                    )
+                                  }
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          {/* passport details here */}
+                          {isPassportRequired == true ? (
+                            <>
+                              <div className="bookAdultIndex">
+                                <p>Passport Details</p>
+                              </div>
+                              <div className="row g-3 mb-3">
+
+                                <div className="col-lg-3 col-md-3">
+                                  <div class="form-floating">
+                                    <input onChange={(e) =>
+                                      handleServiceChange(
+                                        e,
+                                        index +
+                                        Number(adultCount) +
+                                        Number(childCount)
+                                      )
+                                    } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
+                                    <label for="floatingInput">Passport Number</label>
+                                  </div>
+                                </div>
+                                <div className="col-lg-3 col-md-3">
+                                  <div class="form-floating">
+                                    <input onChange={(e) =>
+                                      handleServiceChange(
+                                        e,
+                                        index +
+                                        Number(adultCount) +
+                                        Number(childCount)
+                                      )
+                                    } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
+                                    <label for="floatingInput">Passport Expiry</label>
+                                  </div>
+                                </div>
+                              </div>
+                            </>
+                          ) : ("")
+                          }
+                        </div>
+                      ))}
+
+
+                    {/* infant details here  */}
+                  </div>
+                </div>
+
+
+
+                <div className="col-lg-12 mt-3">
+                  <div className="bookflightPassenger">
+                    <form>
+                      <div className="bookFlightPassInner">
+                        <div className="bookAdultIndex">
+                          <p>Your Booking Details will be sent to</p>
+                        </div>
+                        <div className="row g-3 mb-3">
+                          <div className="col-lg-5 col-md-5">
+                            <div className="form-floating">
+                              <input value={email}
+                                onChange={(e) => {
+                                  setEmail(e.target.value);
+                                }} type="email" name="sendEmail" className="form-control" id="floatingInput" placeholder="Email" />
+                              <label for="floatingInput">Enter Email</label>
+                            </div>
+                          </div>
+                          <div className="col-lg-5 col-md-5">
+                            <div className="form-floating">
+                              <input value={cNumber}
+                                onChange={(e) => {
+                                  setCnumber(e.target.value);
+                                }} type="phone" name="sendNumber" className="form-control" id="floatingInput" placeholder="Mobile Number" />
+                              <label for="floatingInput">Mobile Number</label>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </form>
-                    <TripSecureComponent />
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      sx={{
-                        color: "white",
-                        backgroundColor: "#E73C33",
-                        fontSize: "18px",
-                        borderRadius: "16px",
-                        marginTop: "16px",
-                        boxShadow: "0px 4px 8px 0px rgba(0, 0, 0, 0.30)",
-                      }}
-                      onClick={handleButtonClick}
-                    >
-                      Continue
-                    </Button>
-                  </Box>
+                  </div>
+                </div>
+
+
+                {/* trip security  */}
+
+                <div className="col-lg-12">
+                  <TripSecureComponent />
+                </div>
+
+                {/* trip security  */}
+
+                <div className="col-lg-12 mt-4">
+                  <button className="bookWrapperButton" type="submit" onClick={handleButtonClick}>
+                    Continue
+                  </button>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-md-3">
-            <BookNowLeft />
+            <div className="col-md-3">
+              <BookNowLeft />
+            </div>
           </div>
         </div>
-      </div>
-      {/* )} */}
+      )}
     </>
   );
 }
+
+
+
+
+
+
+
+
+
+
+// {/* <Box
+//   style={{
+//     backgroundColor: "white",
+//     boxShadow: "0px 3px 6px #00000029",
+//     borderRadius: "10px",
+//   }}
+//   p={2}
+// >
+//   {/* For adult passenger List */}
+//   <Box
+//     display="flex"
+//     justifyContent="space-between"
+//     alignItems="center"
+//   >
+//     <Typography>
+//       <AccountCircleIcon /> Adult (18 yrs+)
+//     </Typography>
+//     <Typography className="Top_txt" py={3}>
+//       <Chip
+//         color="warning"
+//         label="Please Fill adult details"
+//         deleteIcon={<ErrorOutlineIcon />}
+//         variant="outlined"
+//       />
+//     </Typography>
+//   </Box>
+//   {adultCount > 0 &&
+//     Array.from({ length: adultCount }, (_, index) => (
+//       <Box>
+//         <div
+//           mb={2}
+//           key={index}
+//           className="services"
+//           py={1}
+//         >
+//           <Accordion
+//             expanded={accordionExpanded === index}
+//             onChange={handleAccordionChange(index)}
+//           >
+//             <AccordionSummary
+//               expandIcon={<ExpandMoreIcon />}
+//               aria-controls="panel1a-content"
+//               id="panel1a-header"
+//             >
+//               <Typography>Adult {index + 1}</Typography>
+//             </AccordionSummary>
+//             <AccordionDetails>
+//               <Box>
+//                 <Grid container spacing={6}>
+//                   <Grid
+//                     item
+//                     xs={12}
+//                     sm={12}
+//                     md={4}
+//                     mb={2}
+//                   >
+//                     <Box>
+//                       <div className="form_input">
+//                         <label className="form_lable">
+//                           Title*
+//                         </label>
+//                         <select
+//                           name="Title"
+//                           onChange={(e) =>
+//                             handleServiceChange(e, index)
+//                           }
+//                         >
+//                           <option value="Mr">Mr.</option>
+//                           <option value="Mrs">
+//                             Mrs.
+//                           </option>
+//                           <option value="Miss">
+//                             Miss
+//                           </option>
+//                         </select>
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                   <Grid item xs={12} sm={6} md={4} mb={5}>
+//                     <Box>
+//                       <div className="hotel_form_input">
+//                         <label className="form_label">
+//                           First name*
+//                         </label>
+//                         <input
+//                           className="hotel_input_select"
+//                           name="FirstName"
+//                           placeholder="Enter your name"
+//                           onChange={(e) =>
+//                             handleServiceChange(e, index)
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                   <Grid item xs={12} sm={6} md={4} mb={5}>
+//                     <Box>
+//                       <div className="hotel_form_input">
+//                         <label className="form_label">
+//                           Last name*
+//                         </label>
+//                         <input
+//                           name="LastName"
+//                           placeholder="Enter your last name"
+//                           onChange={(e) =>
+//                             handleServiceChange(e, index)
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                 </Grid>
+//                 <Grid container spacing={6}>
+//                   <Grid item xs={12} sm={6} md={4} mb={2}>
+//                     <Box>
+//                       <div className="hotel_form_input">
+//                         <label
+//                           hotel_form_input
+//                           className="form_lable"
+//                         >
+//                           Date Of Birth*
+//                         </label>
+//                         <input
+//                           type="date"
+//                           name="DateOfBirth"
+//                           className="hotel_input_select"
+//                           onChange={(e) =>
+//                             handleServiceChange(e, index)
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                 </Grid>
+//                 {isPassportRequired == true ? (
+//                   <Grid container spacing={6}>
+//                     <Grid
+//                       item
+//                       xs={12}
+//                       sm={6}
+//                       md={4}
+//                       mb={5}
+//                     >
+//                       <Box>
+//                         <div className="hotel_form_input">
+//                           <label
+//                             hotel_form_input
+//                             className="form_lable"
+//                           >
+//                             PassportNo*
+//                           </label>
+//                           <input
+//                             type="text"
+//                             name="PassportNo"
+//                             className="hotel_input_select"
+//                             onChange={(e) =>
+//                               handleServiceChange(
+//                                 e,
+//                                 index
+//                               )
+//                             }
+//                           />
+//                         </div>
+//                       </Box>
+//                     </Grid>
+//                     <Grid
+//                       item
+//                       xs={12}
+//                       sm={12}
+//                       md={4}
+//                       py={1}
+//                     >
+//                       <Box>
+//                         <div className="hotel_form_input">
+//                           <label
+//                             hotel_form_input
+//                             className="form_lable"
+//                           >
+//                             PassportExpiry*
+//                           </label>
+//                           <input
+//                             name="PassportExpiry"
+//                             type="date"
+//                             placeholder="Enter your passportexpiry"
+//                             onChange={(e) =>
+//                               handleServiceChange(
+//                                 e,
+//                                 index
+//                               )
+//                             }
+//                           />
+//                         </div>
+//                       </Box>
+//                     </Grid>
+//                   </Grid>
+//                 ) : (
+//                   ""
+//                 )}
+//               </Box>
+//             </AccordionDetails>
+//           </Accordion>
+//           {/* {hand leServiceAdd()} */}
+//           {/* Form end */}
+//         </div>
+//       </Box>
+//     ))}
+
+//   {/* For Child passenger List */}
+
+//   {childCount > 0 && (
+//     <>
+//       <Box
+//         display="flex"
+//         justifyContent="space-between"
+//         alignItems="center"
+//       >
+//         <Typography>
+//           <AccountCircleIcon /> Child (5 yrs+)
+//         </Typography>
+//         <Typography className="Top_txt" py={3}>
+//           Child {passengerList.length} / {childCount}{" "}
+//           <Typography variant="caption">added</Typography>
+//         </Typography>
+//       </Box>
+//     </>
+//   )}
+//   {childCount > 0 &&
+//     Array.from({ length: childCount }, (_, index) => (
+//       <Box>
+//         <div
+//           mb={2}
+//           key={index}
+//           className="services"
+//           py={1}
+//         >
+//           <Accordion>
+//             <AccordionSummary
+//               expandIcon={<ExpandMoreIcon />}
+//               aria-controls="panel1a-content"
+//               id="panel1a-header"
+//             >
+//               <Typography>Child {index + 1}</Typography>
+//             </AccordionSummary>
+//             <AccordionDetails>
+//               <Box>
+//                 <Grid container spacing={3} my={1}>
+//                   <Grid item xs={12} sm={12} md={4}>
+//                     <Box>
+//                       <div className="form_input">
+//                         <label
+//                           hotel_form_input
+//                           className="form_lable"
+//                         >
+//                           First name*
+//                         </label>
+//                         <input
+//                           name="FirstName"
+//                           placeholder="Enter your name"
+//                           onChange={(e) =>
+//                             handleServiceChange(
+//                               e,
+//                               index + Number(adultCount)
+//                             )
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                   <Grid
+//                     item
+//                     xs={12}
+//                     sm={12}
+//                     md={4}
+//                     py={1}
+//                   >
+//                     <Box>
+//                       <div className="form_input">
+//                         <label
+//                           hotel_form_input
+//                           className="form_lable"
+//                         >
+//                           Last name*
+//                         </label>
+//                         <input
+//                           name="LastName"
+//                           placeholder="Enter your last name"
+//                           onChange={(e) =>
+//                             handleServiceChange(
+//                               e,
+//                               index + Number(adultCount)
+//                             )
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                   {isPassportRequired == true ? (
+//                     <Grid container spacing={6}>
+//                       <Grid
+//                         item
+//                         xs={12}
+//                         sm={6}
+//                         md={4}
+//                         mb={5}
+//                       >
+//                         <Box>
+//                           <div className="hotel_form_input">
+//                             <label
+//                               hotel_form_input
+//                               className="form_lable"
+//                             >
+//                               PassportNo*
+//                             </label>
+//                             <input
+//                               type="text"
+//                               name="PassportNo"
+//                               className="hotel_input_select"
+//                               onChange={(e) =>
+//                                 handleServiceChange(
+//                                   e,
+//                                   index +
+//                                   Number(adultCount)
+//                                 )
+//                               }
+//                             />
+//                           </div>
+//                         </Box>
+//                       </Grid>
+//                       <Grid
+//                         item
+//                         xs={12}
+//                         sm={12}
+//                         md={4}
+//                         py={1}
+//                       >
+//                         <Box>
+//                           <div className="hotel_form_input">
+//                             <label
+//                               hotel_form_input
+//                               className="form_lable"
+//                             >
+//                               PassportExpiry*
+//                             </label>
+//                             <input
+//                               name="PassportExpiry"
+//                               type="date"
+//                               placeholder="Enter your passportexpiry"
+//                               onChange={(e) =>
+//                                 handleServiceChange(
+//                                   e,
+//                                   index +
+//                                   Number(adultCount)
+//                                 )
+//                               }
+//                             />
+//                           </div>
+//                         </Box>
+//                       </Grid>
+//                     </Grid>
+//                   ) : (
+//                     ""
+//                   )}
+//                 </Grid>
+//                 <Box
+//                   display="flex"
+//                   justifyContent="space-between"
+//                 >
+//                   <Box>
+//                     <div className="hotel_form_input">
+//                       <label className="form_lable">
+//                         Gender*
+//                       </label>
+//                       <select
+//                         name="Gender"
+//                         className="hotel_input_select"
+//                         onChange={(e) =>
+//                           handleServiceChange(
+//                             e,
+//                             index + Number(adultCount)
+//                           )
+//                         }
+//                       >
+//                         <option value="1">Female</option>
+//                         <option value="2">Male</option>
+//                       </select>
+//                     </div>
+//                   </Box>
+//                   <Box>
+//                     <div className="form_input">
+//                       <label
+//                         hotel_form_input
+//                         className="form_lable"
+//                       >
+//                         Date Of Birth*
+//                       </label>
+//                       <input
+//                         type="date"
+//                         name="DateOfBirth"
+//                         className="deaprture_input"
+//                         onChange={(e) =>
+//                           handleServiceChange(
+//                             e,
+//                             index + Number(adultCount)
+//                           )
+//                         }
+//                       />
+//                     </div>
+//                   </Box>
+//                 </Box>
+//                 <Box
+//                   pt={2}
+//                   display="flex"
+//                   justifyContent="space-around"
+//                 ></Box>
+//               </Box>
+//             </AccordionDetails>
+//           </Accordion>
+
+//           {/* Form end */}
+//         </div>
+//       </Box>
+//     ))}
+
+//   {/* For Infant passenger List */}
+//   {infantCount > 0 && (
+//     <>
+//       <Box
+//         display="flex"
+//         justifyContent="space-between"
+//         alignItems="center"
+//       >
+//         <Typography>
+//           <AccountCircleIcon /> Infant (15 days to 2 yrs)
+//         </Typography>
+//         <Typography className="Top_txt" py={3}>
+//           Infant {passengerList.length} / {infantCount}{" "}
+//           <Typography variant="caption">added</Typography>
+//         </Typography>
+//       </Box>
+//     </>
+//   )}
+//   {infantCount > 0 &&
+//     Array.from({ length: infantCount }, (_, index) => (
+//       <Box>
+//         <div
+//           mb={2}
+//           key={index}
+//           className="services"
+//           py={1}
+//         >
+//           <Accordion>
+//             <AccordionSummary
+//               expandIcon={<ExpandMoreIcon />}
+//               aria-controls="panel1a-content"
+//               id="panel1a-header"
+//             >
+//               <Typography>infant {index + 1}</Typography>
+//             </AccordionSummary>
+//             <AccordionDetails>
+//               <Box>
+//                 <Grid container spacing={3} my={1}>
+//                   <Grid item xs={12} sm={12} md={4}>
+//                     <Box>
+//                       <div className="form_input">
+//                         <label
+//                           hotel_form_input
+//                           className="form_lable"
+//                         >
+//                           First name*
+//                         </label>
+//                         <input
+//                           name="FirstName"
+//                           placeholder="Enter your name"
+//                           onChange={(e) =>
+//                             handleServiceChange(
+//                               e,
+//                               index +
+//                               Number(adultCount) +
+//                               Number(childCount)
+//                             )
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                   <Grid
+//                     item
+//                     xs={12}
+//                     sm={12}
+//                     md={4}
+//                     py={1}
+//                   >
+//                     <Box>
+//                       <div className="form_input">
+//                         <label
+//                           hotel_form_input
+//                           className="form_lable"
+//                         >
+//                           Last name*
+//                         </label>
+//                         <input
+//                           name="LastName"
+//                           placeholder="Enter your last name"
+//                           onChange={(e) =>
+//                             handleServiceChange(
+//                               e,
+//                               index +
+//                               Number(adultCount) +
+//                               Number(childCount)
+//                             )
+//                           }
+//                         />
+//                       </div>
+//                     </Box>
+//                   </Grid>
+//                 </Grid>
+//                 <Box
+//                   display="flex"
+//                   justifyContent="space-between"
+//                 >
+//                   {/* Form start */}
+
+//                   <Box>
+//                     <div className="hotel_form_input">
+//                       <label className="form_lable">
+//                         Gender*
+//                       </label>
+//                       <select
+//                         name="Gender"
+//                         className="hotel_input_select"
+//                         onChange={(e) =>
+//                           handleServiceChange(
+//                             e,
+//                             index +
+//                             Number(adultCount) +
+//                             Number(childCount)
+//                           )
+//                         }
+//                       >
+//                         <option value="1">Female</option>
+//                         <option value="2">Male</option>
+//                       </select>
+//                     </div>
+//                   </Box>
+//                   <Box>
+//                     <div className="form_input">
+//                       <label
+//                         hotel_form_input
+//                         className="form_lable"
+//                       >
+//                         Date Of Birth*
+//                       </label>
+//                       <input
+//                         type="date"
+//                         name="DateOfBirth"
+//                         className="deaprture_input"
+//                         onChange={(e) =>
+//                           handleServiceChange(
+//                             e,
+//                             index +
+//                             Number(adultCount) +
+//                             Number(childCount)
+//                           )
+//                         }
+//                       />
+//                     </div>
+//                   </Box>
+//                 </Box>
+
+//                 {isPassportRequired == true ? (
+//                   <Grid container spacing={6}>
+//                     <Grid
+//                       item
+//                       xs={12}
+//                       sm={6}
+//                       md={4}
+//                       mb={5}
+//                     >
+//                       <Box>
+//                         <div className="hotel_form_input">
+//                           <label
+//                             hotel_form_input
+//                             className="form_lable"
+//                           >
+//                             PassportNo*
+//                           </label>
+//                           <input
+//                             type="text"
+//                             name="PassportNo"
+//                             className="hotel_input_select"
+//                             onChange={(e) =>
+//                               handleServiceChange(
+//                                 e,
+//                                 index +
+//                                 Number(adultCount) +
+//                                 Number(childCount)
+//                               )
+//                             }
+//                           />
+//                         </div>
+//                       </Box>
+//                     </Grid>
+//                     <Grid
+//                       item
+//                       xs={12}
+//                       sm={12}
+//                       md={4}
+//                       py={1}
+//                     >
+//                       <Box>
+//                         <div className="hotel_form_input">
+//                           <label
+//                             hotel_form_input
+//                             className="form_lable"
+//                           >
+//                             PassportExpiry*
+//                           </label>
+//                           <input
+//                             name="PassportExpiry"
+//                             type="date"
+//                             placeholder="Enter your passportexpiry"
+//                             onChange={(e) =>
+//                               handleServiceChange(
+//                                 e,
+//                                 index +
+//                                 Number(adultCount) +
+//                                 Number(childCount)
+//                               )
+//                             }
+//                           />
+//                         </div>
+//                       </Box>
+//                     </Grid>
+//                   </Grid>
+//                 ) : (
+//                   ""
+//                 )}
+//               </Box>
+//             </AccordionDetails>
+//           </Accordion>
+
+//           {/* Form end */}
+//         </div>
+//       </Box>
+//     ))}
+// </Box> */}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// <div className="col-lg-12 ">
+//   <div
+//     className="leftsections"
+//     display="flex"
+//     justifyContent="center"
+//     alignItems="center"
+//     py={3}
+//   >
+//     <Box p={3}>
+//       <Box
+//         style={{
+//           display: "flex",
+//           marginTop: "12px",
+//           marginBottom: "12px",
+//         }}
+//         px={2}
+//       >
+//         <Typography
+//           className="list_item"
+//           style={{ color: "black", marginY: "12px" }}
+//         >
+//           Traveller Details
+//         </Typography>
+//       </Box>
+
+//       <form className="form">
+//         <Box margin="10px 15px">
+//           <Box style={{ marginTop: "10px" }} px={2}>
+//             <Typography
+//               className="list_item"
+//               style={{
+//                 color: "black",
+//                 marginTop: "12px",
+//               }}
+//             >
+//               Your Booking Details will be sent to
+//             </Typography>
+//             <Box
+//               style={{
+//                 display: "flex",
+//                 marginTop: "15px",
+//                 justifyContent: "left",
+//               }}
+//             >
+//               <div style={{ display: "flex" }}>
+//                 <Box mx={2}>
+//                   <label htmlFor="email">EMAIL ADDRESS</label>
+//                   <input
+//                     type="email"
+//                     placeholder="Email Address "
+//                     name="sendEmail"
+//                     value={email}
+//                     onChange={(e) => {
+//                       setEmail(e.target.value);
+//                     }}
+//                     mx={3}
+//                     style={{
+//                       height: "35px",
+//                       width: "100%",
+
+//                       boxShadow: "0px 3px 6px #00000029",
+//                       borderRadius: "5px",
+
+//                       border: "0.5px solid #BBB",
+
+//                       padding: "12px 15px",
+//                     }}
+//                   />
+//                 </Box>
+//               </div>
+//               <div
+//                 style={{
+//                   display: "flex",
+//                   marginLeft: "200px",
+//                 }}
+//               >
+//                 <Box mx={2}>
+//                   <label htmlFor="email">MOBILE NUMBER</label>
+//                   <input
+//                     type="phone"
+//                     placeholder="Mobile Number"
+//                     name="sendNumber"
+//                     value={cNumber}
+//                     onChange={(e) => {
+//                       setCnumber(e.target.value);
+//                     }}
+//                     mx={2}
+//                     style={{
+//                       height: "35px",
+//                       width: "100%",
+//                       boxShadow: "0px 3px 6px #00000029",
+//                       borderRadius: "5px",
+//                       border: "0.5px solid #BBB",
+//                       padding: "12px 15px",
+//                     }}
+//                   />
+//                 </Box>
+//               </div>
+//             </Box>
+//             <Box
+//               style={{
+//                 marginTop: "10px",
+//                 display: "flex",
+//               }}
+//             >
+//               <Checkbox {...label} />
+//               <Typography
+//                 className="list_item1"
+//                 display="flex"
+//                 alignItems="center"
+//               >
+//                 I have a GST number{" "}
+//                 <span sx={{ color: "#BBBBBB" }}>
+//                   (optional)
+//                 </span>
+//               </Typography>
+//             </Box>
+//             <Box
+//               style={{
+//                 marginTop: "10px",
+//                 display: "flex",
+//                 justifyContent: "center",
+//               }}
+//             ></Box>
+//           </Box>
+//         </Box>
+//       </form>
+
+
+//     </Box>
+//   </div>
+// </div>
