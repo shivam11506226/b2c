@@ -211,7 +211,10 @@ function api() {
       },
     });
   };
-
+const passengerData = (payload) => {
+  // console.log("Passenger payload", payload);
+  return payload;
+};
 
   // Bus API start from here
   const getBusSearch = (payload) => {
@@ -260,6 +263,7 @@ function api() {
     bookingHoliday,
     getBusSearch,
     getBusSeatLayout,
+    passengerData,
   };
 }
 

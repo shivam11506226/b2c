@@ -79,17 +79,6 @@ const HotelForm = () => {
     };
 
 
-    // const getDayOfWeek = (date) => {
-    //     const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-    //     return daysOfWeek[date.getDay()];
-    // };
-
-    // const [startDate, setStartDate] = useState(new Date());
-
-    // const handleDateChange = (date) => {
-    //     setStartDate(values.departure);
-    // };
-
 
 
 

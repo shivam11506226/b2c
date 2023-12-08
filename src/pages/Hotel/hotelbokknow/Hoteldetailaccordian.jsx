@@ -462,11 +462,21 @@ export default function CustomizedAccordions() {
                     return (
                       <div className="container">
                         <div className="roomCompo">
-                          {item1?.RoomIndex?.map((item2, index2) => (
-                            <div className="" key={index2}>
-                              {roomComponent(item2, item1?.RoomIndex, index2, index1)}
-                            </div>
-                          ))}
+                          {item1?.RoomIndex?.map((item2, index2) => {
+                            if (index2==0){
+                              return (
+                                <div className="" key={index2}>
+                                  {roomComponent(
+                                    item2,
+                                    item1?.RoomIndex,
+                                    index2,
+                                    index1
+                                  )}
+                                </div>
+                              );
+                            }
+                           
+                  })}
                         </div>
                       </div>
                     );
