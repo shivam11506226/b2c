@@ -1,3 +1,11 @@
+#send_enquiry{
+  padding: 8px;
+  background-color: #304782;
+  color: #FFFBFB;
+  border: none;
+  border-radius: 3px;
+  margin-left: 1%;
+}
 .header-containerpack {
     width: 100%;
    
