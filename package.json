@@ -50,6 +50,7 @@
     "redux-session": "^1.0.5",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.9",
+    "sweetalert2": "^11.10.1",
     "swiper": "^9.0.4",
     "transform-loader": "^0.2.4",
     "use-history": "^1.4.1",

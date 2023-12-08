@@ -12,6 +12,7 @@ import { searchOneResultWatcher } from "./Saga/searchOnePackageSaga";
 import { getHolidayBookingWatcher, packageBookIDSaga} from "./Saga/BookPackage";
 import { busSeatWatcher } from "./Saga/BusSeatSaga";
 import { watchSubmitFormData } from "./Saga/PacakgeBookingSaga";
+import { passengersWatcher } from "./Saga/passengersDetailSaga";
 
 export function* rootSaga() {
   yield all([
@@ -26,7 +27,8 @@ export function* rootSaga() {
     searchResultWatcher(),
     searchOneResultWatcher(),
     getHolidayBookingWatcher(),
-    watchSubmitFormData()
+    watchSubmitFormData(),
+    passengersWatcher()
   ]);
 }
 

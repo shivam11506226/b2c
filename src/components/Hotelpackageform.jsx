@@ -17,7 +17,7 @@ import { Holiday_submit } from "../utility/CSS/HolidayPackageForm";
 import Slider from "react-slick";
 import nepal from "../images/card/nepal.png";
 import SearchIcon from "@mui/icons-material/Search";
-import './card.css';
+import "./card.css";
 // bootstrap
 import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import { searchPackageAction } from "../Redux/SearchPackage/actionSearchPackage";
@@ -80,13 +80,11 @@ const Homeform = (props) => {
 
   // Holiday form search
   const reducerState = useSelector((state) => state);
-  console.log("holiday", reducerState?.searchResult);
-  const [destination, setDestination] = React.useState("");
-  const [daysSearch, setDaySearch] = useState(0);
-  const filteredPackage =
-    reducerState?.searchResult?.packageSearchResult?.data?.data?.pakage;
-
   const dispatch = useDispatch();
+  console.log("holiday", reducerState?.searchResult);
+  const [destination, setDestination] = useState("");
+  const [daysSearch, setDaySearch] = useState("");
+  console.log(reducerState, "reducerState");
 
   useEffect(() => {
     console.log("=====================");
@@ -94,24 +92,24 @@ const Homeform = (props) => {
     dispatch(clearHolidayReducer());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (
+      reducerState?.searchOneResult?.OneSearchPackageResult?.data?.data?.pakage
+        ?.length > 0
+    ) {
+      navigate("/HolidayPackageSearchResult");
+    }
+  }, [reducerState?.searchOneResult?.OneSearchPackageResult?.data?.data]);
+
   const navigate = useNavigate();
-  //   useEffect(() => {
-  //     if (filteredPackage) {
-  //       navigate("HolidaypackageResult");
-  //     }
-  //   }, [filteredPackage]);
-  const clickUs = () => {
+  const handleFromClicks = () => {
     const payload = {
       destination,
       days: daysSearch,
     };
-    console.log(payload);
+    console.log(payload, "payload");
     dispatch(searchPackageAction(payload));
-    navigate("/HolidayPackageSearchResult");
   };
-  function handleFromClicks() {
-    navigate("/HolidayPackageSearchResult");
-  }
   return (
     <section>
       <div className="container homeform_container">
@@ -124,180 +122,6 @@ const Homeform = (props) => {
               sx={{ width: "90%", typography: "body1", margin: "auto" }}
               style={{ marginTop: "50px" }}
             >
-              {/* <Box
-                py={2}
-                sx={{ backgroundColor: "white", borderRadius: "20px" }}
-              >
-                 <form onSubmit={handleSubmit} >
-                <div className="row">
-                  <div
-                    className="col-12 col-md-6 col-lg-3 mb-3"
-                    style={{ marginLeft: "105px" }}
-                  >
-                    <div className="form_input" display="flex">
-                      <label className="form_lable">{labelFrom}</label>
-                      <input
-                        type="text"
-                        name="from"
-                        value={from}
-                        placeholder="Enter City"
-                        onChange={(event) => {
-                          handleFromInputChange(event);
-                          handleFromSearch(event.target.value);
-                        }}
-                      
-                      />
-                       {fromSearchResults && fromSearchResults.length > 0 && (
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                    zIndex: 1,
-                    width: "100%",
-                    boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    display: displayFrom ? "block" : "none",
-                  }}
-                >
-                  <ul>
-                    <Box
-                      sx={{
-                        mb: 2,
-                        display: "flex",
-                        flexDirection: "column",
-                        maxHeight: 150,
-                        overflow: "hidden",
-                        overflowY: "scroll",
-                      }}
-                    >
-                      {fromSearchResults.map((result) => (
-                        <li
-                          key={result._id}
-                          onClick={() => handleFromClick(result)}
-                        >
-                          <strong>{result.CityId}</strong> {result.CityName}{" "}
-                        
-                        </li>
-                      ))}
-                    </Box>
-                  </ul>
-                </div>
-              )}
-                    </div>
-                  </div>
-
-                  <div
-                    className="col-md-1 d-flex"
-                    style={{ justifyContent: "center" }}
-                  >
-                    <Box
-                      display="flex"
-                      justifyContent="center"
-                      alignItems="center"
-                    >
-                      <Box className="swip_destination">
-                        <SyncAltIcon
-                          onClick={handleSwap}
-                          style={{
-                            width: "50px",
-                            height: "30px",
-                            color: "white",
-                            display: "flex",
-                            alignItems: "center",
-                            textAlign: "center",
-                            cursor: "pointer",
-                          }}
-                        />
-                      </Box>
-                    </Box>
-                  </div>
-
-                  <div className="col-12 col-md-6 col-lg-3 mb-3">
-                    <div className="form_input" display="flex">
-                      <label for="to" className="form_lable">
-                        {labelTo}
-                      </label>
-                      <input
-                        type="text"
-                        name="to"
-                        value={to}
-                        placeholder="Enter City"
-                        onChange={(event) => {
-                          handleToInputChange(event);
-                          handleToSearch(event.target.value);
-                        }}
-                        
-                      />
-                       {toSearchResults && toSearchResults.length > 0 && (
-                <div
-                  style={{
-                    backgroundColor: "white",
-                    borderRadius: "10px",
-                    zIndex: 1,
-                    width: "100%",
-                    boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                    textAlign: "left",
-                    cursor: "pointer",
-                    display: displayTo ? "block" : "none",
-                  }}
-                >
-                  <ul>
-                    <Box
-                      sx={{
-                        mb: 2,
-                        display: "flex",
-                        flexDirection: "column",
-                        maxHeight: 150,
-                        overflow: "hidden",
-                        overflowY: "scroll",
-                      }}
-                    >
-                      {toSearchResults.map((result) => (
-                        <li
-                          key={result._id}
-                          onClick={() => handleToClick(result)}
-                        >
-                          <strong>{result.CityId}</strong> {result.CityName}{" "}
-                          {result.CityId}
-                        </li>
-                      ))}
-                    </Box>
-                  </ul>
-                </div>
-              )}
-                    </div>
-                  </div>
-                  <div className="col-md-3">
-                    <div className="form_input" display="flex">
-                      <label className="form_lable">TO</label>
-                      <input
-                        type="date"
-                        name="departure"
-                        min={disablePastDate()}
-                        className="to_input"
-                      />
-                    </div>
-                  </div>
-                </div>
-                <div className="col-12">
-            <div className="row select_fare">
-            
-                <Box display="flex" justifyContent="center">
-                  <div class="wrapper">
-                    <text className="col-auto fare_search ">
-                      <button type="submit" path="" className="search">
-                        {" "}
-                        Search
-                      </button>
-                    </text>
-                  </div>
-                </Box>
-             
-            </div>
-          </div>
-                </form>
-              </Box> */}
               <form>
                 <div className="your-containerformholiday">
                   <div className="from-containerholi">
@@ -307,76 +131,17 @@ const Homeform = (props) => {
                       <input
                         name="from"
                         placeholder="Enter city"
-                        // value={from}
                         autoComplete="off"
-                        // onChange={(event) => {
-                        //   handleFromInputChange(event);
-                        //   setIsLoadingFrom(true);
-                        //   handleFromSearch(event.target.value);
-                        // }}
-                        // required
+                        value={destination}
+                        required
                         style={{
                           outline: "none",
                           border: "none",
                         }}
+                        onChange={(e) => setDestination(e.target.value)}
                       />
-                      {/* {isLoadingFrom && <div>Loading...</div>}
-                          {fromSearchResults &&
-                            fromSearchResults.length > 0 && (
-                              <div
-                                ref={fromSearchRef}
-                                className="from-search-results"
-                                style={{
-                                  backgroundColor: "white",
-                                  borderRadius: "10px",
-                                  zIndex: 1999900,
-                                  width: "100%",
-                                  boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                                  textAlign: "left",
-                                  cursor: "pointer",
-                                  display: displayFrom ? "block" : "none",
-                                }}
-                              >
-                                <ul className="from_Search_Container">
-                                  {fromSearchResults.map((result) => (
-                                    <li
-                                      className="to_List"
-                                      key={result._id}
-                                      onClick={() => handleFromClick(result)}
-                                    >
-                                      <div>
-                                        <span className="to_List_container">
-                                          <FlightTakeoffTwoToneIcon />{" "}
-                                          <strong>{result.name}</strong>{" "}
-                                          <strong
-                                            className="to_airport_code"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "12px",
-                                            }}
-                                          >
-                                            {result.AirportCode}
-                                          </strong>
-                                        </span>
-                                        <span
-                                          style={{
-                                            fontSize: "13px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                          }}
-                                        >
-                                          {result.code}
-                                        </span>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </ul>
-                              </div>
-                            )} */}
                     </div>
                     <div className="from-details">Day</div>
-
-                   
                   </div>
 
                   <div className="from-containerholi1">
@@ -386,95 +151,22 @@ const Homeform = (props) => {
                       <input
                         name="to"
                         placeholder="Enter Day"
-                        // value={to}
-                        // required
-                        // onChange={(event) => {
-                        //   handleToInputChange(event);
-                        //   setIsLoadingTo(true); // Set loading state for TO input
-                        //   handleToSearch(event.target.value);
-                        // }}
-                        // autoComplete="off"
                         style={{
                           border: "none",
 
                           outline: "none",
                         }}
+                        value={daysSearch}
+                        onChange={(e) => setDaySearch(e.target.value)}
                       />
-                      {/* {isLoadingTo && <div>Loading...</div>}
-                          {toSearchResults && toSearchResults.length > 0 && (
-                            <div
-                              ref={toSearchRef}
-                              style={{
-                                backgroundColor: "white",
-                                borderRadius: "10px",
-                                zIndex: 9999991,
-                                width: "100%",
-                                boxShadow: "rgba(0, 0, 0, 0.09) 0px 3px 12px",
-                                textAlign: "left",
-                                cursor: "pointer",
-                                display: displayTo ? "block" : "none",
-                              }}
-                            >
-                              <ul className="to_Search_Container">
-                                <Box
-                                  sx={{
-                                    mb: 1,
-                                    mt: 1,
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    maxHeight: 161,
-                                    overflow: "hidden",
-                                    overflowY: "scroll",
-                                  }}
-                                  className="scroll_style"
-                                >
-                                  {toSearchResults.map((result) => (
-                                    <li
-                                      className="to_List"
-                                      key={result._id}
-                                      onClick={() => handleToClick(result)}
-                                    >
-                                      <div>
-                                        <span className="to_List_container">
-                                          <FlightLandTwoToneIcon />{" "}
-                                          <strong>{result.name}</strong>{" "}
-                                          <strong
-                                            className="to_airport_code"
-                                            style={{
-                                              color: "gray",
-                                              fontSize: "12px",
-                                            }}
-                                          >
-                                            {result.AirportCode}
-                                          </strong>
-                                        </span>
-                                        <span
-                                          style={{
-                                            fontSize: "13px",
-                                            display: "flex",
-                                            justifyContent: "center",
-                                          }}
-                                        >
-                                          {result.code}
-                                        </span>
-                                      </div>
-                                    </li>
-                                  ))}
-                                </Box>
-                              </ul>
-                            </div>
-                          )} */}
                     </div>
                     <div className="to-details">Monday..</div>
                   </div>
-                 
-
-               
                 </div>
               </form>
-             
-              <Box display="flex" justifyContent="center" >
-                <div class="wrapper" style={{width:"76%"}}>
+
+              <Box display="flex" justifyContent="center">
+                <div class="wrapper" style={{ width: "76%" }}>
                   <text>Popular Packages:</text>
                   <input type="radio" name="select" id="option-1" checked />
                   <input type="radio" name="select" id="option-2" />
@@ -482,13 +174,21 @@ const Homeform = (props) => {
                   <input type="radio" name="select" id="option-4" />
                   <input type="radio" name="select" id="option-5" />
                   <input type="radio" name="select" id="option-6" />
-                  <label for="option-1" class="option option-1" >
+                  <label for="option-1" class="option option-1">
                     <text>Mexico, USA</text>
                   </label>
-                  <label for="option-2" class="option option-2" style={{width:"auto"}}>
+                  <label
+                    for="option-2"
+                    class="option option-2"
+                    style={{ width: "auto" }}
+                  >
                     <text>Dubai, United Arab Emirates</text>
                   </label>
-                  <label for="option-3" class="option option-3" style={{width:"auto"}}>
+                  <label
+                    for="option-3"
+                    class="option option-3"
+                    style={{ width: "auto" }}
+                  >
                     <text>Mumbai, India</text>
                   </label>
 
@@ -503,12 +203,9 @@ const Homeform = (props) => {
               </Box>
             </Box>
           </div>
-        
         </div>
-        <SkyCollection/>
-        <SliderContainer/>
-       
-
+        <SkyCollection />
+        <SliderContainer />
       </div>
     </section>
   );
