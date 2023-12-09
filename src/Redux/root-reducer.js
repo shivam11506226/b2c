@@ -9,7 +9,12 @@ import { hotelReducer } from "./Hotel/hotelReducer";
 import { clearBusSearchReducer } from "./busSearch/busSearchAction";
 import { searchPackageReducer } from "./SearchPackage/searchPackageReducer";
 import { searchOnePackageReducer } from "./OnePackageSearchResult/searchOnePackageReducer";
+
 import { packageBookingReducer } from "./HolidayBook/bookingHolidayReducer"
+
+import { passengersReducer } from "./Passengers/passengerReducer";
+import {packageBookingReducer} from "./HolidayBook/bookingHolidayReducer"
+
 import { busSearchReducer, getBusSeatReducer } from "./busSearch/busSearchReducer";
 import { packageBookIDReducer } from "./HolidayBookingRequest/bookingHolidayReducer";
 import { packageBookingIDReducer } from "./BookingPackageData/bookingHolidayReducer";
@@ -28,7 +33,11 @@ const appReducer = combineReducers({
   searchOneResult: searchOnePackageReducer,
   packageBook: packageBookingReducer,
   packageBookingID: packageBookingIDReducer,
-  markup: markUpDataReducer
+
+  markup: markUpDataReducer,
+
+  passengers: passengersReducer,
+
 });
 
 const rootReducer = (state, action) => {
