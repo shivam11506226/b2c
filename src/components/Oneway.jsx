@@ -18,6 +18,7 @@ import FlightLandTwoToneIcon from "@mui/icons-material/FlightLandTwoTone";
 import 'react-date-range/dist/styles.css'; // Import the styles
 import 'react-date-range/dist/theme/default.css'; // Import the theme
 import "./style/Oneway.css"
+import underConstruction from "../images/under Construction.png"
 //import KeyboardDoubleArrowDownIcon from "@mui/icons-material/KeyboardDoubleArrowDown";
 
 // travel class modal
@@ -320,6 +321,7 @@ const Homeform = (props) => {
   const [loader, setLoader] = useState(false);
   useEffect(() => {
     dispatch(ipAction());
+
   }, []);
 
   useEffect(() => {
@@ -845,6 +847,7 @@ const Homeform = (props) => {
                             style={{
                               backgroundColor: "#21325d",
                               color: "white",
+                              marginRight: "40px"
                             }}
                             onClick={handleTravelClose}
                           >
@@ -918,7 +921,11 @@ const Homeform = (props) => {
               {/* Round trip start */}
 
               <TabPanel value="2">
-
+                <div className="returnConstruction">
+                  <div>
+                    <img src={underConstruction} alt="underconstruction" />
+                  </div>
+                </div>
               </TabPanel>
 
 

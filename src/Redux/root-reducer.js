@@ -9,44 +9,46 @@ import { hotelReducer } from "./Hotel/hotelReducer";
 import { clearBusSearchReducer } from "./busSearch/busSearchAction";
 import { searchPackageReducer } from "./SearchPackage/searchPackageReducer";
 import { searchOnePackageReducer } from "./OnePackageSearchResult/searchOnePackageReducer";
-import {packageBookingReducer} from "./HolidayBook/bookingHolidayReducer"
+import { packageBookingReducer } from "./HolidayBook/bookingHolidayReducer"
 import { busSearchReducer, getBusSeatReducer } from "./busSearch/busSearchReducer";
 import { packageBookIDReducer } from "./HolidayBookingRequest/bookingHolidayReducer";
 import { packageBookingIDReducer } from "./BookingPackageData/bookingHolidayReducer";
+import { markUpDataReducer } from "./markup/markupReducer";
 
 const appReducer = combineReducers({
-    logIn: logInReducer,  
-    oneWay: oneWayReducer,
-    ip: ipReducer,
-    flightFare: flightFareReducer,
-    flightBook: flightBookReducer,
-    hotelSearchResult: hotelReducer,
-    getBusResult: busSearchReducer,
-    getBusSeat: getBusSeatReducer,
-    searchResult: searchPackageReducer,
-    searchOneResult: searchOnePackageReducer,
-    packageBook: packageBookingReducer,
-    packageBookingID:packageBookingIDReducer
+  logIn: logInReducer,
+  oneWay: oneWayReducer,
+  ip: ipReducer,
+  flightFare: flightFareReducer,
+  flightBook: flightBookReducer,
+  hotelSearchResult: hotelReducer,
+  getBusResult: busSearchReducer,
+  getBusSeat: getBusSeatReducer,
+  searchResult: searchPackageReducer,
+  searchOneResult: searchOnePackageReducer,
+  packageBook: packageBookingReducer,
+  packageBookingID: packageBookingIDReducer,
+  markup: markUpDataReducer
 });
 
 const rootReducer = (state, action) => {
-    if (action.type === "CLEAR_ONEWAY_REDUCER") {
-        return {
-          ...state,
-          oneWay: oneWayReducer(undefined, action),
-        };
-      }
-      // else if (action.type === "CLEAR_HOTEL_REDUCER") {
-      //   return {
-      //     ...state,
-      //     hotelSearchResult: hotelReducer(undefined, action),
-      //   };
-      // } else if (action.type === "CLEAR_FARE_DETAILS_REDUCER") {
-      //   return {
-      //     ...state,
-      //     flightFare: flightFareReducer(undefined, action),
-      //   };
-      // }
+  if (action.type === "CLEAR_ONEWAY_REDUCER") {
+    return {
+      ...state,
+      oneWay: oneWayReducer(undefined, action),
+    };
+  }
+  // else if (action.type === "CLEAR_HOTEL_REDUCER") {
+  //   return {
+  //     ...state,
+  //     hotelSearchResult: hotelReducer(undefined, action),
+  //   };
+  // } else if (action.type === "CLEAR_FARE_DETAILS_REDUCER") {
+  //   return {
+  //     ...state,
+  //     flightFare: flightFareReducer(undefined, action),
+  //   };
+  // }
   return appReducer(state, action);
 };
 export default rootReducer;

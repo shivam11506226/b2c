@@ -7,7 +7,9 @@
 
 .head {
     border-radius: 4px 4px 0px 0px;
-    background: #B8CCFF;
+    /* background: #B8CCFF; */
+    background: #F9EDED;
+    background: #E73C33;
     padding: 10px;
 }
 

@@ -1,0 +1,50 @@
+.login-page {
+    width: 100%;
+    height: 100vh;
+    display: inline-block;
+    display: flex;
+    align-items: center;
+}
+
+/* .login-page {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+.form-right i {
+    font-size: 100px;
+}
+
+.containers {
+    max-width: 800px;
+}
+
+
+.leftLogin {
+    position: relative;
+    background-color: #21325d;
+}
+
+.closeIncon {
+    position: absolute;
+    right: 14px;
+    top: 14px;
+    font-weight: 700;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+.btn-primaryLogin {
+    width: 100%;
+    background-color: #21325d;
+    border: 2px solid #21325d;
+    color: white;
+}
+
+.btn-primaryLogin:hover {
+    border: 2px solid #21325d;
+    color: #21325d;
+    background-color: white;
+}
