@@ -9,10 +9,14 @@ import { hotelSearchWatcher } from "./Saga/hotelSaga";
 import { busSearchWatcher } from "./Saga/busSearch";
 import { searchResultWatcher } from "./Saga/searchPackageSaga";
 import { searchOneResultWatcher } from "./Saga/searchOnePackageSaga";
-import { getHolidayBookingWatcher, packageBookIDSaga} from "./Saga/BookPackage";
+import { getHolidayBookingWatcher, packageBookIDSaga } from "./Saga/BookPackage";
 import { busSeatWatcher } from "./Saga/BusSeatSaga";
 import { watchSubmitFormData } from "./Saga/PacakgeBookingSaga";
+
+import { watchMarkup } from "./Saga/markUpSaga";
+
 import { passengersWatcher } from "./Saga/passengersDetailSaga";
+
 
 export function* rootSaga() {
   yield all([
@@ -28,7 +32,11 @@ export function* rootSaga() {
     searchOneResultWatcher(),
     getHolidayBookingWatcher(),
     watchSubmitFormData(),
+
+    watchMarkup()
+
     passengersWatcher()
+
   ]);
 }
 

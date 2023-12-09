@@ -21,7 +21,7 @@
     border-radius: 10px;
     z-index: 1;
     position: relative;
-    top: -50px;
+    top: -40px;
     box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
@@ -396,8 +396,9 @@ cursor: "pointer", */
 
 .TravelerCounter button {
     padding: 10px 15px;
-    background-color: #e73c33;
-    color: white;
+    background-color: #fff !important;
+    border: 1px solid #e73c33 !important;
+    color: #e73c33 !important;
     border: none;
     outline: none;
     font-weight: 700;
@@ -439,7 +440,7 @@ cursor: "pointer", */
     padding: 6px 12px;
     font-size: 12px;
     margin: 0;
-    border: 2px solid #e73c33;
+    border: 1px solid #e73c33 !important;
     color: #e73c33;
     margin: 0px 5px;
     cursor: pointer;

@@ -6,15 +6,16 @@ import Modal from "@mui/material/Modal";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import IconButton from "@mui/material/IconButton";
 import Grid from "@mui/material/Unstable_Grid2";
-
+import "./Login.css"
+import loginImg from "../images/login.png"
 import Link from "@mui/material/Link";
 import { LoginButton } from "../utility/CSS/Button/Button";
-
-
+import CloseIcon from '@mui/icons-material/Close';
+import KeyIcon from '@mui/icons-material/Key';
 import { loginAction } from "../Redux/Auth/logIn/actionLogin";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
+import MailIcon from '@mui/icons-material/Mail';
 import {
   Form as StyledForms,
   Header,
@@ -111,7 +112,7 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
       setOpen(false);
     }
 
- 
+
   };
 
   return (
@@ -120,16 +121,13 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
         <Typography variant="subtitle3" color="#fff" >
           {/* <span style={{background:'white',color:'black',padding:'10px 13px',borderRadius:'50%'}} >{userName.slice(0,1)}</span>   */}
           {authenticUser === 200 ? (
-            <LogoutIcon sx={{ color: "red", marginRight: "8px" }} />
+            <LogoutIcon sx={{ color: "#fff", marginRight: "8px" }} />
           ) : (
             <AccountCircleIcon sx={{ color: "white", marginRight: "8px" }} />
           )}
           {authenticUser === 200 ? (
             <>
-              Hi {userName}{" "}
-              <p style={{ fontSize: "10px", margin: "0", color: "black" }}>
-                Log me out
-              </p>{" "}
+              {userName}{" "}
             </>
           ) : (
             "Login / Signup"
@@ -144,204 +142,195 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
         aria-describedby="modal-modal-description"
         sx={{ zIndex: "999999" }}
       >
-        <Box sx={style} className="background_login ">
-          <Grid container spacing={2} alignItems="center">
+
+        <div class="login-page">
+          <div class="container ">
             {notAuthenticUser ? (
-              <Box display="flex" justifyContent="space-around">
-                <span style={{ fontFamily: "Montserrat" }}>Sign Up</span>
-                <Grid
-                  xs={6}
-                  md={6}
-                  display="flex"
-                  justifyContent="center"
-                  textAlign="center"
-                  alignItem="center"
-                  sx={signUpStyle}
-                >
-                  {/* <Form class="form"> */}
+              <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                  <div class="bg-white shadow rounded">
+                    <div class="row">
+                      <div class="col-md-7 pe-0">
+                        <div class="form-left h-100 py-5 px-5">
+                          <form action="" class="row g-4">
+                            <div class="col-12">
+                              <label>Username<span class="text-danger">*</span></label>
+                              <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                                <input type="text" class="form-control" placeholder="Enter Username" />
+                              </div>
+                            </div>
 
-                  <Inputs class="inputs">
-                    <Input placeholder="User Name" class="input" type="text" />
-                    <Input
-                      placeholder="Your Email"
-                      class="input"
-                      type="email"
-                    />
-                    <Input
-                      placeholder="Password"
-                      class="input"
-                      type="password"
-                    />
-                    <Input placeholder="mobile" class="input" type="text" />
+                            <div class="col-12">
+                              <label>Email<span class="text-danger">*</span></label>
+                              <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-person-fill"></i></div>
+                                <input type="email" class="form-control" placeholder="Enter Email" />
+                              </div>
+                            </div>
 
-                    <Sign_in_Btn
-                      class="sigin-btn"
-                      style={{ fontFamily: "Montserrat" }}
-                    >
-                      Sign up
-                    </Sign_in_Btn>
-                    <Typography
-                      sx={{
-                        fontSize: "12px",
-                        fontWeight: "bold",
-                        marginTop: "8px",
-                      }}
-                    >
-                      Already have Account /{" "}
-                      <Link href="#" onClick={handleOpen}>
-                        Signup
-                      </Link>
-                    </Typography>
+                            <div class="col-12">
+                              <label>Password<span class="text-danger">*</span></label>
+                              <div class="input-group">
+                                <div class="input-group-text"><i class="bi bi-lock-fill"></i></div>
+                                <input type="text" class="form-control" placeholder="Enter Password" />
+                              </div>
+                            </div>
 
-                    <Typography color="black" fontSize="10px">
-                      By proceeding, you agree to skytrails{" "}
-                      <Link href="#" underline="always" color="#FF5733">
-                        {"Privacy Policy"}
-                      </Link>{" "}
-                      ,{" "}
-                      <Link href="#" underline="always" color="#FF5733">
-                        {"User Agreement"}
-                      </Link>{" "}
-                      and{" "}
-                      <Link href="#" underline="always" color="#FF5733">
-                        {"Terms of Service"}
-                      </Link>
-                    </Typography>
-                  </Inputs>
-                  {/* </Form> */}
-                </Grid>
-              </Box>
+                            <div class="col-sm-6">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="inlineFormCheck" />
+                                <label class="form-check-label" for="inlineFormCheck">Remember
+                                  me</label>
+                              </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                              <a href="#" class="float-end text-primary">Forgot Password?</a>
+                            </div>
+
+                            <div class="col-12">
+                              <button type="submit" class="btn btn-primary px-4 float-end mt-4">login</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                      <div class="col-md-5 ps-0 d-none d-md-block">
+                        <div class="form-right h-100 bg-primary text-white text-center pt-5">
+                          <h2 class="fs-1">Sign Up</h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             ) : (
-              <Grid
-                xs={6}
-                md={6}
-                display="flex"
-                justifyContent="center"
-                textAlign="center"
-                alignItem="center"
-              >
-                <StyledForms>
+              <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                  <div class="bg-white shadow rounded">
+                    <div class="row">
+                      <div class="col-md-7 pe-0">
+                        <div class="form-left h-100 py-5 px-5">
+                          <Formik initialValues={{ email: "", password: "" }} validationSchema={validationSchema}
+                            onSubmit={(values, { setSubmitting }) => {
+                              const { email, password } = values;
+                              console.log(email, password);
 
-                  <Formik
-                    initialValues={{ email: "", password: "" }}
-                    validationSchema={validationSchema}
-                    onSubmit={(values, { setSubmitting }) => {
-                      // Your form submission logic here
-                      // You can access form values via the 'values' parameter
-                      const { email, password } = values;
-                      console.log(email, password);
+                              const payload = {
+                                username: email,
+                                password: password,
+                              };
 
-                      const payload = {
-                        username: email,
-                        password: password,
-                      };
+                              dispatch(loginAction(payload));
+                              setIsModalOpen(false);
+                              setOpen(false);
 
-                      dispatch(loginAction(payload));
-                      setIsModalOpen(false);
-                      setOpen(false);
+                              if (authenticUser === 200) {
+                                setIsModalOpen(false);
+                                setOpen(false);
+                              }
+                              // else if (notAuthenticUser == true) {
+                              //   alert("else if part");
+                              //   console.error("non auth user");
+                              //   setNewReg(true);
+                              // } else {
+                              //   alert("else part");
+                              // }
 
-                      if (authenticUser === 200) {
-                        setIsModalOpen(false);
-                        setOpen(false);
-                      } else if (notAuthenticUser == true) {
-                        alert("else if part");
-                        console.error("non auth user");
-                        setNewReg(true);
-                      } else {
-                        alert("else part");
-                      }
-
-                      setSubmitting(false);
-                    }}
-                  >
-                    {({ isSubmitting }) => (
-                      <Form className="form">
-                        <Header
-                          className="header"
-                          style={{ fontFamily: "Montserrat" }}
-                        >
-                          Sign In
-                        </Header>
-                        <Inputs className="inputs">
-                          <Field
-                            type="email"
-                            name="email"
-                            placeholder="Email"
-                            className="input"
-                          />
-                          <ErrorMessage
-                            name="email"
-                            component="div"
-                            className="error-message"
-                          />
-
-                          <Field
-                            type="password"
-                            name="password"
-                            placeholder="Password"
-                            className="input"
-                          />
-
-                          <ErrorMessage
-                            name="password"
-                            component="div"
-                            className="error-message"
-                          />
-
-                          <Checkbox_Container className="checkbox-container">
-                            {/* ... */}
-                          </Checkbox_Container>
-
-                          <Sign_in_Btn
-                            className="sigin-btn"
-                            type="submit"
-                            disabled={isSubmitting}
+                              setSubmitting(false);
+                            }}
                           >
-                            Submit
-                          </Sign_in_Btn>
-                          <a className="forget" href="#">
-                            Forget password ?
-                          </a>
-                          <p className="signup-link">
-                            Don't have an account?{" "}
-                            <Link navigate="">Sign up</Link>
-                          </p>
-                        </Inputs>
-                      </Form>
-                    )}
-                  </Formik>
+                            {({ isSubmitting }) => (
+                              <Form class="row g-4">
+                                <div class="col-12">
+                                  <label>Email<span class="text-danger">*</span></label>
+                                  <div class="input-group">
+                                    <div class="input-group-text"><i><MailIcon /></i></div>
+                                    <Field type="email" name="email" class="form-control"
+                                      placeholder="Enter Email" />
+                                  </div>
+                                </div>
 
-             
-                </StyledForms>
-              </Grid>
+                                <div class="col-12">
+                                  <label>Password<span class="text-danger">*</span></label>
+                                  <div class="input-group">
+                                    <div class="input-group-text"><i><KeyIcon /></i></div>
+                                    <Field type="text" name="password" class="form-control"
+                                      placeholder="Enter Password" />
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <div class="form-check">
+                                    <Field class="form-check-input" type="checkbox" id="inlineFormCheck" />
+                                    <label class="form-check-label" for="inlineFormCheck">Remember
+                                      me</label>
+                                  </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                  <Link to="#" class="float-end text-primary">Forgot Password?</Link>
+                                </div>
+
+                                <div class="col-12">
+                                  <button type="submit" disabled={isSubmitting}
+                                    class="btn btn-primaryLogin px-4 float-end mt-4">login</button>
+                                </div>
+
+
+                              </Form>
+                            )}
+                          </Formik>
+                        </div>
+                      </div>
+                      <div class="col-md-5 ps-0 d-none d-md-block">
+
+                        <div class="form-right leftLogin h-100 text-white text-center pt-5">
+                          <h2 class="fs-1">Login</h2>
+                          <CloseIcon className="closeIncon" onClick={handleClose} />
+                          <div className="loginImg">
+                            <img src={loginImg} alt="" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             )}
-          </Grid>
-        </Box>
-      </Modal>
+
+          </div>
+        </div>
+
+
+
+      </Modal >
 
       {/* Register form */}
 
-      {newReg && (
-        <Modal
-          open={regOpen}
-          onClose={handleClose}
-          aria-labelledby="modal-modal-title"
-          aria-describedby="modal-modal-description"
-        >
-          <Box sx={style} className="background_login ">
-            <Grid
-              style={{ marginTop: "-25px" }}
-              container
-              spacing={2}
-              alignItems="center"
-            >
-              <Grid xs={6} md={6}></Grid>
-            </Grid>
-          </Box>
-        </Modal>
-      )}
+      {
+        newReg && (
+          <Modal
+            open={regOpen}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            <Box sx={style} className="background_login ">
+              <Grid
+                style={{ marginTop: "-25px" }}
+                container
+                spacing={2}
+                alignItems="center"
+              >
+                <Grid xs={6} md={6}></Grid>
+              </Grid>
+            </Box>
+          </Modal>
+        )
+      }
 
-     
-    </div>
+
+    </div >
   );
 }

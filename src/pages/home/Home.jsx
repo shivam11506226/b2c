@@ -9,15 +9,17 @@ import Oneway from '../../components/Oneway';
 import OfferCard from "../flight/OfferCard";
 import "./home.css";
 import FlightLoader from "../flight/FlightLoader/FlightLoader";
+import BigNavbar from "../../UI/BigNavbar/BigNavbar";
 
 const Home = () => {
     return (
         <div className="home_banner">
-            {/* <Homeform header=""></Homeform> */}
+            <div className='mainimg'>
+                <Navbar />
+                <BigNavbar />
+                <Mainheader />
+            </div>
             <Oneway header="" />
-            {/* <OfferSwipeToSlide></OfferSwipeToSlide> */}
-
-            {/* <Toursection></Toursection> */}
             <Toursection />
             <OfferCard />
             <SwipeToSlide />

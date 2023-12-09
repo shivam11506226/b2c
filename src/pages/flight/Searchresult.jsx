@@ -7,6 +7,9 @@ import { useSelector } from "react-redux";
 // import flightLoader from '../../utility/flight_loader.gif'
 import { StickyHeader } from "../../layouts/Header";
 import FlightLoader from "./FlightLoader/FlightLoader";
+import Navbar from "../../layouts/Navbar";
+import Mainheader from "../../UI/Mainheader";
+import BigNavbar from "../../UI/BigNavbar/BigNavbar";
 
 const Searchresult = () => {
     const reducerState = useSelector((state) => state);
@@ -18,6 +21,13 @@ const Searchresult = () => {
                 )
                     : (
                         <div className="UniComp_BG">
+                            <div className='mainimg'>
+                                <Navbar />
+
+                                <BigNavbar />
+
+                                <Mainheader />
+                            </div>
                             <Searchsection className='main_box' />
                             <Popularfilter />
                         </div>

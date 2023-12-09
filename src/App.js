@@ -47,13 +47,24 @@ import Holidayinfo from "./pages/holidaypackages/holidaypackagesearchresult/Holi
 
 import BigNavbar from "./UI/BigNavbar/BigNavbar";
 
-import HotelSearch from "./pages/Hotel/hotelsearch/HotelSearch";
-import HotelBooknow from "./pages/Hotel/hotelbokknow/HotelBooknow";
-import Reviewbooking from "./pages/Hotel/hotelreviewbooking/Reviewbooking";
-import Guestdetail from "./pages/Hotel/guestdetail/Guestdetail";
+
+import HotelSearch from './pages/Hotel/hotelsearch/HotelSearch';
+import HotelBooknow from './pages/Hotel/hotelbokknow/HotelBooknow'
+import Reviewbooking from './pages/Hotel/hotelreviewbooking/Reviewbooking'
+import { useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { getMarkUpAction } from './Redux/markup/markupAction';
+
 
 function App() {
   const location = useLocation();
+  const dispatch = useDispatch();
+
+
+
+  useEffect(() => {
+    dispatch(getMarkUpAction())
+  })
 
   const isSearchResult = location.pathname.includes("/Searchresult");
   const isPayment = location.pathname.includes("/payment");
@@ -61,13 +72,15 @@ function App() {
     <div className="background_gradient">
       {/* /Searchresult */}
 
+
       <div className="mainimg">
+
         <Navbar />
 
         <BigNavbar />
 
         <Mainheader />
-      </div>
+      </div> */}
 
       <Routes>
         <Route index element={<Home />}></Route>

@@ -5,6 +5,11 @@ function api() {
   const userIP = (formData) => {
     return axios.get("https://api.ipify.org?format=json");
   };
+
+  const markUp = () => {
+    return axios.get(`${apiURL.baseURL}/skyTrails/api/admin/getMarkup`)
+  };
+
   const userB2BToken = (payload) => {
     return axios({
       method: "POST",
@@ -165,7 +170,7 @@ function api() {
   };
 
   const hotelBookingDetails = (payload) => {
-   console.log("payload of api 👍")
+    console.log("payload of api 👍")
     return axios({
       method: "POST",
       url: "skyTrails/hotel/bookingdetails",
@@ -183,8 +188,8 @@ function api() {
     console.log("searchPackage" + payload.days);
     const { destination, days } = payload;
     const axiosConfig = {
-    baseURL: `${apiURL.baseURL}`,
-  };
+      baseURL: `${apiURL.baseURL}`,
+    };
     return axios.get(
       `skyTrails/international/getAll?filter=${days}&keyword=${destination}`, axiosConfig
     );
@@ -195,7 +200,7 @@ function api() {
       baseURL: `${apiURL.baseURL}`,
     };
     return axios.get(
-      `skyTrails/international/getone/${payload}`,axiosConfig
+      `skyTrails/international/getone/${payload}`, axiosConfig
     );
   };
 
@@ -243,6 +248,7 @@ const passengerData = (payload) => {
 
   return {
     userIP,
+    markUp,
     userB2CLogin,
     // adminSignOut,
     userB2BToken,
