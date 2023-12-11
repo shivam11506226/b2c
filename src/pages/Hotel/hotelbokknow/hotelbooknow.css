@@ -64,17 +64,72 @@ Input {
 }
 
 .offer_area {
-    width: auto;
+    width: 100%;
     height: auto;
-    background: #DFE6F7 0% 0% no-repeat padding-box;
-    box-shadow: 0px 3px 6px #00000029;
-    border-radius: 20px;
+    background: #F9EDED 0% 0% no-repeat padding-box;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border-radius: 10px;
     opacity: 1;
     margin: 7px 0px 21px 0px !important;
-    border: none;
+    border: 0.5px solid lightgray;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.offer_area .priceCheck {
+    min-width: 200px;
+    border-left: 1px solid lightgray;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     gap: 15px;
+}
+
+.priceCheck h3 {
+    padding: 12px 24px;
+    border-radius: 32px;
+    background: #E73C33;
+    color: #FFFBFB;
+    text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    font-family: 'Montserrat';
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    cursor: pointer;
+}
+
+.form-check-input {
+    border-radius: 50% !important;
+}
+
+.form-check-input:checked {
+    background-color: #E73C33 !important;
+    border-color: #E73C33 !important;
+}
+
+.smolking p {
+    color: #071C2C;
+
+    font-family: Montserrat;
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+
+.inneraccorHotel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 12px;
 }
 
 .accordian_area {
@@ -205,7 +260,8 @@ Input {
     flex-direction: row !important;
     border-radius: 8px !important;
     box-shadow: 0px 3px 6px #00000029 !important;
-    background-color: #DFE6F7 !important;
+    background-color: lightgray !important;
+
     /* border: 1px solid #21325D !important; */
 }
 
@@ -296,15 +352,6 @@ Input {
 }
 
 
-.bookNowButton {
-    padding: 8px 18px;
-    background-color: #21325D;
-    color: white;
-    font-weight: 700;
-    font-size: 18px;
-    border: 2px solid #21325D;
-    border-radius: 5px;
-}
 
 
 .roomCompo {
@@ -312,16 +359,122 @@ Input {
     flex-direction: row;
     flex-wrap: nowrap;
     column-gap: 15px;
-    overflow-y: scroll;
+    width: 100%;
 }
 
-.roomCompo::-webkit-scrollbar-track {}
 
-.roomCompo::-webkit-scrollbar {
-    height: 10px;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* new design  */
+
+.hotelTitleBoxAccord {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    justify-content: center;
+    align-items: flex-start;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    padding: 15px;
+    width: 100%;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.roomCompo div>div {
-    width: 400px;
+.hotelTitleBoxAccord h3 {
+    overflow: hidden;
+    width: inherit;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #071C2C;
+
+    font-family: Montserrat;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.hotelImageBoxBook {
+    margin: 15px 0px;
+}
+
+.hotelImageBoxBook h4 {
+    color: #071C2C;
+    font-family: 'Montserrat';
+    font-size: 24px;
+    margin-bottom: 25px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+}
+
+
+.hotelBookHighlight {
+    border-radius: 8px;
+    border: 1px solid lightgray;
+    padding: 12px;
+    max-width: 700px;
+    background-color: #fff;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+
+}
+
+.hotelBookHighlight h4 {
+    color: #071C2C;
+    font-family: Montserrat;
+    margin-bottom: 15px;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+}
+
+.hotelBookHighlight>div {
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+    row-gap: 10px;
+}
+
+
+.dynamicHotelimg img {
+    height: 77px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
+.bookNowButton {
+    margin: 30px 0px;
+    border-radius: 16px;
+    background: #E73C33;
+    padding: 10px 24px;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    border: 2px solid #E73C33;
+    transition: 0.2s all;
+}
+
+.bookNowButton:hover {
+    background-color: white;
+    color: #E73C33;
 
 }

@@ -42,7 +42,6 @@ import Conformation from "./pages/Return/Conformation";
 import NonStopFlight from "./pages/Return/NonStopFlight";
 import BusResult from "./pages/bus/bussearchresult/BusResult";
 import Download from "./pages/home/Download";
-import Guestdetail from "./pages/Hotel/hotelreviewbooking/Reviewbooking";
 import Holidayinfo from "./pages/holidaypackages/holidaypackagesearchresult/Holidayinfo";
 
 import BigNavbar from "./UI/BigNavbar/BigNavbar";
@@ -54,6 +53,7 @@ import Reviewbooking from './pages/Hotel/hotelreviewbooking/Reviewbooking'
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getMarkUpAction } from './Redux/markup/markupAction';
+import Guestdetail from "./pages/Hotel/hotelreviewbooking/Reviewbooking";
 
 
 function App() {

@@ -21,11 +21,11 @@ export const mainheaderlogos = [
         name: "Bus",
         path: "/bus"
     },
-    // {
-    //     avatar: require("./images/taxi.png"),
-    //     name: "Taxi",
-    //     path: "/taxi"
-    // },
+    {
+        avatar: require("./images/visa.png"),
+        name: "Visa",
+        path: "https://theskytrails.com/"
+    },
     // {
     //     avatar: require("./images/forex.png"),
     //     name: "Forex",

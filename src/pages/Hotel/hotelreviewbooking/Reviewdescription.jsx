@@ -23,6 +23,7 @@ import { apiURL } from "../../../Constants/constant";
 // import Custombutton from "../../../Custombuttom/Button";
 import { useEffect } from "react";
 import HotelLoading from "../hotelLoading/HotelLoading";
+import hotelNotFound from "../../../images/hotelNotFound.jpg"
 const styleLoader = {
   position: "absolute",
   top: "50%",
@@ -53,7 +54,10 @@ const Flightdetail = () => {
   const [passengerData, setPassengerData] = useState([]);
   const [sub, setSub] = useState(false);
 
-  // console.log("State Data", reducerState);
+
+  const Imgresult =
+    reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult?.HotelResults?.[0]?.HotelPicture;
+  console.log("Imgresult", Imgresult);
 
   useEffect(() => {
     if (bookingStatus == 1) {
@@ -288,7 +292,7 @@ const Flightdetail = () => {
 
   const handleClickSavePassenger = () => {
     console.warn("emailrefffffffffffff", emailRef.current.value);
-   
+
 
     dispatch(PassengersAction(passengerData));
 
@@ -299,21 +303,21 @@ const Flightdetail = () => {
 
   const result =
     reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult;
+  console.log(result, "result")
   let totalAdults = 0;
   let totalChildren = 0;
+
+
 
   result?.RoomGuests?.forEach((room) => {
     totalAdults += room?.NoOfAdults || 0;
     totalChildren += room?.NoOfChild || 0;
   });
 
-  // Retrieve data from sessionStorage
-  const storedFormData = JSON.parse(sessionStorage.getItem("hotelFormData"));
-  const data = storedFormData.dynamicFormData[0]; // Assuming dynamicFormData is an array with at least one element
 
-  // // Calculate total number of guests
-  // const totalAdult = data.NoOfAdults || 0;
-  // const totalChild = data.NoOfChild || 0;
+  const storedFormData = JSON.parse(sessionStorage.getItem("hotelFormData"));
+  const data = storedFormData.dynamicFormData[0];
+
 
   const [expandedOther, setExpandedOther] = React.useState(false);
 
@@ -325,17 +329,11 @@ const Flightdetail = () => {
     return regex.test(panNumber);
   }
   function validatePhoneNumber(phoneNumber) {
-    // Define the regular expression pattern for a valid phone number
     var phonePattern = /^\d{10}$/;
-
-    // Test the phone number against the pattern
     return phonePattern.test(phoneNumber);
   }
   function validateEmail(email) {
-    // Define the regular expression pattern for a valid phone number
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    // Test the phone number against the pattern
     return emailRegex.test(email);
   }
 
@@ -357,52 +355,84 @@ const Flightdetail = () => {
     return result;
   }
   // console.warn("passengerDataNew", emailRef,"sss");
+
+
+
+
+  const checkInDate = result?.CheckInDate instanceof Date
+    ? result?.CheckInDate
+    : new Date(result?.CheckInDate);
+
+  // Check if checkInDate is a valid Date object
+  if (isNaN(checkInDate)) {
+    return <p>Invalid date</p>;
+  }
+
+  // Format the date to "20 Dec, 23"
+  const formattedDateCheckIn = checkInDate.toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: '2-digit',
+  });
+
+  // Get the day of the week (e.g., "Thursday")
+  const dayOfWeek = checkInDate.toLocaleString('en-US', { weekday: 'long' });
+
+
+
+
+
+  const checkOutDateValue = result?.CheckOutDate instanceof Date
+    ? result?.CheckOutDate
+    : new Date(result?.CheckOutDate);
+
+  // Check if checkOutDateValue is a valid Date object
+  if (isNaN(checkOutDateValue)) {
+    return <p>Invalid date</p>;
+  }
+
+  // Format the date to "20 Dec, 23"
+  const formattedCheckOutDate = checkOutDateValue.toLocaleString('en-US', {
+    day: 'numeric',
+    month: 'short',
+    year: '2-digit',
+  });
+
+  // Get the day of the week (e.g., "Thursday")
+  const dayOfWeekCheckOut = checkOutDateValue.toLocaleString('en-US', { weekday: 'long' });
+
+
+
+
   return (
     <>
       {loader ? (
         <HotelLoading />
       ) : (
         <div className="container-fluid rmv-margin">
-          {/* <div className="row">
-          <div className="col-lg-12"> */}
           <div className="row">
-            {/* hotel details area  */}
-
             <div className="col-lg-12">
               <div className="hotelDetails">
                 <div>
-                  <p className="hotelName">
-                    {hotelInfo?.HotelDetails?.HotelName}
-                  </p>
-                  <Box alignItems="right">
-                    <Box>{star(hotelInfo?.HotelDetails?.StarRating)}</Box>
-                  </Box>
-                </div>
-                <div>
-                  <p className="text-start w-50">
-                    {" "}
-                    <b>Address:</b> {hotelInfo?.HotelDetails?.Address}
-                  </p>
                   <div>
-                    <p className="text-end">
+                    <p className="hotelName">
+                      {hotelInfo?.HotelDetails?.HotelName}
+                    </p>
+                  </div>
+                  <div >
+                    <Box>{star(hotelInfo?.HotelDetails?.StarRating)}</Box>
+                  </div>
+                  <div>
+                    <p className="text-start addReview">
                       {" "}
-                      <b>Check In:</b>
-                      {
-                        reducerState?.hotelSearchResult?.ticketData?.data?.data
-                          ?.HotelSearchResult?.CheckInDate
-                      }
+                      <b>Address:</b> {hotelInfo?.HotelDetails?.Address}
                     </p>
-                    <p className="text-end">
-                      <b>Check Out:</b>
-                      {
-                        reducerState?.hotelSearchResult?.ticketData?.data?.data
-                          ?.HotelSearchResult?.CheckOutDate
-                      }
-                    </p>
+                  </div>
+                  <div>
                   </div>
                 </div>
                 <div>
-                  <div className="contact">
+                  {/* <div className="contact">
                     <p>{storedFormData?.city}, India</p>
                     <p>
                       <b>Contact: </b>
@@ -414,7 +444,13 @@ const Flightdetail = () => {
                   <p>
                     <b>Night(s) </b>
                     {storedFormData?.night}
-                  </p>
+                  </p> */}
+                  <div className="hotelImageReview">
+                    <img src={Imgresult} onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = hotelNotFound;
+                    }} alt="package-img" />
+                  </div>
                 </div>
               </div>
               {/* </div>
@@ -433,8 +469,41 @@ const Flightdetail = () => {
                     <p className="text-hotelName"> {hotelRoomName}</p>
                   </div>
                   <div className="col-lg-3 adultss ">
-                    <p>{totalAdults} Adult(s)</p>
+                    <p>{totalAdults} Adult(s) {totalChildren.length > 0 ? `${totalChildren} Child(s)` : ""}</p>
                   </div>
+                </div>
+              </div>
+            </div>
+
+
+
+            <div className="col-lg-12">
+              <div className="roomDetailsReviewDesc">
+                <div className="row">
+                  <div className="col-lg-4">
+                    <div className="checkInReview">
+                      <span>Check-In</span>
+                      <p>{formattedDateCheckIn}</p>
+                      <h2>{dayOfWeek}</h2>
+
+                    </div>
+                  </div>
+                  <div className="col-lg-4">
+                    <div className="checkInReview">
+                      <span>Check-Out</span>
+                      <p>{formattedCheckOutDate} </p>
+                      <h2>{dayOfWeekCheckOut}</h2>
+
+                    </div>
+                  </div>
+                  <div className="col-lg-4">
+                    <div className="checkInReview">
+                      <span>{result?.NoOfRooms} Room(s) </span>
+                      <p>{totalAdults} Adult(s) {totalChildren.length > 0 ? `${totalChildren} Child(s)` : ""}</p>
+
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </div>
@@ -548,9 +617,9 @@ const Flightdetail = () => {
                                                       passengerData.filter(
                                                         (item) =>
                                                           item.roomIndex ===
-                                                            roomIndex &&
+                                                          roomIndex &&
                                                           item.adultIndex ===
-                                                            adultIndex
+                                                          adultIndex
                                                       )[0].FirstName,
                                                       "%%%%%%%%%%%%%%%%%%%%%%%%%%%%%55"
                                                     );
@@ -610,9 +679,9 @@ const Flightdetail = () => {
                                                 passengerData.filter(
                                                   (item) =>
                                                     item.roomIndex ===
-                                                      roomIndex &&
+                                                    roomIndex &&
                                                     item.adultIndex ===
-                                                      adultIndex
+                                                    adultIndex
                                                 )[0].LastName === "" && (
                                                   <span className="error">
                                                     Enter Last Name{" "}
@@ -655,9 +724,9 @@ const Flightdetail = () => {
                                                 passengerData.filter(
                                                   (item) =>
                                                     item.roomIndex ===
-                                                      roomIndex &&
+                                                    roomIndex &&
                                                     item.adultIndex ===
-                                                      adultIndex
+                                                    adultIndex
                                                 )[0].Age === "" && (
                                                   <span className="error">
                                                     Enter Age{" "}
@@ -699,13 +768,13 @@ const Flightdetail = () => {
                                               {sub &&
                                                 !validatePAN(
                                                   sub &&
-                                                    passengerData.filter(
-                                                      (item) =>
-                                                        item.roomIndex ===
-                                                          roomIndex &&
-                                                        item.adultIndex ===
-                                                          adultIndex
-                                                    )[0].PAN
+                                                  passengerData.filter(
+                                                    (item) =>
+                                                      item.roomIndex ===
+                                                      roomIndex &&
+                                                      item.adultIndex ===
+                                                      adultIndex
+                                                  )[0].PAN
                                                 ) && (
                                                   <span className="error">
                                                     Enter PAN{" "}
@@ -752,9 +821,9 @@ const Flightdetail = () => {
                                                         passengerData.filter(
                                                           (item) =>
                                                             item.roomIndex ===
-                                                              roomIndex &&
+                                                            roomIndex &&
                                                             item.childIndex ===
-                                                              childIndex
+                                                            childIndex
                                                         ),
                                                         "dddddddddddddddddddd"
                                                       );
@@ -766,9 +835,9 @@ const Flightdetail = () => {
                                                 passengerData.filter(
                                                   (item) =>
                                                     item.roomIndex ===
-                                                      roomIndex &&
+                                                    roomIndex &&
                                                     item.childIndex ===
-                                                      childIndex
+                                                    childIndex
                                                 )[0].FirstName === "" && (
                                                   <span className="error">
                                                     Enter First Name{" "}
@@ -803,9 +872,9 @@ const Flightdetail = () => {
                                                       passengerData.filter(
                                                         (item) =>
                                                           item.roomIndex ===
-                                                            roomIndex &&
+                                                          roomIndex &&
                                                           item.childIndex ===
-                                                            childIndex
+                                                          childIndex
                                                       )[0].LastName
                                                     );
                                                     handleServiceChange(
@@ -820,9 +889,9 @@ const Flightdetail = () => {
                                                 passengerData.filter(
                                                   (item) =>
                                                     item.roomIndex ===
-                                                      roomIndex &&
+                                                    roomIndex &&
                                                     item.childIndex ===
-                                                      childIndex
+                                                    childIndex
                                                 )[0].LastName === "" && (
                                                   <span className="error">
                                                     Enter Last Name{" "}
@@ -854,21 +923,21 @@ const Flightdetail = () => {
                                                   noOfRooms[roomIndex]
                                                     ?.ChildAge[childIndex]
                                                 }
-                                                // onChange={(e) =>
-                                                //   handleServiceChange(
-                                                //     e,
-                                                //     roomIndex,
-                                                //     { childIndex: childIndex }
-                                                //   )
-                                                // }
+                                              // onChange={(e) =>
+                                              //   handleServiceChange(
+                                              //     e,
+                                              //     roomIndex,
+                                              //     { childIndex: childIndex }
+                                              //   )
+                                              // }
                                               />
                                               {sub &&
                                                 passengerData.filter(
                                                   (item) =>
                                                     item.roomIndex ===
-                                                      roomIndex &&
+                                                    roomIndex &&
                                                     item.childIndex ===
-                                                      childIndex
+                                                    childIndex
                                                 )[0].Age === "" && (
                                                   <span className="error">
                                                     Enter Age{" "}
@@ -912,9 +981,9 @@ const Flightdetail = () => {
                                                   passengerData.filter(
                                                     (item) =>
                                                       item.roomIndex ===
-                                                        roomIndex &&
+                                                      roomIndex &&
                                                       item.childIndex ===
-                                                        childIndex
+                                                      childIndex
                                                   )[0].PAN
                                                 ) && (
                                                   <span className="error">
