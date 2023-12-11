@@ -8,10 +8,10 @@ export const searchPackageData = (data) => {
 };
 
 export const searchPackageAction = (data) => {
- console.log("searchPackageAction",data);
-    return {
-      type: types.GET_SEARCH_PACKAGE_DATA,
-      payload: data,
-    };
-  
+  console.log("searchPac  kageAction", data);
+  return {
+    type: types.GET_SEARCH_PACKAGE_DATA,
+    payload: data,
+  };
+
 };

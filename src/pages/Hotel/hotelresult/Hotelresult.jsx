@@ -11,7 +11,11 @@ import beds from "../../../images/beds.png";
 import unitednations from "../../../images/unitednations.png";
 import addgroup from "../../../images/addgroup.png";
 import review from "../../../images/review.png";
-
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import Checkbox from "@mui/material/Checkbox";
+import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
+import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
+import StarIcon from "@mui/icons-material/Star";
 
 import Link from "@mui/material/Link";
 import "./hotelresult.css";
@@ -34,7 +38,7 @@ export default function Popularfilter() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const reducerState = useSelector((state) => state);
-  // console.log("State Data", reducerState?.hotelSearchResult?.ticketData);
+  console.log("State Data", reducerState?.hotelSearchResult?.ticketData);
 
   const result =
     reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult;
@@ -45,12 +49,18 @@ export default function Popularfilter() {
     sessionStorage.setItem("ResultIndex", resultIndex);
     sessionStorage.setItem("HotelCode", hotelCode);
   };
-  const handleModifySearchClick = () => {
-    navigate("/hotel");
+  // const handleModifySearchClick = () => {
+  //   navigate("/hotel");
+  // };
+
+
+  const star = (data) => {
+    const stars = [];
+    for (let i = 0; i < data; i++) {
+      stars.push(<StarIcon key={i} style={{ color: "#FF8900" }} />);
+    }
+    return stars;
   };
-
-
-
 
   const [sortOption, setSortOption] = useState("lowToHigh");
   const [filterRating, setFilterRating] = useState(null);
@@ -97,256 +107,356 @@ export default function Popularfilter() {
 
   // console.log("shaan", sortedAndFilteredResults)
   return (
-
-    <div className="row">
-      <div className="col-lg-3 col-md-12 ">
-        <Box className="ModifySearch">
-          <Box
-            backgroundColor="white"
-            border="1px solid #adaeae"
-            borderRadius="10px"
-          >
-            <Typography justifyContent="center" display="flex" pt={3} color="#21325D" fontWeight="bold">
-              Your Search Query
-            </Typography>
-            <Divider sx={{ backgroundColor: "gray", marginY: "5px" }} />
-            <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-              <img src={building} />
-              <Typography className="list_text">{storedFormData.city}</Typography>
-            </Box>
-            <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-              <img src={night} style={{ width: "8%", height: "20%" }} />
-              <Typography className="list_text">
-                {result?.CheckInDate} to {result?.CheckOutDate}
-              </Typography>
-            </Box>
-            <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-              <img src={beds} />
-              <Typography className="list_text">{result?.NoOfRooms} Room(s)</Typography>
-            </Box>
-            <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-              <img src={unitednations} />
-              <Typography className="list_text">Indian</Typography>
-            </Box>
-            <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-              <img src={addgroup} />
-              <Typography className="list_text">{totalAdults} Adult(s) {totalChildren} Child(s)</Typography>
-            </Box>
-            <Box sx={{ display: "flex", marginY: "15px", marginX: "20px" }}>
-              <img src={review} />
-              <Typography className="list_text">{storedFormData.star} {' '}Star</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                marginY: "15px",
-                marginX: "20px",
-              }}
-            >
-              <Button
-                variant="contained"
-                className="btn_mod"
-                onClick={handleModifySearchClick}
-                sx={{ background: "#21325D", color: "white", fontWeight: "700", borderRadius: "10px" }}
-              >
-                Modify Search
-              </Button>
-            </Box>
-
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                marginY: "15px",
-                marginX: "20px",
-              }}
-            ></Box>
-            <Divider sx={{ backgroundColor: "gray" }} />
-
-
-            <Divider sx={{ backgroundColor: "gray" }} />
-
-          </Box>
-        </Box>
-      </div>
-      <div className="col-lg-9 col-md-12 ">
-
-
-        <div className="col-lg-12">
-          <div className="outerFilterBox">
-            <div className="filterBox">
-              <p>Showing {' '}{sortedAndFilteredResults?.length} {' '} Results</p>
-              <div>
-                <label>Sort By:</label>
-                <select value={sortOption} onChange={handleSortChange}>
-                  <option value="lowToHigh">Low to High</option>
-                  <option value="highToLow">High to Low</option>
-                </select>
+    <section className="mx-5">
+      <div className="contaier-xxl">
+        <div className="row">
+          <div className="col-lg-3">
+            <div className="flightFilterBox">
+              <div className="filterTitle">
+                <p>Select Filters</p>
               </div>
+              <div className="innerFilter">
+                <p>Suggested for you</p>
+                <form action="">
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Non Stop
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Prenoon Departure
+                  </div>
 
-              <div>
-                <label>Rating:</label>
-                <select value={filterRating} onChange={handleFilterChange}>
-                  <option value="">All Ratings</option>
-                  <option value="1">1 Star</option>
-                  <option value="2">2 Stars</option>
-                  <option value="3">3 Stars</option>
-                  <option value="4">4 Stars</option>
-                  <option value="5">5 Stars</option>
-                </select>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    indiGo
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Vistara
+                  </div>
+                </form>
+                <Divider sx={{ backgroundColor: "gray" }} />
+                <p>
+                  Departure from New Delhi
+                </p>
+
+                <form action="">
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Before 6AM
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    6 AM-12 PM
+                  </div>
+
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    12 PM-6 PM
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    After 6 PM
+                  </div>
+                </form>
+
+                <p>
+                  Airlines
+                </p>
+                <form action="">
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Air India (9)
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Air India Express (1)
+                  </div>
+
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    Air Asia (7)
+                  </div>
+                  <div>
+                    <Checkbox
+                      {...label}
+                      icon={<RadioButtonUncheckedIcon />}
+                      checkedIcon={<RadioButtonCheckedIcon />}
+                    />
+                    AKasa Air (3)
+                  </div>
+                </form>
               </div>
-
             </div>
           </div>
-        </div>
+          <div className="col-lg-9 col-md-12">
+            <div className="col-lg-12">
+              <div className="outerFilterBox">
+                <div className="filterBox">
+                  <p>Showing {' '}{sortedAndFilteredResults?.length} {' '} Results</p>
+                  <div>
+                    <label>Sort By:</label>
+                    <select value={sortOption} onChange={handleSortChange}>
+                      <option value="lowToHigh">Low to High</option>
+                      <option value="highToLow">High to Low</option>
+                    </select>
+                  </div>
 
-        <div className="col-lg-12">
-          {sortedAndFilteredResults?.map((result, index) => {
-            const resultIndex = result?.ResultIndex;
-            const hotelCode = result?.HotelCode;
-            return (
-              <Box key={index} className="hotelResultBox" background="#FFF">
-                <Box
-                  p={2}
-                  borderRadius="8px"
-                  border="1.41px solid #BBB"
-                  style={{ background: "#f1f1f1" }}
-                >
-                  <Box display="flex">
-                    <Grid md={7} sm={6}>
-                      <Box display="flex">
-                        <Box
-                          sx={{
-                            width: "20%",
-                            height: "30%",
-                            borderRadius: "5px",
-                          }}
-                        >
+                  <div>
+                    <label>Rating:</label>
+                    <select value={filterRating} onChange={handleFilterChange}>
+                      <option value="">All Ratings</option>
+                      <option value="1">1 Star</option>
+                      <option value="2">2 Stars</option>
+                      <option value="3">3 Stars</option>
+                      <option value="4">4 Stars</option>
+                      <option value="5">5 Stars</option>
+                    </select>
+                  </div>
 
-                          <img
-                            src={result?.HotelPicture}
-                            className="flight_img"
-                            alt="hotelImage"
-                            onError={(e) => {
-                              e.target.onerror = null; // Prevent infinite loop
-                              e.target.src = hotelNotFound; // Replace with your dummy image path
-                            }}
-                            style={{ borderRadius: "5px" }}
-                          />
-                        </Box>
-                        <Box>
-                          <div
-                            style={{
-                              color: "#071C2C",
-                              fontSize: "20px",
-                              fontFamily: "Montserrat",
-                              fontWeight: 700,
-                              wordWrap: "break-word",
-                              marginLeft: "20px",
-                            }}
-                          >
-                            {result?.HotelName}
-                          </div>
-                          <div
-                            style={{
-                              color: "#071C2C",
-                              fontSize: "14.10px",
-                              fontFamily: "Montserrat",
-                              fontWeight: 500,
-                              wordWrap: "break-word",
-                              marginLeft: "20px",
-                            }}
-                          >
-                            {result?.HotelAddress}
-                          </div>
+                </div>
+              </div>
+            </div>
 
-                          <Typography p={0}>
-                            <Link sx={{ fontSize: "13px", marginLeft: "20px" }}>
-                              More Details
-                            </Link>
-                          </Typography>
-                        </Box>
-                      </Box>
-                    </Grid>
-                    <Grid md={5} sm={6}>
-                      <Typography display="flex" gap="15px" justifyContent="right">
-                        <div
-                          style={{
-                            color: "black",
-                            fontSize: "14.10px",
-                            fontFamily: "Montserrat",
-                            fontWeight: 600,
-                            wordWrap: "break-word",
-                            marginLeft: "-30px"
-                          }}
-                        >
-                          Offer Price:
-                        </div>
-                        <div
-                          style={{
-                            color: "black",
-                            fontSize: "14.10px",
-                            fontFamily: "Montserrat",
-                            fontWeight: 400,
-                            wordWrap: "break-word",
-                          }}
-                        >
-                          ₹{result?.Price?.OfferedPrice}
-                        </div>
-                      </Typography>
-                      <Typography display="flex" gap="15px" justifyContent="right">
-                        <div
-                          style={{
-                            color: "black",
-                            fontSize: "14.10px",
-                            fontFamily: "Montserrat",
-                            fontWeight: 600,
-                            wordWrap: "break-word",
-                            marginLeft: "50px"
-                          }}
-                        >
-                          Public Price:
-                        </div>
-                        <div
-                          style={{
-                            color: "black",
-                            fontSize: "14.10px",
-                            fontFamily: "Montserrat",
-                            fontWeight: 400,
-                            wordWrap: "break-word",
-                          }}
-                        >
-                          ₹{result?.Price?.PublishedPrice}
-                        </div>
-                      </Typography>
 
-                      <Box display="flex" justifyContent="right" mt={2}>
-                        <Button
-                          type="submit"
-                          onClick={() => {
-                            // console.log(
-                            //   "resultIndex, hotelCode",
-                            //   resultIndex,
-                            //   hotelCode
-                            // );
-                            handleClick(resultIndex, hotelCode);
-                          }}
-                          style={{ backgroundColor: "#21325D", color: "white", padding: "8px 13px" }}
+            {sortedAndFilteredResults?.map((result, index) => {
+              const resultIndex = result?.ResultIndex;
+              const hotelCode = result?.HotelCode;
+              return (
+                <div className="col-lg-12">
 
-                        >
-                          Book Now
-                        </Button>
-                      </Box>
-                    </Grid>
-                  </Box>
-                </Box>
-              </Box>
-            );
-          })}
+                  <div onClick={(e) => handleClick(resultIndex, hotelCode)} className="hotelResultBoxSearch" key={index}>
+                    <div className="hotelImage">
+                      <img src={result?.HotelPicture} onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = hotelNotFound;
+                      }} alt="package-img" />
+                    </div>
+                    <div className="hotelResultDetails">
+                      <div className="hotleTitle">
+                        <p>{result?.HotelName}</p>
+                      </div>
+                      <div>
+                        <p className="hotAddress">
+                          {result?.HotelAddress}
+                        </p>
+                      </div>
+
+                      <div className="hotelRating">
+                        <p>Star</p>
+                      </div>
+                    </div>
+
+                    <div className="priceBookHotel">
+                      <div className="priceBookHotelOne ">
+                        <span><del>₹{result?.Price?.OfferedPrice}</del></span>
+                        <span>Offer Price</span>
+                        <p>₹{result?.Price?.PublishedPrice}</p>
+                        <h4>Show More<ArrowForwardIosIcon /></h4>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
+    </section>
 
   );
 }
+
+
+
+
+
+{/* <div className="col-lg-12">
+  {sortedAndFilteredResults?.map((result, index) => {
+    const resultIndex = result?.ResultIndex;
+    const hotelCode = result?.HotelCode;
+    return (
+      <Box key={index} className="hotelResultBox" background="#FFF">
+        <Box
+          p={2}
+          borderRadius="8px"
+          border="1.41px solid #BBB"
+          style={{ background: "#fff" }}
+        >
+          <Box display="flex">
+            <Grid md={7} sm={6}>
+              <Box display="flex">
+                <Box
+                  sx={{
+                    width: "250px",
+                    height: "190px",
+                    borderRadius: "5px",
+                  }}
+                >
+
+                  <img
+                    src={result?.HotelPicture}
+                    className="flight_img"
+                    alt="hotelImage"
+                    onError={(e) => {
+                      e.target.onerror = null;
+                      e.target.src = hotelNotFound;
+                    }}
+                    style={{ borderRadius: "5px" }}
+                  />
+                </Box>
+                <Box>
+                  <div
+                    style={{
+                      color: "#071C2C",
+                      fontSize: "20px",
+                      fontFamily: "Montserrat",
+                      fontWeight: 700,
+                      wordWrap: "break-word",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    {result?.HotelName}
+                  </div>
+                  <div
+                    style={{
+                      color: "#071C2C",
+                      fontSize: "14.10px",
+                      fontFamily: "Montserrat",
+                      fontWeight: 500,
+                      wordWrap: "break-word",
+                      marginLeft: "20px",
+                    }}
+                  >
+                    {result?.HotelAddress}
+                  </div>
+
+                  <Typography p={0}>
+                    <Link sx={{ fontSize: "13px", marginLeft: "20px" }}>
+                      More Details
+                    </Link>
+                  </Typography>
+                </Box>
+              </Box>
+            </Grid>
+            <Grid md={5} sm={6}>
+              <Typography display="flex" gap="15px" justifyContent="right">
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: "14.10px",
+                    fontFamily: "Montserrat",
+                    fontWeight: 600,
+                    wordWrap: "break-word",
+                    marginLeft: "-30px"
+                  }}
+                >
+                  Offer Price:
+                </div>
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: "14.10px",
+                    fontFamily: "Montserrat",
+                    fontWeight: 400,
+                    wordWrap: "break-word",
+                  }}
+                >
+                  ₹{result?.Price?.OfferedPrice}
+                </div>
+              </Typography>
+              <Typography display="flex" gap="15px" justifyContent="right">
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: "14.10px",
+                    fontFamily: "Montserrat",
+                    fontWeight: 600,
+                    wordWrap: "break-word",
+                    marginLeft: "50px"
+                  }}
+                >
+                  Public Price:
+                </div>
+                <div
+                  style={{
+                    color: "black",
+                    fontSize: "14.10px",
+                    fontFamily: "Montserrat",
+                    fontWeight: 400,
+                    wordWrap: "break-word",
+                  }}
+                >
+                  ₹{result?.Price?.PublishedPrice}
+                </div>
+              </Typography>
+
+              <Box display="flex" justifyContent="right" mt={2}>
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    // console.log(
+                    //   "resultIndex, hotelCode",
+                    //   resultIndex,
+                    //   hotelCode
+                    // );
+                    handleClick(resultIndex, hotelCode);
+                  }}
+                  style={{ backgroundColor: "#21325D", color: "white", padding: "8px 13px" }}
+
+                >
+                  Book Now
+                </Button>
+              </Box>
+            </Grid>
+          </Box>
+        </Box>
+      </Box>
+    );
+  })}
+</div> */}

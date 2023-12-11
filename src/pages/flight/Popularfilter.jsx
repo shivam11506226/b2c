@@ -25,7 +25,7 @@ const Popularfilter = (props) => {
 
   return (
     <section className="mx-5">
-      <div className="contaier-fluid">
+      <div className="contaier-xxl">
         <div className="row">
           <div className="col-lg-3">
             <div className="flightFilterBox">

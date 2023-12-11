@@ -1,9 +1,55 @@
 import React, { useState } from "react";
-import axios from "axios";
+import goa from "../../../images/goa.jpg"
+import LocationCityIcon from "@mui/icons-material/LocationCity";
+import FastfoodIcon from "@mui/icons-material/Fastfood";
+import StarIcon from "@mui/icons-material/Star";
+import CommitIcon from "@mui/icons-material/Commit";
+import TramIcon from "@mui/icons-material/Tram";
+import DirectionsBusIcon from "@mui/icons-material/DirectionsBus";
+import DirectionsCarIcon from "@mui/icons-material/DirectionsCar";
+import TwoWheelerIcon from "@mui/icons-material/TwoWheeler";
+import ApartmentIcon from "@mui/icons-material/Apartment";
+import HolidayVillageIcon from "@mui/icons-material/HolidayVillage";
+import CabinIcon from "@mui/icons-material/Cabin";
+import BlurOnIcon from "@mui/icons-material/BlurOn";
+import DeckIcon from "@mui/icons-material/Deck";
+import EngineeringIcon from "@mui/icons-material/Engineering";
+import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
+import LiquorIcon from "@mui/icons-material/Liquor";
+import ArticleIcon from "@mui/icons-material/Article";
+import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
+import ParaglidingIcon from "@mui/icons-material/Paragliding";
+import NaturePeopleIcon from "@mui/icons-material/NaturePeople";
+import LandslideIcon from "@mui/icons-material/Landslide";
+import KitesurfingIcon from "@mui/icons-material/Kitesurfing";
+import PoolIcon from "@mui/icons-material/Pool";
+import DownhillSkiingIcon from "@mui/icons-material/DownhillSkiing";
+import ForestIcon from "@mui/icons-material/Forest";
+import SelfImprovementIcon from "@mui/icons-material/SelfImprovement";
+import FitnessCenterIcon from "@mui/icons-material/FitnessCenter";
+import FolderDeleteIcon from "@mui/icons-material/FolderDelete";
+import LocalOfferIcon from "@mui/icons-material/LocalOffer";
+import KayakingIcon from "@mui/icons-material/Kayaking";
+import SportsKabaddiIcon from "@mui/icons-material/SportsKabaddi";
+import BookmarkAddIcon from "@mui/icons-material/BookmarkAdd";
+import FmdGoodIcon from '@mui/icons-material/FmdGood';
+import Tab from '@mui/material/Tab';
+import TabContext from '@mui/lab/TabContext';
+import TabList from '@mui/lab/TabList';
+import TabPanel from '@mui/lab/TabPanel';
+import WifiPasswordIcon from "@mui/icons-material/WifiPassword";
+import Navbar from "../../../layouts/Navbar";
+import Mainheader from "../../../UI/Mainheader";
+import BigNavbar from "../../../UI/BigNavbar/BigNavbar";
+import { useDispatch, useSelector } from "react-redux";
+import Accordion from "react-bootstrap/Accordion";
+import { Box, Typography, Button, Grid } from "@mui/material";
 import "./holidayinfo.css";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
+import { useNavigate } from "react-router-dom";
 import Modal from "@mui/material/Modal";
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import axios from "axios";
 const style = {
   position: "absolute",
   top: "50%",
@@ -16,6 +62,37 @@ const style = {
   p: 4,
 };
 function Holidayinfo() {
+
+  const navigate = useNavigate();
+  const reducerState = useSelector((state) => state);
+  const onePackage =
+    reducerState?.searchOneResult?.OneSearchPackageResult?.data?.data;
+  // console.log("One Package", onePackage);
+  const [daysDetailsValues, setDaysDetails] = useState([]);
+  const handleDaysDetail = (index, e) => {
+    const newValues = [...daysDetailsValues];
+    newValues[index] = e.target.value;
+    setDaysDetails(newValues);
+  };
+
+  const [value, setValue] = React.useState('1');
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const savedDataString = sessionStorage.getItem("searchPackageData");
+  const savedData = JSON.parse(savedDataString);
+  const savedDestination = savedData.destination.toUpperCase();
+  const savedDays = savedData.days;
+
+
+
+
+
+
+  // function of enquiry for booking 
+
   const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -26,7 +103,7 @@ function Holidayinfo() {
     departure_date: "",
   });
 
-  // Function to handle form input changes
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -37,10 +114,9 @@ function Holidayinfo() {
 
   const handleClose = () => {
     setOpenModal((prev) => !prev);
-   
+
   };
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const enquiryPayload = {
@@ -61,361 +137,686 @@ function Holidayinfo() {
         },
       },
     });
-     setFormData({
-       email: "",
-       fullname: "",
-       contact_number: "",
-       departure_city: "",
-       number_of_people: Number(),
-       departure_date: "",
-     });
+    setFormData({
+      email: "",
+      fullname: "",
+      contact_number: "",
+      departure_city: "",
+      number_of_people: Number(),
+      departure_date: "",
+    });
     setOpenModal((prev) => !prev);
   };
+
+  // function of enquiry for booking 
+
+
+
+
+
   return (
+
     <>
-      <button id="send_enquiry" onClick={() => setOpenModal((prev) => !prev)}>
-        Send Enquiry for booking
-      </button>
-      <div>
-        <div className="header-containerpack">
-          <div className="title">
-            Dubai - Travel Solo not Alone, Group trips for Solo Travellers
-          </div>
-          <div className="duration-container">
-            <div className="duration-badge">
-              <div className="duration-text">5D / 4N</div>
-            </div>
-          </div>
-        </div>
-        <div className="packagedetails">
-          <div className="packagedetailsleft">
-            <div className="component-containerpackages">
-              <div className="icon-containerpackagess">
-                <div className="icon-backgroundpackess">
-                  <div className="iconpackess">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="34"
-                      height="39"
-                      viewBox="0 0 34 39"
-                      fill="none"
-                    >
-                      <path
-                        opacity="0.6"
-                        d="M28.314 28.3347L19.828 36.8273C19.4569 37.1991 19.0162 37.494 18.5311 37.6952C18.046 37.8964 17.5261 38 17.001 38C16.4759 38 15.956 37.8964 15.4709 37.6952C14.9858 37.494 14.5451 37.1991 14.174 36.8273L5.68601 28.3347C3.44845 26.0953 1.92468 23.2421 1.30738 20.136C0.690086 17.0299 1.00699 13.8104 2.21801 10.8846C3.42904 7.95872 5.4798 5.45796 8.11097 3.69853C10.7421 1.93909 13.8355 1 17 1C20.1645 1 23.2579 1.93909 25.889 3.69853C28.5202 5.45796 30.571 7.95872 31.782 10.8846C32.993 13.8104 33.3099 17.0299 32.6926 20.136C32.0753 23.2421 30.5516 26.0953 28.314 28.3347Z"
-                        stroke="white"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                      />
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="16"
-                        height="16"
-                        left="10"
-                        viewBox="0 0 16 16"
-                        fill="none"
-                      >
-                        <path
-                          d="M14.6452 8.0859C14.6452 9.89734 13.9511 11.6346 12.7156 12.9155C11.48 14.1963 9.80429 14.9159 8.05699 14.9159C6.30968 14.9159 4.63393 14.1963 3.3984 12.9155C2.16286 11.6346 1.46875 9.89734 1.46875 8.0859C1.46875 6.27446 2.16286 4.53721 3.3984 3.25633C4.63393 1.97545 6.30968 1.25586 8.05699 1.25586C9.80429 1.25586 11.48 1.97545 12.7156 3.25633C13.9511 4.53721 14.6452 6.27446 14.6452 8.0859Z"
-                          stroke="white"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </svg>
-                  </div>
-                  <div className="overlay"></div>
+      <div className='mainimg'>
+        <Navbar />
+        <BigNavbar />
+        <Mainheader />
+      </div>
+
+      <div className="container-lg">
+        <div className="row">
+          <div className="col-lg-9">
+            <div className="row">
+              <div className="col-lg-12 mb-4">
+                <div className="packageName">
+                  <p className="mb-3">{onePackage?.pakage_title}</p>
+                  <span>{`${onePackage?.days - 1}N`} / {`${onePackage?.days}D`}</span>
                 </div>
               </div>
-              <div className="text-containerpackess">
-                <div className="titlepackess">Dubai Marina</div>
-                <div className="subtitlepackess">(Dubai)</div>
-              </div>
-            </div>
-            <div className="main-container">
-              <div className="title">Discover the best of Dubai</div>
-              <div className="image-container">
-                <div className="image-item lavish-cruise">
-                  <img
-                    className="main-imagepackage"
-                    src="https://via.placeholder.com/142x142"
-                    alt="Lavish Cruise"
-                  />
-                  <div className="overlay">
-                    <img
-                      className="icon"
-                      src="https://via.placeholder.com/68x68"
-                      alt="Icon"
-                    />
-                  </div>
-                  <div className="circle"></div>
-                  <div className="text">Lavish Cruise</div>
+              <div className="col-lg-12 mb-4 packageImgBox" >
+                <div className="PackageImg">
+                  <img src={onePackage?.pakage_img} alt="" />
                 </div>
-                <div className="image-item best-sightseeing">
-                  <img
-                    className="main-imagepackage"
-                    src="https://via.placeholder.com/142x142"
-                    alt="Best Sightseeing"
-                  />
-                  <div className="overlay">
-                    <img
-                      className="icon"
-                      src="https://via.placeholder.com/68x68"
-                      alt="Icon"
-                    />
-                  </div>
-                  <div className="circle"></div>
-                  <div className="text">Best Sightseeing</div>
+                <div className="packageLocation">
+                  <FmdGoodIcon />
                 </div>
-                <div className="image-item fun-activities">
-                  <img
-                    className="main-imagepackage"
-                    src="https://via.placeholder.com/142x142"
-                    alt="15+ Fun Activities"
-                  />
-                  <div className="overlay">
-                    <img
-                      className="icon"
-                      src="https://via.placeholder.com/68x68"
-                      alt="Icon"
-                    />
-                  </div>
-                  <div className="circle"></div>
-                  <div className="text">15+ Fun Activities</div>
+                <div>
+                  <p>{savedDestination}</p>
+                  <span>(India)</span>
                 </div>
               </div>
-            </div>
-            <div className="main-containerpackage1">
-              <div className="content-container">
-                <div className="category-container">
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
+
+              <div className="col-lg-12 mb-4">
+                <div className="TripHighlight">
+                  <p className="mb-3">Trip Highlights</p>
+
+                  <div className="col-lg-10">
+                    <div className="icon-boxHighlight">
+
+                      {onePackage?.insclusions?.map((ele, index) => {
+                        if (
+                          ele?.flexibility ||
+                          ele?.train ||
+                          ele?.bus ||
+                          ele?.cab ||
+                          ele?.moterBike ||
+                          ele?.hotel ||
+                          ele?.homeStays ||
+                          ele?.guestHouse ||
+                          ele?.cruise ||
+                          ele?.sightSeeing ||
+                          ele?.guide ||
+                          ele?.meals ||
+                          ele?.breakfast ||
+                          ele?.drink ||
+                          ele?.visa ||
+                          ele?.travelInsurance ||
+                          ele?.wildlife ||
+                          ele?.heritage ||
+                          ele?.adventure ||
+                          ele?.beach ||
+                          ele?.hillStation ||
+                          ele?.nature ||
+                          ele?.wellness ||
+                          ele?.hiddenGem ||
+                          ele?.tax ||
+                          ele?.discount ||
+                          ele?.waterActivities ||
+                          ele?.optionalActivities ||
+                          ele?.flexibleBooking ||
+                          ele?.wifi
+                        ) {
+                          return (
+                            <div key={index} >
+                              {ele?.flexibility && (
+                                <div className="singleIcon">
+                                  <span><CommitIcon />
+                                  </span>
+                                  <p>Flexibility</p>
+                                </div>
+                              )}
+                              {ele?.train && (
+                                <div className="singleIcon">
+                                  <span><TramIcon /></span>
+                                  <p>Train</p>
+                                </div>
+                              )}
+                              {ele?.bus && (
+                                <div className="singleIcon">
+                                  <span><DirectionsBusIcon /></span>
+                                  <p>Bus</p>
+                                </div>
+                              )}
+                              {ele?.cab && (
+                                <div className="singleIcon">
+                                  <span><DirectionsCarIcon /></span>
+                                  <p>Cab</p>
+                                </div>
+                              )}
+                              {ele?.moterBike && (
+                                <div className="singleIcon">
+                                  <span><TwoWheelerIcon /></span>
+                                  <p>Moterbike</p>
+                                </div>
+                              )}
+                              {ele?.hotel && (
+                                <div className="singleIcon">
+                                  <span><ApartmentIcon /></span>
+                                  <p>Hotel</p>
+                                </div>
+                              )}
+                              {ele?.homeStays && (
+                                <div className="singleIcon">
+                                  <span><HolidayVillageIcon /></span>
+                                  <p>Homestays</p>
+                                </div>
+                              )}
+                              {ele?.guestHouse && (
+                                <div className="singleIcon">
+                                  <span><LocationCityIcon /></span>
+                                  <p>Guesthouse</p>
+                                </div>
+                              )}
+                              {ele?.camp && (
+                                <div className="singleIcon">
+                                  <span><CabinIcon /></span>
+                                  <p>Camp</p>
+                                </div>
+                              )}
+                              {ele?.cruise && (
+                                <div className="singleIcon">
+                                  <span><BlurOnIcon /></span>
+                                  <p>Cruise</p>
+                                </div>
+                              )}
+                              {ele?.sightSeeing && (
+                                <div className="singleIcon">
+                                  <span><DeckIcon /></span>
+                                  <p>Sightseeing</p>
+                                </div>
+                              )}
+                              {ele?.guide && (
+                                <div className="singleIcon">
+                                  <span><EngineeringIcon /></span>
+                                  <p>Guide</p>
+                                </div>
+                              )}
+                              {ele?.meals && (
+                                <div className="singleIcon">
+                                  <span><FastfoodIcon /></span>
+                                  <p>Meals</p>
+                                </div>
+                              )}
+                              {ele?.breakfast && (
+                                <div className="singleIcon">
+                                  <span><DinnerDiningIcon /></span>
+                                  <p>Daily Breakfast</p>
+                                </div>
+                              )}
+                              {ele?.drink && (
+                                <div className="singleIcon">
+                                  <span><LiquorIcon /></span>
+                                  <p>Complimentary Drink</p>
+                                </div>
+                              )}
+                              {ele?.visa && (
+                                <div className="singleIcon">
+                                  <span><ArticleIcon /></span>
+                                  <p>Visa</p>
+                                </div>
+                              )}
+                              {ele?.travelInsurance && (
+                                <div className="singleIcon">
+                                  <span><AccountBalanceIcon /></span>
+                                  <p>Travel Insurance</p>
+                                </div>
+                              )}
+                              {ele?.safeTravel && (
+                                <div className="singleIcon">
+                                  <span><ParaglidingIcon /></span>
+                                  <p>Safe to Travel</p>
+                                </div>
+                              )}
+                              {ele?.wildlife && (
+                                <div className="singleIcon">
+                                  <span><NaturePeopleIcon /></span>
+                                  <p>Wildlife</p>
+                                </div>
+                              )}
+                              {ele?.heritage && (
+                                <div className="singleIcon">
+                                  <span><LandslideIcon /></span>
+                                  <p>Heritage</p>
+                                </div>
+                              )}
+                              {ele?.adventure && (
+                                <div className="singleIcon">
+                                  <span><KitesurfingIcon /></span>
+                                  <p>Adventure</p>
+                                </div>
+                              )}
+                              {ele?.beach && (
+                                <div className="singleIcon">
+                                  <span><PoolIcon /></span>
+                                  <p>Beach</p>
+                                </div>
+                              )}
+                              {ele?.hillStation && (
+                                <div className="singleIcon">
+                                  <span><DownhillSkiingIcon /></span>
+                                  <p>Hill Station</p>
+                                </div>
+                              )}
+                              {ele?.nature && (
+                                <div className="singleIcon">
+                                  <span><ForestIcon /></span>
+                                  <p>Nature</p>
+                                </div>
+                              )}
+                              {ele?.wellness && (
+                                <div className="singleIcon">
+                                  <span><SelfImprovementIcon /></span>
+                                  <p>Wellness</p>
+                                </div>
+                              )}
+                              {ele?.hiddenGem && (
+                                <div className="singleIcon">
+                                  <span><FitnessCenterIcon /></span>
+                                  <p>Hidden Gem</p>
+                                </div>
+                              )}
+                              {ele?.tax && (
+                                <div className="singleIcon">
+                                  <span><FolderDeleteIcon /></span>
+                                  <p>Price Inclusive Tax</p>
+                                </div>
+                              )}
+                              {ele?.discount && (
+                                <div className="singleIcon">
+                                  <span><LocalOfferIcon /></span>
+                                  <p>50% Off</p>
+                                </div>
+                              )}
+                              {ele?.waterActivities && (
+                                <div className="singleIcon">
+                                  <span><KayakingIcon /></span>
+                                  <p>Water Activities</p>
+                                </div>
+                              )}
+                              {ele?.optionalActivities && (
+                                <div className="singleIcon">
+                                  <span><SportsKabaddiIcon /></span>
+                                  <p>Optional Activities</p>
+                                </div>
+                              )}
+                              {ele?.flexibleBooking && (
+                                <div className="singleIcon">
+                                  <span><BookmarkAddIcon /></span>
+                                  <p>Flexible Booking</p>
+                                </div>
+                              )}
+                              {ele?.wifi && (
+                                <div className="singleIcon">
+                                  <span><WifiPasswordIcon /></span>
+                                  <p>WIFI</p>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        }
+                      })}
+
                     </div>
-                    <div className="textholiday">Best Sightseeing</div>
                   </div>
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          height="25"
-                          viewBox="0 0 24 25"
-                          fill="none"
-                        >
-                          <mask
-                            id="mask0_646_13638"
-                            maskUnits="userSpaceOnUse"
-                            x="0"
-                            y="0"
-                            width="24"
-                            height="25"
-                          >
-                            <rect
-                              y="0.5"
-                              width="24"
-                              height="24"
-                              fill="#D9D9D9"
-                            />
-                          </mask>
-                          <g mask="url(#mask0_646_13638)">
-                            <path
-                              d="M11.4 9.5H19.4C18.95 8.35 18.2625 7.3625 17.3375 6.5375C16.4125 5.7125 15.35 5.13333 14.15 4.8L11.4 9.5ZM9.1 11.5L13.1 4.6C12.9167 4.56667 12.7333 4.54167 12.55 4.525C12.3667 4.50833 12.1833 4.5 12 4.5C10.9 4.5 9.875 4.70833 8.925 5.125C7.975 5.54167 7.13333 6.1 6.4 6.8L9.1 11.5ZM4.25 14.5H9.7L5.7 7.6C5.16667 8.28333 4.75 9.0375 4.45 9.8625C4.15 10.6875 4 11.5667 4 12.5C4 12.85 4.02083 13.1875 4.0625 13.5125C4.10417 13.8375 4.16667 14.1667 4.25 14.5ZM9.85 20.2L12.55 15.5H4.6C5.05 16.65 5.7375 17.6375 6.6625 18.4625C7.5875 19.2875 8.65 19.8667 9.85 20.2ZM12 20.5C13.1 20.5 14.125 20.2917 15.075 19.875C16.025 19.4583 16.8667 18.9 17.6 18.2L14.9 13.5L10.9 20.4C11.0833 20.4333 11.2625 20.4583 11.4375 20.475C11.6125 20.4917 11.8 20.5 12 20.5ZM18.3 17.4C18.8333 16.7167 19.25 15.9625 19.55 15.1375C19.85 14.3125 20 13.4333 20 12.5C20 12.15 19.9792 11.8125 19.9375 11.4875C19.8958 11.1625 19.8333 10.8333 19.75 10.5H14.3L18.3 17.4ZM12 22.5C10.6333 22.5 9.34167 22.2375 8.125 21.7125C6.90833 21.1875 5.84583 20.4708 4.9375 19.5625C4.02917 18.6542 3.3125 17.5917 2.7875 16.375C2.2625 15.1583 2 13.8667 2 12.5C2 11.1167 2.2625 9.82083 2.7875 8.6125C3.3125 7.40417 4.02917 6.34583 4.9375 5.4375C5.84583 4.52917 6.90833 3.8125 8.125 3.2875C9.34167 2.7625 10.6333 2.5 12 2.5C13.3833 2.5 14.6792 2.7625 15.8875 3.2875C17.0958 3.8125 18.1542 4.52917 19.0625 5.4375C19.9708 6.34583 20.6875 7.40417 21.2125 8.6125C21.7375 9.82083 22 11.1167 22 12.5C22 13.8667 21.7375 15.1583 21.2125 16.375C20.6875 17.5917 19.9708 18.6542 19.0625 19.5625C18.1542 20.4708 17.0958 21.1875 15.8875 21.7125C14.6792 22.2375 13.3833 22.5 12 22.5Z"
-                              fill="#071C2C"
-                            />
-                          </g>
-                        </svg>
+                </div>
+              </div>
+
+              <div className="col-lg-12 mb-4">
+                <div className="tripOverview">
+                  <div className="col-lg-10">
+                    <div className="overviewBox">
+                      <span>Overview</span>
+                      <p>{onePackage?.overview}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-3">
+            <div className="sidePromo">
+              <div className="col-lg-12 sidePromoImg">
+                <img src={goa} alt="" />
+              </div>
+              <div className="promoBottom">
+                <div className="promoTitle">
+                  <p>Luxurious Dubai Trip</p>
+                  <div>
+                    <StarIcon />
+                    <StarIcon />
+                    <StarIcon />
+                  </div>
+                </div>
+                <div className="promoIcons">
+                  <div className="singlePromoIcon">
+                    <span><TramIcon /></span>
+                    <p>Train</p>
+                  </div>
+                  <div className="singlePromoIcon">
+                    <span><ForestIcon /></span>
+                    <p>Nature</p>
+                  </div>
+                  <div className="singlePromoIcon">
+                    <span><LocalOfferIcon /></span>
+                    <p>50% Off</p>
+                  </div>
+
+                  <div className="singlePromoIcon">
+                    <span><WifiPasswordIcon /></span>
+                    <p>WIFI</p>
+                  </div>
+                </div>
+
+                <div className="promoDestination">
+                  <ul>
+                    <li>Mandovi river cruise</li>
+                    <li>North Dubai sightseeing</li>
+                  </ul>
+                  <div>
+                    <p>₹ 42,250 </p>
+                    <span>Per Person</span>
+                  </div>
+                </div>
+                <div className="promoBottomButton">
+                  <p>VIEW OTHER PACKAGES {" > "}</p>
+
+                  <button>View Package</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-12">
+            <div className="row">
+              <div className="col-lg-12 mb-4">
+                <TabContext value={value} style={{}}>
+                  <Box sx={{ borderBottom: 1, backgroundColor: "#DFE6F7", borderColor: 'divider' }}>
+                    <TabList onChange={handleChange}
+                      // textColor="#21325D"
+                      // indicatorColor="#21325D"
+                      aria-label="lab API tabs example">
+                      <Tab label="ITINERARY" value="1" />
+                      <Tab label="HOTEL DETAILS" value="2" />
+                      <Tab label="INCLUSIONS &EXCLUSIONS" value="3" />
+                      <Tab label="TERMS & CONDITION" value="4" />
+                      <Tab label="CANCELLATION POLICY" value="5" />
+
+                    </TabList>
+                  </Box>
+                  <TabPanel value="1">
+                    <div className="col-lg-12">
+                      {/* <div className="dayPlan"> */}
+                      {onePackage?.detailed_ltinerary?.map((item, index) => {
+                        return (
+                          <>
+                            <Box>
+                              <Box py={1}> </Box>
+                              <Accordion
+                                style={{ width: "100%" }}
+                                defaultActiveKey={index === 0 ? index.toString() : undefined} // Set defaultActiveKey to index 0
+                              >
+                                <Accordion.Item eventKey={index.toString()}>
+                                  <Accordion.Header>
+                                    <Typography
+                                      color="Black"
+                                      fontSize="15px"
+                                      fontWeight="bold"
+                                    >
+                                      Day {index + 1}
+                                    </Typography>
+                                  </Accordion.Header>
+                                  <Accordion.Body>
+                                    <Typography
+                                      sx={{
+                                        color: "#666666",
+                                        fontSize: "14px",
+                                        fontWeight: "bold",
+                                      }}
+                                    >
+                                      {item}
+                                    </Typography>
+                                  </Accordion.Body>
+                                </Accordion.Item>
+                              </Accordion>
+                            </Box>
+                          </>
+                        );
+                      })}
+                      {/* </div> */}
+                    </div>
+
+                  </TabPanel>
+                  <TabPanel value="2">
+                    <div className="col-lg-12">
+                      <div className="hotelDetailsTab">
+                        <h2 className="mb-4">HOTEL DETAILS</h2>
+                        <p>{onePackage?.hotel_details}</p>
                       </div>
                     </div>
-                    <div className="textholiday">Safe to Travel</div>
-                  </div>
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
+                  </TabPanel>
+                  <TabPanel value="3">
+                    <div className="col-lg-12">
+                      <div className="inclusionTab">
+                        <div className="row g-3">
+                          <div className="col-lg-6">
+                            <h2>Inclusion</h2>
+
+                            <p>{onePackage?.insclusion_note}</p>
+                          </div>
+                          <div className="col-lg-6">
+                            <h2>Exclusion</h2>
+
+                            <p>{onePackage?.exclusion_note}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    <div className="textholiday">World Famous Beaches</div>
-                  </div>
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
+                  </TabPanel>
+                  <TabPanel value="4">
+                    <div className="col-lg-12">
+                      <div className="tandC">
+                        <div className="row">
+                          <div className="col-lg-12">
+                            <h2>Term & Condition</h2>
+
+                            <p>{onePackage?.term_Conditions}</p>
+                          </div>
+
+                        </div>
+                      </div>
                     </div>
-                    <div className="textholiday">
-                      Special Dubai Food Cuisine
+                  </TabPanel>
+                  <TabPanel value="5">
+                    <div className="col-lg-12">
+                      <div className="cancelTab">
+                        <div className="row">
+                          <div className="col-lg-12">
+                            <h2>Cancellation Policy</h2>
+
+                            <p>{onePackage?.cancellation_Policy}</p>
+                          </div>
+
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="category-container">
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
-                    </div>
-                    <div className="textholiday">
-                      Certified Experienced Guide
-                    </div>
-                  </div>
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
-                    </div>
-                    <div className="textholiday">Luxurious Cruise</div>
-                  </div>
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
-                    </div>
-                    <div className="textholiday">Free Cab Services</div>
-                  </div>
-                  <div className="category">
-                    <div className="icon-containerpackage">
-                      <div className="icon-background"></div>
-                      <div className="icon"></div>
-                    </div>
-                    <div className="textholiday">Top Hotels for Stay</div>
-                  </div>
-                </div>
-              </div>
-              <div className="view-all-container">
-                <div className="view-all-text">VIEW ALL HIGHLIGHTS</div>
-              </div>
-            </div>
-            <div className="main-containeroveriew">
-              <div className="overview-containerover">
-                <div className="titleover">Overview</div>
-                <div className="descriptionoveriew">
-                  Welcome to Dubai, the land of amazing and modern skyscrapers,
-                  the Arabian desert, adrenaline rush experiences, shopping at
-                  the Dubai Mall, the Palm Jumeirah, Burj Al Arab, and of
-                  course, the Burj Khalifa. We take you on an enthralling tour
-                  giving you an experience of sand dunes, cultural shows,
-                  underwater encounters, musical fountains, and last but not
-                  least, the view of the majestic Dubai skyline from the 24th
-                  floor of Burj Khalifa, an experience of a lifetime.
-                </div>
+                  </TabPanel>
+                </TabContext>
+
               </div>
             </div>
           </div>
-          <div className="packagedetailsright">
-            <div className="main-containerprice">
-              <img
-                src="https://via.placeholder.com/304x163"
-                alt="Package"
-                className="package-imageprice"
-              />
-              <div className="content-containerprice">
-                <div className="titleprice">Luxurious Dubai Solo Trip</div>
-                <div className="featuresprice">
-                  <div className="featureprice">
-                    <div className="icon non-refundable"></div>
-                    <div className="textprice">Non-Refundable</div>
-                    <div className="icon free-breakfast"></div>
-                    <div className="textprice">Free Breakfast</div>
-                  </div>
-                </div>
-                <div className="price-containerprice">
-                  <div className="discounted-prices">&#8377; 50,450</div>
-                  <div className="original-priceses">&#8377; 42,250</div>
-                  <div className="price-per-person">Per Person</div>
-                </div>
-              </div>
-              <div className="action-containerprice">
-                <div className="view-other-packages">VIEW OTHER PACKAGES</div>
-                <div className="arrow-iconprice"></div>
-              </div>
-              <div className="confirm-button">CONFIRM THIS PACKAGE NOW</div>
+          <div className="col-lg-12">
+
+            <div className="holiday_but">
+              <button id="send_enquiry" onClick={() => setOpenModal((prev) => !prev)}>
+                Send Enquiry for booking
+              </button>
             </div>
           </div>
+
+          <Modal
+            open={openModal}
+            onClose={handleClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+          >
+            {/* <Box sx={style}>
+              <form onSubmit={handleSubmit}>
+                <label>
+                  Email:
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <br />
+
+                <label>
+                  Full Name:
+                  <input
+                    type="text"
+                    name="fullname"
+                    value={formData.fullname}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <br />
+
+                <label>
+                  Contact Number:
+                  <input
+                    type="text"
+                    name="contact_number"
+                    value={formData.contact_number}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <br />
+
+                <label>
+                  Departure City:
+                  <input
+                    type="text"
+                    name="departure_city"
+                    value={formData.departure_city}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <br />
+
+                <label>
+                  Number of People:
+                  <input
+                    type="number"
+                    name="number_of_people"
+                    value={formData.number_of_people}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <br />
+
+                <label>
+                  Departure Date:
+                  <input
+                    type="date"
+                    name="departure_date"
+                    value={formData.departure_date}
+                    onChange={handleInputChange}
+                  />
+                </label>
+                <br />
+
+                <button type="submit">Submit</button>
+              </form>
+            </Box> */}
+            <div className="modalBoxPackage">
+              <div className="container">
+                <form onSubmit={handleSubmit}>
+                  <div className="row">
+
+
+
+                    <div className="col-lg-6 col-md-6 mb-3">
+                      <div className="form-floating">
+                        <input
+                          type="text"
+                          name="fullname"
+                          value={formData.fullname}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label for="floatingInput">Enter Name</label>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6 col-md-6 mb-3">
+                      <div class="form-floating">
+                        <input
+                          type="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label for="floatingInput">Enter Email</label>
+                      </div>
+                    </div>
+
+
+                    <div className="col-lg-6 col-md-6 mb-3">
+                      <div className="form-floating">
+                        <input
+                          type="text"
+                          name="contact_number"
+                          value={formData.contact_number}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label for="floatingInput">Contact Number</label>
+                      </div>
+                    </div>
+
+
+                    <div className="col-lg-6 col-md-6 mb-3">
+                      <div className="form-floating">
+                        <input
+                          type="text"
+                          name="departure_city"
+                          value={formData.departure_city}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label for="floatingInput">Departure City</label>
+                      </div>
+                    </div>
+                    <div className="col-lg-6 col-md-6 mb-3">
+                      <div className="form-floating">
+                        <input
+                          type="number"
+                          name="number_of_people"
+                          value={formData.number_of_people}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label for="floatingInput">Number of People</label>
+                      </div>
+                    </div>
+
+                    <div className="col-lg-6 col-md-6 mb-3">
+                      <div class="form-floating packDatePick">
+                        <input
+                          type="date"
+                          name="departure_date"
+                          value={formData.departure_date}
+                          onChange={handleInputChange}
+                          className="form-control"
+                        />
+                        <label for="floatingInput">Number of People</label>
+                      </div>
+                    </div>
+                    <div className="col-lg-12">
+                      <div className="packEnqButton">
+                        <button type="submit">Submit</button>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </Modal>
         </div>
       </div>
-      <Modal
-        open={openModal}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style}>
-          <form onSubmit={handleSubmit}>
-            <label>
-              Email:
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br />
-
-            <label>
-              Full Name:
-              <input
-                type="text"
-                name="fullname"
-                value={formData.fullname}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br />
-
-            <label>
-              Contact Number:
-              <input
-                type="text"
-                name="contact_number"
-                value={formData.contact_number}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br />
-
-            <label>
-              Departure City:
-              <input
-                type="text"
-                name="departure_city"
-                value={formData.departure_city}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br />
-
-            <label>
-              Number of People:
-              <input
-                type="number"
-                name="number_of_people"
-                value={formData.number_of_people}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br />
-
-            <label>
-              Departure Date:
-              <input
-                type="date"
-                name="departure_date"
-                value={formData.departure_date}
-                onChange={handleInputChange}
-              />
-            </label>
-            <br />
-
-            <button type="submit">Submit</button>
-          </form>
-        </Box>
-      </Modal>
     </>
   );
 }
 
 export default Holidayinfo;
+
+
+
+// <>
+//   <div className='mainimg'>
+//     <Navbar />
+//     <BigNavbar />
+//     <Mainheader />
+//   </div>
+
+// </>
+
+
+
+
+

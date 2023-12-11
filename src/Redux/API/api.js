@@ -184,24 +184,19 @@ function api() {
 
   // Holiday Package API
   const searchPackage = (payload) => {
-    console.log("searchPackage" + payload.destination);
-    console.log("searchPackage" + payload.days);
+    // console.log("searchPackage" + payload.destination);
+    // console.log("searchPackage" + payload.days);
     const { destination, days } = payload;
-    const axiosConfig = {
-      baseURL: `${apiURL.baseURL}`,
-    };
+    // ?filter=${days}&keyword=${destination}
     return axios.get(
-      `skyTrails/international/getAll?filter=${days}&keyword=${destination}`, axiosConfig
+      `${apiURL.baseURL}/skyTrails/international/getAll?filter=${days}&keyword=${destination}`
     );
   };
 
   const getOnePackage = (payload) => {
-    const axiosConfig = {
-      baseURL: `${apiURL.baseURL}`,
-    };
-    return axios.get(
-      `skyTrails/international/getone/${payload}`, axiosConfig
-    );
+    // console.log("getOnePacked", payload);
+    const { id } = payload;
+    return axios.get(`${apiURL.baseURL}/skyTrails/international/getone/${id}`);
   };
 
   const bookingHoliday = (payload) => {
@@ -216,10 +211,10 @@ function api() {
       },
     });
   };
-const passengerData = (payload) => {
-  // console.log("Passenger payload", payload);
-  return payload;
-};
+  const passengerData = (payload) => {
+    // console.log("Passenger payload", payload);
+    return payload;
+  };
 
   // Bus API start from here
   const getBusSearch = (payload) => {
