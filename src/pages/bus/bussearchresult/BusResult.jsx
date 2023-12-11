@@ -1,9 +1,10 @@
 import React from "react";
-
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { Grid, Paper, Radio, Typography } from "@mui/material";
 import Divider from "@mui/material/Divider";
+import axios from "axios";
+import { apiURL } from "../../../Constants/constant";
 
 import Checkbox from "@mui/material/Checkbox";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
@@ -18,64 +19,217 @@ import "./seatlayout.css";
 function BusResult() {
   const navigate = useNavigate("");
   const reducerState = useSelector((state) => state);
+  const [openAccordian, setOpenAccordian] = useState(false);
+  const [resultIndex, setResultIndex] = useState("");
+  const [origin, setOrigin] = useState([]);
+  const [destination, setDestination] = useState([]);
+  const [resulttIndex, setResulttIndex] = useState("");
+  const [selectedOrigin, setSelectedOrigin] = useState("");
+  const [selectedDropPoint, setSelectedDropPoint] = useState("");
+  const upperArray = [];
+  const lowerArray = [];
+  const [blockedSeatArray, setBlockedSeatArray] = useState([]);
+  const [flatArray, setFlatArray] = useState([]);
+  const [seatLayoutData, setSeatLayoutData] = useState({});
+  const [layout, setLayout] = useState([]);
+  const busFullData =
+    reducerState?.getBusResult?.busResult?.data?.data?.BusSearchResult;
   const busDetailsData =
     reducerState?.getBusResult?.busResult?.data?.data?.BusSearchResult
       ?.BusResults;
-
+  const busDataResult =
+    reducerState?.getBusResult?.busResult?.data?.data?.BusSearchResult
+      ?.BusResults;
 
   console.log(reducerState, "reducerState");
   console.log(busDetailsData, "busDetailsData");
-  function handleclick() {
-    navigate("/SelectBusSeat");
+  console.log(layout, "layout");
+  function handleclick(resultIndexPara) {
+    setResultIndex(resultIndexPara);
+    const requestData = {
+      EndUserIp: reducerState?.ip?.ipData,
+      ResultIndex: resultIndexPara,
+      TraceId: busFullData?.TraceId,
+      TokenId: reducerState?.ip?.tokenData,
+    };
+
+    try {
+      axios
+        .post(`${apiURL.baseURL}/skyTrails/bus/seatlayout`, requestData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+        .then((response) => {
+          setSeatLayoutData(response.data);
+
+          const finalLayout = handleSeatLayoutStringTwo(
+            response.data?.data?.GetBusSeatLayOutResult?.SeatLayoutDetails
+              ?.HTMLLayout
+          );
+          // console.log(
+          //   "finalLayout",
+          //   response.data?.data?.GetBusSeatLayOutResult?.SeatLayoutDetails
+          //     ?.HTMLLayout
+          // );
+
+          setLayout((prev) => finalLayout);
+          const SeatDetailsArray =
+            response.data?.data?.GetBusSeatLayOutResult?.SeatLayoutDetails
+              ?.SeatLayout?.SeatDetails;
+          // console.log("seatDetailssAraayyy", SeatDetailsArray);
+
+          let singleArray = SeatDetailsArray.reduce(
+            (acc, currentArray) => [...acc, ...currentArray],
+            []
+          );
+          setFlatArray(singleArray);
+          busDataResult.map((item, index) => {
+            if (item?.ResultIndex === resultIndexPara) {
+              setOrigin(item?.BoardingPointsDetails);
+              setDestination(item?.DroppingPointsDetails);
+            }
+          });
+          setResulttIndex(resultIndexPara);
+
+          // console.log("flattArayyyyyy",flatArray)
+        });
+    } catch (error) {
+      console.error("Try-Catch Error:", error);
+    }
   }
+
+
+  flatArray.forEach((obj) => {
+    if (obj?.IsUpper === true) {
+      upperArray.push(obj);
+    } else if (obj?.IsUpper === false) {
+      lowerArray.push(obj);
+    }
+  });
+
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  // const busDetailsData = [
-  //   {
-  //     id: 1,
-  //     busTitle: "Shrinath Travel Agency Pvt. Ltd.",
-  //     busType: "NON AC Seater (2+1)",
-  //     departureTime: "23:30",
-  //     departureDate: "29 Oct",
-  //     duration: "32hrs 50 mins",
-  //     arrivalTime: "08:20",
-  //     arrivalDate: "29 Oct",
-  //     totalPrice: "₹3,699",
-  //     rating: "3.2",
-  //     seatsLeft: "31 Seats Left | 21 Window Seats",
-  //   },
-  //   {
-  //     id: 2,
-  //     busTitle: "Example Bus Company 1",
-  //     busType: "AC Sleeper (2+1)",
-  //     departureTime: "21:45",
-  //     departureDate: "30 Oct",
-  //     duration: "24hrs 30 mins",
-  //     arrivalTime: "22:15",
-  //     arrivalDate: "31 Oct",
-  //     totalPrice: "₹4,500",
-  //     rating: "4.0",
-  //     seatsLeft: "20 Seats Left | 15 Window Seats",
-  //   },
-  //   {
-  //     id: 3,
-  //     busTitle: "Another Bus Company",
-  //     busType: "Semi-Sleeper (2+2)",
-  //     departureTime: "15:00",
-  //     departureDate: "01 Nov",
-  //     duration: "20hrs 15 mins",
-  //     arrivalTime: "11:15",
-  //     arrivalDate: "02 Nov",
-  //     totalPrice: "₹3,200",
-  //     rating: "3.8",
-  //     seatsLeft: "15 Seats Left | 10 Window Seats",
-  //   },
-  // ];
 
   const [activeSort, setActiveSort] = useState("Relevance");
 
   const handleSortClick = (sortOption) => {
     setActiveSort(sortOption);
   };
+  function handleSeatLayoutStringTwo(inputString) {
+    // Your bus seat layout string
+    let busSeatLayoutString = `${inputString}`;
+
+    // Create an empty array to store the seat objects
+    let seatObjects = [];
+
+    // Create a temporary div element to parse the string
+    let tempDiv = document.createElement("div");
+    tempDiv.innerHTML = busSeatLayoutString;
+    // console.log("temppdivvvvvvvvvv", tempDiv);
+    // Select all seat div elements
+    let seatDivs = tempDiv.querySelectorAll(
+      ".hseat, .bhseat, .vhseat, .bhseat, .bseat, .vseat, .nseat, .rhseat"
+    );
+    // console.log(seatDivs);
+
+    // Iterate through each seat div and differentiate between upper/lower and left/right sides
+    seatDivs.forEach((seatDiv) => {
+      // Check if the seat div is inside the upper part of the bus
+      if (seatDiv.closest(".outerseat")) {
+        const upperCheck = seatDiv.closest(".outerseat");
+        const lowerDivCheck = upperCheck.querySelector(".lower");
+        if (lowerDivCheck) {
+          seatObjects.push({
+            type: "lower",
+            id: seatDiv.id,
+            class: seatDiv.getAttribute("class"),
+            top: seatDiv.style.top,
+            left: seatDiv.style.left,
+            onclick: seatDiv.getAttribute("onclick"),
+          });
+        }
+
+        // Conditionally check for SeatType 2 and add sleeper seat
+        else {
+          seatObjects.push({
+            type: "upper",
+            id: seatDiv.id,
+            class: seatDiv.getAttribute("class"),
+            top: seatDiv.style.top,
+            left: seatDiv.style.left,
+            onclick: seatDiv.getAttribute("onclick"),
+          });
+        }
+      }
+      // Check if the seat div is inside the lower part of the bus
+      else if (seatDiv.closest(".outerlowerseat")) {
+        seatObjects.push({
+          type: "lower",
+          id: seatDiv.id,
+          class: seatDiv.getAttribute("class"),
+          top: seatDiv.style.top,
+          left: seatDiv.style.left,
+          onclick: seatDiv.getAttribute("onclick"),
+        });
+      }
+    });
+
+    // Log the array of seat objects
+    console.log(seatObjects);
+    return seatObjects;
+  }
+  function addOrRemoveSeat(e, object) {
+    // console.log("hiiiiiiiiiiiiiiiiiiiii");
+    // console.log(e);
+    // console.log(e.target.checked);
+    // console.log(index)
+    if (e.target.checked) {
+      setBlockedSeatArray([...blockedSeatArray, object]);
+      // console.log(blockedSeatArray);
+    } else {
+      // const element = object;
+      // const index = blockedSeatArray.indexOf(element);
+      // const slicedArray=blockedSeatArray.splice(index, 1)
+      // setBlockedSeatArray(slicedArray);
+      const updatedBlockedSeatArray = blockedSeatArray.filter(
+        (seatObject) => seatObject !== object
+      );
+      setBlockedSeatArray(updatedBlockedSeatArray);
+      // console.log(blockedSeatArray);
+    }
+  }
+   function handleClose() {
+     setBlockedSeatArray([]);
+     setSelectedDropPoint("");
+     setSelectedOrigin("");
+     setOrigin([]);
+     setDestination([]);
+    //  setModal((prev) => !prev);
+   }
+   function handleContinue() {
+     if (
+       blockedSeatArray.length === 0 ||
+       selectedOrigin === "" ||
+       destination.length === 0 ||
+       selectedDropPoint === "" ||
+       origin === ""
+     ) {
+       return;
+     }
+     const dataToSave = {
+       blockedSeatArray: blockedSeatArray,
+       selectedOrigin: selectedOrigin,
+       selectedDropPoint: selectedDropPoint,
+       resultIndex: resulttIndex,
+     };
+
+     // Save the combined state object to session storage
+     sessionStorage.setItem("seatData", JSON.stringify(dataToSave));
+     navigate("/BusPassengerDetail");
+   }
+
+
+
 
   return (
     <div>
@@ -604,8 +758,323 @@ function BusResult() {
                     </div>
                   </div>
                 </div>
+                {resultIndex == busDetails?.ResultIndex ? (
+                  <div className="sealLayoutDiv">
+                    <Box
+                      className="layOutParent"
+                      sx={{
+                        height: "600px",
+                        width: "800px",
+                        bgcolor: "background.paper",
+                        backdropFilter: "blur(5px)",
+                        border: "1px solid red",
+                        alignSelf: "center",
+                        opacity: 0.9,
+                        display: "flex",
+                      }}
+                    >
+                      {/* //seat div started */}
+                      <Box
+                        sx={{
+                          height: "100%",
+                          width: "60%",
+                        }}
+                      >
+                        <Box class="outerseat">
+                          <Box class="busSeatlft">
+                            <Box class="upper"></Box>
+                          </Box>
+                          <Box class="busSeatrgt">
+                            <Box class="busSeat">
+                              <Box class="seatcontainer clearfix">
+                                {layout?.map((item, index) => {
+                                  if (item?.type === "upper") {
+                                    const divStyle = {
+                                      top: item?.top || 0,
+                                      left: item?.left || 0,
+                                    };
+                                    return (
+                                      <Box
+                                        class={item?.class}
+                                        id={item?.id}
+                                        style={{
+                                          ...divStyle,
+                                          width: "20px",
+                                          height: "20px",
+                                          display: "flex",
+                                          position: "absolute",
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                          border: `2px solid ${
+                                            item?.SeatType === 2
+                                              ? "green"
+                                              : "blue"
+                                          }`, // Change the border color based on SeatType // Change the border color based on SeatType // Change the color based on SeatType
+                                        }}
+                                      >
+                                        <Checkbox
+                                          onChange={(e) =>
+                                            addOrRemoveSeat(
+                                              e,
+                                              upperArray?.[index],
+                                              index
+                                            )
+                                          }
+                                          disabled={
+                                            upperArray?.[index]?.SeatStatus ===
+                                            true
+                                              ? false
+                                              : true
+                                          }
+                                        />
+                                      </Box>
+                                    );
+                                  }
+                                })}
+                              </Box>
+                            </Box>
+                          </Box>
+                        </Box>
+                        <Box class="outerlowerseat">
+                          <Box class="busSeatlft">
+                            <Box class="lower"></Box>
+                          </Box>
+                          <Box class="busSeatrgt">
+                            <Box class="busSeat">
+                              <Box class="seatcontainer clearfix">
+                                {layout?.map((item, index) => {
+                                  if (item?.type === "lower") {
+                                    const divStyle = {
+                                      top: item?.top || 0,
+                                      left: item?.left || 0,
+                                    };
+                                    return (
+                                      <Box
+                                        class={item?.class}
+                                        id={item?.id}
+                                        style={{
+                                          ...divStyle,
+                                          width: "20px",
+                                          height: "20px",
+                                          display: "flex",
+                                          border: "1px solid red",
+                                          // padding: "2px",
+                                          position: "absolute",
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                        }}
+                                      >
+                                        <Checkbox
+                                          onChange={(e) =>
+                                            addOrRemoveSeat(
+                                              e,
+                                              lowerArray?.[
+                                                index - upperArray.length
+                                              ],
+                                              index
+                                            )
+                                          }
+                                          disabled={
+                                            lowerArray?.[
+                                              index - upperArray.length
+                                            ]?.SeatStatus === true
+                                              ? false
+                                              : true
+                                          }
+                                        />
+                                      </Box>
+                                    );
+                                  }
+                                })}
+                              </Box>
+                            </Box>
+                          </Box>
+                        </Box>
+                      </Box>
+                      <Box
+                        sx={{
+                          height: "100%",
+                          width: "50%",
+                          border: "3px solid gray",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                        }}
+                      >
+                        <Box
+                          sx={{
+                            height: "80%",
+                            width: "100%",
+                            border: "2px solid black",
+                          }}
+                        >
+                          <Box
+                            sx={{
+                              display: "flex",
+                              paddingTop: "5px",
+                              width: "70%",
+                              justifyContent: "space-between",
+                              alignItems: "center",
+                              margin: "auto",
+                            }}
+                          >
+                            <Box
+                              sx={{
+                                display: "flex",
+                                gap: "8px",
+                              }}
+                            >
+                              {" "}
+                              <Typography>Seats:</Typography>
+                              {blockedSeatArray?.map((seat, index) => {
+                                return (
+                                  <Typography
+                                    sx={{
+                                      color: "blue",
+                                    }}
+                                  >
+                                    {seat?.SeatName}
+                                  </Typography>
+                                );
+                              })}
+                            </Box>
+                            <Box>
+                              {(() => {
+                                const totalSeatPrice = blockedSeatArray.reduce(
+                                  (totalPrice, seat) => {
+                                    return totalPrice + (seat?.SeatFare || 0);
+                                  },
+                                  0
+                                );
+                                return (
+                                  <div style={{ display: "flex" }}>
+                                    <Typography>Price:</Typography>
+                                    <h2
+                                      style={{
+                                        color: "blue",
+                                        marginTop: "3px",
+                                        width: "20px",
+                                      }}
+                                    >
+                                      {totalSeatPrice}
+                                    </h2>
+                                  </div>
+                                );
+                              })()}
+                            </Box>
+                          </Box>
+                          <Box
+                            style={{
+                              width: "70%",
+                              margin: "auto",
+                              gap: "70px",
+                              display: "flex",
+                            }}
+                          >
+                            <label>Origin</label>
+                            <select
+                              value={selectedOrigin} // Bind the selected value to the state variable.
+                              onClick={(e) => setSelectedOrigin(e.target.value)} // Use onChange to handle value changes.
+                              style={{ borderRadius: "10px", width: "120px" }}
+                            >
+                              {origin.map((name, index) =>
+                                index === 0 ? (
+                                  <option
+                                    key={index}
+                                    selected
+                                    value={name?.CityPointIndex}
+                                  >
+                                    {name?.CityPointName}
+                                  </option>
+                                ) : (
+                                  <option
+                                    key={index}
+                                    value={name?.CityPointIndex}
+                                  >
+                                    {name?.CityPointName}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </Box>
+
+                          <Box
+                            style={{
+                              width: "70%",
+                              margin: "auto",
+                              marginTop: "20px",
+                              display: "flex",
+                              gap: "30px",
+                            }}
+                          >
+                            <label>Destination</label>
+                            <select
+                              value={selectedDropPoint}
+                              onClick={(e) =>
+                                setSelectedDropPoint(e.target.value)
+                              }
+                              style={{ borderRadius: "10px", width: "120px" }}
+                            >
+                              {destination.map((name, index) =>
+                                index === 0 ? (
+                                  <option
+                                    key={index}
+                                    selected
+                                    value={name?.CityPointIndex}
+                                  >
+                                    {name?.CityPointName}
+                                  </option>
+                                ) : (
+                                  <option
+                                    key={index}
+                                    value={name?.CityPointIndex}
+                                  >
+                                    {name?.CityPointName}
+                                  </option>
+                                )
+                              )}
+                            </select>
+                          </Box>
+
+                          <Box
+                            style={{
+                              width: "60%",
+                              display: "flex",
+                              gap: "20px",
+                              margin: "auto",
+                              marginTop: "20px",
+                            }}
+                          >
+                            <Button
+                              onClick={handleClose}
+                              style={{
+                                backgroundColor: "#21325D",
+                                color: "white",
+                              }}
+                            >
+                              Close
+                            </Button>
+                            <Button
+                              onClick={handleContinue}
+                              style={{
+                                backgroundColor: "#21325D",
+                                color: "white",
+                              }}
+                            >
+                              Continue
+                            </Button>
+                          </Box>
+                        </Box>
+                      </Box>
+                    </Box>
+                    <div>
+                      <div></div>
+                    </div>
+                  </div>
+                ) : (
+                  ""
+                )}
               </div>
-              
             ))}
           </div>
         </div>

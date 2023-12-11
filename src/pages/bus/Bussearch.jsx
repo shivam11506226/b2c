@@ -118,7 +118,7 @@ const Homeform = (props) => {
     ) {
       navigate("/busresult");
     }
-  }, [reducerState?.getBusResult?.busResult]);
+  }, [reducerState?.getBusResult?.busResult?.data?.data?.BusSearchResult]);
 
   useEffect(() => {
     let mounted = true;
@@ -239,8 +239,6 @@ const Homeform = (props) => {
     };
     console.log("payload", payload);
     dispatch(busSearchAction(payload));
-
-    
   }
 
   // end
@@ -427,7 +425,11 @@ const Homeform = (props) => {
                 <Box display="flex" justifyContent="center">
                   <div className="searchContainer">
                     <div className="searchButton">
-                      <div className="buttonText" onClick={handleFromClicks}>
+                      <div
+                        className="buttonText"
+                        onClick={handleFromClicks}
+                        style={{ cursor: "pointer" }}
+                      >
                         SEARCH
                       </div>
                     </div>
