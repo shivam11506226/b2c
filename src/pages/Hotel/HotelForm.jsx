@@ -485,7 +485,7 @@ const HotelForm = () => {
                                     <form onSubmit={handleSubmit}>
                                         <div className="yourHotel-container">
                                             <div className="hotel-container">
-                                                <span>From</span>
+                                                <span>City Name</span>
                                                 <div>
                                                     <input
                                                         name="City"

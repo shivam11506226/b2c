@@ -77,7 +77,7 @@ export default function CustomizedAccordions() {
   const hotelInfo = reducerState?.hotelSearchResult?.hotelInfo?.HotelInfoResult;
 
   const hotelll = reducerState?.hotelSearchResult;
-  // console.log(hotelll, "hotelll");
+  console.log(hotelll, "hotelll");
   //Below is the functionality applied for the multiRoom selection
   const roomComponent = (RoomIndex, RoomIndexArr, col, row) => {
     // console.log(RoomIndexArr, "RoomIndexArr");
@@ -96,7 +96,7 @@ export default function CustomizedAccordions() {
     const filteredComponent = firstFilteredArray.filter((item, index) => {
       return item.RoomIndex == RoomIndex;
     });
-    // console.log("filteredComponent", filteredComponent);
+    console.log("filteredComponent", filteredComponent);
     const dateString = filteredComponent[0]?.LastCancellationDate;
     const date1 = new Date(dateString);
     const time1 = date1.toLocaleTimeString([], {
@@ -111,136 +111,52 @@ export default function CustomizedAccordions() {
     const year = date1.getFullYear();
     const formattedDate = `${day} ${month} ${year}`;
     return (
-      // <Box className="offer_area" p={2}>
-      //   <Grid container>
-      //     <Grid md={3}>
-      //       <Box display="grid" justifyContent="left" textAlign="left">
-      //         <Typography
-      //           sx={{
-      //             fontSize: "12px",
-      //             fontWeight: "bold",
-      //             color: "#666666",
-      //           }}
-      //         >
-      //           {filteredComponent[0]?.RoomTypeName}
-      //         </Typography>
-      //         <Typography
-      //           sx={{
-      //             fontSize: "12px",
-      //             fontWeight: "bold",
-      //             color: "#006FFF",
-      //           }}
-      //         >
-      //           {filteredComponent[0]?.RoomPromotion}
-      //         </Typography>
-      //         <Typography>
-      //           <Link
-      //             sx={{
-      //               fontSize: "8px",
-      //               fontWeight: "bold",
-      //               color: "#FF8900",
-      //             }}
-      //           >
-      //             Show Room Description
-      //           </Link>
-      //         </Typography>
-      //       </Box>
-      //     </Grid>
-      //     <Grid md={3} alignItems="center" display="flex">
-      //       <Box>
-      //         <Typography
-      //           sx={{
-      //             fontSize: "8px",
-      //             fontWeight: "bold",
-      //             color: "#666666",
-      //             alignItems: "center",
-      //           }}
-      //         >
-      //           {filteredComponent[0]?.RatePlanName}
-      //         </Typography>
-      //       </Box>
-      //     </Grid>
-      //     <Grid md={3} alignItems="center" display="flex">
-      //       <Box>
-      //         <Typography
-      //           sx={{
-      //             fontSize: "8px",
-      //             fontWeight: "bold",
-      //             color: "#FF0000",
-      //             alignItems: "center",
-      //           }}
-      //         >
-      //           Last Cancellation till:{formattedDate}
-      //         </Typography>
-      //       </Box>
-      //     </Grid>
-      //     <Grid md={3} alignItems="center" display="flex" justifyContent="end">
-      //       <Box>
-      //         <Typography
-      //           sx={{
-      //             fontSize: "8px",
-      //             fontWeight: "bold",
-      //             color: "#006FFF",
-      //           }}
-      //           mr={2}
-      //         >
-      //           ₹{filteredComponent[0]?.Price?.PublishedPriceRoundedOff}
-      //         </Typography>
-      //       </Box>
-      //       <Box>
-      //         <input
-      //           className="radio"
-      //           type="checkbox"
-      //           style={{ width: "25px", height: "25px" }}
-      //           value={`${filteredComponent[0]?.RoomIndex}`}
-      //           disabled={row >= 0 && col > 0 && filteredComponent[0].disabled}
-      //           checked={!filteredComponent[0].disabled}
-      //           onClick={(e) => {
-      //             setDisabledOption(RoomIndexArr);
-      //           }}
-      //         />
-      //       </Box>
-      //     </Grid>
-      //   </Grid>
-      // </Box>
 
+      <div className="offer_area ">
+        <div className="inneraccorHotel">
+          <div className="roomTypeName">
+            <p className="first">
+              {filteredComponent[0]?.RoomTypeName}
+            </p>
+          </div>
 
-      <div className="offer_area p-2">
-        <div className="roomTypeName">
-          <p className="first">
-            {filteredComponent[0]?.RoomTypeName}
-          </p>
-        </div>
+          <div className="ratePlan">
 
-        <div className="ratePlan">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              style={{ width: "25px", height: "25px" }}
+              value={filteredComponent[0]?.RoomIndex}
+              disabled={row >= 0 && col > 0 && filteredComponent[0].disabled}
+              checked={!filteredComponent[0].disabled}
+              onClick={(e) => {
+                setDisabledOption(RoomIndexArr);
+              }}
+            />
+            <p className="text">
+              {filteredComponent[0]?.RatePlanName}
+            </p>
+          </div>
+          <div className="smolking">
+            <p> Smoking Preference :  {" "}{filteredComponent[0]?.SmokingPreference}</p>
+          </div>
 
-          <input
-            className="form-check-input"
-            type="checkbox"
-            style={{ width: "25px", height: "25px" }}
-            value={filteredComponent[0]?.RoomIndex}
-            disabled={row >= 0 && col > 0 && filteredComponent[0].disabled}
-            checked={!filteredComponent[0].disabled}
-            onClick={(e) => {
-              setDisabledOption(RoomIndexArr);
-            }}
-          />
           <p className="text">
-            {filteredComponent[0]?.RatePlanName}
+            Last Cancellation till: {formattedDate}
           </p>
-        </div>
-        <p className="text">
-          Last Cancellation till: {formattedDate}
-        </p>
+        </div >
         <div className="priceCheck">
           <p className="price">
             ₹{filteredComponent[0]?.Price?.PublishedPriceRoundedOff}
           </p>
-          <p className="second">
-            {filteredComponent[0]?.RoomPromotion}
-          </p>
+          <div>
+            <h3 onClick={(e) => {
+              setDisabledOption(RoomIndexArr);
+            }}>Select Room</h3>
+          </div>
         </div>
-      </div >
+      </div>
+
 
     );
   };
@@ -285,79 +201,6 @@ export default function CustomizedAccordions() {
           ?.HotelSearchResult?.NoOfRooms,
       ClientReferenceNo: 0,
       IsVoucherBooking: true,
-
-      //   {
-      //     RoomIndex: hotelRoom?.HotelRoomsDetails[ratingOption]?.RoomIndex,
-      //     RoomTypeCode:
-      //       hotelRoom?.HotelRoomsDetails[ratingOption]?.RoomTypeCode,
-      //     RoomTypeName:
-      //       hotelRoom?.HotelRoomsDetails[ratingOption]?.RoomTypeName,
-      //     RatePlanCode:
-      //       hotelRoom?.HotelRoomsDetails[ratingOption]?.RatePlanCode,
-      //     BedTypeCode: null,
-      //     SmokingPreference: SmokingPreference,
-      //     Supplements: null,
-      //     Price: {
-      //       CurrencyCode:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.CurrencyCode,
-      //       RoomPrice:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.RoomPrice,
-      //       Tax: hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.Tax,
-      //       ExtraGuestCharge:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price
-      //           ?.ExtraGuestCharge,
-      //       ChildCharge:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.ChildCharge,
-      //       OtherCharges:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.OtherCharges,
-      //       Discount:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.Discount,
-      //       PublishedPrice:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.PublishedPrice,
-      //       PublishedPriceRoundedOff:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price
-      //           ?.PublishedPriceRoundedOff,
-      //       OfferedPrice:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.OfferedPrice,
-      //       OfferedPriceRoundedOff:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price
-      //           ?.OfferedPriceRoundedOff,
-      //       AgentCommission:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price
-      //           ?.AgentCommission,
-      //       AgentMarkUp:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.AgentMarkUp,
-      //       ServiceTax:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.ServiceTax,
-      //       TCS: hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.TCS,
-      //       TDS: hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.TDS,
-      //       ServiceCharge:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.ServiceCharge,
-      //       TotalGSTAmount:
-      //         hotelRoom?.HotelRoomsDetails[ratingOption]?.Price?.TotalGSTAmount,
-      //       GST: {
-      //         CGSTAmount:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.CGSTAmount,
-      //         CGSTRate:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.CGSTRate,
-      //         CessAmount:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.CessAmount,
-      //         CessRate:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.CessRate,
-      //         IGSTAmount:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.IGSTAmount,
-      //         IGSTRate:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.IGSTRate,
-      //         SGSTAmount:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.SGSTAmount,
-      //         SGSTRate:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.SGSTRate,
-      //         TaxableAmount:
-      //           hotelRoom?.HotelRoomsDetails[ratingOption]?.GST?.TaxableAmount,
-      //       },
-      //     },
-      //   },
-      // ],
       HotelRoomsDetails: handleChoosenRoom().map((item, index) => {
         return {
           RoomIndex: item?.RoomIndex,
@@ -410,260 +253,258 @@ export default function CustomizedAccordions() {
   };
 
   return (
-    <div>
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12 col-md-12 col-sm-12">
-            <Accordion
-              expanded={expanded === "panel1"}
-              onChange={handleChange("panel1")}
-              sx={{ border: "none", marginY: "20px" }}
-            >
-              <AccordionSummary
-                sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
-                aria-controls="panel1d-content"
-                id="panel1d-header"
-              >
-                <Grid container>
-                  <Grid md={12}>
-                    <Box display="flex" alignItems="center">
-                      <Box>
-                        <img src={availableRooms} style={{ width: "100%" }} />
-                      </Box>
-                      <Typography
-                        ml={2}
-                        color="#252525"
-                        fontSize="14px"
-                        fontWeight="bold"
-                      >
-                        Available Room(s)
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  <Grid md={6}>
-                    <Box display="flex" justifyContent="end"></Box>
-                  </Grid>
-                </Grid>
-              </AccordionSummary>
-              <AccordionDetails
-                sx={{
-                  borderRadius: "20px",
-                  boxShadow: "0px 3px 6px #00000029",
-                  marginTop: "20px",
-                }}
-              >
+
+    <div className="row">
 
 
 
-
-                {/* <Box> */}
-                {hotelRoom?.RoomCombinations?.RoomCombination.map(
-                  (item1, index1) => {
-                    return (
-                      <div className="container">
-                        <div className="roomCompo">
-                          {item1?.RoomIndex?.map((item2, index2) => {
-                            if (index2==0){
-                              return (
-                                <div className="" key={index2}>
-                                  {roomComponent(
-                                    item2,
-                                    item1?.RoomIndex,
-                                    index2,
-                                    index1
-                                  )}
-                                </div>
-                              );
-                            }
-                           
-                  })}
-                        </div>
-                      </div>
-                    );
-                  }
-                )}
-                {/* </Box> */}
-
-                <Box></Box>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel2"}
-              onChange={handleChange("panel2")}
-              sx={{ border: "none", marginY: "20px" }}
-            >
-              <AccordionSummary
-                sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
-                aria-controls="panel2d-content"
-                id="panel2d-header"
-              >
-                <Grid container>
-                  <Grid md={12}>
-                    <Box display="flex" alignItems="center">
-                      <Box>
-                        <img src={imageGallery} style={{ width: "100%" }} />
-                      </Box>
-                      <Typography
-                        ml={2}
-                        color="#252525"
-                        fontSize="14px"
-                        fontWeight="bold"
-                      >
-                        Image Gallery
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  <Grid md={6}>
-                    <Box display="flex" justifyContent="end"></Box>
-                  </Grid>
-                </Grid>
-              </AccordionSummary>
-              <AccordionDetails
-                sx={{
-                  borderRadius: "20px",
-                  boxShadow: "0px 3px 6px #00000029",
-                  margin: " 20px 0px",
-                }}
-              >
-                <Box my={3} overflow="scroll" height="270px">
-                  <Grid container spacing={3} px={10}>
-                    {hotelInfo?.HotelDetails?.Images?.map((img, key) => {
-                      return (
-                        <Grid item sm={6} lg={4}>
-                          <Box>
-                            <img src={img} className="jacuzzy_img" />
-                          </Box>
-                        </Grid>
-                      );
-                    })}
-                  </Grid>
+      <div className="col-lg-12 col-md-12 col-sm-12">
+        <Accordion
+          expanded={expanded === "panel1"}
+          onChange={handleChange("panel1")}
+          sx={{ border: "none", marginY: "20px" }}
+        >
+          <AccordionSummary
+            sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
+            aria-controls="panel1d-content"
+            id="panel1d-header"
+          >
+            <Grid container>
+              <Grid md={12}>
+                <Box display="flex" alignItems="center">
+                  <Box>
+                    <img src={availableRooms} style={{ width: "100%" }} />
+                  </Box>
+                  <Typography
+                    ml={2}
+                    color="#252525"
+                    fontSize="14px"
+                    fontWeight="bold"
+                  >
+                    Available Room(s)
+                  </Typography>
                 </Box>
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              expanded={expanded === "panel3"}
-              onChange={handleChange("panel3")}
-              sx={{ border: "none", marginY: "20px" }}
-            >
-              <AccordionSummary
-                sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
-                aria-controls="panel3d-content"
-                id="panel3d-header"
-              >
-                <Grid container>
-                  <Grid md={12}>
-                    <Box display="flex" alignItems="center">
-                      <Box>
-                        <img src={hotelDetails} style={{ width: "100%" }} />
-                      </Box>
-                      <Typography
-                        ml={2}
-                        color="#252525"
-                        fontSize="14px"
-                        fontWeight="bold"
-                      >
-                        Hotel Details
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  <Grid md={6}>
-                    <Box display="flex" justifyContent="end"></Box>
-                  </Grid>
-                </Grid>
-              </AccordionSummary>
-              <AccordionDetails
-                sx={{
-                  borderRadius: "20px",
-                  boxShadow: "0px 3px 6px #00000029",
-                  margin: " 20px 0px",
-                }}
-              >
-                <Box display="flex" justifyContent="left">
+              </Grid>
+              <Grid md={6}>
+                <Box display="flex" justifyContent="end"></Box>
+              </Grid>
+            </Grid>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{
+              borderRadius: "20px",
+              boxShadow: "0px 3px 6px #00000029",
+              marginTop: "20px",
+            }}
+          >
 
+
+
+
+            {/* <Box> */}
+            {hotelRoom?.RoomCombinations?.RoomCombination.map(
+              (item1, index1) => {
+                return (
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-lg-12">
+                        {item1?.RoomIndex?.map((item2, index2) => {
+                          if (index2 == 0) {
+                            return (
+                              <div className="roomCompo" key={index2}>
+                                {roomComponent(
+                                  item2,
+                                  item1?.RoomIndex,
+                                  index2,
+                                  index1
+                                )}
+                              </div>
+                            );
+                          }
+
+                        })}
+                      </div>
+                    </div>
+                  </div>
+                );
+              }
+            )}
+            {/* </Box> */}
+
+            <Box></Box>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={expanded === "panel2"}
+          onChange={handleChange("panel2")}
+          sx={{ border: "none", marginY: "20px" }}
+        >
+          <AccordionSummary
+            sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
+            aria-controls="panel2d-content"
+            id="panel2d-header"
+          >
+            <Grid container>
+              <Grid md={12}>
+                <Box display="flex" alignItems="center">
+                  <Box>
+                    <img src={imageGallery} style={{ width: "100%" }} />
+                  </Box>
+                  <Typography
+                    ml={2}
+                    color="#252525"
+                    fontSize="14px"
+                    fontWeight="bold"
+                  >
+                    Image Gallery
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid md={6}>
+                <Box display="flex" justifyContent="end"></Box>
+              </Grid>
+            </Grid>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{
+              borderRadius: "20px",
+              boxShadow: "0px 3px 6px #00000029",
+              margin: " 20px 0px",
+            }}
+          >
+            <Box my={3} overflow="scroll" height="270px">
+              <Grid container spacing={3} px={10}>
+                {hotelInfo?.HotelDetails?.Images?.map((img, key) => {
+                  return (
+                    <Grid item sm={6} lg={4}>
+                      <Box>
+                        <img src={img} className="jacuzzy_img" />
+                      </Box>
+                    </Grid>
+                  );
+                })}
+              </Grid>
+            </Box>
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          expanded={expanded === "panel3"}
+          onChange={handleChange("panel3")}
+          sx={{ border: "none", marginY: "20px" }}
+        >
+          <AccordionSummary
+            sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
+            aria-controls="panel3d-content"
+            id="panel3d-header"
+          >
+            <Grid container>
+              <Grid md={12}>
+                <Box display="flex" alignItems="center">
                   <Box>
                     <img src={hotelDetails} style={{ width: "100%" }} />
                   </Box>
                   <Typography
-                    sx={{ fontsize: "14px", color: "#252525", textAlign: "left" }}
                     ml={2}
-                    mb={2}
+                    color="#252525"
+                    fontSize="14px"
+                    fontWeight="bold"
                   >
                     Hotel Details
                   </Typography>
                 </Box>
-                <Typography className="acc_para">
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: hotelInfo?.HotelDetails?.Description,
-                    }}
-                  />
-                </Typography>
+              </Grid>
+              <Grid md={6}>
+                <Box display="flex" justifyContent="end"></Box>
+              </Grid>
+            </Grid>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{
+              borderRadius: "20px",
+              boxShadow: "0px 3px 6px #00000029",
+              margin: " 20px 0px",
+            }}
+          >
+            <Box display="flex" justifyContent="left">
 
-              </AccordionDetails>
-            </Accordion>
-            <Accordion
-              sx={{ border: "none", marginY: "20px" }}
-              expanded={expanded === "panel4"}
-              onChange={handleChange("panel4")}
-            >
-              <AccordionSummary
-                sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
-                aria-controls="panel4d-content"
-                id="panel4d-header"
+              <Box>
+                <img src={hotelDetails} style={{ width: "100%" }} />
+              </Box>
+              <Typography
+                sx={{ fontsize: "14px", color: "#252525", textAlign: "left" }}
+                ml={2}
+                mb={2}
               >
-                <Grid container>
-                  <Grid md={12}>
-                    <Box display="flex" alignItems="center">
-                      <Box>
-                        <img src={hotelMap} style={{ width: "100%" }} />
-                      </Box>
-                      <Typography
-                        ml={2}
-                        color="#252525"
-                        fontSize="14px"
-                        fontWeight="bold"
-                      >
-                        Hotel Map
-                      </Typography>
-                    </Box>
-                  </Grid>
-                  <Grid md={6}>
-                    <Box display="flex" justifyContent="end"></Box>
-                  </Grid>
-                </Grid>
-              </AccordionSummary>
-              <AccordionDetails
-                sx={{
-                  borderRadius: "20px",
-                  boxShadow: "0px 3px 6px #00000029",
-                  marginTop: "20px",
+                Hotel Details
+              </Typography>
+            </Box>
+            <Typography className="acc_para">
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: hotelInfo?.HotelDetails?.Description,
                 }}
-              >
-                <Typography
-                  sx={{ fontsize: "14px", color: "#252525", textAlign: "left" }}
-                  mb={1}
-                >
-                  Hotel Map Details
-                </Typography>
-                <Typography className="acc_para">
-                  <Alert severity="error">
-                    {" "}
-                    Currently Map Details is Not Available !!!
-                  </Alert>
-                </Typography>
-              </AccordionDetails>
-            </Accordion>
-          </div>
-        </div>
+              />
+            </Typography>
+
+          </AccordionDetails>
+        </Accordion>
+        <Accordion
+          sx={{ border: "none", marginY: "20px" }}
+          expanded={expanded === "panel4"}
+          onChange={handleChange("panel4")}
+        >
+          <AccordionSummary
+            sx={{ borderRadius: "20px", boxShadow: "0px 3px 6px #00000029" }}
+            aria-controls="panel4d-content"
+            id="panel4d-header"
+          >
+            <Grid container>
+              <Grid md={12}>
+                <Box display="flex" alignItems="center">
+                  <Box>
+                    <img src={hotelMap} style={{ width: "100%" }} />
+                  </Box>
+                  <Typography
+                    ml={2}
+                    color="#252525"
+                    fontSize="14px"
+                    fontWeight="bold"
+                  >
+                    Hotel Map
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid md={6}>
+                <Box display="flex" justifyContent="end"></Box>
+              </Grid>
+            </Grid>
+          </AccordionSummary>
+          <AccordionDetails
+            sx={{
+              borderRadius: "20px",
+              boxShadow: "0px 3px 6px #00000029",
+              marginTop: "20px",
+            }}
+          >
+            <Typography
+              sx={{ fontsize: "14px", color: "#252525", textAlign: "left" }}
+              mb={1}
+            >
+              Hotel Map Details
+            </Typography>
+            <Typography className="acc_para">
+              <Alert severity="error">
+                {" "}
+                Currently Map Details is Not Available !!!
+              </Alert>
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
       </div>
-      {/* <Box className="accordian_area">
-        <Custombutton
-          type={"submit"}
-          title={"continue"}
-          onClick={handleClick}
-        />
-      </Box> */}
-      <button type="submit" className="bookNowButton" onClick={handleClick}>Continue</button>
+      <div className="col-lg-12">
+        <button type="submit" className="bookNowButton" onClick={handleClick}>Continue</button>
+      </div>
     </div>
+
   );
 }

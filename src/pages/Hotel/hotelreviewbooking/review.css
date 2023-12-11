@@ -56,20 +56,77 @@
 
 .hotelDetails {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    background-color: #DFE6F7;
+    /* background-color: #DFE6F7; */
     padding: 15px;
     border-radius: 8px 8px 0px 0px;
 }
 
 .hotelDetails>div {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
     /* gap: ; */
 
+}
+
+
+.roomDetailsReviewDesc {
+    padding: 16px;
+    border-radius: 8px;
+    background: #FFF;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.addReview {
+    width: 70%;
+}
+
+.roomDetailsReviewDesc span {
+    color: #071C2C;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.roomDetailsReviewDesc p {
+    color: #071C2C;
+    font-family: Montserrat;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
+.roomDetailsReviewDesc .checkInReview {
+    display: flex;
+    padding: 12px 23px;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+    align-items: flex-start;
+    border-radius: 8px;
+    background: rgba(187, 187, 187, 0.30);
+    height: 100%;
+}
+
+.roomDetailsReviewDesc h2 {
+    color: #071C2C;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
+
+.hotelImageReview img {
+    width: 250px;
+    height: 180px;
+    border-radius: 8px;
 }
 
 .contact {
