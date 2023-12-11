@@ -110,7 +110,7 @@
   }
   .bus-detailsseat{
     border-radius: 12px;
-border: 1px solid #071C2C;
+    border: 2px solid #071C2C;
 background: #FFF;
 box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.15);
 margin-bottom: 20px;

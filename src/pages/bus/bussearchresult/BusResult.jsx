@@ -13,54 +13,63 @@ import { styled } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import SwipeToSlide from "../../flight/SwipeToSlide";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "./seatlayout.css";
 function BusResult() {
   const navigate = useNavigate("");
+  const reducerState = useSelector((state) => state);
+  const busDetailsData =
+    reducerState?.getBusResult?.busResult?.data?.data?.BusSearchResult
+      ?.BusResults;
+
+
+  console.log(reducerState, "reducerState");
+  console.log(busDetailsData, "busDetailsData");
   function handleclick() {
     navigate("/SelectBusSeat");
   }
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
-  const busDetailsData = [
-    {
-      id: 1,
-      busTitle: "Shrinath Travel Agency Pvt. Ltd.",
-      busType: "NON AC Seater (2+1)",
-      departureTime: "23:30",
-      departureDate: "29 Oct",
-      duration: "32hrs 50 mins",
-      arrivalTime: "08:20",
-      arrivalDate: "29 Oct",
-      totalPrice: "₹3,699",
-      rating: "3.2",
-      seatsLeft: "31 Seats Left | 21 Window Seats",
-    },
-    {
-      id: 2,
-      busTitle: "Example Bus Company 1",
-      busType: "AC Sleeper (2+1)",
-      departureTime: "21:45",
-      departureDate: "30 Oct",
-      duration: "24hrs 30 mins",
-      arrivalTime: "22:15",
-      arrivalDate: "31 Oct",
-      totalPrice: "₹4,500",
-      rating: "4.0",
-      seatsLeft: "20 Seats Left | 15 Window Seats",
-    },
-    {
-      id: 3,
-      busTitle: "Another Bus Company",
-      busType: "Semi-Sleeper (2+2)",
-      departureTime: "15:00",
-      departureDate: "01 Nov",
-      duration: "20hrs 15 mins",
-      arrivalTime: "11:15",
-      arrivalDate: "02 Nov",
-      totalPrice: "₹3,200",
-      rating: "3.8",
-      seatsLeft: "15 Seats Left | 10 Window Seats",
-    },
-  ];
+  // const busDetailsData = [
+  //   {
+  //     id: 1,
+  //     busTitle: "Shrinath Travel Agency Pvt. Ltd.",
+  //     busType: "NON AC Seater (2+1)",
+  //     departureTime: "23:30",
+  //     departureDate: "29 Oct",
+  //     duration: "32hrs 50 mins",
+  //     arrivalTime: "08:20",
+  //     arrivalDate: "29 Oct",
+  //     totalPrice: "₹3,699",
+  //     rating: "3.2",
+  //     seatsLeft: "31 Seats Left | 21 Window Seats",
+  //   },
+  //   {
+  //     id: 2,
+  //     busTitle: "Example Bus Company 1",
+  //     busType: "AC Sleeper (2+1)",
+  //     departureTime: "21:45",
+  //     departureDate: "30 Oct",
+  //     duration: "24hrs 30 mins",
+  //     arrivalTime: "22:15",
+  //     arrivalDate: "31 Oct",
+  //     totalPrice: "₹4,500",
+  //     rating: "4.0",
+  //     seatsLeft: "20 Seats Left | 15 Window Seats",
+  //   },
+  //   {
+  //     id: 3,
+  //     busTitle: "Another Bus Company",
+  //     busType: "Semi-Sleeper (2+2)",
+  //     departureTime: "15:00",
+  //     departureDate: "01 Nov",
+  //     duration: "20hrs 15 mins",
+  //     arrivalTime: "11:15",
+  //     arrivalDate: "02 Nov",
+  //     totalPrice: "₹3,200",
+  //     rating: "3.8",
+  //     seatsLeft: "15 Seats Left | 10 Window Seats",
+  //   },
+  // ];
 
   const [activeSort, setActiveSort] = useState("Relevance");
 
@@ -96,9 +105,9 @@ function BusResult() {
             </Typography>
             <div className="ac-container">
               <div className="option-container">
-                <div className="icon" >
+                <div className="icon">
                   <div className="icon-backgroundac" />
-                  <div className="inner-iconac" >
+                  <div className="inner-iconac">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       width="16"
@@ -132,7 +141,6 @@ function BusResult() {
                   <div className="icon-background">
                     <div className="inner-icon" />
                   </div>
-                
                 </div>
                 <div className="textac">Non AC</div>
               </div>
@@ -187,7 +195,7 @@ function BusResult() {
             <Typography pt={1} px={5} className="selectfilter">
               Single Seater/Sleeper
             </Typography>
-            <Box  pl={5} display="block">
+            <Box pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -242,7 +250,7 @@ function BusResult() {
             <Typography pt={1} px={5} className="selectfilter">
               Pick up point - Delhi
             </Typography>
-            <Box  pl={5} display="block">
+            <Box pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -282,7 +290,7 @@ function BusResult() {
             <Typography pt={1} px={5} className="selectfilter">
               Drop point - Mumbai
             </Typography>
-            <Box  pl={5} display="block">
+            <Box pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -322,7 +330,7 @@ function BusResult() {
             <Typography pt={1} px={5} className="selectfilter">
               Drop time - Mumbai
             </Typography>
-            <Box  pl={5} display="block">
+            <Box pl={5} display="block">
               <form action="">
                 <div>
                   <Checkbox
@@ -366,43 +374,40 @@ function BusResult() {
             <div className="titleseat">Buses from New Delhi to Mumbai</div>
             {/* Add other components/content as needed */}
           </div>
-          <div className="swipetoslide"><SwipeToSlide /></div>
+          <div className="swipetoslide">
+            <SwipeToSlide />
+          </div>
 
           <div>
             {busDetailsData.map((busDetails) => (
-              <div className="bus-detailsseat" key={busDetails.id}>
+              <div className="bus-detailsseat" key={busDetails?.ResultIndex}>
                 <div className="bus-details-container">
                   <div className="info-wrapper">
                     <div className="info-item">
-                      <div className="bus-title">{busDetails.busTitle}</div>
-                      <div className="bus-type">{busDetails.busType}</div>
+                      <div className="bus-type">{busDetails?.BusType}</div>
                     </div>
                     <div className="info-item1">
                       <div className="timeseat">
                         <span className="time-bold">
-                          {busDetails.departureTime}
+                          {busDetails?.DepartureTime}
                         </span>
                         <span className="date-value">
-                          {busDetails.departureDate}
+                          {busDetails?.departureDate}
                         </span>
                       </div>
                     </div>
                     <div className="info-item1">
-                      <div className="duration">{busDetails.duration}</div>
-                    </div>
-                    <div className="info-item1">
                       <div className="timeseat">
                         <span className="time-bold">
-                          {busDetails.arrivalTime}
-                        </span>
-                        <span className="date-value">
-                          {busDetails.arrivalDate}
+                          {busDetails?.ArrivalTime}
                         </span>
                       </div>
                     </div>
                   </div>
                   <div className="priceseat">
-                    <div className="total-price">{busDetails.totalPrice}</div>
+                    <div className="total-price">
+                      {busDetails?.BusPrice?.PublishedPriceRoundedOff}
+                    </div>
                   </div>
                 </div>
                 <div className="rating-info-container">
@@ -442,7 +447,7 @@ function BusResult() {
                             </svg>
                           </div>
                         </div>
-                        <div className="icon-value">{busDetails.rating}</div>
+                        <div className="icon-value">{busDetails?.rating}</div>
                       </div>
                     </div>
                     <div className="tracking-item">
@@ -486,7 +491,7 @@ function BusResult() {
                       </div>
                     </div>
                   </div>
-                  <div className="seats-info">{busDetails.seatsLeft}</div>
+                  <div className="seats-info">{busDetails?.AvailableSeats}</div>
                 </div>
                 <div className="policies-section-container">
                   <div className="section-links-container">
@@ -590,13 +595,17 @@ function BusResult() {
                   </div>
                   <div className="hide-seats1">
                     <div className="hide-seats-button1">
-                      <div className="button-label1" onClick={handleclick}>
+                      <div
+                        className="button-label1"
+                        onClick={() => handleclick(busDetails?.ResultIndex)}
+                      >
                         SELECT SEATS
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
+              
             ))}
           </div>
         </div>

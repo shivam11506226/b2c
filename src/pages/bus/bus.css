@@ -86,6 +86,71 @@
     margin: 20px auto;
     
 }
+.BusForm input {
+  position: relative;
+
+}
+
+.busFormRes {
+  position: absolute;
+  border: 1px solid #ddd;
+  width: 362px;
+  border-radius: 0px 0px 5px 5px;
+  z-index: 3;
+}
+
+.busFormRes ul {
+
+  margin: 0 !important;
+  max-height: 180px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-left: 0 !important;
+
+
+}
+
+.busFormRes ul li {
+  padding: 8px;
+  cursor: pointer;
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+}
+
+
+
+
+
+
+
+
+
+
+.busToRes {
+  position: absolute;
+  border: 1px solid #ddd;
+  width: 362px;
+  border-radius: 0px 0px 5px 5px;
+  z-index: 3;
+}
+
+.busToRes ul {
+
+  margin: 0 !important;
+  max-height: 180px;
+  overflow: hidden;
+  overflow-y: scroll;
+  padding-left: 0 !important;
+
+
+}
+
+.busToRes ul li {
+  padding: 8px;
+  cursor: pointer;
+  list-style-type: none;
+  border-bottom: 1px solid #ddd;
+}
   /* Responsive Styles */
   @media (max-width: 768px) {
     .searchContainer {
