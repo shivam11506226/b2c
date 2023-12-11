@@ -42,7 +42,7 @@ import Conformation from "./pages/Return/Conformation";
 import NonStopFlight from "./pages/Return/NonStopFlight";
 import BusResult from "./pages/bus/bussearchresult/BusResult";
 import Download from "./pages/home/Download";
-
+import Guestdetail from "./pages/Hotel/hotelreviewbooking/Reviewbooking";
 import Holidayinfo from "./pages/holidaypackages/holidaypackagesearchresult/Holidayinfo";
 
 import BigNavbar from "./UI/BigNavbar/BigNavbar";
@@ -73,7 +73,7 @@ function App() {
       {/* /Searchresult */}
 
 
-      <div className="mainimg">
+      {/* <div className="mainimg">
 
         <Navbar />
 

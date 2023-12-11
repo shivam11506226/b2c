@@ -69,7 +69,6 @@ const validationSchema = Yup.object().shape({
 export default function LoginForm({ isModalOpen, setIsModalOpen }) {
   const dispatch = useDispatch();
   const [newReg, setNewReg] = useState(false);
-  console.log(isModalOpen);
   const {
     register,
     handleSubmit,

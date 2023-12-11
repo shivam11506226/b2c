@@ -33,9 +33,10 @@ export function* rootSaga() {
     getHolidayBookingWatcher(),
     watchSubmitFormData(),
 
-    watchMarkup()
-
-    passengersWatcher()
+    watchMarkup(),
+    passengersWatcher(),
+    searchResultWatcher(),
+    searchOneResultWatcher(),
 
   ]);
 }

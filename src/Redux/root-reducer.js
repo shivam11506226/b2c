@@ -13,7 +13,7 @@ import { searchOnePackageReducer } from "./OnePackageSearchResult/searchOnePacka
 import { packageBookingReducer } from "./HolidayBook/bookingHolidayReducer"
 
 import { passengersReducer } from "./Passengers/passengerReducer";
-import {packageBookingReducer} from "./HolidayBook/bookingHolidayReducer"
+// import {packageBookingReducer} from "./HolidayBook/bookingHolidayReducer"
 
 import { busSearchReducer, getBusSeatReducer } from "./busSearch/busSearchReducer";
 import { packageBookIDReducer } from "./HolidayBookingRequest/bookingHolidayReducer";

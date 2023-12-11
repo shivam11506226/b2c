@@ -18,13 +18,7 @@
 
 
 .your-container {
-    /* width: 100%;
-    background: white;
-    border-radius: 12px;
-    border: 1px #888 solid;
-    justify-content: center;
-    align-items: center;
-    display: flex; */
+
     display: grid;
     border: 1px #888 solid;
     border-radius: 10px;

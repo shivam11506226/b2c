@@ -2,12 +2,12 @@ import { takeEvery, takeLatest, call, put } from "redux-saga/effects";
 import userApi from "../API/api";
 
 import { GET_SEARCH_PACKAGE_DATA, SET_SEARCH_PACKAGE_DATA } from "../SearchPackage/actionType";
-import { searchOnePackageData } from "../OnePackageSearchResult/actionOneSearchPackage";
+import { searchPackageData } from "../SearchPackage/actionSearchPackage";
 
 function* searchResult(action) {
   try {
     const data = yield call(userApi.searchPackage, action.payload);
-    yield put(searchOnePackageData(data));
+    yield put(searchPackageData(data));
   } catch (error) {
     console.log(error);
   }
