@@ -5,14 +5,36 @@ import Rating from "../hotelresult/Rating";
 import Divider from "@mui/material/Divider";
 import { useDispatch, useSelector, useReducer } from "react-redux";
 import moment from "moment";
+import "./hoteldescription.css"
 import {
   clearHotelReducer,
   hotelBookRoomAction,
 } from "../../../Redux/Hotel/hotel";
 import StarIcon from "@mui/icons-material/Star";
-import Swal from "sweetalert2";
+// import Swal from "sweetalert2";
 import userApi from "../../../Redux/API/api";
 import { apiURL } from "../../../Constants/constant";
+import chevrondown from "../../../images/chevrondown.svg"
+import { motion } from "framer-motion";
+
+
+
+const variants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
 
 const Hoteldescription = () => {
   const dispatch = useDispatch();
@@ -31,6 +53,7 @@ const Hoteldescription = () => {
   const resultIndex = sessionStorage.getItem("ResultIndex");
   const hotelCode = sessionStorage.getItem("HotelCode");
   const [bookingSuccess, setBookingSuccess] = useState(bookingStatus);
+
 
   const hotelData =
     reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult;
@@ -146,245 +169,205 @@ const Hoteldescription = () => {
   };
 
   return (
-    <>
-      <div className="container-fluid rmv-margin">
-        {/* <div className="row">
-          <div className="col-lg-12"> */}
-        <div className="row">
-          {/* hotel details area  */}
+    <motion.div variants={variants} initial="initial"
+      whileInView="animate" className="row">
 
-          <div className="col-lg-12">
-            <div className="hotelDetails">
-              <div>
-                <p className="hotelName">
-                  {hotelInfo?.HotelDetails?.HotelName}
-                </p>
-                <Box alignItems="right">
-                  <Box>{star(hotelInfo?.HotelDetails?.StarRating)}</Box>
-                </Box>
-              </div>
-              <div>
-                <p className="text-start w-50">
-                  {" "}
-                  <b>Address:</b> {hotelInfo?.HotelDetails?.Address}
-                </p>
+      <motion.div variants={variants} className="col-lg-12" style={{ marginTop: "-116px" }}>
+        <div className="hotelDetailsDesc">
+          <div>
+            <p className="hotelName">
+              {hotelInfo?.HotelDetails?.HotelName}
+            </p>
+            <Box alignItems="right">
+              <Box>{star(hotelInfo?.HotelDetails?.StarRating)}</Box>
+            </Box>
+          </div>
+          <div>
+            <p className="text-start w-50">
+              {" "}
+              <b>Address:</b> {hotelInfo?.HotelDetails?.Address}
+            </p>
 
-                <div>
-                  <p className="text-end">
-                    {" "}
-                    <b>Check In:</b>
-                    {
-                      reducerState?.hotelSearchResult?.ticketData?.data?.data
-                        ?.HotelSearchResult?.CheckInDate
-                    }
-                  </p>
-                  <p className="text-end">
-                    <b>Check Out:</b>
-                    {
-                      reducerState?.hotelSearchResult?.ticketData?.data?.data
-                        ?.HotelSearchResult?.CheckOutDate
-                    }
-                  </p>
-                </div>
-              </div>
-              <div>
-                <div className="contact">
-                  <p>{storedFormData?.city}, India</p>
-                  <p>
-                    <b>Contact: </b>
-                    {hotelInfo?.HoteDetails?.HotelContactNo
-                      ? hotelInfo.HotelDetails.HotelContactNo
-                      : "Not Available"}
-                  </p>
-                </div>
-                <p>
-                  <b>Night(s) </b>
-                  {storedFormData?.night}
-                </p>
-              </div>
+            <div>
+              <p className="text-end">
+                {" "}
+                <b>Check In:</b>
+                {
+                  reducerState?.hotelSearchResult?.ticketData?.data?.data
+                    ?.HotelSearchResult?.CheckInDate
+                }
+              </p>
+              <p className="text-end">
+                <b>Check Out:</b>
+                {
+                  reducerState?.hotelSearchResult?.ticketData?.data?.data
+                    ?.HotelSearchResult?.CheckOutDate
+                }
+              </p>
             </div>
-            {/* </div>
+          </div>
+          <div>
+            <div className="contact">
+              <p>{storedFormData?.city}, India</p>
+              <p>
+                <b>Contact: </b>
+                {hotelInfo?.HoteDetails?.HotelContactNo
+                  ? hotelInfo.HotelDetails.HotelContactNo
+                  : "Not Available"}
+              </p>
+            </div>
+            <p>
+              <b>Night(s) </b>
+              {storedFormData?.night}
+            </p>
+          </div>
+        </div>
+        {/* </div>
             </div> */}
+      </motion.div>
+
+      {/* booking details  */}
+
+      <motion.div variants={variants} className="col-lg-12">
+        <div className="bookingDetailsGuestDesc">
+          <div className="bookingDetailsGuestHeaderDesc">
+            <p>Booking Details</p>
           </div>
-
-          {/* booking details  */}
-
-          <div className="col-lg-12">
-            <div className="bookingDetailsGuest">
-              <div className="bookingDetailsGuestHeader">
-                <p>Booking Details</p>
+          <div className="bookingDetailsGuestBody">
+            <div>
+              <p>Hotel Name:</p>
+              <p>{hotelInfo?.HotelDetails?.HotelName}</p>
+            </div>
+            <div>
+              <p>Address: </p>
+              <span>{hotelInfo?.HotelDetails?.Address}</span>
+            </div>
+            <div>
+              <div>
+                <p>Check In:</p>
+                <span>
+                  {
+                    reducerState?.hotelSearchResult?.ticketData?.data?.data
+                      ?.HotelSearchResult?.CheckInDate
+                  }
+                </span>
               </div>
-              <div className="bookingDetailsGuestBody">
-                <div>
-                  <p>Hotel Name:</p>
-                  <p>{hotelInfo?.HotelDetails?.HotelName}</p>
-                </div>
-                <div>
-                  <p>Address: </p>
-                  <span>{hotelInfo?.HotelDetails?.Address}</span>
-                </div>
-                <div>
-                  <div>
-                    <p>Check In:</p>
-                    <span>
-                      {
-                        reducerState?.hotelSearchResult?.ticketData?.data?.data
-                          ?.HotelSearchResult?.CheckInDate
-                      }
-                    </span>
-                  </div>
-                  <div>
-                    <p>Check Out:</p>
-                    <span>
-                      {
-                        reducerState?.hotelSearchResult?.ticketData?.data?.data
-                          ?.HotelSearchResult?.CheckOutDate
-                      }
-                    </span>
-                  </div>
-                </div>
+              <div>
+                <p>Check Out:</p>
+                <span>
+                  {
+                    reducerState?.hotelSearchResult?.ticketData?.data?.data
+                      ?.HotelSearchResult?.CheckOutDate
+                  }
+                </span>
               </div>
             </div>
           </div>
+        </div>
+      </motion.div>
 
-          {/* passenger details  */}
+      {/* passenger details  */}
 
-          <div className="col-lg-12">
-            <div className="bookingDetailsGuest">
-              <div className="bookingDetailsGuestHeader">
-                <p>Passenger Details</p>
-              </div>
-              {passenger?.map((name, index) => {
-                return (
-                  <div className="passengerDetailsGuestBody">
-                    <div>
-                      <p>Name :</p>
-                      <p>PAN : </p>
-                    </div>
-                    <div>
-                      <span>
-                        {name?.FirstName?.toUpperCase()}{" "}
-                        {name?.LastName?.toUpperCase()}
-                      </span>
-                      <span>{name?.PAN}</span>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+      <motion.div variants={variants} className="col-lg-12">
+        <div className="bookingDetailsGuestDesc">
+          <div className="bookingDetailsGuestHeaderDesc">
+            <p>Passenger Details</p>
           </div>
+          {passenger?.map((name, index) => {
+            return (
+              <div className="passengerDetailsGuestBody">
+                <div>
+                  <p>Name :</p>
+                  <p>PAN : </p>
+                </div>
+                <div>
+                  <span>
+                    {name?.FirstName?.toUpperCase()}{" "}
+                    {name?.LastName?.toUpperCase()}
+                  </span>
+                  <span>{name?.PAN}</span>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </motion.div>
 
-          {/* cancellation policy  */}
+      {/* cancellation policy  */}
 
-          <div className="col-lg-12 mt-3">
-            <div className="bookingDetailsGuest">
-              <div className="bookingDetailsGuestHeader">
+      <motion.div variants={variants} className="col-lg-12 mt-3">
+        <div className="bookflightPassenger">
+          <form>
+            <div className="bookFlightPassInner">
+              <div className="bookAdultIndex">
                 <p>Cancellation and Charges</p>
               </div>
-              <div className="otherDetailsDataGuest">
-                <div className="row">
-                  <div className="col-lg-4">
-                    <div className="cancelAccord">
-                      <span>Cancelled on or After</span>
-                      <p>{cancellationFormattedStartingDate}</p>
+              <div className="row g-3 ">
+                <div className="otherDetailsData">
+                  <div className="row">
+                    <div className="col-lg-4">
+                      <div className="cancelAccord">
+                        <span>Cancelled on or After</span>
+                        <p>{cancellationFormattedStartingDate}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-lg-4">
-                    <div className="cancelAccord">
-                      <span>Cancelled on or Before</span>
-                      <p>{cancellationFormattedEndingDate}</p>
+                    <div className="col-lg-4">
+                      <div className="cancelAccord">
+                        <span>Cancelled on or Before</span>
+                        <p>{cancellationFormattedEndingDate}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div className="col-lg-4">
-                    <div className="cancelAccord">
-                      <span>Cancellation Charges</span>
-                      <p>{cancellationCharge}%</p>
+                    <div className="col-lg-4">
+                      <div className="cancelAccord">
+                        <span>Cancellation Charges</span>
+                        <p>{cancellationCharge}%</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
+        </div>
+      </motion.div>
 
-          {/* hotel Norms  */}
+      {/* hotel Norms  */}
 
-          <div className="col-lg-12 mt-3">
-            <div className="bookingDetailsGuest">
-              <div className="bookingDetailsGuestHeader">
+      <motion.div variants={variants} className="col-lg-12 mt-3">
+        <div className="bookflightPassenger">
+          <form>
+            <div className="bookFlightPassInner">
+              <div className="bookAdultIndex">
                 <p>Hotel Facilities</p>
               </div>
-              <div className="guestDetailsNorms">
-                <ul>
-                  {hotelInfo?.HotelDetails?.HotelFacilities.map(
-                    (facility, index) => (
-                      <li key={index}>{facility}</li>
-                    )
-                  )}
-                </ul>
+              <div className="row g-3 ">
+                <div className="col-lg-12 my-4">
+                  <div className="hotelReviewAmetnities">
+                    <div>
+                      {
+                        hotelInfo?.HotelDetails?.HotelFacilities.map((item, index) => {
+                          return (
+                            <p key={index}><img src={chevrondown} />{item}</p>
+                          )
+                        })
+                      }
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-
-          {/* booking history  */}
-
-          {/* <div className="col-lg-12 mt-3">
-            <div className="bookingDetailsGuest">
-              <div className="bookingDetailsGuestHeader">
-                <p>Booking History</p>
-              </div>
-              <div className="guestDetailsHistory">
-                <button>View Voucher</button>
-                <button>View Invoice</button>
-              </div>
-
-            </div>
-          </div> */}
+          </form>
         </div>
-      </div>
+      </motion.div>
 
-      {/* <Box textAlign="center" mt={2}>
-        <Button
-          className="continue_btn"
-          type="submit"
-          variant="contained"
-          onClick={handleClickBooking}
-        >
-          Continue
-        </Button>
-      </Box> */}
-      <div className="guestDetailsHistory mt-3">
+
+      <div className="guestDetailsHistoryDesc mt-3">
         <button type="submit" onClick={handleClickBooking}>
           Continue
         </button>
       </div>
-    </>
-    // <Box p={3} backgroundColor="#F5F5F5" borderRadius="10px">
-    //   {passenger?.map((name, index) => {
-    //     return (
-    //       <Box display="flex" justifyContent="space-between" mt={2}>
-    //         <Box display="flex">
-    //           <Typography
-    //             sx={{ fontSize: "16px", color: "#252525", fontWeight: "bold" }}
-    //           >
-    //             {name?.FirstName} {name?.LastName}
-    //           </Typography>
-    //         </Box>
-    //       </Box>
-    //     );
-    //   })}
-    //   <Divider sx={{ backgroundColor: "gray", marginY: "5px" }} />
+    </motion.div>
 
-    // <Box textAlign="center" mt={2}>
-    //   <Button
-    //     className="continue_btn"
-    //     type="submit"
-    //     variant="contained"
-    //     onClick={handleClickBooking}
-    //   >
-    //     Continue
-    //   </Button>
-    // </Box>
-    // </Box>
   );
 };
 

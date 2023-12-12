@@ -1,3 +1,14 @@
+.mainimgFlightSearch {
+    background-image: url(../../images/flightNavBack.jpg);
+    background-size: cover;
+    background-repeat: no-repeat !important;
+    background-position: center center;
+    height: 300px;
+}
+
+
+
+
 .popular_content {
     background: transparent;
     margin: auto;
@@ -8,7 +19,7 @@
     width: 100%;
     height: auto;
     /* background: white; */
-  
+
     border-radius: 10px;
 
 }
@@ -92,7 +103,7 @@
 }
 
 .booknow_btn {
-   
+
     border-radius: 20px !important;
     opacity: 1;
     color: white;
@@ -100,7 +111,7 @@
 }
 
 .booknow_btn:hover {
-    
+
     border-radius: 20px !important;
     opacity: 1;
     color: white !important;
@@ -108,7 +119,7 @@
 }
 
 .propsi {
-  
+
     border-radius: 10px !important;
     font-size: 12px !important;
     color: black !important;
@@ -132,14 +143,14 @@
 
 
 /* Viewpricebtn end */
-.css-1e6y48t-MuiButtonBase-root-MuiButton-root{
+.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
     background-color: darkblue;
-    color:"white"
+    color: "white"
 }
 
 
-.resultsdata{
-    margin-top:20px;
+.resultsdata {
+    margin-top: 20px;
 }
 
 
@@ -149,8 +160,8 @@
         width: 50%;
         height: auto;
         /* background: white; */
-      
+
         border-radius: 10px;
-    
+
     }
 }

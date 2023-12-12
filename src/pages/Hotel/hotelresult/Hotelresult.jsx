@@ -1,29 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
 import Paper from "@mui/material/Paper";
 import hotelNotFound from "../../../images/hotelNotFound.jpg"
 import Divider from "@mui/material/Divider";
-import { Grid, Radio, Typography, Button } from "@mui/material";
-import building from "../../../images/building.png"
-import night from "../../../images/night.png"
-import beds from "../../../images/beds.png";
-import unitednations from "../../../images/unitednations.png";
-import addgroup from "../../../images/addgroup.png";
-import review from "../../../images/review.png";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import Checkbox from "@mui/material/Checkbox";
 import RadioButtonCheckedIcon from "@mui/icons-material/RadioButtonChecked";
 import RadioButtonUncheckedIcon from "@mui/icons-material/RadioButtonUnchecked";
 import StarIcon from "@mui/icons-material/Star";
-
+import starsvg from "../../../images/star.svg"
+import starBlank from "../../../images/starBlank.svg"
 import Link from "@mui/material/Link";
 import "./hotelresult.css";
-// import Loader from "../../Loader/Loader";
-
 import { useDispatch, useSelector, useReducer } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { motion } from "framer-motion";
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
 const Item = styled(Paper)(({ theme }) => ({
@@ -33,6 +24,27 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+
+
+
+const variants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
+
 
 export default function Popularfilter() {
   const dispatch = useDispatch();
@@ -52,6 +64,8 @@ export default function Popularfilter() {
   // const handleModifySearchClick = () => {
   //   navigate("/hotel");
   // };
+
+  console.log(result, "result")
 
 
   const star = (data) => {
@@ -83,10 +97,11 @@ export default function Popularfilter() {
       ?.sort(
         (a, b) =>
           sortOption === "lowToHigh"
-            ? a?.Price?.RoomPrice - b?.Price?.RoomPrice
-            : b?.Price?.RoomPrice - a?.Price?.RoomPrice
+            ? a?.Price?.PublishedPriceRoundedOff - b?.Price?.PublishedPriceRoundedOff
+            : b?.Price?.PublishedPriceRoundedOff - a?.Price?.PublishedPriceRoundedOff
       );
 
+  console.log(result, "hotel result")
 
   let totalAdults = 0;
   let totalChildren = 0;
@@ -124,7 +139,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    Non Stop
+                    Last Minute Deals
                   </div>
                   <div>
                     <Checkbox
@@ -132,7 +147,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    Prenoon Departure
+                    Perfect or 1 night stay
                   </div>
 
                   <div>
@@ -141,7 +156,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    indiGo
+                    Free Cancellation
                   </div>
                   <div>
                     <Checkbox
@@ -149,14 +164,62 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    Vistara
+                    Perfect Breakfast
                   </div>
                 </form>
-                <Divider sx={{ backgroundColor: "gray" }} />
+                <Divider sx={{ backgroundColor: "gray", marginTop: "15px" }} />
                 <p>
-                  Departure from New Delhi
+                  Rating
                 </p>
 
+                <form className="ratingStar" action="">
+                  <div>
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+
+                  </div>
+
+                  <div>
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starBlank} />
+                  </div>
+
+                  <div>
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starBlank} />
+                    <img src={starBlank} />
+
+                  </div>
+
+                  <div>
+                    <img src={starsvg} />
+                    <img src={starsvg} />
+                    <img src={starBlank} />
+                    <img src={starBlank} />
+                    <img src={starBlank} />
+
+                  </div>
+                  <div>
+                    <img src={starsvg} />
+                    <img src={starBlank} />
+                    <img src={starBlank} />
+                    <img src={starBlank} />
+                    <img src={starBlank} />
+
+                  </div>
+                </form>
+                <Divider sx={{ backgroundColor: "gray", marginTop: "15px" }} />
+                <p>
+                  Price per night
+                </p>
                 <form action="">
                   <div>
                     <Checkbox
@@ -164,7 +227,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    Before 6AM
+                    ₹0-2,000
                   </div>
                   <div>
                     <Checkbox
@@ -172,46 +235,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    6 AM-12 PM
-                  </div>
-
-                  <div>
-                    <Checkbox
-                      {...label}
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<RadioButtonCheckedIcon />}
-                    />
-                    12 PM-6 PM
-                  </div>
-                  <div>
-                    <Checkbox
-                      {...label}
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<RadioButtonCheckedIcon />}
-                    />
-                    After 6 PM
-                  </div>
-                </form>
-
-                <p>
-                  Airlines
-                </p>
-                <form action="">
-                  <div>
-                    <Checkbox
-                      {...label}
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<RadioButtonCheckedIcon />}
-                    />
-                    Air India (9)
-                  </div>
-                  <div>
-                    <Checkbox
-                      {...label}
-                      icon={<RadioButtonUncheckedIcon />}
-                      checkedIcon={<RadioButtonCheckedIcon />}
-                    />
-                    Air India Express (1)
+                    ₹2,000-3,000
                   </div>
 
                   <div>
@@ -220,7 +244,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    Air Asia (7)
+                    ₹3,000-6,500
                   </div>
                   <div>
                     <Checkbox
@@ -228,7 +252,7 @@ export default function Popularfilter() {
                       icon={<RadioButtonUncheckedIcon />}
                       checkedIcon={<RadioButtonCheckedIcon />}
                     />
-                    AKasa Air (3)
+                    ₹10,000 and Above
                   </div>
                 </form>
               </div>
@@ -268,40 +292,56 @@ export default function Popularfilter() {
               const resultIndex = result?.ResultIndex;
               const hotelCode = result?.HotelCode;
               return (
-                <div className="col-lg-12">
+                <motion.div variants={variants} initial="initial"
+                  whileInView="animate" className="col-lg-12" >
 
-                  <div onClick={(e) => handleClick(resultIndex, hotelCode)} className="hotelResultBoxSearch" key={index}>
-                    <div className="hotelImage">
-                      <img src={result?.HotelPicture} onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = hotelNotFound;
-                      }} alt="package-img" />
-                    </div>
-                    <div className="hotelResultDetails">
-                      <div className="hotleTitle">
-                        <p>{result?.HotelName}</p>
-                      </div>
-                      <div>
-                        <p className="hotAddress">
-                          {result?.HotelAddress}
-                        </p>
-                      </div>
+                  <motion.div variants={variants} onClick={(e) => handleClick(resultIndex, hotelCode)} className="hotelResultBoxSearch" key={index}>
+                    <div>
+                      <div className="hotelImage">
+                        <img
+                          src={result?.HotelPicture === "https://b2b.tektravels.com/Images/HotelNA.jpg" ? hotelNotFound : result?.HotelPicture}
+                          onError={(e) => {
+                            e.target.onerror = null;
+                            e.target.src = hotelNotFound;
+                          }}
+                          alt="package-img"
+                        />
 
-                      <div className="hotelRating">
-                        <p>Star</p>
+                      </div>
+                      <div className="hotelResultDetails">
+                        <div className="hotleTitle">
+                          <p>{result?.HotelName}</p>
+                        </div>
+
+
+                        <div className="hotelRating">
+                          <div>
+                            {Array.from({ length: result?.StarRating }, (_, index) => (
+                              <img key={index} src={starsvg} alt={`Star ${index + 1}`} />
+                            ))}
+                          </div>
+                        </div>
+
+                        <div>
+                          <p className="hotAddress">
+                            {result?.HotelAddress}
+                          </p>
+                        </div>
+
+
                       </div>
                     </div>
 
                     <div className="priceBookHotel">
                       <div className="priceBookHotelOne ">
-                        <span><del>₹{result?.Price?.OfferedPrice}</del></span>
+                        {/* <span><del>₹{result?.Price?.OfferedPrice}</del></span> */}
                         <span>Offer Price</span>
                         <p>₹{result?.Price?.PublishedPrice}</p>
                         <h4>Show More<ArrowForwardIosIcon /></h4>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               );
             })}
           </div>

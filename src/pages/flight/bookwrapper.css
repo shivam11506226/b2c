@@ -19,9 +19,9 @@
 .bookaboveBox p {
     color: #071C2C;
     font-family: 'Montserrat';
-    font-size: 30px;
+    font-size: 21px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: normal;
 }
 
@@ -30,6 +30,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
+    gap: 10px;
 }
 
 .bookaboveBox>div>.aboveSpan {
@@ -370,6 +371,16 @@
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+.roomIndexGuest {
+
+    color: #071C2C !important;
+    font-family: 'Montserrat';
+    font-size: 16px !important;
+    font-style: normal !important;
+    font-weight: 600 !important;
+    line-height: normal !important;
 }
 
 

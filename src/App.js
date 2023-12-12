@@ -53,7 +53,7 @@ import Reviewbooking from './pages/Hotel/hotelreviewbooking/Reviewbooking'
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getMarkUpAction } from './Redux/markup/markupAction';
-import Guestdetail from "./pages/Hotel/hotelreviewbooking/Reviewbooking";
+import Guestdetail from "./pages/Hotel/guestdetail/Guestdetail";
 
 
 function App() {

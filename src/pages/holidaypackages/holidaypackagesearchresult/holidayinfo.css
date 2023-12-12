@@ -296,9 +296,10 @@
 
 .sidePromo {
   padding: 19px 19px;
-  background-color: #F9EDED;
+  background-color: #fff;
   border-radius: 8px;
-  border: 0.5px solid #717375;
+  border: 1px solid lightgray;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
 
@@ -413,7 +414,7 @@
 .promoBottomButton button {
   padding: 11.28px 28.199px;
   border-radius: 5.64px;
-  background: #21325D;
+  background: #E73C33;
   color: #FFF;
   font-family: 'Montserrat';
   font-size: 13px;
@@ -421,7 +422,7 @@
   font-weight: 600;
   width: 100%;
   line-height: normal;
-  border: 2px solid #21325D;
+  border: 2px solid #E73C33;
 }
 
 /* side promo css area  */
