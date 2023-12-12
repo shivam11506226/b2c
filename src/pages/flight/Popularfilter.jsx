@@ -24,7 +24,7 @@ const Popularfilter = (props) => {
   const [value, setValue] = React.useState("1");
 
   return (
-    <section className="mx-5">
+    <section className="margin-pecentage my-4">
       <div className="contaier-xxl">
         <div className="row">
           <div className="col-lg-3">
@@ -159,12 +159,7 @@ const Popularfilter = (props) => {
             </div>
           </div>
           <div className="col-lg-9">
-            {/* <Box className="rightslide">
-              <Priceslider />
-            </Box> */}
-
             <Selectflight />
-
           </div>
         </div>
       </div>

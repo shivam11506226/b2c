@@ -4,10 +4,6 @@ import ArrowForwardIosSharpIcon from "@mui/icons-material/ArrowForwardIosSharp";
 import MuiAccordion from "@mui/material/Accordion";
 import MuiAccordionSummary from "@mui/material/AccordionSummary";
 import MuiAccordionDetails from "@mui/material/AccordionDetails";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ErrorOutlineIcon from "@mui/icons-material/ErrorOutline";
-import Chip from "@mui/material/Chip";
 import { apiURL } from "../../Constants/constant";
 import "./bookwrapper.css"
 import FlightLoader from "./FlightLoader/FlightLoader";
@@ -15,24 +11,15 @@ import fromTo from "../../images/fromTo.png"
 // hotel tabs
 import "bootstrap/dist/css/bootstrap.css";
 import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import { Grid, Paper, Radio, Typography } from "@mui/material";
-import Divider from "@mui/material/Divider";
-import Checkbox from "@mui/material/Checkbox";
-import ConnectingAirportsIcon from "@mui/icons-material/ConnectingAirports";
-import AddIcon from "@mui/icons-material/Add";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogTitle from "@mui/material/DialogTitle";
-import Login from "../../components/Login";
-
 import Navbar from "../../layouts/Navbar";
 import Mainheader from "../../UI/Mainheader";
 import BigNavbar from "../../UI/BigNavbar/BigNavbar";
 
-
+import InsideNavbar from "../../UI/BigNavbar/InsideNavbar";
+import { motion } from "framer-motion";
 import {
   bookActionGDS,
   bookAction,
@@ -59,6 +46,26 @@ import Modal from "@mui/material/Modal";
 function valuetext(value) {
   return `${value}°C`;
 }
+
+
+
+const variants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
+
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -464,13 +471,11 @@ export default function BookWrapper() {
 
   return (
     <>
-      <div className='mainimg'>
-        <Navbar />
-
-        <BigNavbar />
-
-        <Mainheader />
+      <div className='mainimgFlightSearch'>
+        <InsideNavbar />
       </div>
+
+
       <Modal
         open={isLoginModalOpen}
         onClose={() => setIsLoginModalOpen(false)}
@@ -486,575 +491,558 @@ export default function BookWrapper() {
       {!reducerState?.flightFare?.flightQuoteData?.Results === true ? (
         <FlightLoader />
       ) : (
-        <div className="container">
-          {isModalOpen && (
-            <LoginForm
-              isModalOpen={isModalOpen}
-              setIsModalOpen={setIsModalOpen}
-            />
-          )}
-          {isRegModalOpen && (
-            <SignUp
-              isRegModalOpen={isRegModalOpen}
-              setRegIsModalOpen={setRegIsModalOpen}
-            />
-          )}
-          <div className="row">
-            <div className="col-lg-9">
-              <div className="row">
+        <div className="margin-pecentage">
+          <div className="container-fluid">
+            {isModalOpen && (
+              <LoginForm
+                isModalOpen={isModalOpen}
+                setIsModalOpen={setIsModalOpen}
+              />
+            )}
+            {isRegModalOpen && (
+              <SignUp
+                isRegModalOpen={isRegModalOpen}
+                setRegIsModalOpen={setRegIsModalOpen}
+              />
+            )}
+            <div className="row">
+              <motion.div variants={variants} initial="initial"
+                whileInView="animate" className="col-lg-9">
+                <motion.div className="row" >
 
-                <div className="col-lg-12">
-                  {
-                    TicketDetails?.Segments[0].length == 2 ?
-                      (
-                        <>
-                          <div className="booknowFlight">
-                            <div className="bookaboveBox">
-                              <div>
+                  <motion.div variants={variants} className="col-lg-12" style={{ marginTop: "-117px" }}>
+                    {
+                      TicketDetails?.Segments[0].length == 2 ?
+                        (
+                          <>
+                            <div className="booknowFlight">
+                              <div className="bookaboveBox">
+                                <div>
+                                  <p>
+                                    {
+                                      TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                        ?.CityName
+                                    }
+                                    <FiArrowRight style={{ margin: "5px" }} />{" "}
+                                    {
+                                      TicketDetails?.Segments[0][0]?.Destination
+                                        ?.Airport?.CityName
+                                    }
+                                  </p>
+                                  <div className="aboveSpan">
+                                    <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
+                                    <span>{`1 stop via ${TicketDetails?.Segments[0][0]?.Destination?.Airport?.CityName}`}{" "} {duration}</span>
+                                  </div>
+                                </div>
+
+                                <div className="aboveBelowSpan">
+                                  <span>Cancellation Fees Apply</span>
+                                  <span className="aboveSOne">View Fare Rules</span>
+                                </div>
+                              </div>
+
+                              <div className="bookcenteredBox">
+                                <div>
+                                  <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
+                                </div>
+                                <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
                                 <p>
+                                  {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
                                   {
-                                    TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                      ?.CityName
+                                    TicketDetails?.Segments[0][0]?.Airline
+                                      ?.FlightNumber
                                   }
-                                  <FiArrowRight style={{ margin: "5px" }} />{" "}
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Destination
-                                      ?.Airport?.CityName
-                                  }
+                                  {TicketDetails?.IsLCC === false ? (
+                                    <span>
+                                      LCC
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </p>
-                                <div className="aboveSpan">
-                                  <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
-                                  <span>{`1 stop via ${TicketDetails?.Segments[0][0]?.Destination?.Airport?.CityName}`}{" "} {duration}</span>
-                                </div>
                               </div>
 
-                              <div className="aboveBelowSpan">
-                                <span>Cancellation Fees Apply</span>
-                                <span className="aboveSOne">View Fare Rules</span>
-                              </div>
-                            </div>
-
-                            <div className="bookcenteredBox">
-                              <div>
-                                <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
-                              </div>
-                              <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
-                              <p>
-                                {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
-                                {
-                                  TicketDetails?.Segments[0][0]?.Airline
-                                    ?.FlightNumber
-                                }
-                                {TicketDetails?.IsLCC === false ? (
-                                  <span>
-                                    LCC
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
-                              </p>
-                            </div>
-
-                            <div className="bookbottomBox">
-                              <div>
-                                <div className="bookBottomOne">
-                                  <p>{desiredFormat.slice(13)}</p>
-                                  <p>{desiredFormat1.slice(13)}</p>
-                                </div>
-                                <div className="bookBottomTwo">
-                                  <img src={fromTo} alt="icon" />
-                                </div>
-                                <div className="bookBottomThree">
-                                  <p>
-                                    {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                      ?.CityName} {" "}
-                                    <span>
+                              <div className="bookbottomBox">
+                                <div>
+                                  <div className="bookBottomOne">
+                                    <p>{desiredFormat.slice(13)}</p>
+                                    <p>{desiredFormat1.slice(13)}</p>
+                                  </div>
+                                  <div className="bookBottomTwo">
+                                    <img src={fromTo} alt="icon" />
+                                  </div>
+                                  <div className="bookBottomThree">
+                                    <p>
                                       {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                        ?.AirportName}
-                                    </span>
-                                  </p>
-                                  <p>
-                                    {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                      ?.CityName} {" "}
-                                    <span>
+                                        ?.CityName} {" "}
+                                      <span>
+                                        {TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                          ?.AirportName}
+                                      </span>
+                                    </p>
+                                    <p>
                                       {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                        ?.AirportName}
-                                    </span>
-                                  </p>
+                                        ?.CityName} {" "}
+                                      <span>
+                                        {TicketDetails?.Segments[0][0]?.Destination?.Airport
+                                          ?.AirportName}
+                                      </span>
+                                    </p>
+                                  </div>
+                                </div>
+
+
+
+                                <div className="bookBottomFour">
+                                  <div>
+                                    <p>Baggage</p>
+                                    <span>ADULT</span>
+                                  </div>
+                                  <div>
+                                    <p>Check-in</p>
+                                    <span>15 Kgs</span>
+                                  </div>
+                                  <div>
+                                    <p>Cabin</p>
+                                    <span>7 Kgs</span>
+                                  </div>
                                 </div>
                               </div>
-
-
-
-                              <div className="bookBottomFour">
+                              <div className="bookbottomBox ">
                                 <div>
-                                  <p>Baggage</p>
-                                  <span>ADULT</span>
-                                </div>
-                                <div>
-                                  <p>Check-in</p>
-                                  <span>15 Kgs</span>
-                                </div>
-                                <div>
-                                  <p>Cabin</p>
-                                  <span>7 Kgs</span>
-                                </div>
-                              </div>
-                            </div>
-                            <div className="bookbottomBox ">
-                              <div>
-                                <div className="bookBottomOne">
-                                  <p>{desiredFormat1.slice(13)}</p>
-                                  <p>{desiredFormatStopped.slice(13)}</p>
-                                </div>
-                                <div className="bookBottomTwo">
-                                  <img src={fromTo} alt="icon" />
-                                </div>
-                                <div className="bookBottomThree">
-                                  <p>
-                                    {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                      ?.CityName} {" "}
-                                    <span>
+                                  <div className="bookBottomOne">
+                                    <p>{desiredFormat1.slice(13)}</p>
+                                    <p>{desiredFormatStopped.slice(13)}</p>
+                                  </div>
+                                  <div className="bookBottomTwo">
+                                    <img src={fromTo} alt="icon" />
+                                  </div>
+                                  <div className="bookBottomThree">
+                                    <p>
                                       {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                        ?.AirportName}
-                                    </span>
-                                  </p>
-                                  <p>
-                                    {TicketDetails?.Segments[0][1]?.Destination?.Airport
-                                      ?.CityName} {" "}
-                                    <span>
+                                        ?.CityName} {" "}
+                                      <span>
+                                        {TicketDetails?.Segments[0][0]?.Destination?.Airport
+                                          ?.AirportName}
+                                      </span>
+                                    </p>
+                                    <p>
                                       {TicketDetails?.Segments[0][1]?.Destination?.Airport
-                                        ?.AirportName}
-                                    </span>
-                                  </p>
+                                        ?.CityName} {" "}
+                                      <span>
+                                        {TicketDetails?.Segments[0][1]?.Destination?.Airport
+                                          ?.AirportName}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="bookBottomFour">
-                                <div>
-                                  <p>Baggage</p>
-                                  <span>ADULT</span>
-                                </div>
-                                <div>
-                                  <p>Check-in</p>
-                                  <span>15 Kgs</span>
-                                </div>
-                                <div>
-                                  <p>Cabin</p>
-                                  <span>7 Kgs</span>
+                                <div className="bookBottomFour">
+                                  <div>
+                                    <p>Baggage</p>
+                                    <span>ADULT</span>
+                                  </div>
+                                  <div>
+                                    <p>Check-in</p>
+                                    <span>15 Kgs</span>
+                                  </div>
+                                  <div>
+                                    <p>Cabin</p>
+                                    <span>7 Kgs</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </>
-                      )
-                      :
-                      (
-                        <>
-                          <div className="booknowFlight">
-                            <div className="bookaboveBox">
-                              <div>
+                          </>
+                        )
+                        :
+                        (
+                          <>
+                            <div className="booknowFlight">
+                              <div className="bookaboveBox">
+                                <div>
+                                  <p>
+                                    {
+                                      TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                        ?.CityName
+                                    }
+                                    <FiArrowRight style={{ margin: "5px" }} />{" "}
+                                    {
+                                      TicketDetails?.Segments[0][0]?.Destination
+                                        ?.Airport?.CityName
+                                    }
+                                  </p>
+                                  <div className="aboveSpan">
+                                    <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
+                                    <span>Non Stop {" "} {duration}</span>
+                                  </div>
+                                </div>
+
+                                <div className="aboveBelowSpan">
+                                  <span>Cancellation Fees Apply</span>
+                                  <span className="aboveSOne">View Fare Rules</span>
+                                </div>
+                              </div>
+
+                              <div className="bookcenteredBox">
+                                <div>
+                                  <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
+                                </div>
+                                <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
                                 <p>
+                                  {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
                                   {
-                                    TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                      ?.CityName
+                                    TicketDetails?.Segments[0][0]?.Airline
+                                      ?.FlightNumber
                                   }
-                                  <FiArrowRight style={{ margin: "5px" }} />{" "}
-                                  {
-                                    TicketDetails?.Segments[0][0]?.Destination
-                                      ?.Airport?.CityName
-                                  }
+                                  {TicketDetails?.IsLCC === false ? (
+                                    <span>
+                                      LCC
+                                    </span>
+                                  ) : (
+                                    ""
+                                  )}
                                 </p>
-                                <div className="aboveSpan">
-                                  <span className="aboveSOne">{desiredFormat.slice(0, 12)}</span>
-                                  <span>Non Stop {" "} {duration}</span>
-                                </div>
                               </div>
 
-                              <div className="aboveBelowSpan">
-                                <span>Cancellation Fees Apply</span>
-                                <span className="aboveSOne">View Fare Rules</span>
-                              </div>
-                            </div>
-
-                            <div className="bookcenteredBox">
-                              <div>
-                                <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
-                              </div>
-                              <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
-                              <p>
-                                {TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}
-                                {
-                                  TicketDetails?.Segments[0][0]?.Airline
-                                    ?.FlightNumber
-                                }
-                                {TicketDetails?.IsLCC === false ? (
-                                  <span>
-                                    LCC
-                                  </span>
-                                ) : (
-                                  ""
-                                )}
-                              </p>
-                            </div>
-
-                            <div className="bookbottomBox">
-                              <div>
-                                <div className="bookBottomOne">
-                                  <p>{desiredFormat.slice(13)}</p>
-                                  <p>{desiredFormat1.slice(13)}</p>
-                                </div>
-                                <div className="bookBottomTwo">
-                                  <img src={fromTo} alt="icon" />
-                                </div>
-                                <div className="bookBottomThree">
-                                  <p>
-                                    {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                      ?.CityName} {" "}
-                                    <span>
+                              <div className="bookbottomBox">
+                                <div>
+                                  <div className="bookBottomOne">
+                                    <p>{desiredFormat.slice(13)}</p>
+                                    <p>{desiredFormat1.slice(13)}</p>
+                                  </div>
+                                  <div className="bookBottomTwo">
+                                    <img src={fromTo} alt="icon" />
+                                  </div>
+                                  <div className="bookBottomThree">
+                                    <p>
                                       {TicketDetails?.Segments[0][0]?.Origin?.Airport
-                                        ?.AirportName}
-                                    </span>
-                                  </p>
-                                  <p>
-                                    {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                      ?.CityName} {" "}
-                                    <span>
+                                        ?.CityName} {" "}
+                                      <span>
+                                        {TicketDetails?.Segments[0][0]?.Origin?.Airport
+                                          ?.AirportName}
+                                      </span>
+                                    </p>
+                                    <p>
                                       {TicketDetails?.Segments[0][0]?.Destination?.Airport
-                                        ?.AirportName}
-                                    </span>
-                                  </p>
+                                        ?.CityName} {" "}
+                                      <span>
+                                        {TicketDetails?.Segments[0][0]?.Destination?.Airport
+                                          ?.AirportName}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="bookBottomFour">
-                                <div>
-                                  <p>Baggage</p>
-                                  <span>ADULT</span>
-                                </div>
-                                <div>
-                                  <p>Check-in</p>
-                                  <span>15 Kgs</span>
-                                </div>
-                                <div>
-                                  <p>Cabin</p>
-                                  <span>7 Kgs</span>
+                                <div className="bookBottomFour">
+                                  <div>
+                                    <p>Baggage</p>
+                                    <span>ADULT</span>
+                                  </div>
+                                  <div>
+                                    <p>Check-in</p>
+                                    <span>15 Kgs</span>
+                                  </div>
+                                  <div>
+                                    <p>Cabin</p>
+                                    <span>7 Kgs</span>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        </>
-                      )
-                  }
-                </div>
-                <div className="col-lg-12 mt-3">
-                  <div className="bookNowCancel">
-                    <div className="bookCancleOne">
+                          </>
+                        )
+                    }
+                  </motion.div>
+                  <motion.div variants={variants} className="col-lg-12 mt-3">
+                    <div className="bookNowCancel">
+                      <div className="bookCancleOne">
 
-                      <p>
-                        Cancellation Refund Policy
-                      </p>
-                      <div>
-                        <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
-                        <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
+                        <p>
+                          Cancellation Refund Policy
+                        </p>
+                        <div>
+                          <img src={`${process.env.PUBLIC_URL}/FlightImages/${TicketDetails?.Segments[0][0]?.Airline?.AirlineCode}.png`} />{" "}
+                          <span>{TicketDetails?.Segments[0][0]?.Airline?.AirlineName}</span>
+                        </div>
+                        <span>Cancellation Penalty :</span>
                       </div>
-                      <span>Cancellation Penalty :</span>
-                    </div>
 
-                    <div className="bookCancleTwo">
-                      <span>Cancel Between</span>
-                      <div className="svgLineBox">
-                        <div>
-                          <div className="svgCircle"></div>
-                          <svg xmlns="http://www.w3.org/2000/svg" max-width="560" height="9" viewBox="0 0 560 9" fill="none">
-                            <path d="M4 5L662 4" stroke="url(#paint0_linear_367_27446)" stroke-width="8" stroke-linecap="round" />
-                            <defs>
-                              <linearGradient id="paint0_linear_367_27446" x1="4.00583" y1="7.99358" x2="662.006" y2="7.98716" gradientUnits="userSpaceOnUse">
-                                <stop stop-color="#41754C" />
-                                <stop offset="0.494792" stop-color="#E2C735" />
-                                <stop offset="0.494892" stop-color="#DFCB66" />
-                                <stop offset="1" stop-color="#DA3030" />
-                              </linearGradient>
-                            </defs>
-                          </svg>
-                        </div>
-                        <div>
-                          <span>From {detailsOfCancel?.[0]?.From}-{detailsOfCancel?.[0]?.To} {' '}
-                            {detailsOfCancel?.[0]?.Unit}
-                          </span>
-                          <span>From {detailsOfCancel?.[1]?.From}-{detailsOfCancel?.[1]?.To} {' '}
-                            {detailsOfCancel?.[1]?.Unit}</span>
-                        </div>
-                        <div>
-                          <span>{detailsOfCancel?.[0]?.Details}</span>
-                          <span>{detailsOfCancel?.[1]?.Details}</span>
-                        </div>
-                        {/* <div>
+                      <div className="bookCancleTwo">
+                        <span>Cancel Between</span>
+                        <div className="svgLineBox">
+                          <div>
+                            <div className="svgCircle"></div>
+                            <svg xmlns="http://www.w3.org/2000/svg" max-width="560" height="9" viewBox="0 0 560 9" fill="none">
+                              <path d="M4 5L662 4" stroke="url(#paint0_linear_367_27446)" stroke-width="8" stroke-linecap="round" />
+                              <defs>
+                                <linearGradient id="paint0_linear_367_27446" x1="4.00583" y1="7.99358" x2="662.006" y2="7.98716" gradientUnits="userSpaceOnUse">
+                                  <stop stop-color="#41754C" />
+                                  <stop offset="0.494792" stop-color="#E2C735" />
+                                  <stop offset="0.494892" stop-color="#DFCB66" />
+                                  <stop offset="1" stop-color="#DA3030" />
+                                </linearGradient>
+                              </defs>
+                            </svg>
+                          </div>
+                          <div>
+                            <span>From {detailsOfCancel?.[0]?.From}-{detailsOfCancel?.[0]?.To} {' '}
+                              {detailsOfCancel?.[0]?.Unit}
+                            </span>
+                            <span>From {detailsOfCancel?.[1]?.From}-{detailsOfCancel?.[1]?.To} {' '}
+                              {detailsOfCancel?.[1]?.Unit}</span>
+                          </div>
+                          <div>
+                            <span>{detailsOfCancel?.[0]?.Details}</span>
+                            <span>{detailsOfCancel?.[1]?.Details}</span>
+                          </div>
+                          {/* <div>
                       </div> */}
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </div>
+                  </motion.div>
 
-                <div className="col-lg-12 mt-3">
-                  <div className="bookflightPassenger">
-                    <div className="headingBookFlight">
-                      <h3>Traveller Details</h3>
-                    </div>
-                    {adultCount > 0 &&
-                      Array.from({ length: adultCount }, (_, index) => (
-                        <div className="bookFlightPassInner">
-                          <div className="bookAdultIndex">
-                            <p>Adult {index + 1}</p>
-                          </div>
-                          <div className="row g-3 mb-3">
-                            <div className="col-lg-3 col-md-3">
-                              <select
-                                className="form-select h-100"
-                                name="Title"
-                                onChange={(e) =>
-                                  handleServiceChange(e, index)
-                                }
-                              >
-                                <option value="Mr">Mr.</option>
-                                <option value="Mrs">
-                                  Mrs.
-                                </option>
-                                <option value="Miss">
-                                  Miss
-                                </option>
-                              </select>
+                  <motion.div variants={variants} className="col-lg-12 mt-3">
+                    <div className="bookflightPassenger">
+                      <div className="headingBookFlight">
+                        <h3>Traveller Details</h3>
+                      </div>
+                      {adultCount > 0 &&
+                        Array.from({ length: adultCount }, (_, index) => (
+                          <div className="bookFlightPassInner">
+                            <div className="bookAdultIndex">
+                              <p>Adult {index + 1}</p>
                             </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input onChange={(e) =>
-                                  handleServiceChange(e, index)
-                                } type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
-                                <label for="floatingInput">First Name</label>
-                              </div>
-                            </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input onChange={(e) =>
-                                  handleServiceChange(e, index)
-                                } type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
-                                <label for="floatingInput">Last Name</label>
-                              </div>
-                            </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input
-                                  type="date"
-                                  name="DateOfBirth"
-                                  className="form-control"
+                            <div className="row g-3 mb-3">
+                              <div className="col-lg-3 col-md-3">
+                                <select
+                                  className="form-select h-100"
+                                  name="Title"
                                   onChange={(e) =>
                                     handleServiceChange(e, index)
                                   }
-                                />
+                                >
+                                  <option value="Mr">Mr.</option>
+                                  <option value="Mrs">
+                                    Mrs.
+                                  </option>
+                                  <option value="Miss">
+                                    Miss
+                                  </option>
+                                </select>
                               </div>
-                            </div>
-                          </div>
-
-                          {/* passport details here */}
-                          {isPassportRequired == true ? (
-                            <>
-                              <div className="bookAdultIndex">
-                                <p>Passport Details</p>
-                              </div>
-                              <div className="row g-3 mb-3">
-
-                                <div className="col-lg-3 col-md-3">
-                                  <div class="form-floating">
-                                    <input onChange={(e) =>
-                                      handleServiceChange(e, index)
-                                    } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
-                                    <label for="floatingInput">Passport Number</label>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3">
-                                  <div class="form-floating">
-                                    <input onChange={(e) =>
-                                      handleServiceChange(e, index)
-                                    } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
-                                    <label for="floatingInput">Passport Expiry</label>
-                                  </div>
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input onChange={(e) =>
+                                    handleServiceChange(e, index)
+                                  } type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
+                                  <label for="floatingInput">First Name</label>
                                 </div>
                               </div>
-                            </>
-                          ) : ("")
-                          }
-                        </div>
-                      ))}
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input onChange={(e) =>
+                                    handleServiceChange(e, index)
+                                  } type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
+                                  <label for="floatingInput">Last Name</label>
+                                </div>
+                              </div>
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input
+                                    type="date"
+                                    name="DateOfBirth"
+                                    className="form-control"
+                                    onChange={(e) =>
+                                      handleServiceChange(e, index)
+                                    }
+                                  />
+                                </div>
+                              </div>
+                            </div>
 
+                            {/* passport details here */}
+                            {isPassportRequired == true ? (
+                              <>
+                                <div className="bookAdultIndex">
+                                  <p>Passport Details</p>
+                                </div>
+                                <div className="row g-3 mb-3">
 
-                    {/* child details here  */}
-
-                    {childCount > 0 &&
-                      Array.from({ length: childCount }, (_, index) => (
-                        <div className="bookFlightPassInner">
-                          <div className="bookAdultIndex">
-                            <p>Child {index + 1}</p>
+                                  <div className="col-lg-3 col-md-3">
+                                    <div class="form-floating">
+                                      <input onChange={(e) =>
+                                        handleServiceChange(e, index)
+                                      } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
+                                      <label for="floatingInput">Passport Number</label>
+                                    </div>
+                                  </div>
+                                  <div className="col-lg-3 col-md-3">
+                                    <div class="form-floating">
+                                      <input onChange={(e) =>
+                                        handleServiceChange(e, index)
+                                      } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
+                                      <label for="floatingInput">Passport Expiry</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            ) : ("")
+                            }
                           </div>
-                          <div className="row g-3 mb-3">
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input onChange={(e) =>
-                                  handleServiceChange(
-                                    e,
-                                    index + Number(adultCount)
-                                  )
-                                }
-                                  type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
-                                <label for="floatingInput">First Name</label>
-                              </div>
-                            </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input onChange={(e) =>
-                                  handleServiceChange(
-                                    e,
-                                    index + Number(adultCount)
-                                  )
-                                }
-                                  type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
-                                <label for="floatingInput">Last Name</label>
-                              </div>
-                            </div>
+                        ))}
 
-                            <div className="col-lg-3 col-md-3">
-                              <select
-                                className="form-select h-100"
-                                name="Gender"
-                                onChange={(e) =>
-                                  handleServiceChange(
-                                    e,
-                                    index + Number(adultCount)
-                                  )
-                                }
-                              >
-                                <option value="1">Female</option>
-                                <option value="2">Male</option>
-                              </select>
+
+                      {/* child details here  */}
+
+                      {childCount > 0 &&
+                        Array.from({ length: childCount }, (_, index) => (
+                          <div className="bookFlightPassInner">
+                            <div className="bookAdultIndex">
+                              <p>Child {index + 1}</p>
                             </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input
-                                  type="date"
-                                  name="DateOfBirth"
-                                  className="form-control"
+                            <div className="row g-3 mb-3">
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input onChange={(e) =>
+                                    handleServiceChange(
+                                      e,
+                                      index + Number(adultCount)
+                                    )
+                                  }
+                                    type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
+                                  <label for="floatingInput">First Name</label>
+                                </div>
+                              </div>
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input onChange={(e) =>
+                                    handleServiceChange(
+                                      e,
+                                      index + Number(adultCount)
+                                    )
+                                  }
+                                    type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
+                                  <label for="floatingInput">Last Name</label>
+                                </div>
+                              </div>
+
+                              <div className="col-lg-3 col-md-3">
+                                <select
+                                  className="form-select h-100"
+                                  name="Gender"
                                   onChange={(e) =>
                                     handleServiceChange(
                                       e,
                                       index + Number(adultCount)
                                     )
                                   }
-                                />
+                                >
+                                  <option value="1">Female</option>
+                                  <option value="2">Male</option>
+                                </select>
                               </div>
-                            </div>
-                          </div>
-                          {/* passport details here */}
-                          {isPassportRequired == true ? (
-                            <>
-                              <div className="bookAdultIndex">
-                                <p>Passport Details</p>
-                              </div>
-                              <div className="row g-3 mb-3">
-
-                                <div className="col-lg-3 col-md-3">
-                                  <div class="form-floating">
-                                    <input onChange={(e) =>
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input
+                                    type="date"
+                                    name="DateOfBirth"
+                                    className="form-control"
+                                    onChange={(e) =>
                                       handleServiceChange(
                                         e,
-                                        index +
-                                        Number(adultCount)
+                                        index + Number(adultCount)
                                       )
-                                    } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
-                                    <label for="floatingInput">Passport Number</label>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3">
-                                  <div class="form-floating">
-                                    <input onChange={(e) =>
-                                      handleServiceChange(
-                                        e,
-                                        index +
-                                        Number(adultCount)
-                                      )
-                                    } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
-                                    <label for="floatingInput">Passport Expiry</label>
-                                  </div>
+                                    }
+                                  />
                                 </div>
                               </div>
-                            </>
-                          ) : ("")
-                          }
-                        </div>
-                      ))}
+                            </div>
+                            {/* passport details here */}
+                            {isPassportRequired == true ? (
+                              <>
+                                <div className="bookAdultIndex">
+                                  <p>Passport Details</p>
+                                </div>
+                                <div className="row g-3 mb-3">
 
-
-                    {/* child details here  */}
-
-
-
-                    {/* infant details here  */}
-
-                    {infantCount > 0 &&
-                      Array.from({ length: infantCount }, (_, index) => (
-                        <div className="bookFlightPassInner">
-                          <div className="bookAdultIndex">
-                            <p>Infact {index + 1}</p>
+                                  <div className="col-lg-3 col-md-3">
+                                    <div class="form-floating">
+                                      <input onChange={(e) =>
+                                        handleServiceChange(
+                                          e,
+                                          index +
+                                          Number(adultCount)
+                                        )
+                                      } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
+                                      <label for="floatingInput">Passport Number</label>
+                                    </div>
+                                  </div>
+                                  <div className="col-lg-3 col-md-3">
+                                    <div class="form-floating">
+                                      <input onChange={(e) =>
+                                        handleServiceChange(
+                                          e,
+                                          index +
+                                          Number(adultCount)
+                                        )
+                                      } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
+                                      <label for="floatingInput">Passport Expiry</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            ) : ("")
+                            }
                           </div>
-                          <div className="row g-3 mb-3">
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input onChange={(e) =>
-                                  handleServiceChange(
-                                    e,
-                                    index +
-                                    Number(adultCount) +
-                                    Number(childCount)
-                                  )
-                                }
-                                  type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
-                                <label for="floatingInput">First Name</label>
-                              </div>
-                            </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input onChange={(e) =>
-                                  handleServiceChange(
-                                    e,
-                                    index +
-                                    Number(adultCount) +
-                                    Number(childCount)
-                                  )
-                                }
-                                  type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
-                                <label for="floatingInput">Last Name</label>
-                              </div>
-                            </div>
+                        ))}
 
-                            <div className="col-lg-3 col-md-3">
-                              <select
-                                className="form-select h-100"
-                                name="Gender"
-                                onChange={(e) =>
-                                  handleServiceChange(
-                                    e,
-                                    index +
-                                    Number(adultCount) +
-                                    Number(childCount)
-                                  )
-                                }
-                              >
-                                <option value="1">Female</option>
-                                <option value="2">Male</option>
-                              </select>
+
+                      {/* child details here  */}
+
+
+
+                      {/* infant details here  */}
+
+                      {infantCount > 0 &&
+                        Array.from({ length: infantCount }, (_, index) => (
+                          <div className="bookFlightPassInner">
+                            <div className="bookAdultIndex">
+                              <p>Infact {index + 1}</p>
                             </div>
-                            <div className="col-lg-3 col-md-3">
-                              <div class="form-floating">
-                                <input
-                                  type="date"
-                                  name="DateOfBirth"
-                                  className="form-control"
+                            <div className="row g-3 mb-3">
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input onChange={(e) =>
+                                    handleServiceChange(
+                                      e,
+                                      index +
+                                      Number(adultCount) +
+                                      Number(childCount)
+                                    )
+                                  }
+                                    type="text" name="FirstName" class="form-control" id="floatingInput" placeholder="First Name" />
+                                  <label for="floatingInput">First Name</label>
+                                </div>
+                              </div>
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input onChange={(e) =>
+                                    handleServiceChange(
+                                      e,
+                                      index +
+                                      Number(adultCount) +
+                                      Number(childCount)
+                                    )
+                                  }
+                                    type="text" name="LastName" class="form-control" id="floatingInput" placeholder="Last Name" />
+                                  <label for="floatingInput">Last Name</label>
+                                </div>
+                              </div>
+
+                              <div className="col-lg-3 col-md-3">
+                                <select
+                                  className="form-select h-100"
+                                  name="Gender"
                                   onChange={(e) =>
                                     handleServiceChange(
                                       e,
@@ -1063,132 +1051,148 @@ export default function BookWrapper() {
                                       Number(childCount)
                                     )
                                   }
-                                />
+                                >
+                                  <option value="1">Female</option>
+                                  <option value="2">Male</option>
+                                </select>
                               </div>
-                            </div>
-                          </div>
-                          {/* passport details here */}
-                          {isPassportRequired == true ? (
-                            <>
-                              <div className="bookAdultIndex">
-                                <p>Passport Details</p>
-                              </div>
-                              <div className="row g-3 mb-3">
-
-                                <div className="col-lg-3 col-md-3">
-                                  <div class="form-floating">
-                                    <input onChange={(e) =>
+                              <div className="col-lg-3 col-md-3">
+                                <div class="form-floating">
+                                  <input
+                                    type="date"
+                                    name="DateOfBirth"
+                                    className="form-control"
+                                    onChange={(e) =>
                                       handleServiceChange(
                                         e,
                                         index +
                                         Number(adultCount) +
                                         Number(childCount)
                                       )
-                                    } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
-                                    <label for="floatingInput">Passport Number</label>
-                                  </div>
-                                </div>
-                                <div className="col-lg-3 col-md-3">
-                                  <div class="form-floating">
-                                    <input onChange={(e) =>
-                                      handleServiceChange(
-                                        e,
-                                        index +
-                                        Number(adultCount) +
-                                        Number(childCount)
-                                      )
-                                    } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
-                                    <label for="floatingInput">Passport Expiry</label>
-                                  </div>
+                                    }
+                                  />
                                 </div>
                               </div>
-                            </>
-                          ) : ("")
-                          }
-                        </div>
-                      ))}
+                            </div>
+                            {/* passport details here */}
+                            {isPassportRequired == true ? (
+                              <>
+                                <div className="bookAdultIndex">
+                                  <p>Passport Details</p>
+                                </div>
+                                <div className="row g-3 mb-3">
+
+                                  <div className="col-lg-3 col-md-3">
+                                    <div class="form-floating">
+                                      <input onChange={(e) =>
+                                        handleServiceChange(
+                                          e,
+                                          index +
+                                          Number(adultCount) +
+                                          Number(childCount)
+                                        )
+                                      } type="text" name="PassportNo" class="form-control" id="floatingInput" placeholder="Passport Number" />
+                                      <label for="floatingInput">Passport Number</label>
+                                    </div>
+                                  </div>
+                                  <div className="col-lg-3 col-md-3">
+                                    <div class="form-floating">
+                                      <input onChange={(e) =>
+                                        handleServiceChange(
+                                          e,
+                                          index +
+                                          Number(adultCount) +
+                                          Number(childCount)
+                                        )
+                                      } type="text" name="PassportExpiry" class="form-control" id="floatingInput" placeholder="Passport Expiry" />
+                                      <label for="floatingInput">Passport Expiry</label>
+                                    </div>
+                                  </div>
+                                </div>
+                              </>
+                            ) : ("")
+                            }
+                          </div>
+                        ))}
 
 
-                    {/* infant details here  */}
-                  </div>
-                </div>
+                      {/* infant details here  */}
+                    </div>
+                  </motion.div>
 
-
-
-                <div className="col-lg-12 mt-3">
-                  <div className="bookflightPassenger">
-                    <form>
-                      <div className="bookFlightPassInner">
-                        <div className="bookAdultIndex">
-                          <p>Your Booking Details will be sent to</p>
-                        </div>
-                        <div className="row g-3 mb-3">
-                          <div className="col-lg-5 col-md-5">
-                            <div className="form-floating">
-                              <input value={email}
-                                onChange={(e) => {
-                                  setEmail(e.target.value);
-                                }} type="email" name="sendEmail" className="form-control" id="floatingInput" placeholder="Email" />
-                              <label for="floatingInput">Enter Email</label>
+                  <motion.div variants={variants} className="col-lg-12 mt-3">
+                    <div className="bookflightPassenger">
+                      <form>
+                        <div className="bookFlightPassInner">
+                          <div className="bookAdultIndex">
+                            <p>Your Booking Details will be sent to</p>
+                          </div>
+                          <div className="row g-3 mb-3">
+                            <div className="col-lg-5 col-md-5">
+                              <div className="form-floating">
+                                <input value={email}
+                                  onChange={(e) => {
+                                    setEmail(e.target.value);
+                                  }} type="email" name="sendEmail" className="form-control" id="floatingInput" placeholder="Email" />
+                                <label for="floatingInput">Enter Email</label>
+                              </div>
+                            </div>
+                            <div className="col-lg-5 col-md-5">
+                              <div className="form-floating">
+                                <input value={cNumber}
+                                  onChange={(e) => {
+                                    setCnumber(e.target.value);
+                                  }} type="phone" name="sendNumber" className="form-control" id="floatingInput" placeholder="Mobile Number" />
+                                <label for="floatingInput">Mobile Number</label>
+                              </div>
                             </div>
                           </div>
-                          <div className="col-lg-5 col-md-5">
-                            <div className="form-floating">
-                              <input value={cNumber}
-                                onChange={(e) => {
-                                  setCnumber(e.target.value);
-                                }} type="phone" name="sendNumber" className="form-control" id="floatingInput" placeholder="Mobile Number" />
-                              <label for="floatingInput">Mobile Number</label>
-                            </div>
-                          </div>
                         </div>
-                      </div>
-                    </form>
+                      </form>
+                    </div>
+                  </motion.div>
+
+                  {/* trip security  */}
+                  <motion.div variants={variants} className="col-lg-12">
+                    <TripSecureComponent />
+                  </motion.div>
+
+                  {/* trip security  */}
+
+                  <div className="col-lg-12 mt-4">
+                    <button className="bookWrapperButton" type="submit" onClick={handleTravelClickOpen}>
+                      Continue
+                    </button>
+                    <Dialog
+                      sx={{ zIndex: "99999" }}
+                      disableEscapeKeyDown
+                      open={openTravelModal}
+                      onClose={handleTravelClose}
+                    >
+                      <DialogContent>
+                        Are you Sure Your details are Correct ?
+                      </DialogContent>
+                      <DialogActions>
+                        <button
+                          className="modalDialogueButtonOne"
+                          onClick={handleTravelClose}
+                        >
+                          Re Check
+                        </button>
+                        <button
+                          className="modalDialogueButtonTwo"
+                          onClick={handleButtonClick}
+                        >
+                          Pay Now
+                        </button>
+                      </DialogActions>
+                    </Dialog>
                   </div>
-                </div>
-
-
-                {/* trip security  */}
-
-                <div className="col-lg-12">
-                  <TripSecureComponent />
-                </div>
-
-                {/* trip security  */}
-
-                <div className="col-lg-12 mt-4">
-                  <button className="bookWrapperButton" type="submit" onClick={handleTravelClickOpen}>
-                    Continue
-                  </button>
-                  <Dialog
-                    sx={{ zIndex: "99999" }}
-                    disableEscapeKeyDown
-                    open={openTravelModal}
-                    onClose={handleTravelClose}
-                  >
-                    <DialogContent>
-                      Are you Sure Your details are Correct ?
-                    </DialogContent>
-                    <DialogActions>
-                      <button
-                        className="modalDialogueButtonOne"
-                        onClick={handleTravelClose}
-                      >
-                        Re Check
-                      </button>
-                      <button
-                        className="modalDialogueButtonTwo"
-                        onClick={handleButtonClick}
-                      >
-                        Pay Now
-                      </button>
-                    </DialogActions>
-                  </Dialog>
-                </div>
+                </motion.div>
+              </motion.div>
+              <div className="col-md-3">
+                <BookNowLeft />
               </div>
-            </div>
-            <div className="col-md-3">
-              <BookNowLeft />
             </div>
           </div>
         </div>

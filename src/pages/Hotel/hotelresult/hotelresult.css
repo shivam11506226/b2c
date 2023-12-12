@@ -114,6 +114,11 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+.hotelResultBoxSearch>div {
+  display: flex;
+  flex-direction: row;
+}
+
 .hotelResultBoxSearch p {
   margin-bottom: 0 !important;
 }
@@ -378,4 +383,11 @@
     gap: 12px;
 
   }
+}
+
+
+
+
+.ratingStar img {
+  margin-right: 8px;
 }

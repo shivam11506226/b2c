@@ -21,8 +21,7 @@ export default function Popularfilter() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const reducerState = useSelector((state) => state);
-  // const logIn = useSelector((state) => state);
-  // console.log("State Data", reducerState);
+
 
   const TotalGuest = sessionStorage.getItem("totalGuest");
   const HotelIndex = sessionStorage.getItem("HotelIndex");
@@ -33,27 +32,36 @@ export default function Popularfilter() {
     reducerState?.hotelSearchResult?.hotelRoom?.GetHotelRoomResult;
   const hotelData = hotelRoom?.HotelRoomsDetails?.[HotelIndex];
 
+
+  const noOfRooms =
+    reducerState?.hotelSearchResult?.ticketData?.data?.data?.HotelSearchResult;
+
+
   const getBookingDetails =
     reducerState?.hotelSearchResult?.blockRoom?.BlockRoomResult?.HotelRoomsDetails;
-  // console.log("getBookingDetails", getBookingDetails);
 
+  console.log(getBookingDetails, "booking details")
   const totalAmount = getBookingDetails?.reduce((accumulator, item) => {
     return accumulator + item?.Price?.PublishedPriceRoundedOff;
   }, 0);
-  // console.log("totalAmount", totalAmount);
 
 
-  const markUpPrice = reducerState?.logIn?.loginData?.data?.data?.markup?.hotel;
-  // console.log(markUpPrice)
-  // console.log(hotelInfo, "hotel information")
-  // console.log(HotelIndex, "hotel index")
-  // console.log(hotelData, "hotel ka data ");
-  const grandTotal = totalAmount + markUpPrice;
+  const roomBlock = reducerState?.hotelSearchResult?.blockRoom;
+  console.log(roomBlock, "room block ")
+
+
+  const markUpamount =
+    reducerState?.markup?.markUpData?.data?.result[0]?.hotelMarkup;
+  console.log("fareValue", markUpamount);
+
+
+  const grandTotal = totalAmount + markUpamount;
 
   const storedFormData = JSON.parse(sessionStorage.getItem('hotelFormData'));
+
   return (
     <>
-      <div className="priceSummary">
+      <div className="priceSummaryHotel">
         <div className="head">
           <span>Price Summary</span>
         </div>
@@ -72,32 +80,14 @@ export default function Popularfilter() {
           </div>
           <div >
             <span>Other Tax</span>
-            <p>{'₹'}{markUpPrice}</p>
+            <p>{'₹'}{markUpamount}</p>
           </div>
           <div >
             <span className="text-bold">No of Rooms</span>
-            <p className="text-bold">{storedFormData.room}</p>
+            <p className="text-bold"> {noOfRooms?.NoOfRooms}</p>
           </div>
         </div>
-        {/* <div className="totCOmm">
-          <div >
-            <span>Total</span>
-            <p>{'₹'}8,673.00</p>
-          </div>
-          <div >
-            <span>Comm. Earned</span>
-            <p>{'₹'}8,673.00</p>
-          </div>
-          <div >
-            <span>TDS</span>
-            <p>{'₹'}8,673.00</p>
-          </div>
-        </div> */}
         <div className="TotGst">
-          {/* <div >
-            <span>Total GST:</span>
-            <p>{'₹'}673.00</p>
-          </div> */}
           <div >
             <span>Grand Total:</span>
             <p>{'₹'}{grandTotal}</p>

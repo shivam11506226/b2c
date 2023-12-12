@@ -12,19 +12,48 @@ import LuxurySection from "../../components/LuxurySection";
 import "./hotelhome.css";
 import HotelForm from "./HotelForm";
 import HotelLoading from "./hotelLoading/HotelLoading";
-// HotelLoading
+import { motion } from "framer-motion";
+
+
+const variants = {
+    initial: {
+        y: 50,
+        opacity: 0,
+    },
+    animate: {
+        y: 0,
+        opacity: 1,
+        transition: {
+            duration: 0.5,
+            staggerChildren: 0.1,
+        },
+    },
+};
+
+
+
 const Hotelhome = () => {
     return (
-        <div className="hotel_banner">
-
-            {/* <Hotelsearch header="Book Domestic and International Property Online. To list your property click here"></Hotelsearch> */}
+        <motion.div className="hotel_banner" >
             <HotelForm />
-            <Toursection></Toursection>
-            <LuxurySection />
-            <OfferSwipeToSlide></OfferSwipeToSlide>
-            <Download></Download>
+            <motion.div variants={variants} initial="initial"
+                whileInView="animate" >
+                <Toursection variants={variants} />
+            </motion.div>
+            <motion.div variants={variants} initial="initial"
+                whileInView="animate">
+                <LuxurySection variants={variants} />
+            </motion.div >
+            <motion.div variants={variants} initial="initial"
+                whileInView="animate" >
+                <OfferSwipeToSlide variants={variants} />
+            </motion.div>
+            <motion.div variants={variants} initial="initial"
+                whileInView="animate" >
+                <Download variants={variants} />
+            </motion.div>
 
-        </div>
+        </motion.div>
     )
 }
 export default Hotelhome;

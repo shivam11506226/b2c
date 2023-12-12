@@ -8,9 +8,12 @@ import HotelLoading from "../hotelLoading/HotelLoading";
 import BigNavbar from "../../../UI/BigNavbar/BigNavbar";
 import Navbar from "../../../layouts/Navbar";
 import Mainheader from "../../../UI/Mainheader";
+import Hoteldescription from "../guestdetail/Hoteldescription"
+import InsideNavbar from "../../../UI/BigNavbar/InsideNavbar";
+import { motion } from "framer-motion";
 
 
-const Guestdetail = () => {
+const Reviewbooking = () => {
   const [loader, setLoader] = useState(false);
   const reducerState = useSelector((state) => state);
   const result =
@@ -36,28 +39,13 @@ const Guestdetail = () => {
       ) : (
 
         <>
-          <div className='mainimg'>
-            <Navbar />
-            <BigNavbar />
-            <Mainheader />
+          <div className='mainimgHotelSearch'>
+
+            <InsideNavbar />
           </div>
 
-          <div className="margin-pecentage">
+          <div className="my-4 margin-pecentage">
             <div className="container-fluid">
-              {/* <div className="row">
-              <div className="col-lg-12">
-                <div className="hotelBookNowOuter">
-                  <div className="hotelBookNowHeader">
-                    <p>Your Search criteria:{storedFormData?.city},{' '} India</p>
-                    <p>Duration: {storedFormData?.night}{' '}Nights</p>
-                    <p>{storedFormData?.checkIn}- {storedFormData?.checkOut}</p>
-                    <p>Guest(s): {totalAdults}Adult(s) </p>
-                    <p>Room(s): {storedFormData.room}</p>
-                  </div>
-                </div>
-              </div>
-            </div> */}
-
               <div className="row gy-4">
                 <div className="col-lg-9 order-lg-1 order-md-2 order-sm-2">
                   <Reviewdescription />
@@ -74,4 +62,4 @@ const Guestdetail = () => {
   );
 };
 
-export default Guestdetail;
+export default Reviewbooking;

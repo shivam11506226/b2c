@@ -16,6 +16,9 @@ import starsvg from "../../../images/star.svg"
 import FmdGoodIcon from '@mui/icons-material/FmdGood';
 import chevrondown from "../../../images/chevrondown.svg"
 import goa from "../../../images/goa.jpg"
+import suggestHotel from "../../../images/suggestHotel.png"
+import InsideNavbar from "../../../UI/BigNavbar/InsideNavbar";
+import { motion } from "framer-motion";
 import {
   hotelBlockRoomAction,
   hotelRoomAction,
@@ -24,6 +27,25 @@ import {
 import HotelLoading from "../hotelLoading/HotelLoading";
 
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+
+
+const variants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
 
 const HotelBooknow = () => {
   const dispatch = useDispatch();
@@ -109,26 +131,25 @@ const HotelBooknow = () => {
   return (
     <>
 
-      <div className='mainimg'>
-        <Navbar />
-        <BigNavbar />
-        <Mainheader />
+      <div className='mainimgHotelSearch'>
+
+        <InsideNavbar />
       </div>
 
 
       {loader ? (
         <HotelLoading />
       ) : (
-        <section className="mx-5">
+        <section className="margin-pecentage my-4">
 
           <div className="contaier-xxl">
             <div className="row">
 
-              <div className="col-lg-9">
+              <motion.div className="col-lg-9" variants={variants} initial="initial"
+                whileInView="animate">
                 <div className="row">
-                  <div className="col-lg-12 mb-3">
+                  <motion.div variants={variants} className="col-lg-12 mb-3">
                     <div className="hotelTitleBoxAccord">
-                      {/* <h3>Pullman Hotel New Delhi International Airport-An Accor Luxury</h3> */}
                       <h3>{hotelInfo?.HotelDetails?.HotelName}</h3>
 
                       <div>
@@ -137,8 +158,8 @@ const HotelBooknow = () => {
                         ))}
                       </div>
                     </div>
-                  </div>
-                  <div className="col-lg-12 mb-4 packageImgBox" >
+                  </motion.div>
+                  <motion.div variants={variants} className="col-lg-12 mb-4 packageImgBox" >
 
                     <div className="packageLocation">
                       <FmdGoodIcon />
@@ -147,25 +168,25 @@ const HotelBooknow = () => {
                       <p>{storedFormData?.city}</p>
                       <span>(India)</span>
                     </div>
-                  </div>
-                  <div className="col-lg-12">
+                  </motion.div>
+                  <motion.div variants={variants} className="col-lg-12">
                     <div className="hotelImageBoxBook">
                       <h4>Discover the best of luxury</h4>
                       <div className="row">
                         {hotelInfo?.HotelDetails?.Images?.slice(1, 5).map((img, key) => {
                           return (
-                            <div className="col-lg-2 col-md-2">
+                            <motion.div variants={variants} className="col-lg-2 col-md-2">
                               <div className="dynamicHotelimg">
                                 <img src={img} className="jacuzzy_img" />
                               </div>
-                            </div>
+                            </motion.div>
                           );
                         })}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
 
-                  <div className="col-lg-12 my-4">
+                  <motion.div variants={variants} className="col-lg-12 my-4">
                     <div className="hotelBookHighlight">
                       <h4>Hotel Highlight</h4>
                       <div>
@@ -178,18 +199,18 @@ const HotelBooknow = () => {
                         }
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
-              </div>
+              </motion.div>
 
               <div className="col-lg-3">
                 <div className="sidePromo">
                   <div className="col-lg-12 sidePromoImg">
-                    <img src={goa} alt="" />
+                    <img src={suggestHotel} alt="" />
                   </div>
                   <div className="promoBottom">
                     <div className="promoTitle">
-                      <p>Luxurious Dubai Trip</p>
+                      <p>Executive Twin Room Lounge access</p>
                       <div>
                         <StarIcon />
                         <StarIcon />
@@ -200,18 +221,18 @@ const HotelBooknow = () => {
 
                     <div className="promoDestination">
                       <ul>
-                        <li>Mandovi river cruise</li>
-                        <li>North Dubai sightseeing</li>
+                        <li>Non-Refundable</li>
+                        <li>Room Only</li>
                       </ul>
                       <div>
-                        <p>₹ 42,250 </p>
+                        <p>₹ 4,250 </p>
                         <span>Per Person</span>
                       </div>
                     </div>
                     <div className="promoBottomButton">
-                      <p>VIEW OTHER PACKAGES {" > "}</p>
+                      <p>VIEW OTHER ROOMS {" > "}</p>
 
-                      <button>View Package</button>
+                      <button>BOOK THIS NOW</button>
                     </div>
                   </div>
                 </div>
@@ -219,11 +240,11 @@ const HotelBooknow = () => {
 
             </div>
 
-            <div className="row">
+            <motion.div variants={variants} className="row">
               <div className="col-lg-12">
                 <Hoteldetailaccordian />
               </div>
-            </div>
+            </motion.div>
           </div>
         </section>
       )}
@@ -233,50 +254,3 @@ const HotelBooknow = () => {
 
 export default HotelBooknow;
 
-
-{/* <div className="row">
-  <div className="col-lg-12 col-md-12 col-sm-12 mb-0">
-    <div className="availabilityOuter">
-      <div className="availabilityInner">
-        <div>
-          <div>
-            <p>Available Room(s)</p>
-            <img src={availableRooms} alt="logo" />
-          </div>
-        </div>
-        <div>
-          <div>
-            <p>Image Gallery</p>
-            <img src={imageGallery} alt="logo" />
-          </div>
-        </div>
-        <div>
-          <div>
-            <p>Hotel Details</p>
-            <img src={hotelDetails} alt="logo" />
-          </div>
-        </div>
-        <div>
-          <div>
-            <p>Hotel Map</p>
-            <img src={hotelMap} alt="logo" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> */}
-
-
-{/* <div className="col-lg-12 col-md-12 col-sm-12 mb-3">
-  <div className="hotelBookNowOuter">
-    <div className="hotelBookNowHeader">
-      <p>Your Search criteria:{storedFormData?.city},{' '} India</p>
-      <p>Duration: {storedFormData?.night}{' '}Nights</p>
-      <p>{storedFormData?.checkIn}- {storedFormData?.checkOut}</p>
-      <p>Guest(s): {totalAdults}Adult(s) </p>
-      <p>Room(s): {storedFormData.room}</p>
-
-    </div>
-  </div>
-</div> */}

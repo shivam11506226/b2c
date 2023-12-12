@@ -10,6 +10,8 @@ import FlightLoader from "./FlightLoader/FlightLoader";
 import Navbar from "../../layouts/Navbar";
 import Mainheader from "../../UI/Mainheader";
 import BigNavbar from "../../UI/BigNavbar/BigNavbar";
+// import InsideNavbar from "../../../UI/BigNavbar/InsideNavbar";
+import InsideNavbar from "../../UI/BigNavbar/InsideNavbar"
 
 const Searchresult = () => {
     const reducerState = useSelector((state) => state);
@@ -21,18 +23,14 @@ const Searchresult = () => {
                 )
                     : (
                         <div className="UniComp_BG">
-                            <div className='mainimg'>
-                                <Navbar />
-
-                                <BigNavbar />
-
-                                <Mainheader />
+                            <div className='mainimgFlightSearch'>
+                                <InsideNavbar />
                             </div>
                             <Searchsection className='main_box' />
                             <Popularfilter />
                         </div>
                     )
-
+                // flightNavBack
             }
 
         </>

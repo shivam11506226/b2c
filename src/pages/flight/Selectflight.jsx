@@ -1,49 +1,37 @@
 import React, { useState, useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import { Popover, Tooltip, Typography } from "@mui/material";
-import Button from "@mui/material/Button";
 import FlightLoader from "./FlightLoader/FlightLoader";
-import Zoom from "@mui/material/Zoom";
 import { useDispatch, useSelector } from "react-redux";
-import SendIcon from "@mui/icons-material/Send";
 import ReactPaginate from "react-paginate";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import Divider from "@mui/material/Divider";
-
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Flightdetailtab from "./Flightdetailtab";
-import FlightLandIcon from "@mui/icons-material/FlightLand";
-import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
-
-import Tab from "@mui/material/Tab";
-import TabContext from "@mui/lab/TabContext";
-import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
-
 import "./selectflight.css"
-
-// Location based Clear store
-
 import { useLocation, useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
-import LocalMallIcon from "@mui/icons-material/LocalMall";
-import NextWeekIcon from "@mui/icons-material/NextWeek";
-import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import AirlineSeatReclineExtraIcon from "@mui/icons-material/AirlineSeatReclineExtra";
-import FastfoodIcon from "@mui/icons-material/Fastfood";
-import {
-  quoteAction,
-  ruleAction,
-} from "../../Redux/FlightFareQuoteRule/actionFlightQuote";
-import { resetOneWay } from "../../Redux/FlightSearch/oneWay";
-import LoginForm from "../../components/Login";
-// ../../../Redux/FlightFareQuoteRule/actionFlightQuote
+import { motion } from "framer-motion";
+
+
+
+const variants = {
+  initial: {
+    y: 50,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+
+
+
+
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
   ...theme.typography.body2,
@@ -51,6 +39,9 @@ const Item = styled(Paper)(({ theme }) => ({
   textAlign: "center",
   color: theme.palette.text.secondary,
 }));
+
+
+
 
 function Items({ currentItems }) {
   // const dispatch = useDispatch();
@@ -185,8 +176,9 @@ function Items({ currentItems }) {
           {
             results[0][item]?.Segments[0].length == 2 ?
               (
-                <>
-                  <div className="singleFlightBox">
+                <motion.div variants={variants} initial="initial"
+                  whileInView="animate">
+                  <motion.div variants={variants} className="singleFlightBox">
                     <div className="singleFlightBoxOne">
                       <div>
                         <img src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`} />{" "}
@@ -253,13 +245,14 @@ function Items({ currentItems }) {
                         View Details →
                       </button>
                     </div>
-                  </div>
-                </>
+                  </motion.div>
+                </motion.div>
               )
               :
               (
-                <>
-                  <div className="singleFlightBox">
+                <motion.div variants={variants} initial="initial"
+                  whileInView="animate">
+                  <motion.div variants={variants} className="singleFlightBox">
                     <div className="singleFlightBoxOne">
                       <div>
                         <img src={`${process.env.PUBLIC_URL}/FlightImages/${results[0][item]?.AirlineCode}.png`} />{" "}
@@ -325,8 +318,8 @@ function Items({ currentItems }) {
                         View Details →
                       </button>
                     </div>
-                  </div>
-                </>
+                  </motion.div>
+                </motion.div>
               )
           }
 

@@ -1,24 +1,23 @@
-.priceSummary {
+.priceSummaryHotel {
     border-radius: 8px;
-    border: 1px solid #5C85A4;
+    border: 1px solid lightgray;
     background: #FFF;
-    padding: 16px;
+    padding: 13px;
 }
 
-.head {
+.priceSummaryHotel .head {
     border-radius: 4px 4px 0px 0px;
-    /* background: #B8CCFF; */
     background: #F9EDED;
     background: #E73C33;
     padding: 10px;
 }
 
 .head span {
-    color: #000;
+    color: #fff;
     font-family: 'Montserrat';
-    font-size: 24px;
+    font-size: 20px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 700;
     line-height: normal;
 }
 
@@ -85,7 +84,10 @@ p {
 .TotGst {
     display: flex;
     flex-direction: column;
-    background: #B8CCFF;
+    background: #F9EDED;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    border: 0.5px solid lightgray;
+    border-radius: 0px 0px 3px 3px;
     padding: 10px;
     gap: 5px;
 }
