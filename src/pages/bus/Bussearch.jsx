@@ -6,72 +6,43 @@ import Box from "@mui/material/Box";
 // bootstrap
 import { busSearchAction } from "../../Redux/busSearch/busSearchAction";
 import { apiURL } from "../../Constants/constant";
+import KeyboardDoubleArrowRightIcon from '@mui/icons-material/KeyboardDoubleArrowRight';
 import "./bus.css";
 import "../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
+
+
 const Homeform = (props) => {
-  const settings = {
-    speed: 500,
-    slidesToShow: 7,
-    slidesToScroll: 1,
-    initialSlide: 0,
-    responsive: [
-      {
-        breakpoint: 1400,
-        settings: {
-          slidesToShow: 6,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 1200,
-        settings: {
-          slidesToShow: 5,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 992,
-        settings: {
-          slidesToShow: 4,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 768,
-        settings: {
-          slidesToShow: 3,
-          slidesToScroll: 1,
-        },
-      },
-      {
-        breakpoint: 500,
-        settings: {
-          slidesToShow: 2,
-          slidesToScroll: 1,
-        },
-      },
-    ],
-  };
+
+
+
   const [value, setValue] = React.useState("1");
-  // const [from, setFrom] = useState("");
-  // const [to, setTo] = useState("");
   const [placeholderFrom, setPlaceholderFrom] = useState("from");
   const [labelFrom, setLabelFrom] = useState("From");
-  const [startDate, setStartDate] = useState(null);
+  // const [startDate, setStartDate] = useState(null);
   const [placeholderTo, setPlaceholderTo] = useState("To");
   const [labelTo, setLabelTo] = useState("To");
-  const fromInputRef = useRef(null);
-  const toInputRef = useRef(null);
 
-  // Copied state start
-  const navigate = useNavigate();
+  const [display, setDisplay] = useState("");
+  const [isLoadingFrom, setIsLoadingFrom] = useState(false);
+  const [isLoadingTo, setIsLoadingTo] = useState(false);
+
+  // Copied state end
+
+
+
+
+
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const reducerState = useSelector((state) => state);
+  const [isLoading, setIsLoading] = useState(false);
   const [fromSearchResults, setFromSearchResults] = useState([]);
   const [toSearchResults, setToSearchResults] = useState([]);
   const [fromQuery, setFromQuery] = useState("");
@@ -81,35 +52,68 @@ const Homeform = (props) => {
     cityName: "",
   });
   const [selectedFrom, setSelectedFrom] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
-  // const [from, setFrom] = useState("");
   const [to, setTO] = useState("");
   const [selectedTo, setSelectedTo] = useState(null);
   const [displayFrom, setdisplayFrom] = useState(true);
   const [displayTo, setdisplayTo] = useState(true);
+
   const inputRef = useRef(null);
+  const fromInputRef = useRef(null);
+  const toInputRef = useRef(null);
   const [fromData, setFromData] = useState([]);
   const [origin, setOrigin] = useState([]);
-  const [display, setDisplay] = useState("");
+  const [errors, setErrors] = useState({
+    from: "",
+    to: "",
+    date: "",
+  });
 
-  // Copied state end
+  console.log(reducerState, "reducer state")
+  const toSearchRef = React.useRef(null);
+  const fromSearchRef = React.useRef(null);
 
-  const handleSwap = useCallback(() => {
-    setFrom(to);
-    setTO(from);
-    setPlaceholderFrom(placeholderTo);
-    setPlaceholderTo(placeholderFrom);
-    setLabelTo(labelFrom);
-    setLabelFrom(labelTo);
-  }, [from, to, placeholderFrom, placeholderTo, labelFrom, labelTo]);
 
-  // Copied code start
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
-  // useEffect(() => {
-  //   dispatch(clearBusSearchReducer());
-  // }, [dispatch]);
+  const handleClickOutside = (event) => {
+    if (toSearchRef.current && !toSearchRef.current.contains(event.target)) {
+      setdisplayTo(false);
+    }
+  };
 
-  //============== copied -----=======//
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutsideFrom);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutsideFrom);
+    };
+  }, []);
+
+  const handleClickOutsideFrom = (event) => {
+    if (
+      fromSearchRef.current &&
+      !fromSearchRef.current.contains(event.target)
+    ) {
+      setdisplayFrom(false);
+    }
+  };
+
+
+  const [startDate, setStartDate] = useState(new Date());
+
+  const handleDateChange = (date) => {
+    setStartDate(date);
+  };
+
+  const getDayOfWeek = (date) => {
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    return daysOfWeek[date.getDay()];
+  };
+
 
   useEffect(() => {
     if (
@@ -173,17 +177,93 @@ const Homeform = (props) => {
   console.log("from result", fromSearchResults);
   console.log("to result", toSearchResults);
 
+
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  // function handleFromClicks(event) {
+  //   event.preventDefault();
+  //   const form = event.target.value;
+  //   const formData = new FormData(form);
+  //   console.log(formData, "formData");
+
+  //   const payload = {
+  //     EndUserIp: reducerState?.ip?.ipData,
+  //     TokenId: reducerState?.ip?.tokenData,
+  //     DateOfJourney: startDate,
+  //     DestinationId: to,
+  //     OriginId: from,
+  //   };
+  //   console.log("payload", payload);
+  //   dispatch(busSearchAction(payload));
+  // }
+
+
+
+
+  useEffect(() => {
+    let mounted = true;
+    const fetchSearchResults = async () => {
+      setIsLoading(true);
+      const results = await axios.get(
+        `${apiURL.baseURL}/skyTrails/city/searchCityBusData?keyword=${fromQuery}`
+      );
+      if (mounted) {
+        setFromSearchResults(results?.data?.data);
+        setIsLoading(false);
+      }
+    };
+    if (fromQuery.length >= 2) {
+      fetchSearchResults();
+    }
+    return () => {
+      mounted = false;
+    };
+  }, [fromQuery]);
+
+
+
+  useEffect(() => {
+    let mounted = true;
+
+    const fetchSearchResults = async () => {
+      setIsLoading(true);
+
+      const results = await axios.get(
+        `${apiURL.baseURL}/skyTrails/city/searchCityBusData?keyword=${toQuery}`
+      );
+      if (mounted) {
+        setToSearchResults(results?.data?.data);
+        setIsLoading(false);
+      }
+    };
+
+    if (toQuery.length >= 2) {
+      fetchSearchResults();
+    }
+    return () => {
+      mounted = false;
+    };
+  }, [toQuery]);
+
   const handleFromInputChange = (event) => {
+    setErrors({ ...errors, from: "" });
     setFrom(event.target.value);
     setSelectedFrom(null);
   };
 
   const handleFromClick = (result) => {
-    console.log("result", result);
+    // console.log("result", result);
     // setFrom(result?.CityId);
 
-    setFrom(result.CityId);
-    setDisplay(result.CityName);
+    setFrom((prevState) => ({
+      ...prevState,
+      cityId: result?.CityId,
+      cityName: result?.CityId,
+    }));
+
     setSelectedFrom(result?.CityId);
     setdisplayFrom(false);
   };
@@ -191,7 +271,6 @@ const Homeform = (props) => {
   const handleToClick = (result) => {
     setTO(result.CityId);
     setSelectedTo(result.CityId);
-    setDisplay(result.CityName);
     setdisplayTo(false);
   };
 
@@ -200,6 +279,7 @@ const Homeform = (props) => {
   };
 
   const handleToInputChange = (event) => {
+    setErrors({ ...errors, to: "" });
     setTO(event.target.value);
     setSelectedTo(null);
   };
@@ -207,236 +287,321 @@ const Homeform = (props) => {
   const handleToSearch = (e) => {
     setToQuery(e);
   };
-  // Copied code end
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  const handleDateInputChange = () => {
+    setErrors({ ...errors, date: "" });
   };
 
-  // disable previous date
 
-  const disablePastDate = () => {
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    const yyyy = today.getFullYear();
-    return yyyy + "-" + mm + "-" + dd;
+
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = { from: "", to: "", date: "" };
+
+    if (!from.cityId) {
+      newErrors.from = "Please select a city or airport *";
+      valid = false;
+    }
+
+    if (!to) {
+      newErrors.to = "Please select a city or airport *";
+      valid = false;
+    }
+
+    if (!startDate) {
+      newErrors.date = "Please select a departure date *";
+      valid = false;
+    }
+
+    setErrors(newErrors);
+
+    return valid;
   };
 
-  // form submit code:-
-  function handleFromClicks(event) {
+
+  function handleSubmit(event) {
     event.preventDefault();
-    const form = event.target.value;
-    const formData = new FormData(form);
-    console.log(formData, "formData");
 
-    const payload = {
-      EndUserIp: reducerState?.ip?.ipData,
-      TokenId: reducerState?.ip?.tokenData,
-      DateOfJourney: startDate,
-      DestinationId: to,
-      OriginId: from,
-    };
-    console.log("payload", payload);
-    dispatch(busSearchAction(payload));
+    const isValid = validateForm();
+    if (isValid) {
+      const formData = new FormData(event.target);
+      const selectedDate = startDate;
+      let formattedDate = "";
+      if (selectedDate) {
+        const month = selectedDate.getMonth() + 1;
+        const day = selectedDate.getDate();
+        const year = selectedDate.getFullYear();
+        formattedDate = `${year}/${month.toString().padStart(2, "0")}/${day
+          .toString()
+          .padStart(2, "0")}`;
+      }
+      const payload = {
+        EndUserIp: reducerState?.ip?.ipData,
+        TokenId: reducerState?.ip?.tokenData,
+        DateOfJourney: formattedDate,
+        DestinationId: formData.get("to"),
+        OriginId: formData.get("from"),
+      };
+      dispatch(busSearchAction(payload));
+      console.log("payload", payload);
+      // navigate("/BusResult");
+    } else {
+      // Focus on the first empty field
+      if (!from) {
+        fromInputRef.current.focus();
+      } else if (!to) {
+        toInputRef.current.focus();
+      } else if (!inputRef.current.value) {
+        inputRef.current.focus();
+      }
+    }
   }
+
+
+
+  const handleRoundLogoClick = () => {
+    const tempFrom = from;
+    setFrom(to);
+    setTO(tempFrom);
+    const tempSelectedFrom = selectedFrom;
+    setSelectedFrom(selectedTo);
+    setSelectedTo(tempSelectedFrom);
+  };
+
+
 
   // end
   return (
-    <section>
-      <div className="container homeform_container">
-        <p className="header_row">
-          <h5>{props.header}</h5>
-        </p>
-        <div
-          className="row content_row"
-          style={{ zIndex: "1px", position: "relative", top: "-30px" }}
-        >
+    <section className="margin-pecentage">
+      <div className="container-fluid " >
+        <div className="row BusSearchBg">
           <div className="col-12">
-            <Box
-              sx={{ width: "90%", typography: "body1", margin: "auto" }}
-              style={{ marginTop: "50px" }}
-            >
-              <form>
-                <div className="your-containerform">
-                  <div className="from-container">
-                    <div className="from-label">From</div>
-                    <div className="from-city">
-                      {" "}
-                      <input
-                        name="from"
-                        placeholder="Enter city or airport"
-                        autoComplete="off"
-                        value={from.cityId}
-                        onChange={(event) => {
-                          handleFromInputChange(event);
-                          handleFromSearch(event.target.value);
-                        }}
-                        ref={fromInputRef}
-                        style={{
-                          outline: "none",
-                          border: "none",
-                        }}
-                      />
-                    </div>
-                    {isLoading && <div>Loading...</div>}
-                    {fromSearchResults && fromSearchResults.length > 0 && (
-                      <div
-                        style={{
-                          backgroundColor: "white",
-                          display: displayFrom ? "block" : "none",
-                        }}
-                        className="busFormRes"
-                      >
-                        <ul>
-                          {fromSearchResults.map((result) => (
-                            <li
-                              key={result._id}
-                              onClick={() => handleFromClick(result)}
+            <form onSubmit={handleSubmit}>
+              <div className="busSearch-container">
+                <div className="PackageInner">
+                  <span>From</span>
+                  <div>
+                    <input
+                      name="from"
+                      placeholder="Enter city Name"
+                      value={from.cityId}
+                      onChange={(event) => {
+                        handleFromInputChange(event);
+                        handleFromSearch(event.target.value);
+                      }}
+                      ref={fromInputRef}
+                      autoComplete="off"
+                      required
+                      style={{
+                        outline: "none",
+                        border: "none",
+                      }}
+                    />
+
+                    {fromSearchResults &&
+                      fromSearchResults.length > 0 && fromQuery.length >= 2 && (
+                        <div
+                          ref={fromSearchRef}
+                          className="from-search-results"
+                          style={{
+
+                            display: displayFrom ? "flex" : "none",
+                          }}
+                        >
+                          <ul className="from_Search_Container">
+                            <Box
+                              sx={{
+                                display: "flex",
+                                flexDirection: "column",
+                                maxHeight: 161,
+                                overflow: "hidden",
+                                overflowY: "scroll",
+                              }}
+                              className="scroll_style"
                             >
-                              <strong>{result.CityId}</strong> {result.CityName}{" "}
-                              {/* {result.CityId} */}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    )}
-                    <div className="from-details">DEL, Delhi Airport India</div>
-                    <div className="roundlogo">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="40"
-                        height="40"
-                        viewBox="0 0 40 40"
-                        fill="none"
-                      >
-                        <circle
-                          cx="20"
-                          cy="20"
-                          r="19"
-                          fill="white"
-                          stroke="#071C2C"
-                          stroke-width="2"
-                        />
-                      </svg>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="20"
-                        viewBox="0 0 18 20"
-                        fill="none"
-                        justifyContent="center"
-                      >
-                        <path
-                          d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
-                          stroke="#071C2C"
-                          stroke-width="2"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                        />
-                      </svg>
-                    </div>
+                              {fromSearchResults.map((result) => (
+                                <li
+                                  className="to_List"
+                                  key={result._id}
+                                  onClick={() => handleFromClick(result)}
+                                >
+                                  <div className="onewayResultBox">
+
+                                    <div className="onewayResultFirst">
+
+                                      <div className="resultOriginName">
+                                        <p>{result.CityId}</p>
+                                        <span>{result.CityName}</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </li>
+                              ))}
+                            </Box>
+                          </ul>
+                        </div>
+                      )}
                   </div>
-
-                  <div className="from-container">
-                    <div className="to-label">To</div>
-                    <div className="to-city">
-                      {" "}
-                      <input
-                        name="to"
-                        placeholder="Enter city or airport"
-                        style={{
-                          border: "none",
-                          outline: "none",
-                        }}
-                        value={to}
-                        onChange={(event) => {
-                          handleToInputChange(event);
-                          handleToSearch(event.target.value);
-                        }}
-                        ref={toInputRef}
+                  {fromSearchResults && fromSearchResults.length > 0 && fromQuery.length >= 2 ? (
+                    <span>
+                      {selectedFrom ? (
+                        <>
+                          {selectedFrom}
+                        </>
+                      ) : (
+                        <>
+                          {fromSearchResults[0].CityName}
+                        </>
+                      )}
+                    </span>
+                  ) :
+                    (
+                      <span>City Code</span>
+                    )
+                  }
+                  <div className="roundlogo" onClick={handleRoundLogoClick}
+                    style={{ cursor: 'pointer' }}>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="40"
+                      height="40"
+                      viewBox="0 0 40 40"
+                      fill="none"
+                    >
+                      <circle
+                        cx="20"
+                        cy="20"
+                        r="19"
+                        fill="white"
+                        stroke="#071C2C"
+                        stroke-width="2"
                       />
-                    </div>
-                    {isLoading && <div>Loading...</div>}
-                    {toSearchResults && toSearchResults.length > 0 && (
-                      <div
-                        style={{
-                          backgroundColor: "white",
+                    </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="18"
+                      height="20"
+                      viewBox="0 0 18 20"
+                      fill="none"
+                      justifyContent="center"
+                    >
+                      <path
+                        d="M13 15L1 15M1 15L5 19M1 15L5 11M5 5L17 5M17 5L13 0.999999M17 5L13 9"
+                        stroke="#071C2C"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      />
+                    </svg>
+                  </div>
+                </div>
 
-                          display: displayTo ? "block" : "none",
+                <div className="PackageInner">
+                  <span>To</span>
+                  <div>
+                    <input
+                      name="to"
+                      placeholder="Enter city Name"
+                      autoComplete="off"
+                      value={to}
+                      onChange={(event) => {
+                        handleToInputChange(event);
+                        handleToSearch(event.target.value);
+                      }}
+                      ref={toInputRef}
+                      required
+                      style={{
+                        border: "none",
+
+                        outline: "none",
+                      }}
+                    />
+
+
+                    {toSearchResults && toSearchResults.length > 0 && toQuery.length >= 2 && (
+                      <div
+                        ref={toSearchRef}
+                        className="from-search-results"
+                        style={{
+                          display: displayTo ? "flex" : "none",
                         }}
-                        className="busToRes"
                       >
-                        <ul>
+                        <ul className="from_Search_Container">
                           <Box
                             sx={{
-                              mb: 2,
                               display: "flex",
                               flexDirection: "column",
-                              maxHeight: 150,
+                              maxHeight: 161,
                               overflow: "hidden",
                               overflowY: "scroll",
                             }}
+                            className="scroll_style"
                           >
                             {toSearchResults.map((result) => (
                               <li
+                                className="to_List"
                                 key={result._id}
                                 onClick={() => handleToClick(result)}
                               >
-                                <strong>{result.CityId}</strong>{" "}
-                                {result.CityName} {result.CityId}
+                                <div className="onewayResultBox">
+                                  <div className="onewayResultFirst">
+                                    <div className="resultOriginName">
+                                      <p>{result.CityName}</p>
+                                      <span>{result.CityId}</span>
+                                    </div>
+                                  </div>
+                                </div>
                               </li>
                             ))}
                           </Box>
                         </ul>
                       </div>
                     )}
-                    <div className="to-details">
-                      BLR, Bengaluru International Airport In..
-                    </div>
                   </div>
-                  <div className="from-container2">
-                    <div className="departure-label">Travel Date</div>
-                    <div className="date-container">
-                      <div className="date-info1">
-                        <div className="datee">
-                          <input
-                            type="date"
-                            name="departure"
-                            id="departure"
-                            className="deaprture_input"
-                            placeholder="Enter city or airport"
-                            style={{
-                              border: "none",
-                              outline: "none",
-                            }}
-                            onChange={(e) => {
-                              setStartDate(e.target.value);
-                            }}
-                          ></input>
-                        </div>
-                      </div>
-                      <div className="day">Thursday</div>
-                    </div>
-                  </div>
+
+                  {toSearchResults && toSearchResults.length > 0 && toQuery.length >= 2 ? (
+                    <span>
+                      {selectedTo ? (
+                        <>
+                          {selectedTo}
+                        </>
+                      ) : (
+                        <>
+                          {toSearchResults[0].CityName}
+                        </>
+                      )}
+                    </span>
+                  ) :
+                    (
+                      <span>City Code</span>
+                    )
+
+                  }
                 </div>
-              </form>
-              <div className="row select_fare1">
-                <Box display="flex" justifyContent="center">
-                  <div className="searchContainer">
-                    <div className="searchButton">
-                      <div
-                        className="buttonText"
-                        onClick={handleFromClicks}
-                        style={{ cursor: "pointer" }}
-                      >
-                        SEARCH
-                      </div>
+
+                <div className="PackageInner">
+                  <span>Departure</span>
+                  <div className="">
+                    <div>
+                      <DatePicker
+                        name="departure"
+                        id="departure"
+                        selected={startDate}
+                        onChange={handleDateChange}
+                      />
                     </div>
                   </div>
-                </Box>
+                  <span>{getDayOfWeek(startDate)}</span>
+                </div>
+                <div className="PackageInner">
+                  <button type="submit" className="searchButt" >
+                    <h3>Search</h3>
+                    <KeyboardDoubleArrowRightIcon />
+                  </button>
+                </div>
+
               </div>
-            </Box>
+            </form>
           </div>
         </div>
       </div>

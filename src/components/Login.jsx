@@ -80,12 +80,12 @@ export default function LoginForm({ isModalOpen, setIsModalOpen }) {
   // const handleRegOpen = () => setRegOpen(true);
   const handleClose = () => setOpen(false);
   const reducerState = useSelector((state) => state);
-  console.error(reducerState);
+  // console.error(reducerState);
   const userName = reducerState?.logIn?.loginData?.data?.username;
-  console.error("login", reducerState?.logIn);
+  // console.error("login", reducerState?.logIn);
   const authenticUser = reducerState?.logIn?.loginData?.status;
   const notAuthenticUser = reducerState?.logIn?.loginData?.userNotFound;
-  console.error("check user auth", notAuthenticUser);
+  // console.error("check user auth", notAuthenticUser);
   const fromData = (data, event) => {
     event.preventDefault();
     const { email, password } = data;

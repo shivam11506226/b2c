@@ -2,11 +2,14 @@ import * as types from "./actionType";
 
 const initState = {
   busResult: [],
-  busSeatLayout: [],
+  busBlock: [],
+  busBook: [],
+  busDetails: [],
   isLoading: false,
-
   isError: false,
-
+  isLoadingBlockBus: false,
+  isLoadingDetails: false,
+  isLoadingBook: false,
   showSuccessMessage: false,
 };
 
@@ -28,30 +31,48 @@ export const busSearchReducer = (state = initState, action) => {
         isError: false,
         showSuccessMessage: true,
       };
-
-    default:
-      return state;
-  }
-};
-
-export const getBusSeatReducer = (state = initState, action) => {
-  const { type, payload } = action;
-  switch (type) {
-    case types.BUS_SEAT_LAYOUT_REQUEST:
+    case types.BUS_BLOCK_REQUEST:
       return {
         ...state,
-        isLoading: true,
+        isLoadingBlockBus: true,
         isError: false,
       };
-
-    case types.BUS_SEAT_LAYOUT_SUCCESS:
+    case types.BUS_BLOCK_SUCCESS:
       return {
         ...state,
-        busSeatLayout: payload,
-        isLoading: false,
+        busBlock: payload,
+        isLoadingBlockBus: false,
         isError: false,
         showSuccessMessage: true,
       };
+    case types.BUS_BOOK_REQUEST:
+      return {
+        ...state,
+        isLoadingBook: true,
+        isError: false
+      }
+    case types.BUS_BOOK_SUCCESS:
+      return {
+        ...state,
+        busBook: payload,
+        isLoadingBook: false,
+        isError: false,
+        showSuccessMessage: true
+      }
+    case types.BUS_DETAILS_SUCCESS:
+      return {
+        ...state,
+        busDetails: payload,
+        isError: false,
+        isLoadingDetails: false,
+        showSuccessMessage: true
+      }
+    case types.BUS_DETAILS_REQUEST:
+      return {
+        ...state,
+        isLoadingDetails: true,
+        isError: false
+      }
 
     default:
       return state;

@@ -6,7 +6,6 @@ import { flightBookReducer } from "./FlightBook/flightBookReducer";
 import { logInReducer } from "./Auth/logIn/logInReducer";
 import { clearHotelReducer } from "./Hotel/hotel";
 import { hotelReducer } from "./Hotel/hotelReducer";
-import { clearBusSearchReducer } from "./busSearch/busSearchAction";
 import { searchPackageReducer } from "./SearchPackage/searchPackageReducer";
 import { searchOnePackageReducer } from "./OnePackageSearchResult/searchOnePackageReducer";
 
@@ -15,7 +14,7 @@ import { packageBookingReducer } from "./HolidayBook/bookingHolidayReducer"
 import { passengersReducer } from "./Passengers/passengerReducer";
 // import {packageBookingReducer} from "./HolidayBook/bookingHolidayReducer"
 
-import { busSearchReducer, getBusSeatReducer } from "./busSearch/busSearchReducer";
+import { busSearchReducer } from "./busSearch/busSearchReducer";
 import { packageBookIDReducer } from "./HolidayBookingRequest/bookingHolidayReducer";
 import { packageBookingIDReducer } from "./BookingPackageData/bookingHolidayReducer";
 import { markUpDataReducer } from "./markup/markupReducer";
@@ -28,7 +27,6 @@ const appReducer = combineReducers({
   flightBook: flightBookReducer,
   hotelSearchResult: hotelReducer,
   getBusResult: busSearchReducer,
-  getBusSeat: getBusSeatReducer,
   searchResult: searchPackageReducer,
   searchOneResult: searchOnePackageReducer,
   packageBook: packageBookingReducer,
@@ -45,6 +43,12 @@ const rootReducer = (state, action) => {
     return {
       ...state,
       oneWay: oneWayReducer(undefined, action),
+    };
+  }
+  else if (action.type === "CLEAR_BUS_SEARCH_REDUCER") {
+    return {
+      ...state,
+      getBusResult: busSearchReducer(undefined, action),
     };
   }
   // else if (action.type === "CLEAR_HOTEL_REDUCER") {

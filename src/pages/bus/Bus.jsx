@@ -1,27 +1,30 @@
 
-import Navbar from "../../layouts/Navbar";
-import Mainheader from "../../UI/Mainheader";
 import OfferSwipeToSlide from "../../components/Offerscard";
 import Toursection from "../../components/Toursection";
 import Download from "../../pages/home/Download";
 import Footer from "../../layouts/Footer";
-import Cabs from "../../components/Cabs";
 import Bussearch from "./Bussearch";
 import OfferCard from "../flight/OfferCard";
-// bus css 
+import Navbar from "../../layouts/Navbar";
+import Mainheader from "../../UI/Mainheader";
+import BigNavbar from "../../UI/BigNavbar/BigNavbar";
+// bus css  
 import "./bus.css";
 
 const Taxi = () => {
     return (
-        <div className="home_banner">
-           
-            <Bussearch></Bussearch>
-          
-            <Toursection></Toursection>
-             <OfferCard></OfferCard>
-             <Download/>
-            
+        <div>
 
+            <div className='mainimg'>
+                <Navbar />
+                <BigNavbar />
+                <Mainheader />
+            </div>
+
+            <Bussearch />
+            <Toursection />
+            <OfferCard />
+            <Download />
         </div>
     )
 }
