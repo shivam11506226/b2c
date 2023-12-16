@@ -24,6 +24,7 @@ import Forex from "./pages/forex/Forex";
 // Bus
 import Bus from "./pages/bus/Bus";
 import BusReviewBooking from "./pages/bus/busreviewbooking/BusReviewBooking";
+import BusPassengerDetail from "./pages/bus/bussearchresult/BusPassengerDetails";
 import BusBookingConfirmation from "./pages/bus/busbookingconfirmation/BusBookingConfirmation";
 import BusSearchresult from "./pages/bus/bussearchresult/BusSearchresult";
 // Taxi
@@ -54,6 +55,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getMarkUpAction } from './Redux/markup/markupAction';
 import Guestdetail from "./pages/Hotel/guestdetail/Guestdetail";
+
 
 
 function App() {
@@ -137,6 +139,11 @@ function App() {
         {/* Bus */}
         <Route path="bus" element={<Bus />}></Route>
         <Route path="/bussearchresult" element={<BusSearchresult />}></Route>
+        <Route
+          exact
+          path="/BusPassengerDetail"
+          element={<BusPassengerDetail />}
+        />
         <Route path="/BusReviewBooking" element={<BusReviewBooking />}></Route>
         <Route
           path="/BusBookingConfirmation"

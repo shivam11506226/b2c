@@ -1,1108 +1,208 @@
-/* sortFilterBar.css */
-
-.sort-filter-bar {
-  width: 100%;
-
-  background: white;
-  box-shadow: 0px 2px 8px 8px rgba(0, 0, 0, 0.15);
-  justify-content: center;
-  align-items: center;
-  gap: 169px;
-  display: flex;
-}
-
-.result-count {
-  text-align: center;
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  word-wrap: break-word;
-}
-
-.sort-options {
-  padding-left: 28px;
-  padding-right: 28px;
-  justify-content: center;
-  align-items: center;
-  gap: 64px;
-  display: flex;
-}
-
-.sort-by-label {
-  text-align: center;
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 800;
-  word-wrap: break-word;
-}
-
-.sort-options-list {
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 35px;
-  display: flex;
-}
-
-.sort-option {
-  padding-top: 16px;
-  padding-bottom: 16px;
-  border-bottom: 3px rgba(0, 0, 0, 0) solid;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  text-align: center;
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.sort-option.active {
-  border-bottom: 3px #e73c33 solid;
-}
-.button-label1 {
-  cursor: pointer;
-}
-
-/* Media Query for Responsive Design */
-@media (max-width: 768px) {
-  .sort-filter-bar {
-    flex-direction: column;
-    padding: 16px;
-  }
-}
-
-.seatlayout {
-  display: flex;
-  margin: auto;
-
-  width: 90%;
-  gap: 5%;
-}
-
-.seatlayoutleft {
-  width: 15%;
-}
-.seatlayoutright {
-  width: 85%;
-}
-
-/* styles.css */
-
-.bus-info-containers {
-  color: #071c2c;
-  font-size: 24px;
-  font-family: "Montserrat";
-  font-weight: 800;
-  word-wrap: break-word;
-  /* Add any other styles for the container here */
-}
-
-.titleseat {
-  /* You can add specific styles for the title here */
-}
-.bus-detailsseat {
-  border-radius: 12px;
-  border: 2px solid #071c2c;
-  background: #fff;
-  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.15);
-  margin-bottom: 20px;
-}
-/* styles.css */
-
-/* styles.css */
-
-.bus-info-containerss {
-  width: 100%;
-
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 50px;
-}
-
-.info-content {
-  display: flex;
-  gap: 40px;
-}
-
-.text-section {
+.layOutParent {
+  /* display: grid !important;
+  grid-template-columns: 60% 40%; */
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
+  gap: 20px;
 }
 
-.titleLayout {
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.subtitle {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.time-section {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.time-label {
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.time-value {
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.date-value {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.duration {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.priceseat {
-  text-align: right;
-  color: #071c2c;
-  font-size: 24px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  line-height: 25px;
-  letter-spacing: 1.2;
-  word-wrap: break-word;
-}
-
-/* styles.css */
-
-.rating-info-container {
-  width: 100%;
-
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 0.5px #071c2c solid;
-  padding: 20px;
-}
-
-.rating-section {
-  display: flex;
-  gap: 11px;
-}
-
-.rating-item,
-.tracking-item {
-  display: flex;
-}
-
-.rating-icon,
-.tracking-icon {
-  padding: 5px;
-  background: #071c2c;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-
-  gap: 8px;
-}
-
-.icon-circle {
-  width: 20px;
-  height: 20px;
-  position: relative;
-}
-
-.icon-background,
-.icon-background-gray {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  margin-bottom: -20px;
-}
-
-.date-value {
-  color: #bbb;
-  font-family: Montserrat;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-}
-
-.icon-value {
-  color: white;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.tracking-label {
-  color: white;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.seats-info {
-  color: #aaaaaa;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 500;
-  word-wrap: break-word;
-}
-/* styles.css */
-
-.policies-section-container {
-  width: 100%;
-
-  padding: 14px;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 188px;
-}
-
-.policies-wrapper {
-  display: flex;
-  gap: 16px;
-  justify-content: flex-start;
-  align-items: flex-end;
-}
-
-.policy-item {
-  display: flex;
-}
-
-.policy-icon {
-  position: relative;
-  width: 20px;
-  height: 20px;
-}
-
-.icon-background {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background: #bbbbbb;
-  border-radius: 50%;
-}
-
-.icon-label {
-  color: #bbbbbb;
-  font-size: 12px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-  transform: rotate(-90deg);
-  transform-origin: 0 0;
-}
-
-.hide-seats {
-  background: white;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hide-seats-button {
-  color: #e73c33;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-  padding: 10px;
-
-  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-
-  line-height: normal;
-}
-
-.hide-seats1 {
-  background: #e73c33;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hide-seats-button1 {
-  color: #f1e9e9;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-  padding: 13px;
-  cursor: pointer;
-}
-
-/* styles.css */
-
-.travel-details-containerss {
-  width: 100%;
-  padding: 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 82px;
-}
-
-.content-wrapper {
-  display: flex;
-  gap: 40px;
-  justify-content: center;
-  align-items: flex-start;
-}
-
-.text-infolay {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.company-name {
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.bus-info {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.time-infolay {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 7px;
-}
-
-.departure-timebuslay,
-.arrival-time {
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.date {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.duration {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.price-info {
-  text-align: right;
-  color: #071c2c;
-  font-size: 24px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  line-height: 12px;
-  letter-spacing: 1.2px;
-  word-wrap: break-word;
-}
-
-/* styles.css */
-
-.section-links-container {
-  width: 330px;
-  height: 20px;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-end;
-  gap: 16px;
-}
-
-.link-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.link-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-}
-
-.link-text {
-  color: #bbbbbb;
-  font-size: 12px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.arrow-icon {
-  width: 30px;
-  display: flex;
-}
-
-.arrow-icon::before {
-  content: "";
-  width: 10.01px;
-  height: 6.01px;
-  left: 5px;
-  top: 6.99px;
-  position: absolute;
-}
-/* styles.css */
 
-.bus-details-container {
-  width: 100%;
-  max-width: 869px;
-  height: 47px;
-  display: inline-flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 2%;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 10px;
-}
-
-.info-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.info-item {
-  width: 60% !important;
-  display: inline-flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
-
-.bus-title,
-.bus-type,
-.timeseat,
-.duration {
-  width: 100%;
-  gap: 4px;
-  display: flex;
-}
-
-.bus-type {
-  color: #bbb;
-  font-family: Montserrat;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 600;
-  line-height: normal;
-}
-
-.priceseat {
-  text-align: right;
-}
-.info-item1 {
-  width: 150px;
-}
-@media screen and (min-width: 768px) {
-  .info-wrapper {
-    flex-direction: row;
-  }
-
-  .info-item {
-    width: auto;
-  }
-
-  .bus-title,
-  .bus-type,
-  .time,
-  .duration {
-    width: auto;
-  }
-
-  .price {
-    text-align: right;
-  }
-}
-
-.selectseat {
-  display: flex;
-  gap: 2%;
-
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.selectleft {
-  width: 40%;
-}
-
-.selectright {
-  width: 58%;
-  /* display: flex;
-    gap:2%; */
-}
-.selectrightdata {
-  display: flex;
-  gap: 2%;
-}
-/* styles.css */
-
-.seatContainer {
-  height: 829px;
-  background: #d9d9d9;
-  border-radius: 12px;
-}
-
-/* styles.css */
-
-.containerseats {
-  width: 49%;
-  height: 300px;
-  padding: 8px;
-  background: white;
-  border-radius: 12px;
-  border: 0.5px #071c2c solid;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 12px;
-  display: inline-flex;
-}
-
-.pickUpPoint {
-  align-self: stretch;
-  color: #071c2c;
-  font-size: 12px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  text-transform: uppercase;
-  word-wrap: break-word;
-}
-
-.pickUpDetails {
-  padding: 8px;
-  background: #e2edf5;
-  border-radius: 8px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 12px;
-  display: flex;
-}
-
-.pickUpTime {
-  align-self: stretch;
-  height: 39px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 4px;
-  display: flex;
-}
-
-.detailsTop {
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-.timeInfo {
-  color: #071c2c;
-  font-size: 10px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  text-transform: uppercase;
-  word-wrap: break-word;
-}
-
-.marker {
-  width: 20px;
-  height: 20px;
-  position: relative;
-}
-
-.marker div {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-}
-
-.foregroundMarker {
-  width: 16.67px;
-  height: 16.67px;
-  left: 1.67px;
-  top: 1.67px;
-  position: absolute;
-  background: #071c2c;
-}
-
-.locationInfo {
-  color: #071c2c;
-  font-size: 12px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  text-transform: uppercase;
-  word-wrap: break-word;
-}
-
-.locationDetails {
-  width: 175px;
-  color: #071c2c;
-  font-size: 10px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.sectionDivider {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-top: 0.5px #bbbbbb solid;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 12px;
-  display: flex;
-}
-
-.pickUpSection {
-  align-self: stretch;
-  height: 31px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 4px;
-  display: flex;
-}
-
-/* styles.css */
-
-.containerdrop {
-  width: 49%;
-  height: 695px;
-  padding: 8px;
-  background: white;
-  border-radius: 12px;
-  border: 0.5px #071c2c solid;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 12px;
-  display: inline-flex;
-}
-
-@media (max-width: 768px) {
-  .container {
-    width: 100%;
-    height: auto;
-  }
-}
-
-.section {
-  padding-left: 8px;
-  padding-right: 8px;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-top: 0.5px #bbbbbb solid;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 12px;
-  display: flex;
-}
-
-.dropSection {
-  width: 191px;
-}
-
-.timeLocation {
-  align-self: stretch;
-  height: 31px;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 4px;
-  display: flex;
-}
-
-.timeDetails {
-  align-self: stretch;
-  justify-content: space-between;
-  align-items: center;
-  display: inline-flex;
-}
-
-.timeInfo {
-  color: #071c2c;
-  font-size: 10px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  text-transform: uppercase;
-  word-wrap: break-word;
-}
-
-.marker {
-  width: 20px;
-  height: 20px;
-  position: relative;
-}
-
-.backgroundMarker,
-.foregroundMarker {
-  width: 20px;
-  height: 20px;
-  position: absolute;
-}
 
-.foregroundMarker {
-  width: 16.67px;
-  height: 16.67px;
-  left: 1.67px;
-  top: 1.67px;
-  background: #071c2c;
-}
-
-.locationName {
-  color: #071c2c;
-  font-size: 12px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.locationDetails {
-  width: 175px;
-  color: #071c2c;
-  font-size: 10px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-/* styles.css */
-
-.containerselect {
-  justify-content: space-between;
-  align-items: center;
-  display: flex;
-  margin: auto;
-  width: 90%;
-  margin-top: 10px;
-}
-
-@media (max-width: 768px) {
-  .containerselect {
-    width: 100%;
-    height: auto;
-    flex-direction: column;
-  }
-}
-
-.column {
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 10px;
-  display: inline-flex;
-}
-
-.column.right {
-  text-align: right;
-}
-
-.titlefare {
-  color: #071c2c;
-  font-size: 12px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  word-wrap: break-word;
-}
-
-.subtitle1 {
-  color: #071c2c;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 600;
-  word-wrap: break-word;
-}
-
-.amount {
-  color: #e73c33;
-  font-size: 24px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  line-height: 12px;
-  letter-spacing: 1.2px;
-  word-wrap: break-word;
-}
-
-/* styles.css */
-
-.buttonContainer {
-  width: 90%;
-
-  padding-left: 24px;
-  padding-right: 24px;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  background: #e73c33;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-
-  margin: auto;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  display: flex;
-  margin-top: 10px;
-}
 .sealLayoutDiv {
   width: 100%;
-  border: 1px solid red;
-  background-color: rgb(241, 241, 241);
-  height: 400px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.sealLayoutDiv > div:first-child {
-  width: 60%;
-  height: 100%;
-  border: 1px solid red;
-}
-.sealLayoutDiv > div:nth-child(2) {
-  width: 40%;
-  height: 100%;
-  border: 1px solid red;
-}
-.sealLayoutDiv > div:first-child > div {
-  height: 100%;
-}
-.outerseat,
-.outerlowerseat {
-  position: relative;
-  width: auto;
-  height: 50%;
-  display: block;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-  align-items: center;
+  border: 1px solid lightgray;
+  border-top: none;
+  /* background-color: rgb(241, 241, 241); */
+  background: white;
+  /* height: 400px; */
+  min-height: 300px;
+  margin-top: -15px;
   margin-bottom: 10px;
-  padding-left: 20px;
 }
 
-.busSeatlft,
-.busSeatrgt {
-  /* border: 2px solid red; */
-  height: 45%;
-  width: auto;
+
+.sealLayoutDiv>div:first-child {
+  height: 100%;
+  padding-top: 30px;
+  padding-bottom: 30px;
 }
 
-.upper {
-  position: relative;
+.sealLayoutDiv>div:first-child>div {
+  height: 100%;
 }
 
-.busSeat {
-  display: block;
-  flex-direction: column;
-}
+
 
 .seatcontainer {
   position: relative;
   align-self: center;
+  /* display: flex !important; */
+  flex-wrap: wrap !important;
+}
+
+.busSeatrgt .busSeat .seatcontainer {
+  display: grid !important;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  gap: 3px;
+}
+
+.seatContTwo {
+  display: grid !important;
+  grid-template-columns: auto auto auto auto auto auto auto;
+  column-gap: 14px !important;
+  row-gap: 10px !important;
 }
 
 
-@media (max-width: 768px) {
-  .buttonContainer {
-    width: 100%;
-    height: auto;
-    padding-left: 12px;
-    padding-right: 12px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    flex-direction: column;
-  }
+.seatcontainer>div {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  /* margin-left: 10px !important; */
+  flex-direction: row !important;
+  gap: 7px !important;
 }
 
-.buttonText {
-  color: #fffbfb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 700;
-  text-transform: uppercase;
-  word-wrap: break-word;
-}
 
-.sort-option:hover {
-  border-bottom: #e73c33 2px solid;
-}
 
-.ac-container {
-  width: 75%;
-  height: 28px;
+.sealLayoutDiv>div:first-child>div {
+  height: 100%;
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  gap: 16px;
-  margin: auto;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
 }
 
-.option-container {
-  height: 28px;
-  padding: 0px 20px;
-  border-radius: 8px;
-  border: 1px #bbbbbb solid;
-  display: flex;
-  width: 200px;
 
+
+.layOutParentInner {
+  display: flex;
+  flex-direction: column;
+
+}
+
+
+.seatNameBox {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  /* max-width: 160px; */
+}
+
+.seatNameBox p {
+  color: black;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.seatFareBox {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+}
+
+.seatFareBox p,
+.seatFareBox h2 {
+  color: black;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  margin-bottom: 0 !important;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+
+
+.buttonLayoutBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
   gap: 4px;
+  /* margin: 10px 0px; */
+
 }
-.texttop {
-  color: #071c2c;
-  font-family: Montserrat;
-  font-size: 16px;
+
+.buttonLayoutBox button {
+  padding: 8px 13px;
+  border-radius: 4px;
+  background: #E73C33;
+  color: #FFF;
+  font-family: 'Montserrat';
+  font-size: 15px;
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  border: 2px solid #E73C33;
+  transition: all 0.3s;
+
 }
-.iconac {
-  width: 16px;
-  height: 16px;
+
+
+.originBoxSelect select {
+  max-width: 170px;
+
+}
+
+
+.outerseat,
+.outerlowerseat {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.steeringBox p,
+.outerlowerseat p {
+  transform: rotate(-90deg);
+  font-weight: 700;
+}
+
+
+.steeringBox {
   position: relative;
 }
 
-.icon-backgroundac {
-  width: 16px;
-  height: 16px;
-  left: 0;
-  top: 0;
+.steeringBox svg {
+  transform: rotate(-90deg);
+  top: -14px;
+  right: -18px;
   position: absolute;
-  background: #d9d9d9;
-}
-.textac {
-  color: #bbb;
-  font-family: Montserrat;
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 500;
-}
-.inner-icon {
-  width: 13.33px;
-  height: 13.33px;
-  left: 1.33px;
-  top: 1.33px;
-  position: absolute;
-  background: #bbbbbb;
 }
 
-.second-icon {
-  width: 16.78px;
-  height: 1.14px;
-  left: 1.7px;
-  top: 2.32px;
-  position: absolute;
-  transform: rotate(37.65deg);
-  transform-origin: 0 0;
-  border: 1.5px black solid;
+
+.seatOrgDes {
+  display: flex;
+  justify-content: flex-start;
+  gap: 12px;
+  align-items: flex-end;
 }
 
-.text {
-  color: #bbbbbb;
-  font-size: 16px;
-  font-family: "Montserrat";
-  font-weight: 500;
-  word-wrap: break-word;
-}
-
-.selecttext {
-  color: #000;
-  font-family: "Montserrat";
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  margin-bottom: 15px;
-}
-
-.button-container {
-  width: 210px;
-  height: 52px;
-  padding: 12px 20px;
-  background: #e73c33;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-  border-radius: 16px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
+.seatPriceBox {
+  display: flex;
   gap: 10px;
 }
 
-.button-text {
-  color: #fffbfb;
-  text-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
-  font-family: "Montserrat";
-  font-size: 16px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
+.loadBusGif {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.swipetoslide {
-  margin: 10px;
+
+
+
+
+
+.mainimgBusSearch {
+  background-image: url(../../../images/busBg.jpg);
+  background-size: cover;
+  background-repeat: no-repeat !important;
+  height: 300px;
+  background-position: bottom center;
 }

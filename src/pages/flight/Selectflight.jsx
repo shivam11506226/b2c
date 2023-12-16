@@ -307,7 +307,7 @@ function Items({ currentItems }) {
                     </div>
 
                     <div className="singleFlightBoxSeven">
-                      <p>₹ {' '}{results[0][item]?.Fare?.OfferedFare}</p>
+                      <p>₹ {' '}{results[0][item]?.Fare?.PublishedFare}</p>
                       <button
                         onClick={() => {
                           handleIndexId(

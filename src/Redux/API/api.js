@@ -229,10 +229,46 @@ function api() {
     });
   };
 
-  const getBusSeatLayout = (payload) => {
+  //Bus API's Start
+
+  const busBlock = (payload) => {
     return axios({
       method: "POST",
-      url: "skyTrails/bus/seatlayout",
+      url: "/skyTrails/bus/block",
+      baseURL: `${apiURL.baseURL}`,
+      data: payload,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+  const busBook = (payload) => {
+    return axios({
+      method: "POST",
+      url: "/skyTrails/bus/book",
+      baseURL: `${apiURL.baseURL}`,
+      data: payload,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+
+  const busBookDetails = (payload) => {
+    return axios({
+      method: "POST",
+      url: "/skyTrails/bus/bookingdetails",
+      baseURL: `${apiURL.baseURL}`,
+      data: payload,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  };
+  const busBookingDataSave = (payload) => {
+    return axios({
+      method: "POST",
+      url: "/skyTrails/busBooking/addBusBookingData",
       baseURL: `${apiURL.baseURL}`,
       data: payload,
       headers: {
@@ -263,7 +299,10 @@ function api() {
     getOnePackage,
     bookingHoliday,
     getBusSearch,
-    getBusSeatLayout,
+    busBlock,
+    busBook,
+    busBookDetails,
+    busBookingDataSave,
     passengerData,
   };
 }

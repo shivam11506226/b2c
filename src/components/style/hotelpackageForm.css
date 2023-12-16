@@ -96,22 +96,24 @@
     height: 100%;
     border-radius: 0px 10px 10px 0px;
     cursor: pointer;
+    border: 2px solid #e73c33;
     transition: all 0.3s;
 }
 
 .searchButt svg {
     color: white;
-    font-size: 34px;
+    font-size: 1.9rem !important;
     margin-left: 0px;
     position: relative;
+    left: 0;
     transition: all 0.3s;
 }
 
 .searchButt:hover svg {
     color: white;
     font-size: 34px;
-
-    padding-left: 9px;
+    left: 9px;
+    /* padding-left: 9px; */
 }
 
 .PackageInner .searchButt:hover {

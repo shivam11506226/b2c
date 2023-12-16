@@ -122,7 +122,7 @@ export default function Popularfilter() {
 
   // console.log("shaan", sortedAndFilteredResults)
   return (
-    <section className="mx-5">
+    <section className="my-4 mx-5">
       <div className="contaier-xxl">
         <div className="row">
           <div className="col-lg-3">

@@ -1,91 +1,95 @@
-.swip_destination{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: #25B1CA;
-    display: flex;
-    align-items: center;
+.swip_destination {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #25B1CA;
+  display: flex;
+  align-items: center;
 }
 
-.from-container2{
-    height: 109px;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    padding-left: 24px;
-    padding-right:25px;
-     width:250px;
-   
-    border-top-left-radius: 12px;
-  
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    display: inline-flex;
-    position: relative;
-  }
+.from-container2 {
+  height: 109px;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  padding-left: 24px;
+  padding-right: 25px;
+  width: 250px;
 
-  
-  .your-containerform{
-    width: 90%;
-    background: white;
-    border-radius: 12px;
-    border: 0.5px #071C2C solid;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin: auto;
-  }
-  .your-containerformholiday{
-    width: 70%;
-    background: white;
-    border-radius: 12px;
-    border: 0.5px #071C2C solid;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-    margin: auto;
-  }
-  /* styles.css */
+  border-top-left-radius: 12px;
+
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  display: inline-flex;
+  position: relative;
+}
+
+
+.your-containerform {
+  width: 90%;
+  background: white;
+  border-radius: 12px;
+  border: 0.5px #071C2C solid;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
+
+.your-containerformholiday {
+  width: 70%;
+  background: white;
+  border-radius: 12px;
+  border: 0.5px #071C2C solid;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin: auto;
+}
+
+/* styles.css */
 
 .searchContainer {
-    width: 100%;
-    max-width: 1064px;
-    height: 44px;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    gap: 30px;
-    margin: 0 auto; /* Center the container */
-  }
-  
-  .searchButton {
-    padding: 12px 24px;
-    background: #E73C33;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.30);
-    border-radius: 32px;
-    display: flex;
-    justify-content:right;
-    align-items: center;
-  }
-  
-  .buttonText {
-    color: #FFFBFB;
-    font-size: 16px;
-    font-family: 'Montserrat';
-    font-weight: 700;
-    word-wrap: break-word;
-  }
-  
-  .select_fare1 {
-   
-    width: 90%;
-    /* display: flex; */
-    justify-content: right;
-    align-items: right;
-    gap: 15px;
-    margin: 20px auto;
-    
+  width: 100%;
+  max-width: 1064px;
+  height: 44px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  margin: 0 auto;
+  /* Center the container */
 }
+
+.searchButton {
+  padding: 12px 24px;
+  background: #E73C33;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.30);
+  border-radius: 32px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+}
+
+.buttonText {
+  color: #FFFBFB;
+  font-size: 16px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  word-wrap: break-word;
+}
+
+.select_fare1 {
+
+  width: 90%;
+  /* display: flex; */
+  justify-content: right;
+  align-items: right;
+  gap: 15px;
+  margin: 20px auto;
+
+}
+
 .BusForm input {
   position: relative;
 
@@ -151,62 +155,94 @@
   list-style-type: none;
   border-bottom: 1px solid #ddd;
 }
-  /* Responsive Styles */
-  @media (max-width: 768px) {
-    .searchContainer {
-      justify-content: center;
-    }
-  }
-  
-  @media only screen and (max-width: 1000px) {
-    .your-containerform {
-      flex-direction: column;
-      height: auto;
-    }
-  
-    .from-container2,
-    .from-container2,
-    .to-container,
-    .departure-container,
-    .return-container
-     {
-      width: 100%;
-      padding: 12px;
-      border-right: none;
-      border-bottom: none;
-    }
 
-  
-    .from-container2,
-    .from-container2,
-    .to-container,
-    .departure-container,
-    .return-container {
-      padding-bottom: 20px;
-    }
-    .traveller-container {
-        width: 100%;
-        padding: 12px;
-        border-right: none;
-       
-      }
-      .roundlogo{
-        position: absolute;
-        right: 50%;
-        top: 100%;
-        transform: translate(0% , -50%);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-      }
-    
-      .roundlogo svg{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        /* display: flex;
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .searchContainer {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .your-containerform {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .from-container2,
+  .from-container2,
+  .to-container,
+  .departure-container,
+  .return-container {
+    width: 100%;
+    padding: 12px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+
+  .from-container2,
+  .from-container2,
+  .to-container,
+  .departure-container,
+  .return-container {
+    padding-bottom: 20px;
+  }
+
+  .traveller-container {
+    width: 100%;
+    padding: 12px;
+    border-right: none;
+
+  }
+
+  .roundlogo {
+    position: absolute;
+    right: 50%;
+    top: 100%;
+    transform: translate(0%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .roundlogo svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* display: flex;
         justify-content: center;
         align-items: center; */
-      }
   }
+}
+
+
+
+
+
+
+
+.BusSearchBg {
+  background-color: #fff;
+  border-radius: 10px;
+  z-index: 1;
+  padding-top: 96px;
+  padding-bottom: 90px;
+  position: relative;
+  top: -40px;
+  box-shadow: rgba(255, 255, 255, 0.1) 0px 1px 1px 0px inset, rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+
+.BusSearchBg>.col-12 {
+  padding: 0px 36px !important;
+}
+
+
+.busSearch-container {
+  display: grid;
+  border: 1px #888 solid;
+  border-radius: 10px;
+  grid-template-columns: 30% 30% 20% 20%;
+}
